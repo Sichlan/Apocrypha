@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apocrypha.CommonObject", "Apocrypha.Domain\Apocrypha.CommonObject.csproj", "{9D766804-8478-4F91-A692-C4F249ED4111}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apocrypha.EntityFramework", "Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj", "{9B13DA00-B0B0-446D-92FC-3F4DAFE106A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apocrypha.WPF", "Apocrypha.WPF\Apocrypha.WPF.csproj", "{B4424135-00DD-44C8-BDA6-49E0CC559946}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9D766804-8478-4F91-A692-C4F249ED4111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D766804-8478-4F91-A692-C4F249ED4111}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D766804-8478-4F91-A692-C4F249ED4111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B13DA00-B0B0-446D-92FC-3F4DAFE106A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B13DA00-B0B0-446D-92FC-3F4DAFE106A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B13DA00-B0B0-446D-92FC-3F4DAFE106A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B13DA00-B0B0-446D-92FC-3F4DAFE106A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4424135-00DD-44C8-BDA6-49E0CC559946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4424135-00DD-44C8-BDA6-49E0CC559946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4424135-00DD-44C8-BDA6-49E0CC559946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4424135-00DD-44C8-BDA6-49E0CC559946}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
