@@ -11,7 +11,7 @@ namespace Apocrypha.EntityFramework
             _connectionString = connectionString;
         }
 
-        public ApocryphaDbContext CreateDbContext(string[] args = null)
+        public ApocryphaDbContext CreateDbContext()
         {
             var options = new DbContextOptionsBuilder<ApocryphaDbContext>();
             options.UseMySQL(_connectionString);

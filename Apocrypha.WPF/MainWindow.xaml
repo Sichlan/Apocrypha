@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Apocrypha.WPF"
+        xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
+        xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{x:Static res:Resources.ApplicationTitle}" Height="450" Width="800">
     <Grid>
-
+        
     </Grid>
 </Window>
