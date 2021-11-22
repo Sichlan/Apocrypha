@@ -1,16 +1,26 @@
 ﻿<Application x:Class="Apocrypha.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Apocrypha.WPF">
+             xmlns:local="clr-namespace:Apocrypha.WPF"
+             xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
+             xmlns:views="clr-namespace:Apocrypha.WPF.Views"
+             xmlns:converters="clr-namespace:Apocrypha.WPF.Converters">
     <Application.Resources>
          
          <ResourceDictionary>
              <ResourceDictionary.MergedDictionaries>
-                 
+                 <ResourceDictionary Source="Styles/CommonStyles.xaml"/>
              </ResourceDictionary.MergedDictionaries>
-             
-             
-         </ResourceDictionary>
          
+             <!--#region DataTemplates-->
+             <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
+                 <views:HomeView/>
+             </DataTemplate>
+             <!--#endregion-->
+
+             <!--#region Converters-->
+             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
+             <!--#endregion-->
+         </ResourceDictionary>
     </Application.Resources>
 </Application>

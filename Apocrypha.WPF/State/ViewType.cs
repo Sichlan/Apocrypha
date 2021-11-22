@@ -1,0 +1,9 @@
+﻿namespace Apocrypha.WPF.State.Navigators
+{
+    public enum ViewType
+    {
+        Home,
+        Login,
+        Register
+    }
+}

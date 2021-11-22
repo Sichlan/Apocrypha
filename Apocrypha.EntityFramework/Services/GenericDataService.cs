@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.EntityFramework.Services
 {
-    public class GenericDataService<T> : IDataService.IDataService<T> where T : DatabaseObject
+    public class GenericDataService<T> : IDataService<T> where T : DatabaseObject
     {
         private readonly ApocryphaDbContextFactory _dbContextFactory;
         private readonly NonQueryDataService<T> _nonQueryDataService;

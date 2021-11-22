@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Services;
+using Apocrypha.CommonObject.Services.AuthenticationServices;
 using Apocrypha.EntityFramework;
+using Apocrypha.EntityFramework.Services;
+using Apocrypha.WPF.State.Navigators.Authenticators;
+using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Navigators.Users;
 using Apocrypha.WPF.ViewModels;
+using Apocrypha.WPF.ViewModels.Factories;
+using Microsoft.AspNet.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +52,10 @@ namespace Apocrypha.WPF
                     var connectionString = context.Configuration.GetConnectionString("mariadb");
                     services.AddDbContext<ApocryphaDbContext>(x => x.UseMySQL(connectionString));
                     services.AddSingleton<ApocryphaDbContextFactory>(o => new ApocryphaDbContextFactory(connectionString));
+                    
+                    services.AddSingleton<IAuthenticationService, AuthenticationService>();
+                    services.AddSingleton<IDataService<User>, UserDataService>();
+                    services.AddSingleton<IUserService, UserDataService>();
 
                     #endregion
 
@@ -56,17 +69,25 @@ namespace Apocrypha.WPF
 
                     services.AddSingleton<MainViewModel>();
 
+                    services.AddSingleton<IApocryphaViewModelFactory, ApocryphaViewModelFactory>();
+                    services.AddSingleton<HomeViewModel>();
+
+                    services.AddSingleton<CreateViewModel<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
+
                     #endregion
 
                     #region Delegates
 
-                    
+                    services.AddSingleton<IPasswordHasher, PasswordHasher>();
+                    services.AddSingleton<ViewModelDelegateRenavigator<HomeViewModel>>();
 
                     #endregion
 
                     #region State
 
-                    
+                    services.AddSingleton<INavigator, Navigator>();
+                    services.AddSingleton<IAuthenticator, Authenticator>();
+                    services.AddSingleton<IUserStore, UserStore>();
 
                     #endregion
 
