@@ -10,17 +10,22 @@
          <ResourceDictionary>
              <ResourceDictionary.MergedDictionaries>
                  <ResourceDictionary Source="Styles/CommonStyles.xaml"/>
+                 <ResourceDictionary Source="Styles/NavigationBarStyle.xaml"/>
              </ResourceDictionary.MergedDictionaries>
          
              <!--#region DataTemplates-->
              <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
                  <views:HomeView/>
              </DataTemplate>
+             
+             <DataTemplate DataType="{x:Type viewModels:CharacterSelectionViewModel}">
+                 <views:CharacterSelectionView/>
+             </DataTemplate>
              <!--#endregion-->
 
              <!--#region Converters-->
-             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
-             <!--#endregion-->
+            <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
+            <!--#endregion-->
          </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -16,7 +16,11 @@ namespace Apocrypha.WPF.ViewModels
 
         public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
         public bool IsLoggedIn => _authenticator.IsLoggedIn;
-        public ICommand UpdateCurrentViewModelCommand { get; }
+        public AsyncCommandBase UpdateCurrentViewModelCommand { get; }
+        public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
+
+        public string Title => "Apocrypha";
+        public double MaxWidth => 1500;
 
         public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory)
         {
@@ -29,6 +33,12 @@ namespace Apocrypha.WPF.ViewModels
 
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
             UpdateCurrentViewModelCommand.Execute(ViewType.Home);
+            UpdateCurrentViewModelCommand.StateChange += UpdateCurrentViewModelCommand_StateChange;
+        }
+
+        private void UpdateCurrentViewModelCommand_StateChange()
+        {
+            OnPropertyChanged(nameof(IsExecutingCommand));
         }
 
         private void Authenticator_StateChange()

@@ -1,14 +1,25 @@
-﻿using System;
+﻿using Apocrypha.WPF.State.Navigators;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Apocrypha.WPF.Commands
 {
-    public abstract class AsyncCommandBase : ICommand
+    public abstract class AsyncCommandBase : ICommand, IStateChanger
     {
-        public bool IsExecuting { get; set; }
+        private bool _isExecuting;
+        public bool IsExecuting 
+        {
+            get => _isExecuting;
+            set
+            {
+                _isExecuting = value;
+                StateChange?.Invoke();
+            }
+        }
 
         public event EventHandler CanExecuteChanged;
+        public event Action StateChange;
 
         public bool CanExecute(object parameter)
         {

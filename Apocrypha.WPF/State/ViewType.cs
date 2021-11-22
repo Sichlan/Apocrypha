@@ -4,6 +4,7 @@
     {
         Home,
         Login,
-        Register
+        Register,
+        CharacterSelection
     }
 }

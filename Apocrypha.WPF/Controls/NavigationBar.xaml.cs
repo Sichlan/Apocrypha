@@ -2,9 +2,9 @@
 
 namespace Apocrypha.WPF.Controls
 {
-    public partial class NaviagtionBar : UserControl
+    public partial class NavigationBar : UserControl
     {
-        public NaviagtionBar()
+        public NavigationBar()
         {
             InitializeComponent();
         }

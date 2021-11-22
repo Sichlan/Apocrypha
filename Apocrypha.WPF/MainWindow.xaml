@@ -5,20 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Apocrypha.WPF"
         xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
-        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}"
+        xmlns:controls="clr-namespace:Apocrypha.WPF.Controls" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
         mc:Ignorable="d"
-        Title="Apocrypha"
+        Title="{Binding Title}"
         Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        
-        
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <ContentControl Content="{Binding CurrentViewModel}"/>
-        </ScrollViewer>
+
+        <Grid Grid.Row="0">
+            <!--<Grid.Style>
+                <Style TargetType="{x:Type Grid}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoggedIn}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </Grid.Style>-->
+
+            <controls:NavigationBar/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <xctk:BusyIndicator Grid.Row="1" IsBusy="{Binding IsExecutingCommand}" MaxWidth="{Binding MaxWidth}" HorizontalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="#f0efe2">
+                    <ContentControl Content="{Binding CurrentViewModel}"/>
+                </ScrollViewer>
+            </xctk:BusyIndicator>
+        </Grid>
     </Grid>
 </Window>

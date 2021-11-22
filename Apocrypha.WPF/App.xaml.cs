@@ -71,8 +71,10 @@ namespace Apocrypha.WPF
 
                     services.AddSingleton<IApocryphaViewModelFactory, ApocryphaViewModelFactory>();
                     services.AddSingleton<HomeViewModel>();
+                    services.AddSingleton<CharacterSelectionViewModel>();
 
                     services.AddSingleton<CreateViewModel<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
+                    services.AddSingleton<CreateViewModel<CharacterSelectionViewModel>>(s => s.GetRequiredService<CharacterSelectionViewModel>);
 
                     #endregion
 
