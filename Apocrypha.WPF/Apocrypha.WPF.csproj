@@ -8,6 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Fonts\TheCenturion.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
         <PrivateAssets>all</PrivateAssets>
@@ -27,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Resources\" />
+      <Resource Include="Resources\Fonts\TheCenturion.ttf" />
     </ItemGroup>
 
 </Project>

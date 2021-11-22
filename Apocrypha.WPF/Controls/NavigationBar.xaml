@@ -17,7 +17,7 @@
         
         <!--#region Header-->
         <Grid Grid.Row="0" Background="{StaticResource BrushPrimary1}">
-            <TextBlock Text="{Binding Title}" MaxWidth="{Binding MaxWidth}" Padding="10" FontSize="28" Foreground="{StaticResource BrushForeground1}" FontFamily=""/>
+            <TextBlock FontFamily="{StaticResource TheCenturion}" Text="{Binding Title}" MaxWidth="{Binding MaxWidth}" Padding="10" FontSize="28" Foreground="{StaticResource BrushForeground1}"/>
         </Grid>
         <!--#endregion-->
 

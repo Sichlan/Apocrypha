@@ -26,6 +26,10 @@
              <!--#region Converters-->
             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
             <!--#endregion-->
+             
+             <!--#region Fonts-->
+            <FontFamily x:Key="TheCenturion">/Resources/Fonts/#The Centurion</FontFamily>
+             <!--#endregion-->
          </ResourceDictionary>
     </Application.Resources>
 </Application>
