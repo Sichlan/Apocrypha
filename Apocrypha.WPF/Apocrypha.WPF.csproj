@@ -8,13 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Controls\database.png" />
         <None Remove="Controls\home.png" />
-        <None Remove="Controls\menu.png" />
         <None Remove="Resources\Fonts\TheCenturion.ttf" />
-        <None Update="Resources\Icons\logout.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+        <None Remove="Resources\Icons\chart.png" />
+        <None Remove="Resources\Icons\database.png" />
+        <None Remove="Resources\Icons\home.png" />
+        <None Remove="Resources\Icons\logout.png" />
+        <None Remove="Resources\Icons\menu.png" />
+        <None Remove="Resources\Icons\search.png" />
+        <None Remove="Resources\Icons\settings.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -35,31 +37,32 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\Icons\chart.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\Icons\database.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\Icons\home.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\Icons\menu.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\Icons\search.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\Icons\settings.png">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Controls\database.png" />
         <Resource Include="Controls\home.png" />
-        <Resource Include="Controls\menu.png" />
         <Resource Include="Resources\Fonts\TheCenturion.ttf" />
+        <Resource Include="Resources\Icons\chart.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Resources\Icons\database.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Resources\Icons\home.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Resources\Icons\logout.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Resources\Icons\menu.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Resources\Icons\search.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Resources\Icons\settings.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
     </ItemGroup>
 
 </Project>
