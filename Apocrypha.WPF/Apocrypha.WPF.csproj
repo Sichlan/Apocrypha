@@ -8,6 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <None Remove="Controls\database.png" />
+        <None Remove="Controls\home.png" />
+        <None Remove="Controls\menu.png" />
         <None Remove="Resources\Fonts\TheCenturion.ttf" />
     </ItemGroup>
 
@@ -28,9 +31,30 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Update="Resources\Icons\chart.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\Icons\database.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\Icons\home.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\Icons\menu.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\Icons\search.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\Icons\settings.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
+        <Resource Include="Controls\database.png" />
+        <Resource Include="Controls\home.png" />
+        <Resource Include="Controls\menu.png" />
         <Resource Include="Resources\Fonts\TheCenturion.ttf" />
     </ItemGroup>
 

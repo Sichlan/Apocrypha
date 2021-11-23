@@ -35,6 +35,14 @@ namespace Apocrypha.WPF.ViewModels
         public string TitleShort => "A";
         public double MaxWidth => 1500;
 
+        private bool menuExpanded;
+        public bool MenuExpanded
+        {
+            get { return menuExpanded; }
+            set { menuExpanded = value; OnPropertyChanged(); }
+        }
+
+
         private void UpdateCurrentViewModelCommand_StateChange()
         {
             OnPropertyChanged(nameof(IsExecutingCommand));

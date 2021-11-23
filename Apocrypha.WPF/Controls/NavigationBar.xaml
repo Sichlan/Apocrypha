@@ -10,21 +10,13 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!--#region Header-->
-        <Grid Grid.Row="0" Background="{StaticResource BrushPrimary1}">
-            <TextBlock FontFamily="{StaticResource TheCenturion}" Text="{Binding Title}" Padding="10" FontSize="28"
-                       Foreground="{StaticResource BrushForeground1}" />
-        </Grid>
-        <!--#endregion-->
-
-        <Grid Grid.Row="1" Background="{StaticResource BrushPrimary2}" RenderOptions.EdgeMode="Aliased" VerticalAlignment="Stretch">
+        <Grid Grid.Row="0" Background="{StaticResource BrushPrimary2}" RenderOptions.EdgeMode="Aliased" VerticalAlignment="Stretch">
             <StackPanel Orientation="Vertical">
                 <StackPanel.Resources>
-                    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource NavigationBarMenuItemStyle}" />
                     <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MenuRadioButtonTheme}"/>
                 </StackPanel.Resources>
 
@@ -32,16 +24,27 @@
                           Command="{Binding UpdateCurrentViewModelCommand}"
                           CommandParameter="{x:Static navigators:ViewType.Home}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="pack://application:,,,/Resources/Icons/home.SVG" Width="20" Height="20" VerticalAlignment="Center"/>
+                        <Image Source="/Controls/home.png" Width="20" Height="20" VerticalAlignment="Center"/>
                         <TextBlock Text="Home" Margin="10 0 0 0"/>
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton Content="Character Selection"
-                          IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterSelectionViewModel}, Mode=OneWay}"
+                <RadioButton IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterSelectionViewModel}, Mode=OneWay}"
                           Command="{Binding UpdateCurrentViewModelCommand}"
-                          CommandParameter="{x:Static navigators:ViewType.CharacterSelection}"/>
+                          CommandParameter="{x:Static navigators:ViewType.CharacterSelection}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Controls/database.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                        <TextBlock Text="Character Selection" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </RadioButton>
             </StackPanel>
         </Grid>
+
+        <ToggleButton Grid.Row="1" IsChecked="{Binding MenuExpanded}" Style="{StaticResource MenuToggleButtonTheme}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Controls/menu.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                <TextBlock Text="Menu" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+            </StackPanel>
+        </ToggleButton>
     </Grid>
 </UserControl>
