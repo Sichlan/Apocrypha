@@ -39,12 +39,21 @@
                 </RadioButton>
             </StackPanel>
         </Grid>
+        
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <Button Style="{StaticResource MenuButtonTheme}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Controls/logout.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                    <TextBlock Text="Logout" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
 
-        <ToggleButton Grid.Row="1" IsChecked="{Binding MenuExpanded}" Style="{StaticResource MenuToggleButtonTheme}">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="/Controls/menu.png" Width="20" Height="20" VerticalAlignment="Center"/>
-                <TextBlock Text="Menu" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
-            </StackPanel>
-        </ToggleButton>
+            <ToggleButton IsChecked="{Binding MenuExpanded}" Style="{StaticResource MenuToggleButtonTheme}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Controls/menu.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                    <TextBlock Text="Menu" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </ToggleButton>
+        </StackPanel>
     </Grid>
 </UserControl>

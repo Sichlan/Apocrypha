@@ -12,6 +12,9 @@
         <None Remove="Controls\home.png" />
         <None Remove="Controls\menu.png" />
         <None Remove="Resources\Fonts\TheCenturion.ttf" />
+        <None Update="Resources\Icons\logout.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
