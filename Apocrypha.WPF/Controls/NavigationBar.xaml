@@ -25,7 +25,7 @@
                           CommandParameter="{x:Static navigators:ViewType.Home}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Controls/home.png" Width="20" Height="20" VerticalAlignment="Center"/>
-                        <TextBlock Text="Home" Margin="10 0 0 0"/>
+                        <TextBlock Text="Home" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
 
@@ -34,7 +34,7 @@
                           CommandParameter="{x:Static navigators:ViewType.CharacterSelection}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Controls/database.png" Width="20" Height="20" VerticalAlignment="Center"/>
-                        <TextBlock Text="Character Selection" Margin="10 0 0 0"/>
+                        <TextBlock Text="Character Selection" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
@@ -43,7 +43,7 @@
         <ToggleButton Grid.Row="1" IsChecked="{Binding MenuExpanded}" Style="{StaticResource MenuToggleButtonTheme}">
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Controls/menu.png" Width="20" Height="20" VerticalAlignment="Center"/>
-                <TextBlock Text="Menu" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                <TextBlock Text="Menu" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
             </StackPanel>
         </ToggleButton>
     </Grid>

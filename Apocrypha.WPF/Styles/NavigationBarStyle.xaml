@@ -14,12 +14,6 @@
                         <Grid x:Name="gridMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}">
                             <Label Content="{TemplateBinding Content}" VerticalAlignment="Center" Padding="{TemplateBinding Padding}" HorizontalAlignment="Left"/>
                         </Grid>
-
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="gridMain" Property="Background" Value="{StaticResource BrushPrimary1}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -28,6 +22,7 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Padding" Value="5" />
             <Setter Property="FontSize" Value="18" />
+            <Setter Property="Height" Value="35" />
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         </Style.Setters>
@@ -78,6 +73,7 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Padding" Value="5" />
             <Setter Property="FontSize" Value="18" />
+            <Setter Property="Height" Value="35" />
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         </Style.Setters>

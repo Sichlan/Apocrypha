@@ -31,7 +31,7 @@
         </Grid>
 
         <Grid Grid.Column="1">
-            <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}" MaxWidth="{Binding MaxWidth}"
+            <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}"
                                 HorizontalAlignment="Stretch">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                               Background="#f0efe2">

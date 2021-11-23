@@ -32,8 +32,6 @@ namespace Apocrypha.WPF.ViewModels
         public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
 
         public string Title => "Apocrypha";
-        public string TitleShort => "A";
-        public double MaxWidth => 1500;
 
         private bool menuExpanded;
         public bool MenuExpanded
