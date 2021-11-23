@@ -9,10 +9,16 @@ namespace Apocrypha.WPF.Commands
 {
     public class LogoutCommand : AsyncCommandBase
     {
-        private readonly IAuthenticator _authenticator
-        public override Task ExecuteAsync(object parameter)
+        private readonly IAuthenticator _authenticator;
+
+        public LogoutCommand(IAuthenticator authenticator)
         {
-            throw new NotImplementedException();
+            _authenticator = authenticator;
+        }
+
+        public override async Task ExecuteAsync(object parameter)
+        {
+            await _authenticator.Logout();
         }
     }
 }

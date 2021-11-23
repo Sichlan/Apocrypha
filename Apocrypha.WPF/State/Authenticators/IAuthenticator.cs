@@ -23,6 +23,6 @@ namespace Apocrypha.WPF.State.Navigators.Authenticators
         /// <exception cref="Exception">Throwing when the login fails.</exception>
         Task Login(string username, string password);
 
-        void Logout();
+        Task<bool> Logout();
     }
 }

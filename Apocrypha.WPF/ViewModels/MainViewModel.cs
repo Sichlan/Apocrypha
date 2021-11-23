@@ -24,11 +24,14 @@ namespace Apocrypha.WPF.ViewModels
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
             UpdateCurrentViewModelCommand.Execute(ViewType.Home);
             UpdateCurrentViewModelCommand.StateChange += UpdateCurrentViewModelCommand_StateChange;
+
+            LogoutCommand = new LogoutCommand(_authenticator);
         }
 
         public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
         public bool IsLoggedIn => _authenticator.IsLoggedIn;
         public AsyncCommandBase UpdateCurrentViewModelCommand { get; }
+        public AsyncCommandBase LogoutCommand { get; }
         public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
 
         public string Title => "Apocrypha";

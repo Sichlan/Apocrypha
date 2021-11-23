@@ -41,9 +41,11 @@ namespace Apocrypha.WPF.State.Navigators.Authenticators
             CurrentUser = await _authenticationService.Login(username, password);
         }
 
-        public void Logout()
+        public async Task<bool> Logout()
         {
             CurrentUser = null;
+
+            return true;
         }
     }
 }

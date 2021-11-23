@@ -41,7 +41,7 @@
         </Grid>
         
         <StackPanel Orientation="Vertical" Grid.Row="1">
-            <Button Style="{StaticResource MenuButtonTheme}">
+            <Button Style="{StaticResource MenuButtonTheme}" Command="{Binding LogoutCommand}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Resources/Icons/logout.png" Width="20" Height="20" VerticalAlignment="Center"/>
                     <TextBlock Text="Logout" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
