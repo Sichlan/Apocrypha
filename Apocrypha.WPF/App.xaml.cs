@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
@@ -25,7 +18,7 @@ using Microsoft.Extensions.Hosting;
 namespace Apocrypha.WPF
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    ///     Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
@@ -51,8 +44,8 @@ namespace Apocrypha.WPF
 
                     var connectionString = context.Configuration.GetConnectionString("mariadb");
                     services.AddDbContext<ApocryphaDbContext>(x => x.UseMySQL(connectionString));
-                    services.AddSingleton<ApocryphaDbContextFactory>(o => new ApocryphaDbContextFactory(connectionString));
-                    
+                    services.AddSingleton(o => new ApocryphaDbContextFactory(connectionString));
+
                     services.AddSingleton<IAuthenticationService, AuthenticationService>();
                     services.AddSingleton<IDataService<User>, UserDataService>();
                     services.AddSingleton<IUserService, UserDataService>();
@@ -60,8 +53,6 @@ namespace Apocrypha.WPF
                     #endregion
 
                     #region APIs
-
-                    
 
                     #endregion
 
@@ -99,17 +90,16 @@ namespace Apocrypha.WPF
                     services.AddScoped(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
 
                     #endregion
-                    
                 });
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
-            
+
             Window window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();
-            
+
             base.OnStartup(e);
         }
 
@@ -117,7 +107,7 @@ namespace Apocrypha.WPF
         {
             await _host.StopAsync();
             _host.Dispose();
-            
+
             base.OnExit(e);
         }
     }

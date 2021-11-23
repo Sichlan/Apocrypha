@@ -16,7 +16,7 @@ namespace Apocrypha.WPF.State.Navigators.Users
                 StateChange?.Invoke();
             }
         }
-        
+
         public event Action StateChange;
     }
 }

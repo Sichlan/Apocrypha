@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Apocrypha.WPF.Controls"
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
              xmlns:navigators="clr-namespace:Apocrypha.WPF.State.Navigators"
              mc:Ignorable="d"
@@ -11,52 +10,38 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <!--#region Header-->
         <Grid Grid.Row="0" Background="{StaticResource BrushPrimary1}">
-            <TextBlock FontFamily="{StaticResource TheCenturion}" Text="{Binding Title}" MaxWidth="{Binding MaxWidth}" Padding="10" FontSize="28" Foreground="{StaticResource BrushForeground1}"/>
+            <TextBlock FontFamily="{StaticResource TheCenturion}" Text="{Binding Title}" Padding="10" FontSize="28"
+                       Foreground="{StaticResource BrushForeground1}" />
         </Grid>
         <!--#endregion-->
 
-        <Grid Grid.Row="1" Background="{StaticResource BrushPrimary2}" RenderOptions.EdgeMode="Aliased">
-            <Grid MaxWidth="{Binding MaxWidth}">
-                <Menu>
-                    <Menu.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                            </Grid>
-                        </ItemsPanelTemplate>
-                    </Menu.ItemsPanel>
-                    <Menu.Resources>
-                        <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource NavigationBarMenuItemStyle}"/>
-                    </Menu.Resources>
-                    
-                    <MenuItem Header="Home" IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:HomeViewModel}, Mode=OneWay}"
-                              Command="{Binding UpdateCurrentViewModelCommand}" 
-                              CommandParameter="{x:Static navigators:ViewType.Home}"
-                              Grid.Column="0"/>
-                    
-                    <MenuItem Header="Character" Grid.Column="1">
-                        <MenuItem Header="Selection" IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterSelectionViewModel}, Mode=OneWay}"
-                              Command="{Binding UpdateCurrentViewModelCommand}" 
-                              CommandParameter="{x:Static navigators:ViewType.CharacterSelection}"/>
-                        <Separator/>
-                        <MenuItem Header="Inventory"/>
-                    </MenuItem>
-                </Menu>
-            </Grid>
+        <Grid Grid.Row="1" Background="{StaticResource BrushPrimary2}" RenderOptions.EdgeMode="Aliased" VerticalAlignment="Stretch">
+            <StackPanel Orientation="Vertical">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource NavigationBarMenuItemStyle}" />
+                    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MenuRadioButtonTheme}"/>
+                </StackPanel.Resources>
+
+                <RadioButton IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:HomeViewModel}, Mode=OneWay}"
+                          Command="{Binding UpdateCurrentViewModelCommand}"
+                          CommandParameter="{x:Static navigators:ViewType.Home}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="pack://application:,,,/Resources/Icons/home.SVG" Width="20" Height="20" VerticalAlignment="Center"/>
+                        <TextBlock Text="Home" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Content="Character Selection"
+                          IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterSelectionViewModel}, Mode=OneWay}"
+                          Command="{Binding UpdateCurrentViewModelCommand}"
+                          CommandParameter="{x:Static navigators:ViewType.CharacterSelection}"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

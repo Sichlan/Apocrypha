@@ -1,5 +1,4 @@
-﻿using System;
-using Apocrypha.WPF.ViewModels;
+﻿using Apocrypha.WPF.ViewModels;
 
 namespace Apocrypha.WPF.State.Navigators.Navigators
 {

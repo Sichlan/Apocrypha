@@ -5,14 +5,8 @@ namespace Apocrypha.WPF.ViewModels.Factories
 {
     public class ApocryphaViewModelFactory : IApocryphaViewModelFactory
     {
-        #region CreateViewModelDelegateFields
-
-        private readonly CreateViewModel<HomeViewModel> _createHomeViewModelFactory;
-        private readonly CreateViewModel<CharacterSelectionViewModel> _createCharacterSelectionViewModelFactory;
-
-        #endregion
-
-        public ApocryphaViewModelFactory(CreateViewModel<HomeViewModel> createHomeViewModelFactory, CreateViewModel<CharacterSelectionViewModel> createCharacterSelectionViewModelFactory)
+        public ApocryphaViewModelFactory(CreateViewModel<HomeViewModel> createHomeViewModelFactory,
+            CreateViewModel<CharacterSelectionViewModel> createCharacterSelectionViewModelFactory)
         {
             _createHomeViewModelFactory = createHomeViewModelFactory;
             _createCharacterSelectionViewModelFactory = createCharacterSelectionViewModelFactory;
@@ -30,5 +24,12 @@ namespace Apocrypha.WPF.ViewModels.Factories
                     throw new ArgumentException("The view type does not have a view model", nameof(viewType));
             }
         }
+
+        #region CreateViewModelDelegateFields
+
+        private readonly CreateViewModel<HomeViewModel> _createHomeViewModelFactory;
+        private readonly CreateViewModel<CharacterSelectionViewModel> _createCharacterSelectionViewModelFactory;
+
+        #endregion
     }
 }

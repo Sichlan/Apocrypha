@@ -8,30 +8,30 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\Fonts\TheCenturion.ttf" />
+        <None Remove="Resources\Fonts\TheCenturion.ttf" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj" />
+        <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="appsettings.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-      <Resource Include="Resources\Fonts\TheCenturion.ttf" />
+        <Resource Include="Resources\Fonts\TheCenturion.ttf" />
     </ItemGroup>
 
 </Project>

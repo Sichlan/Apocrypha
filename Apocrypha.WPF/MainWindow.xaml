@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Apocrypha.WPF"
         xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
         xmlns:controls="clr-namespace:Apocrypha.WPF.Controls" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
@@ -11,12 +10,12 @@
         Title="{Binding Title}"
         Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Column="0" VerticalAlignment="Stretch">
             <!--<Grid.Style>
                 <Style TargetType="{x:Type Grid}">
                     <Style.Triggers>
@@ -28,13 +27,15 @@
                 </Style>
             </Grid.Style>-->
 
-            <controls:NavigationBar/>
+            <controls:NavigationBar VerticalAlignment="Stretch"/>
         </Grid>
 
-        <Grid Grid.Row="1">
-            <xctk:BusyIndicator Grid.Row="1" IsBusy="{Binding IsExecutingCommand}" MaxWidth="{Binding MaxWidth}" HorizontalAlignment="Stretch">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="#f0efe2">
-                    <ContentControl Content="{Binding CurrentViewModel}"/>
+        <Grid Grid.Column="1">
+            <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}" MaxWidth="{Binding MaxWidth}"
+                                HorizontalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                              Background="#f0efe2">
+                    <ContentControl Content="{Binding CurrentViewModel}" />
                 </ScrollViewer>
             </xctk:BusyIndicator>
         </Grid>

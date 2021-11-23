@@ -11,6 +11,7 @@ namespace Apocrypha.CommonObject.Services.AuthenticationServices
         EmailAlreadyExists,
         UsernameAlreadyExists
     }
+
     public interface IAuthenticationService
     {
         Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword);

@@ -2,59 +2,36 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--#region Menu Style-->
     <Style TargetType="{x:Type Menu}">
-        <Setter Property="Background" Value="{StaticResource BrushPrimary2}"/>
-    </Style>
-    <!--#endregion-->
-    
-    <!--#region Separator-->
-    <Style TargetType="{x:Type Separator}">
-        <Setter Property="Height" Value="1" />
-        <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}"/>
-        <Setter Property="Margin" Value="0,4,0,4" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Separator}">
-                    <Border BorderThickness="5" BorderBrush="{StaticResource BrushForeground1}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="{StaticResource BrushPrimary2}" />
     </Style>
     <!--#endregion-->
 
     <!--#region MenuItem Style-->
-    <ControlTemplate TargetType="{x:Type MenuItem}" x:Key="NavigationBarMenuItemControlTemplate">
-        <Grid x:Name="gridMain" Background="{TemplateBinding Background}">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="{TemplateBinding Header}" Padding="{TemplateBinding Padding}"
-                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                   Foreground="{TemplateBinding Foreground}"/>
-            </StackPanel>
-            <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade" Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}">
-                <Border x:Name="SubmenuBorder"
-                SnapsToDevicePixels="True"
-                BorderThickness="0"
-                Background="{StaticResource BrushPrimary2}">
-                    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
-                    </ScrollViewer>
-                </Border>
-            </Popup>
-        </Grid>
+    <Style x:Key="MenuRadioButtonTheme" TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type ToggleButton}}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid x:Name="gridMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}">
+                            <Label Content="{TemplateBinding Content}" VerticalAlignment="Center" Padding="{TemplateBinding Padding}" HorizontalAlignment="Left"/>
+                        </Grid>
 
-        <ControlTemplate.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter TargetName="gridMain" Property="Background" Value="{StaticResource BrushPrimary1}" />
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="gridMain" Property="Background" Value="{StaticResource BrushPrimary1}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
 
-    <Style TargetType="{x:Type MenuItem}" x:Key="NavigationBarMenuItemStyle">
-        <Setter Property="Foreground" Value="{StaticResource BrushForeground1}"/>
-        <Setter Property="Background" Value="{StaticResource BrushPrimary2}" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="Template" Value="{StaticResource NavigationBarMenuItemControlTemplate}"/>
+            <Setter Property="Background" Value="{StaticResource BrushPrimary2}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        </Style.Setters>
 
         <Style.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
@@ -73,26 +50,106 @@
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="LightGray"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
     <!--#endregion-->
     
-    <!--#region Icons-->
-    <Canvas Name="HomeIcon" Width="20" Height="20" x:Key="HomeIcon">
-        <Canvas.RenderTransform>
-            <TranslateTransform X="0" Y="0"/>
-        </Canvas.RenderTransform>
-        <Canvas.Resources/>
-        <!--Unknown tag: sodipodi:namedview-->
-        <Canvas Name="g8">
-            <Canvas.RenderTransform>
-                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
-            </Canvas.RenderTransform>
-            <Canvas Name="g6">
-                <Polyline xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Points="0.5 7 7 0.5 13.5 7" Name="polyline2" FillRule="NonZero" Stroke="{StaticResource BrushForeground1}" StrokeLineJoin="Miter" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
-                <Polyline xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Points="2.5 8.5 2.5 13.5 11.5 13.5 11.5 8.5" Name="polyline4" FillRule="NonZero" Stroke="{StaticResource BrushForeground1}" StrokeLineJoin="Miter" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
-            </Canvas>
-        </Canvas>
-    </Canvas>
-    <!--#endregion-->
+    
+    
+    <Style x:Key="ExpanderButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Padding="{TemplateBinding Padding}" Margin="0">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource BrushPrimary1}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid Background="Transparent" SnapsToDevicePixels="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Grid.Column="0" HorizontalAlignment="Left" Margin="15,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                            <Grid Grid.Column="1">
+                                <Canvas Name="rtf" RenderTransformOrigin="0,0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Path Fill="{StaticResource BrushPrimary1}">
+                                        <Path.Style>
+                                            <Style TargetType="Path">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ToggleButton, Mode=FindAncestor}, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Data" Value="M 4,3 L 0,-3 L -4,3"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                                <Setter Property="Data" Value="M -4,-3 L 0,3 L 4,-3"/>
+                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="StrokeThickness" Value="2"/>
+                                            </Style>
+                                        </Path.Style>
+                                    </Path>
+                                </Canvas>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="MenuHeaderExpanderTheme" TargetType="{x:Type Expander}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Expander}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="true">
+                        <DockPanel>
+                            <ToggleButton x:Name="HeaderSite"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                          Content="{TemplateBinding Header}"
+                                          DockPanel.Dock="Top"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          FontWeight="{TemplateBinding FontWeight}"
+                                          FontStyle="{TemplateBinding FontStyle}"
+                                          FontStretch="{TemplateBinding FontStretch}"
+                                          FontSize="{TemplateBinding FontSize}"
+                                          FontFamily="{TemplateBinding FontFamily}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Margin="1"
+                                          Padding="{TemplateBinding Padding}"
+                                          Style="{StaticResource ExpanderButtonStyle}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Visibility="Collapsed" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </DockPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="true">
+                            <Setter Property="Visibility" TargetName="ExpandSite" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

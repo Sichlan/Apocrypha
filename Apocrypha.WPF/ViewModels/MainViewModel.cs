@@ -1,10 +1,8 @@
-﻿using System.Windows.Input;
-using Apocrypha.WPF.Commands;
+﻿using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
 using Apocrypha.WPF.ViewModels.Factories;
-using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.WPF.ViewModels
 {
@@ -14,20 +12,12 @@ namespace Apocrypha.WPF.ViewModels
         private readonly INavigator _navigator;
         private readonly IApocryphaViewModelFactory _viewModelFactory;
 
-        public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
-        public bool IsLoggedIn => _authenticator.IsLoggedIn;
-        public AsyncCommandBase UpdateCurrentViewModelCommand { get; }
-        public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
-
-        public string Title => "Apocrypha";
-        public double MaxWidth => 1500;
-
         public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory)
         {
             _authenticator = authenticator;
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
-            
+
             _navigator.StateChange += Navigator_StateChange;
             _authenticator.StateChange += Authenticator_StateChange;
 
@@ -35,6 +25,15 @@ namespace Apocrypha.WPF.ViewModels
             UpdateCurrentViewModelCommand.Execute(ViewType.Home);
             UpdateCurrentViewModelCommand.StateChange += UpdateCurrentViewModelCommand_StateChange;
         }
+
+        public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
+        public bool IsLoggedIn => _authenticator.IsLoggedIn;
+        public AsyncCommandBase UpdateCurrentViewModelCommand { get; }
+        public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
+
+        public string Title => "Apocrypha";
+        public string TitleShort => "A";
+        public double MaxWidth => 1500;
 
         private void UpdateCurrentViewModelCommand_StateChange()
         {

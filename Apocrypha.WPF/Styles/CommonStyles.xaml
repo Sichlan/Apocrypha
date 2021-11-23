@@ -9,6 +9,6 @@
     <!--#region Brushes-->
     <SolidColorBrush x:Key="BrushPrimary1" Color="{StaticResource ColorPrimary1}" />
     <SolidColorBrush x:Key="BrushPrimary2" Color="{StaticResource ColorPrimary2}" />
-    <SolidColorBrush x:Key="BrushForeground1" Color="{StaticResource ColorForeground1}"/>
+    <SolidColorBrush x:Key="BrushForeground1" Color="{StaticResource ColorForeground1}" />
     <!--#endregion-->
 </ResourceDictionary>

@@ -8,8 +8,8 @@ namespace Apocrypha.CommonObject.Services.AuthenticationServices
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IUserService _userService;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IUserService _userService;
 
         public AuthenticationService(IUserService userService, IPasswordHasher passwordHasher)
         {

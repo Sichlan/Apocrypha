@@ -8,15 +8,16 @@ namespace Apocrypha.WPF.State.Navigators.Authenticators
 {
     public class Authenticator : IAuthenticator
     {
-        public event Action StateChange;
-        private readonly IUserStore _userStore;
         private readonly IAuthenticationService _authenticationService;
+        private readonly IUserStore _userStore;
 
         public Authenticator(IAuthenticationService authenticationService, IUserStore userStore)
         {
             _authenticationService = authenticationService;
             _userStore = userStore;
         }
+
+        public event Action StateChange;
 
         public User CurrentUser
         {
@@ -29,7 +30,7 @@ namespace Apocrypha.WPF.State.Navigators.Authenticators
         }
 
         public bool IsLoggedIn => CurrentUser != null;
-        
+
         public async Task<RegistrationResult> Register(string email, string username, string password, string confirmnPassword)
         {
             return await _authenticationService.Register(email, username, password, confirmnPassword);
