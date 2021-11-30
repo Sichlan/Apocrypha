@@ -63,9 +63,18 @@ namespace Apocrypha.WPF
                     services.AddSingleton<IApocryphaViewModelFactory, ApocryphaViewModelFactory>();
                     services.AddSingleton<HomeViewModel>();
                     services.AddSingleton<CharacterSelectionViewModel>();
+                    services.AddSingleton<LoginViewModel>();
+                    services.AddSingleton<RegistrationViewModel>();
 
                     services.AddSingleton<CreateViewModel<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
                     services.AddSingleton<CreateViewModel<CharacterSelectionViewModel>>(s => s.GetRequiredService<CharacterSelectionViewModel>);
+                    services.AddSingleton<CreateViewModel<LoginViewModel>>(s =>
+                    {
+                        return () => new LoginViewModel(s.GetRequiredService<IAuthenticator>(),
+                            s.GetRequiredService<ViewModelDelegateRenavigator<HomeViewModel>>(),
+                            s.GetRequiredService<ViewModelDelegateRenavigator<RegistrationViewModel>>());
+                    });
+                    services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => s.GetRequiredService<RegistrationViewModel>);
 
                     #endregion
 
@@ -73,6 +82,8 @@ namespace Apocrypha.WPF
 
                     services.AddSingleton<IPasswordHasher, PasswordHasher>();
                     services.AddSingleton<ViewModelDelegateRenavigator<HomeViewModel>>();
+                    services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
+                    services.AddSingleton<ViewModelDelegateRenavigator<RegistrationViewModel>>();
 
                     #endregion
 
@@ -96,7 +107,7 @@ namespace Apocrypha.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
-
+            
             Window window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();
 

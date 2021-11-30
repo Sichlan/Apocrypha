@@ -22,7 +22,7 @@ namespace Apocrypha.WPF.ViewModels
             _authenticator.StateChange += Authenticator_StateChange;
 
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
-            UpdateCurrentViewModelCommand.Execute(ViewType.Home);
+            UpdateCurrentViewModelCommand.Execute(ViewType.Login);
             UpdateCurrentViewModelCommand.StateChange += UpdateCurrentViewModelCommand_StateChange;
 
             LogoutCommand = new LogoutCommand(_authenticator);

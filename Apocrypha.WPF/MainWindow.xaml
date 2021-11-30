@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" VerticalAlignment="Stretch">
-            <!--<Grid.Style>
+            <Grid.Style>
                 <Style TargetType="{x:Type Grid}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsLoggedIn}" Value="True">
@@ -25,7 +25,7 @@
                     </Style.Triggers>
                     <Setter Property="Visibility" Value="Collapsed" />
                 </Style>
-            </Grid.Style>-->
+            </Grid.Style>
 
             <controls:NavigationBar VerticalAlignment="Stretch"/>
         </Grid>

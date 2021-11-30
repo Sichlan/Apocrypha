@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    [Migration("20211122163936_updateUser")]
-    partial class updateUser
+    [Migration("20211130202237_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

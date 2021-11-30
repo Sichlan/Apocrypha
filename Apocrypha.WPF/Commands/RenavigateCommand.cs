@@ -1,0 +1,20 @@
+﻿using System.Threading.Tasks;
+using Apocrypha.WPF.State.Navigators.Navigators;
+
+namespace Apocrypha.WPF.Commands
+{
+    public class RenavigateCommand : AsyncCommandBase
+    {
+        private readonly IRenavigator _renavigator;
+
+        public RenavigateCommand(IRenavigator renavigator)
+        {
+            _renavigator = renavigator;
+        }
+
+        public override async Task ExecuteAsync(object parameter)
+        {
+            _renavigator.Renavigate();
+        }
+    }
+}

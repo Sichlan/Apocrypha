@@ -3,7 +3,7 @@ using Apocrypha.WPF.ViewModels;
 
 namespace Apocrypha.WPF.State.Navigators.Navigators
 {
-    public class Navigator : INavigator, IStateChanger
+    public class Navigator : INavigator
     {
         private BaseViewModel _currentViewModel;
 
