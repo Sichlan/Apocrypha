@@ -1,9 +1,7 @@
 ﻿using Apocrypha.WPF.State.Navigators.Authenticators;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.WPF.State.Navigators.Navigators;
 using Apocrypha.WPF.ViewModels;
 
@@ -29,11 +27,17 @@ namespace Apocrypha.WPF.Commands
                 await _authenticator.Login(_loginViewModel.Username, _loginViewModel.Password);
                 _renavigator.Renavigate();
             }
-            catch (Exception e)
+            catch (UserNotFoundException ex)
             {
-                Console.WriteLine(e);
-
-                throw;
+                _loginViewModel.ErrorMessage = "Username does not exist.";
+            }
+            catch (InvalidPasswordException ex)
+            {
+                _loginViewModel.ErrorMessage = "Incorrect Password.";
+            }
+            catch (Exception ex)
+            {
+                _loginViewModel.ErrorMessage = "Login failed.";
             }
         }
     }

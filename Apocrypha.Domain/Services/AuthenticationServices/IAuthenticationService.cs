@@ -9,7 +9,8 @@ namespace Apocrypha.CommonObject.Services.AuthenticationServices
         Success,
         PasswordsDoNotMatch,
         EmailAlreadyExists,
-        UsernameAlreadyExists
+        UsernameAlreadyExists,
+        Failure
     }
 
     public interface IAuthenticationService

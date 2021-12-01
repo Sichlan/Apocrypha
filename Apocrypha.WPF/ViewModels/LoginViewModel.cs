@@ -1,10 +1,5 @@
 ﻿using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Apocrypha.WPF.Commands;
 
@@ -12,6 +7,8 @@ namespace Apocrypha.WPF.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        #region Properties
+
         private string _username;
         public string Username
         {
@@ -26,6 +23,15 @@ namespace Apocrypha.WPF.ViewModels
             set { _password = value; OnPropertyChanged(nameof(Password)); }
         }
 
+        public MessageViewModel ErrorMessageViewModel { get; }
+
+        public string ErrorMessage
+        {
+            set => ErrorMessageViewModel.Message = value;
+        }
+
+        #endregion
+
         public ICommand LoginCommand { get; }
         public ICommand ChangeToRegistrationCommand { get; }
 
@@ -33,6 +39,8 @@ namespace Apocrypha.WPF.ViewModels
         {
             LoginCommand = new LoginCommand(authenticator, homeRenavigator, this);
             ChangeToRegistrationCommand = new RenavigateCommand(registerNavigator);
+
+            ErrorMessageViewModel = new MessageViewModel() {MessageType = MessageType.Error};
         }
     }
 }

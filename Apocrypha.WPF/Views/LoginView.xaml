@@ -25,7 +25,9 @@
 
             <TextBlock Text="Character creator for D&amp;D 3.5" FontSize="18" Grid.Row="1" Margin="0 10" HorizontalAlignment="Center"/>
 
-            <Grid Grid.Row="2" Margin="0 20">
+            <ContentPresenter Grid.Row="2" Content="{Binding ErrorMessageViewModel, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding HasMessage, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+            <Grid Grid.Row="3" Margin="0 20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -55,7 +57,7 @@
                 <Button Grid.Row="2" Content="Login" Grid.ColumnSpan="2" HorizontalAlignment="Center" Command="{Binding LoginCommand}" Margin="0 10" IsDefault="True"/>
             </Grid>
 
-            <Button Grid.Row="3" Margin="0 10 0 0" HorizontalAlignment="Center" Background="Transparent" Command="{Binding ChangeToRegistrationCommand}" Content="Don't have an account?" FontSize="14" Foreground="Blue"/>
+            <Button Grid.Row="4" Margin="0 10 0 0" HorizontalAlignment="Center" Background="Transparent" Command="{Binding ChangeToRegistrationCommand}" Content="Don't have an account?" FontSize="14" Foreground="Blue"/>
         </Grid>
     </Border>
 </UserControl>

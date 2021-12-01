@@ -74,7 +74,12 @@ namespace Apocrypha.WPF
                             s.GetRequiredService<ViewModelDelegateRenavigator<HomeViewModel>>(),
                             s.GetRequiredService<ViewModelDelegateRenavigator<RegistrationViewModel>>());
                     });
-                    services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => s.GetRequiredService<RegistrationViewModel>);
+                    services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s =>
+                    {
+                        return () => new RegistrationViewModel(s.GetRequiredService<IAuthenticator>(),
+                            s.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
+                            s.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
+                    });
 
                     #endregion
 
