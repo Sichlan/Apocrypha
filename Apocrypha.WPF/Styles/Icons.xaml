@@ -1,0 +1,116 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="Ellipse">
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Setter Property="StrokeThickness" Value="1.5"/>
+    </Style>
+
+    <Style TargetType="Line">
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Setter Property="StrokeThickness" Value="1.5"/>
+    </Style>
+
+    <Style TargetType="Path">
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Setter Property="StrokeThickness" Value="1.5"/>
+    </Style>
+
+    <Canvas Width="20" Height="20" x:Key="IconInformation">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource InformationForeground}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Ellipse Canvas.Left="0.5" 
+                         Canvas.Top="0.5" 
+                         Width="13" 
+                         Height="13" 
+                         Stroke="{StaticResource ColorBrush}"/>
+                <Line X1="7" Y1="7" X2="7" Y2="10.5" 
+                      Stroke="{StaticResource ColorBrush}"/>
+                <Ellipse Canvas.Left="6" 
+                         Canvas.Top="3.5" 
+                         Width="2" 
+                         Height="2"
+                         Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconWarning">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource WarningForeground}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Line X1="7" Y1="5" X2="7" Y2="8" 
+                      Stroke="{StaticResource ColorBrush}"/>
+                <Ellipse Canvas.Left="6" 
+                         Canvas.Top="10" 
+                         Width="2" 
+                         Height="2"
+                         Stroke="{StaticResource ColorBrush}"/>
+                <Path Stroke="{StaticResource ColorBrush}" 
+                      Data="M7.89 1.05a1 1 0 0 0-1.78 0l-5.5 11A1 1 0 0 0 1.5 13.5h11a1 1 0 0 0 .89-1.45Z"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconSuccess">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource SuccessForeground}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Path Stroke="{StaticResource ColorBrush}" 
+                      Data="M4 8 6.05 9.64a.48.48 0 0 0 .4.1.5.5 0 0 0 .34-.24L10 4"/>
+                <Ellipse Canvas.Left="0.5" 
+                         Canvas.Top="0.5" 
+                         Width="13" 
+                         Height="13" 
+                         Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconError">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ErrorForeground}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Ellipse Canvas.Left="0.5" 
+                         Canvas.Top="0.5" 
+                         Width="13" 
+                         Height="13" 
+                         Stroke="{StaticResource ColorBrush}"/>
+                <Line X1="7" Y1="3.5" X2="7" Y2="6.5"
+                      Stroke="{StaticResource ColorBrush}"/>
+                <Ellipse Canvas.Left="6" 
+                         Canvas.Top="8.5" 
+                         Width="2" 
+                         Height="2" 
+                         Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+</ResourceDictionary>

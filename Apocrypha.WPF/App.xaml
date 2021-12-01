@@ -10,6 +10,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/CommonStyles.xaml" />
                 <ResourceDictionary Source="Styles/NavigationBarStyle.xaml" />
+                <ResourceDictionary Source="Styles/MessageViewStyles.xaml" />
+                <ResourceDictionary Source="Styles/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--#region DataTemplates-->
@@ -19,6 +21,18 @@
 
             <DataTemplate DataType="{x:Type viewModels:CharacterSelectionViewModel}">
                 <views:CharacterSelectionView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
+                <views:LoginView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:RegistrationViewModel}">
+                <views:RegistrationView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:MessageViewModel}">
+                <views:MessageView />
             </DataTemplate>
             <!--#endregion-->
 

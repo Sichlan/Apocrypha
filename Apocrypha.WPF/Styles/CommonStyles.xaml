@@ -11,4 +11,48 @@
     <SolidColorBrush x:Key="BrushPrimary2" Color="{StaticResource ColorPrimary2}" />
     <SolidColorBrush x:Key="BrushForeground1" Color="{StaticResource ColorForeground1}" />
     <!--#endregion-->
+
+    <!--#region Text Boxes-->
+    <ControlTemplate TargetType="{x:Type Control}" x:Key="StandardTextBoxControlTemplate">
+        <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="3">
+            <ScrollViewer x:Name="PART_ContentHost" />
+        </Border>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type Control}" x:Key="TextBoxBase">
+        <Setter Property="Template" Value="{StaticResource StandardTextBoxControlTemplate}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="2" />
+    </Style>
+
+    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource TextBoxBase}" />
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxBase}" />
+    <!--#endregion-->
+
+    <!--#region Buttons-->
+    <ControlTemplate TargetType="{x:Type Button}" x:Key="StandardButtonControlTemplate">
+        <Border Background="{TemplateBinding Background}" CornerRadius="3" Padding="{TemplateBinding Padding}"
+                Opacity="{TemplateBinding Opacity}">
+            <ContentPresenter />
+        </Border>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource BrushPrimary2}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Padding" Value="10 5" />
+        <Setter Property="Template" Value="{StaticResource StandardButtonControlTemplate}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BrushPrimary1}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--#endregion-->
 </ResourceDictionary>
