@@ -7,5 +7,9 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModels:HomeViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="DeepPink" />
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            
+        </StackPanel>
+    </Grid>
 </UserControl>

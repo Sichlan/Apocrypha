@@ -5,14 +5,14 @@ namespace Apocrypha.WPF.State.Navigators.Users
 {
     public class UserStore : IUserStore
     {
-        private User currentUser;
+        private User _currentUser;
 
         public User CurrentUser
         {
-            get => currentUser;
+            get => _currentUser;
             set
             {
-                currentUser = value;
+                _currentUser = value;
                 StateChange?.Invoke();
             }
         }

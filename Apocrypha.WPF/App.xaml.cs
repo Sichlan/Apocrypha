@@ -1,17 +1,11 @@
 ﻿using System.Windows;
-using Apocrypha.CommonObject.Models;
-using Apocrypha.CommonObject.Services;
-using Apocrypha.CommonObject.Services.AuthenticationServices;
-using Apocrypha.EntityFramework;
-using Apocrypha.EntityFramework.Services;
+using Apocrypha.WPF.HostBuilders;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
 using Apocrypha.WPF.State.Navigators.Users;
 using Apocrypha.WPF.ViewModels;
 using Apocrypha.WPF.ViewModels.Factories;
 using Microsoft.AspNet.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -33,62 +27,13 @@ namespace Apocrypha.WPF
         public static IHostBuilder CreateHostBuilder(string[] args = null)
         {
             return Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(c =>
+                .AddConfiguration()
+                .AddDbContextConfiguration()
+                .AddApiConfiguration()
+                .AddViewModels()
+                .ConfigureServices((services) =>
                 {
-                    c.AddJsonFile("appsettings.json");
-                    c.AddEnvironmentVariables();
-                })
-                .ConfigureServices((context, services) =>
-                {
-                    #region Database
-
-                    var connectionString = context.Configuration.GetConnectionString("mariadb");
-                    services.AddDbContext<ApocryphaDbContext>(x => x.UseMySQL(connectionString));
-                    services.AddSingleton(o => new ApocryphaDbContextFactory(connectionString));
-
-                    services.AddSingleton<IAuthenticationService, AuthenticationService>();
-                    services.AddSingleton<IDataService<User>, UserDataService>();
-                    services.AddSingleton<IUserService, UserDataService>();
-
-                    #endregion
-
-                    #region APIs
-
-                    #endregion
-
-                    #region ViewModelFactories
-
-                    services.AddSingleton<MainViewModel>();
-
-                    services.AddSingleton<IApocryphaViewModelFactory, ApocryphaViewModelFactory>();
-                    services.AddSingleton<HomeViewModel>();
-                    services.AddSingleton<CharacterSelectionViewModel>();
-                    services.AddSingleton<LoginViewModel>();
-                    services.AddSingleton<RegistrationViewModel>();
-
-                    services.AddSingleton<CreateViewModel<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
-                    services.AddSingleton<CreateViewModel<CharacterSelectionViewModel>>(s => s.GetRequiredService<CharacterSelectionViewModel>);
-                    services.AddSingleton<CreateViewModel<LoginViewModel>>(s =>
-                    {
-                        return () => new LoginViewModel(s.GetRequiredService<IAuthenticator>(),
-                            s.GetRequiredService<ViewModelDelegateRenavigator<HomeViewModel>>(),
-                            s.GetRequiredService<ViewModelDelegateRenavigator<RegistrationViewModel>>());
-                    });
-                    services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s =>
-                    {
-                        return () => new RegistrationViewModel(s.GetRequiredService<IAuthenticator>(),
-                            s.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
-                            s.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
-                    });
-
-                    #endregion
-
                     #region Delegates
-
-                    services.AddSingleton<IPasswordHasher, PasswordHasher>();
-                    services.AddSingleton<ViewModelDelegateRenavigator<HomeViewModel>>();
-                    services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
-                    services.AddSingleton<ViewModelDelegateRenavigator<RegistrationViewModel>>();
 
                     #endregion
 
@@ -103,6 +48,7 @@ namespace Apocrypha.WPF
                     #region Misc
 
                     //Keep this as empty as possible, this is just temporary, try to move any of these to their corresponding region
+                    services.AddSingleton<IPasswordHasher, PasswordHasher>();
                     services.AddScoped(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
 
                     #endregion

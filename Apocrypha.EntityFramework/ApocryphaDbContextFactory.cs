@@ -1,20 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.EntityFramework
 {
     public class ApocryphaDbContextFactory
     {
-        private readonly string _connectionString;
+        private readonly Action<DbContextOptionsBuilder> _configureDbContext;
 
-        public ApocryphaDbContextFactory(string connectionString)
+        public ApocryphaDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
         {
-            _connectionString = connectionString;
+            _configureDbContext = configureDbContext;
         }
 
         public ApocryphaDbContext CreateDbContext()
         {
             var options = new DbContextOptionsBuilder<ApocryphaDbContext>();
-            options.UseMySQL(_connectionString);
+
+            _configureDbContext(options);
 
             return new ApocryphaDbContext(options.Options);
         }

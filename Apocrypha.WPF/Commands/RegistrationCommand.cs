@@ -48,7 +48,7 @@ namespace Apocrypha.WPF.Commands
                         break;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 _registerViewModel.ErrorMessage = "Registration failed!";
                 

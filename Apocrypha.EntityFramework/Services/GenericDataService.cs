@@ -28,7 +28,7 @@ namespace Apocrypha.EntityFramework.Services
             }
         }
 
-        public async Task<T> GetByID(int id)
+        public async Task<T> GetById(int id)
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {

@@ -6,16 +6,16 @@ namespace Apocrypha.EntityFramework.Services.Common
 {
     public class NonQueryDataService<T> where T : DatabaseObject
     {
-        protected readonly ApocryphaDbContextFactory _dbContextFactory;
+        protected readonly ApocryphaDbContextFactory DbContextFactory;
 
         public NonQueryDataService(ApocryphaDbContextFactory dbContextFactory)
         {
-            _dbContextFactory = dbContextFactory;
+            DbContextFactory = dbContextFactory;
         }
 
         public async Task<T> Create(T entity)
         {
-            using (var context = _dbContextFactory.CreateDbContext())
+            using (var context = DbContextFactory.CreateDbContext())
             {
                 var createdEntity = context.Set<T>().Add(entity);
                 _ = await context.SaveChangesAsync();
@@ -26,7 +26,7 @@ namespace Apocrypha.EntityFramework.Services.Common
 
         public async Task<bool> Delete(int id)
         {
-            using (var context = _dbContextFactory.CreateDbContext())
+            using (var context = DbContextFactory.CreateDbContext())
             {
                 var entityToDelete = await context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
                 _ = context.Set<T>().Remove(entityToDelete);
@@ -39,7 +39,7 @@ namespace Apocrypha.EntityFramework.Services.Common
 
         public async Task<T> Update(int id, T entity)
         {
-            using (var context = _dbContextFactory.CreateDbContext())
+            using (var context = DbContextFactory.CreateDbContext())
             {
                 entity.Id = id;
 

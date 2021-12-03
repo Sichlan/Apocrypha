@@ -59,7 +59,7 @@ namespace Apocrypha.CommonObject.Services.AuthenticationServices
                     _ = await _userService.Create(user);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 registrationResult = RegistrationResult.Failure;
             }
