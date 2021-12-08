@@ -1,7 +1,7 @@
-<p align="center">
+<div align="center">
   <h2 align="center">Apocrypha</h2>
   <p align="center">A character creator for D&D 3.5</p>
-</p>
+</div>
 <p align="center">
   <a href="https://github.com/Sichlan/Apocrypha/actions">
     <img alt="Tests Passing" src="https://github.com/Sichlan/Apocrypha/workflows/.NET/badge.svg" />

@@ -31,28 +31,8 @@ namespace Apocrypha.WPF
                 .AddDbContextConfiguration()
                 .AddApiConfiguration()
                 .AddViewModels()
-                .ConfigureServices((services) =>
-                {
-                    #region Delegates
-
-                    #endregion
-
-                    #region State
-
-                    services.AddSingleton<INavigator, Navigator>();
-                    services.AddSingleton<IAuthenticator, Authenticator>();
-                    services.AddSingleton<IUserStore, UserStore>();
-
-                    #endregion
-
-                    #region Misc
-
-                    //Keep this as empty as possible, this is just temporary, try to move any of these to their corresponding region
-                    services.AddSingleton<IPasswordHasher, PasswordHasher>();
-                    services.AddScoped(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
-
-                    #endregion
-                });
+                .AddStateConfiguration()
+                .AddMiscelaneousConfiguration();
         }
 
         protected override void OnStartup(StartupEventArgs e)
