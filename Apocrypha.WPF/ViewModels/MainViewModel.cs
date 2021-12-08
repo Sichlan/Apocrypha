@@ -12,7 +12,7 @@ namespace Apocrypha.WPF.ViewModels
         private readonly INavigator _navigator;
         private readonly IApocryphaViewModelFactory _viewModelFactory;
 
-        public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory)
+        public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory, IRenavigator logoutCommandRenavigator)
         {
             _authenticator = authenticator;
             _navigator = navigator;
@@ -25,7 +25,7 @@ namespace Apocrypha.WPF.ViewModels
             UpdateCurrentViewModelCommand.Execute(ViewType.Login);
             UpdateCurrentViewModelCommand.StateChange += UpdateCurrentViewModelCommand_StateChange;
 
-            LogoutCommand = new LogoutCommand(_authenticator);
+            LogoutCommand = new LogoutCommand(_authenticator, logoutCommandRenavigator);
         }
 
         public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
@@ -36,11 +36,11 @@ namespace Apocrypha.WPF.ViewModels
 
         public string Title => "Apocrypha";
 
-        private bool menuExpanded;
+        private bool _menuExpanded;
         public bool MenuExpanded
         {
-            get { return menuExpanded; }
-            set { menuExpanded = value; OnPropertyChanged(); }
+            get { return _menuExpanded; }
+            set { _menuExpanded = value; OnPropertyChanged(); }
         }
 
 

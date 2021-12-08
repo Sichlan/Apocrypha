@@ -34,7 +34,7 @@
             <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}"
                                 HorizontalAlignment="Stretch">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                              Background="#f0efe2">
+                              Background="{StaticResource BrushBackgroundBeige}">
                     <ContentControl Content="{Binding CurrentViewModel}" />
                 </ScrollViewer>
             </xctk:BusyIndicator>

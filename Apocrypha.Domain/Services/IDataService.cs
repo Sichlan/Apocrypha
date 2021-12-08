@@ -7,7 +7,7 @@ namespace Apocrypha.CommonObject.Services
     {
         Task<IEnumerable<T>> GetAll();
 
-        Task<T> GetByID(int id);
+        Task<T> GetById(int id);
 
         Task<T> Create(T entity);
 

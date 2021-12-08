@@ -22,6 +22,14 @@
         <Setter Property="StrokeThickness" Value="1.5"/>
     </Style>
 
+    <Style TargetType="Polyline">
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Setter Property="StrokeThickness" Value="1.5"/>
+        <Setter Property="FillRule" Value="Nonzero"/>
+    </Style>
+
     <Canvas Width="20" Height="20" x:Key="IconInformation">
         <Canvas.Resources>
             <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource InformationForeground}"/>
@@ -111,6 +119,138 @@
                          Height="2" 
                          Stroke="{StaticResource ColorBrush}"/>
             </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconSettings">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Path Stroke="{StaticResource ColorBrush}"
+                  Data="M5.23 2.25l.43-1.11A1 1 0 0 1 6.59.5h.82a1 1 0 0 1 .93.64l.43 1.11 1.46.84 1.18-.18a1 1 0 0 1 1 .49l.4.7a1 1 0 0 1-.08 1.13L12 6.16V7.84l.75.93a1 1 0 0 1 .08 1.13l-.4.7a1 1 0 0 1-1 .49l-1.18-.18-1.46.84-.43 1.11a1 1 0 0 1-.93.64H6.59a1 1 0 0 1-.93-.64l-.43-1.11-1.46-.84-1.18.18a1 1 0 0 1-1-.49l-.4-.7a1 1 0 0 1 .08-1.13L2 7.84V6.16l-.75-.93A1 1 0 0 1 1.17 4.1l.4-.7a1 1 0 0 1 1-.49l1.18.18ZM5 7A2 2 0 1 0 7 5 2 2 0 0 0 5 7Z"/>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconSearch">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Ellipse Canvas.Left="0.5" 
+                         Canvas.Top="0.5" 
+                         Width="10.8" 
+                         Height="10.8" 
+                         Stroke="{StaticResource ColorBrush}"/>
+                <Line X1="13.5" Y1="13.5" X2="9.75" Y2="9.75" 
+                      Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconMultipleFiles">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Rectangle Canvas.Left="2" 
+                           Canvas.Top="2.5" 
+                           Width="8" 
+                           Height="11" 
+                           RadiusX="1" 
+                           RadiusY="1" 
+                           Stroke="{StaticResource ColorBrush}"/>
+                <Line X1="4" Y1="5" X2="8" Y2="5" 
+                      Stroke="{StaticResource ColorBrush}"/>
+                <Line X1="4" Y1="7.5" X2="8" Y2="7.5" 
+                      Stroke="{StaticResource ColorBrush}"/>
+                <Line X1="4" Y1="10" X2="6" Y2="10" 
+                      Stroke="{StaticResource ColorBrush}"/>
+                <Path Stroke="{StaticResource ColorBrush}" 
+                      Data="M4.5.5H11a1 1 0 0 1 1 1V11"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconMenu">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Line X1="13.5" Y1="2" X2="0.5" Y2="2" Stroke="{StaticResource ColorBrush}"/>
+                <Line X1="13.5" Y1="7" X2="0.5" Y2="7" Stroke="{StaticResource ColorBrush}"/>
+                <Line X1="13.5" Y1="12" X2="0.5" Y2="12" Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconLogout">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Path Stroke="{StaticResource ColorBrush}"
+                      Data="M9.5 10.5v2a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V1.5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v2"/>
+                <Line X1="6.5" Y1="7" X2="13.5" Y2="7" 
+                      Stroke="{StaticResource ColorBrush}"/>
+                <Polyline 
+                    Points="11.5 5 13.5 7 11.5 9" 
+                    Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconHome">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Canvas>
+                    <Polyline Points="0.5 9 7 2.5 13.5 9" 
+                              Stroke="{StaticResource ColorBrush}"/>
+                    <Polyline Points="2.5 7 2.5 13.5 11.5 13.5 11.5 7" 
+                              Stroke="{StaticResource ColorBrush}"/>
+                </Canvas>
+                <Line X1="7" Y1="13" X2="7" Y2="10" 
+                      Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+
+    <Canvas Width="20" Height="20" x:Key="IconDatabase">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714 0 0 1.4285714 0.04807692 0.02403846"/>
+            </Canvas.RenderTransform>
+            <Ellipse Width="14" Canvas.Top="0.7" Height="4.8" Stroke="{StaticResource ColorBrush}"/>
+            <Path Stroke="{StaticResource ColorBrush}" Data="m 0.68976704 3.1244164 v 7.7242446 c 0 1.332432 2.80988196 2.413825 6.27636876 2.413825 3.4664872 0 6.2763682 -1.081393 6.2763682 -2.413825 V 3.1244164"/>
+            <Path Stroke="{StaticResource ColorBrush}" Data="m 13.242504 6.9865385 c 0 1.3324321 -2.809881 2.4138262 -6.2763682 2.4138262 -3.4664868 0 -6.27636876 -1.0813941 -6.27636876 -2.4138262"/>
         </Canvas>
     </Canvas>
 </ResourceDictionary>

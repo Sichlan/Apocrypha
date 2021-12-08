@@ -27,15 +27,15 @@ namespace Apocrypha.WPF.Commands
                 await _authenticator.Login(_loginViewModel.Username, _loginViewModel.Password);
                 _renavigator.Renavigate();
             }
-            catch (UserNotFoundException ex)
+            catch (UserNotFoundException)
             {
                 _loginViewModel.ErrorMessage = "Username does not exist.";
             }
-            catch (InvalidPasswordException ex)
+            catch (InvalidPasswordException)
             {
                 _loginViewModel.ErrorMessage = "Incorrect Password.";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _loginViewModel.ErrorMessage = "Login failed.";
             }

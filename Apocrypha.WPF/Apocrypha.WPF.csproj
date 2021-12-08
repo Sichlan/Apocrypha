@@ -8,8 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Controls\home.png" />
+        <None Remove="Resources\Fonts\AngerStyles.ttf" />
         <None Remove="Resources\Fonts\TheCenturion.ttf" />
+        <None Remove="Resources\Fonts\WrathStyles.ttf" />
         <None Remove="Resources\Icons\chart.png" />
         <None Remove="Resources\Icons\database.png" />
         <None Remove="Resources\Icons\home.png" />
@@ -40,8 +41,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Controls\home.png" />
-        <Resource Include="Resources\Fonts\TheCenturion.ttf" />
+        <Resource Include="Resources\Fonts\AngerStyles.ttf">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Resources\Fonts\TheCenturion.ttf">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Resources\Fonts\WrathStyles.ttf">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
         <Resource Include="Resources\Icons\chart.png">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>

@@ -43,6 +43,8 @@
 
             <!--#region Fonts-->
             <FontFamily x:Key="TheCenturion">/Resources/Fonts/#The Centurion</FontFamily>
+            <FontFamily x:Key="WrathFont">/Resources/Fonts/#Wrath Styles</FontFamily>
+            <FontFamily x:Key="AngerFont">/Resources/Fonts/#Anger Styles</FontFamily>
             <!--#endregion-->
         </ResourceDictionary>
     </Application.Resources>

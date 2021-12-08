@@ -6,8 +6,7 @@
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
              xmlns:navigators="clr-namespace:Apocrypha.WPF.State.Navigators"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}" d:DesignHeight="406.143">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -24,7 +23,7 @@
                           Command="{Binding UpdateCurrentViewModelCommand}"
                           CommandParameter="{x:Static navigators:ViewType.Home}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Icons/home.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                        <ContentControl Content="{StaticResource IconHome}" Width="20" Height="20" VerticalAlignment="Center"/>
                         <TextBlock Text="Home" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
@@ -33,7 +32,7 @@
                           Command="{Binding UpdateCurrentViewModelCommand}"
                           CommandParameter="{x:Static navigators:ViewType.CharacterSelection}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Icons/database.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                        <ContentControl Content="{StaticResource IconDatabase}" Width="20" Height="20" VerticalAlignment="Center"/>
                         <TextBlock Text="Character Selection" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
@@ -41,16 +40,16 @@
         </Grid>
         
         <StackPanel Orientation="Vertical" Grid.Row="1">
-            <Button Style="{StaticResource MenuButtonTheme}" Command="{Binding LogoutCommand}">
+            <Button Style="{StaticResource MenuButtonTheme}" Command="{Binding LogoutCommand}" HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Resources/Icons/logout.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                    <ContentControl Content="{StaticResource IconLogout}" Width="20" Height="20" VerticalAlignment="Center"/>
                     <TextBlock Text="Logout" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
 
             <ToggleButton IsChecked="{Binding MenuExpanded}" Style="{StaticResource MenuToggleButtonTheme}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Resources/Icons/menu.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                    <ContentControl Content="{StaticResource IconMenu}" Width="20" Height="20" VerticalAlignment="Center"/>
                     <TextBlock Text="Menu" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
                 </StackPanel>
             </ToggleButton>
