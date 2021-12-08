@@ -32,7 +32,7 @@
                           Command="{Binding UpdateCurrentViewModelCommand}"
                           CommandParameter="{x:Static navigators:ViewType.CharacterSelection}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Icons/database.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                        <ContentControl Content="{StaticResource IconDatabase}" Width="20" Height="20" VerticalAlignment="Center"/>
                         <TextBlock Text="Character Selection" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>

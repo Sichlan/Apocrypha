@@ -5,25 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Transparent">
-        <WrapPanel>
-            <WrapPanel.Resources>
+    <Grid Background="{StaticResource BrushBackgroundBeige}">
+        <StackPanel Orientation="Vertical">
+            <StackPanel.Resources>
                 <Style TargetType="ContentPresenter">
                     <Setter Property="Margin" Value="5"/>
                 </Style>
-            </WrapPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="24"/>
+                    <Setter Property="FontWeight" Value="Medium"/>
+                </Style>
+                <Style TargetType="WrapPanel">
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </StackPanel.Resources>
 
-            <ContentPresenter Content="{StaticResource IconInformation}"/>
-            <ContentPresenter Content="{StaticResource IconWarning}"/>
-            <ContentPresenter Content="{StaticResource IconSuccess}"/>
-            <ContentPresenter Content="{StaticResource IconError}"/>
-            <ContentPresenter Content="{StaticResource IconSettings}"/>
-            <ContentPresenter Content="{StaticResource IconSearch}"/>
-            <ContentPresenter Content="{StaticResource IconMultipleFiles}"/>
-            <ContentPresenter Content="{StaticResource IconMenu}"/>
-            <ContentPresenter Content="{StaticResource IconLogout}"/>
-            <ContentPresenter Content="{StaticResource IconHome}"/>
-            <ContentPresenter Content="{StaticResource IconDatabase}"/>
-        </WrapPanel>
+            <TextBlock Text="Icons"/>
+            <WrapPanel>
+                <ContentPresenter Content="{StaticResource IconInformation}"/>
+                <ContentPresenter Content="{StaticResource IconWarning}"/>
+                <ContentPresenter Content="{StaticResource IconSuccess}"/>
+                <ContentPresenter Content="{StaticResource IconError}"/>
+                <ContentPresenter Content="{StaticResource IconSettings}"/>
+                <ContentPresenter Content="{StaticResource IconSearch}"/>
+                <ContentPresenter Content="{StaticResource IconMultipleFiles}"/>
+                <ContentPresenter Content="{StaticResource IconMenu}"/>
+                <ContentPresenter Content="{StaticResource IconLogout}"/>
+                <ContentPresenter Content="{StaticResource IconHome}"/>
+                <ContentPresenter Content="{StaticResource IconDatabase}"/>
+            </WrapPanel>
+
+            <TextBlock Text="Fonts"/>
+            <StackPanel>
+                <TextBlock Text="The Centurion Font" FontFamily="{StaticResource TheCenturion}" FontWeight="Normal"/>
+                <TextBlock Text="Anger Styles Font" FontFamily="{StaticResource AngerFont}" FontWeight="Normal"/>
+                <TextBlock Text="Wrath Styles Font" FontFamily="{StaticResource WrathFont}" FontWeight="Normal"/>
+            </StackPanel>
+        </StackPanel>        
     </Grid>
 </UserControl>

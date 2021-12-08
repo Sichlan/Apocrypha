@@ -21,7 +21,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Apocrypha" FontSize="48" Grid.Row="0" HorizontalAlignment="Center"/>
+            <TextBlock Text="Apocrypha" FontSize="48" Grid.Row="0" HorizontalAlignment="Center" FontFamily="{DynamicResource AngerFont}"/>
 
             <TextBlock Text="Character creator for D&amp;D 3.5" FontSize="18" Grid.Row="1" Margin="0 10" HorizontalAlignment="Center"/>
 

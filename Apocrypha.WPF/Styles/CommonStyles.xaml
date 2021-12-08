@@ -4,12 +4,14 @@
     <Color x:Key="ColorPrimary1">#2ba3fd</Color>
     <Color x:Key="ColorPrimary2">#368ccc</Color>
     <Color x:Key="ColorForeground1">#ffffffff</Color>
+    <Color x:Key="ColorBackgroundBeige">#f0efe2</Color>
     <!--#endregion-->
 
     <!--#region Brushes-->
     <SolidColorBrush x:Key="BrushPrimary1" Color="{StaticResource ColorPrimary1}" />
     <SolidColorBrush x:Key="BrushPrimary2" Color="{StaticResource ColorPrimary2}" />
     <SolidColorBrush x:Key="BrushForeground1" Color="{StaticResource ColorForeground1}" />
+    <SolidColorBrush x:Key="BrushBackgroundBeige" Color="{StaticResource ColorBackgroundBeige}" />
     <!--#endregion-->
 
     <!--#region Text Boxes-->

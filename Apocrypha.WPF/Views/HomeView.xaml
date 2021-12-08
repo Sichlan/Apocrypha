@@ -6,10 +6,12 @@
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModels:HomeViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            
+        <StackPanel Orientation="Vertical" Margin="10">
+            <TextBlock Text="Welcome to Apocrypha" FontWeight="Bold" FontSize="48" FontFamily="{DynamicResource AngerFont}"/>
+            <TextBlock Text="Unfortunately, notjhing much is happening on this page as of now, so i'll just give you a good life lesson here:" Margin="0 5"/>
+            <TextBlock Text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet." TextWrapping="Wrap"/>
         </StackPanel>
     </Grid>
 </UserControl>
