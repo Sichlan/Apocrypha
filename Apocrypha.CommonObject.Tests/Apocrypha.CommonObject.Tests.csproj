@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Apocrypha.Domain\Apocrypha.CommonObject.csproj" />
+      <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj" />
     </ItemGroup>
 
 </Project>

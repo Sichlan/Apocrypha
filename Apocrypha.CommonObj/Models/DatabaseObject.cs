@@ -1,4 +1,4 @@
-﻿namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models
 {
     public class DatabaseObject
     {

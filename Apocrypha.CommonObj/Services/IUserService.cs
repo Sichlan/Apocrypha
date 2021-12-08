@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 
 namespace Apocrypha.CommonObject.Services
