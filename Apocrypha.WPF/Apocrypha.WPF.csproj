@@ -31,10 +31,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
         <None Update="appsettings.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
@@ -71,6 +67,11 @@
         <Resource Include="Resources\Icons\settings.png">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj" />
+      <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj" />
     </ItemGroup>
 
 </Project>
