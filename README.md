@@ -4,7 +4,7 @@
 </div>
 <p align="center">
   <a href="https://github.com/Sichlan/Apocrypha/actions">
-    <img alt="Tests Passing" src="https://github.com/Sichlan/Apocrypha/workflows/.NET/badge.svg" />
+    <img alt="Tests Passing" src="https://github.com/Sichlan/Apocrypha/workflows/Tests/badge.svg" />
   </a>
   <a href="https://github.com/Sichlan/Apocrypha/issues">
     <img alt="Issues" src="https://img.shields.io/github/issues/Sichlan/Apocrypha?color=0088ff" />
