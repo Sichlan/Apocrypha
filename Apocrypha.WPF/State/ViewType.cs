@@ -5,6 +5,7 @@
         Home,
         Login,
         Register,
-        CharacterSelection
+        CharacterSelection,
+        DiceRoller
     }
 }

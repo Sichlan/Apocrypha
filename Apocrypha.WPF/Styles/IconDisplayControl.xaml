@@ -34,6 +34,7 @@
                 <ContentPresenter Content="{StaticResource IconHome}"/>
                 <ContentPresenter Content="{StaticResource IconDatabase}"/>
                 <ContentPresenter Content="{StaticResource IconUser}"/>
+                <ContentPresenter Content="{StaticResource IconDice}"/>
             </WrapPanel>
 
             <TextBlock Text="Fonts"/>

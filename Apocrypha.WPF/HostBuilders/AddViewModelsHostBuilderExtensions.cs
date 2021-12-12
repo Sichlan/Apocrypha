@@ -1,4 +1,5 @@
 ﻿using System;
+using Apocrypha.CommonObject.Services.DiceRollerServices;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
 using Apocrypha.WPF.ViewModels;
@@ -21,18 +22,27 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<CharacterSelectionViewModel>();
                 services.AddSingleton<LoginViewModel>();
                 services.AddSingleton<RegistrationViewModel>();
+                services.AddSingleton<DiceRollerViewModel>();
 
                 services.AddSingleton<CreateViewModel<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
                 services.AddSingleton<CreateViewModel<CharacterSelectionViewModel>>(s => s.GetRequiredService<CharacterSelectionViewModel>);
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(s => () => CreateLoginViewModel(s));
                 services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => () => CreateRegistrationViewModel(s));
+                services.AddSingleton<CreateViewModel<DiceRollerViewModel>>(s => () => CreateDiceRollerViewModel(s));
 
                 services.AddSingleton<ViewModelDelegateRenavigator<HomeViewModel>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<CharacterSelectionViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RegistrationViewModel>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<DiceRollerViewModel>>();
             });
 
             return hostBuilder;
+        }
+
+        private static DiceRollerViewModel CreateDiceRollerViewModel(IServiceProvider service)
+        {
+            return new DiceRollerViewModel(service.GetRequiredService<IDiceRollerService>());
         }
 
         private static MainViewModel CreateMainViewModel(IServiceProvider service)
