@@ -7,5 +7,13 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodels:CharacterSelectionViewModel, IsDesignTimeCreatable=False}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Aqua" />
+    <Grid Background="Aqua" >
+        <DataGrid ItemsSource="{Binding Characters}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Lol" Binding="{Binding Budget}"/>
+                <DataGridTextColumn Header="Lol" Binding="{Binding Id}"/>
+                <DataGridComboBoxColumn Header="lol" ></DataGridComboBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using Apocrypha.WPF.ViewModels;
+﻿using System;
+using Apocrypha.WPF.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,7 @@ namespace Apocrypha.WPF.HostBuilders
             {
                 //Keep this as empty as possible, this is just temporary, try to move any of these to their corresponding extension
                 services.AddSingleton<IPasswordHasher, PasswordHasher>();
+                services.AddSingleton<Random>();
                 services.AddScoped(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
             });
 

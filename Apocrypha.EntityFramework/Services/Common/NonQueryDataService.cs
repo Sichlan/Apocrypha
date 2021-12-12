@@ -15,39 +15,36 @@ namespace Apocrypha.EntityFramework.Services.Common
 
         public async Task<T> Create(T entity)
         {
-            using (var context = DbContextFactory.CreateDbContext())
-            {
-                var createdEntity = context.Set<T>().Add(entity);
-                _ = await context.SaveChangesAsync();
+            using var context = DbContextFactory.CreateDbContext();
 
-                return createdEntity.Entity;
-            }
+            var createdEntity = context.Set<T>().Add(entity);
+            _ = await context.SaveChangesAsync();
+
+            return createdEntity.Entity;
         }
 
         public async Task<bool> Delete(int id)
         {
-            using (var context = DbContextFactory.CreateDbContext())
-            {
-                var entityToDelete = await context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
-                _ = context.Set<T>().Remove(entityToDelete);
+            using var context = DbContextFactory.CreateDbContext();
 
-                _ = await context.SaveChangesAsync();
+            var entityToDelete = await context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+            _ = context.Set<T>().Remove(entityToDelete);
 
-                return true;
-            }
+            _ = await context.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<T> Update(int id, T entity)
         {
-            using (var context = DbContextFactory.CreateDbContext())
-            {
-                entity.Id = id;
+            using var context = DbContextFactory.CreateDbContext();
 
-                context.Set<T>().Update(entity);
-                await context.SaveChangesAsync();
+            entity.Id = id;
 
-                return entity;
-            }
+            context.Set<T>().Update(entity);
+            await context.SaveChangesAsync();
+
+            return entity;
         }
     }
 }

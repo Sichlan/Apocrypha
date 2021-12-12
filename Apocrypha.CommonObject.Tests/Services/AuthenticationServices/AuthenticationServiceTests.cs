@@ -15,7 +15,7 @@ namespace Apocrypha.CommonObject.Tests.Services.AuthenticationServices
         private Mock<IUserService> _mockUserService;
         private Mock<IPasswordHasher> _mockPasswordHasher;
         private AuthenticationService _authenticationService;
-        
+
         [SetUp]
         public void Setup()
         {

@@ -39,6 +39,7 @@
             <!--#region Converters-->
             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <converters:ImageToBitmapConverter x:Key="ImageToBitmapConverter"/>
             <!--#endregion-->
 
             <!--#region Fonts-->

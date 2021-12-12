@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
@@ -20,22 +24,29 @@ namespace Apocrypha.EntityFramework.Services
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            using (var context = _dbContextFactory.CreateDbContext())
-            {
-                IEnumerable<T> entities = await context.Set<T>().ToListAsync();
+            using var context = _dbContextFactory.CreateDbContext();
 
-                return entities;
-            }
+            IEnumerable<T> entities = await context.Set<T>().ToListAsync();
+
+            return entities;
+        }
+
+        public async Task<IEnumerable<T>> GetAllWhere(Expression<Func<T, bool>> predicate)
+        {
+            using var context = _dbContextFactory.CreateDbContext();
+
+            IEnumerable<T> entities = await context.Set<T>().Where(predicate).ToListAsync();
+
+            return entities;
         }
 
         public async Task<T> GetById(int id)
         {
-            using (var context = _dbContextFactory.CreateDbContext())
-            {
-                var entity = await context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+            using var context = _dbContextFactory.CreateDbContext();
 
-                return entity;
-            }
+            var entity = await context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+
+            return entity;
         }
 
         public async Task<T> Create(T entity)

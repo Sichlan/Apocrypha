@@ -253,4 +253,24 @@
             <Path Stroke="{StaticResource ColorBrush}" Data="m 13.242504 6.9865385 c 0 1.3324321 -2.809881 2.4138262 -6.2763682 2.4138262 -3.4664868 0 -6.27636876 -1.0813941 -6.27636876 -2.4138262"/>
         </Canvas>
     </Canvas>
+    
+    <Canvas Width="20" Height="20" x:Key="IconUser">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas Name="g10">
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Ellipse Canvas.Left="4.5" Canvas.Top="3" 
+                         Width="5" Height="5" 
+                         Stroke="{StaticResource ColorBrush}"/>
+                <Path Stroke="{StaticResource ColorBrush}" Data="M2.73 11.9a5 5 0 0 1 8.54 0"/>
+                <Ellipse Canvas.Left="0.5" Canvas.Top="0.5" 
+                         Width="13" Height="13" 
+                         Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
 </ResourceDictionary>

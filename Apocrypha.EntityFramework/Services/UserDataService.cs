@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
@@ -20,21 +23,28 @@ namespace Apocrypha.EntityFramework.Services
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            using (var context = _contextFactory.CreateDbContext())
-            {
-                IEnumerable<User> entities = await context.Users.ToListAsync();
+            using var context = _contextFactory.CreateDbContext();
 
-                return entities;
-            }
+            IEnumerable<User> entities = await context.Users.ToListAsync();
+
+            return entities;
+        }
+
+        public async Task<IEnumerable<User>> GetAllWhere(Expression<Func<User, bool>> predicate)
+        {
+            using var context = _contextFactory.CreateDbContext();
+
+            IEnumerable<User> entities = await context.Users.Where(predicate).ToListAsync();
+
+            return entities;
         }
 
         public async Task<User> GetById(int id)
         {
-            using (var context = _contextFactory.CreateDbContext())
-            {
-                return await context.Users
-                    .FirstOrDefaultAsync(x => x.Id == id);
-            }
+            using var context = _contextFactory.CreateDbContext();
+
+            return await context.Users
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<User> Create(User entity)
@@ -54,20 +64,18 @@ namespace Apocrypha.EntityFramework.Services
 
         public async Task<User> GetByUsername(string username)
         {
-            using (var context = _contextFactory.CreateDbContext())
-            {
-                return await context.Users
-                    .FirstOrDefaultAsync(x => x.Username == username);
-            }
+            using var context = _contextFactory.CreateDbContext();
+
+            return await context.Users
+                .FirstOrDefaultAsync(x => x.Username == username);
         }
 
         public async Task<User> GetByEmail(string email)
         {
-            using (var context = _contextFactory.CreateDbContext())
-            {
-                return await context.Users
-                    .FirstOrDefaultAsync(x => x.Email == email);
-            }
+            using var context = _contextFactory.CreateDbContext();
+
+            return await context.Users
+                .FirstOrDefaultAsync(x => x.Email == email);
         }
     }
 }
