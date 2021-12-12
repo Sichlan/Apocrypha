@@ -1,4 +1,5 @@
 ﻿using System;
+using Apocrypha.CommonObject.Services.DiceRollerServices;
 using Apocrypha.WPF.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ namespace Apocrypha.WPF.HostBuilders
                 //Keep this as empty as possible, this is just temporary, try to move any of these to their corresponding extension
                 services.AddSingleton<IPasswordHasher, PasswordHasher>();
                 services.AddSingleton<Random>();
+                services.AddSingleton<IDiceRollerService, DiceRollerService>();
                 services.AddScoped(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
             });
 

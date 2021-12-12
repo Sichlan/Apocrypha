@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Apocrypha.CommonObject.Exceptions;
@@ -36,15 +35,15 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
             _random = random;
         }
 
+#pragma warning disable 1998
         public async Task<double> RollDice(string equation)
         {
             return Equate(equation);
         }
+#pragma warning restore 1998
         
         private double Equate(string equation)
         {
-            double output = 0;
-
             #region Cleanup
 
             var currentExpression = equation.Replace(" ", "");
@@ -119,7 +118,7 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
 
             #endregion
 
-            if (!double.TryParse(currentExpression, NumberStyles.Any, CultureInfo.InvariantCulture, out output))
+            if (!double.TryParse(currentExpression, NumberStyles.Any, CultureInfo.InvariantCulture, out var output))
             {  
                 throw new UnsolvableEquationException(currentExpression);
             }
@@ -138,7 +137,7 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
 
         #region SeparatorMethods
 
-        private bool DiceResultComparation(int result, string comparator, int comparedValue)
+        private static bool DiceResultComparison(int result, string comparator, int comparedValue)
         {
             return comparator switch
             {
@@ -148,13 +147,12 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
                 "<=" => result <= comparedValue,
                 "<" => result < comparedValue,
                 "<>" => result != comparedValue,
+                _ => throw new UnrecognizedModifierException(comparator)
             };
         }
         
         private string EquateCurlyBrackets(Match match)
         {
-            double output = 0;
-
             var values = new List<double>();
             var staticValue = "";
 
@@ -243,21 +241,21 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
             var count = int.Parse(m1.Groups[1].Value);
             var faces = int.Parse(m1.Groups[2].Value);
 
-            var reroll = !String.IsNullOrEmpty(m1.Groups[3].Value);
-            var rerollExplicit = m1.Groups[4].Value == "!";
-            var rerollOperator = m1.Groups[5].Value;
-            var rerollComparedValue = !String.IsNullOrEmpty(m1.Groups[6].Value) ? int.Parse(m1.Groups[6].Value) : 0;
+            var reRoll = !String.IsNullOrEmpty(m1.Groups[3].Value);
+            var reRollExplicit = m1.Groups[4].Value == "!";
+            var reRollOperator = m1.Groups[5].Value;
+            var reRollComparedValue = !String.IsNullOrEmpty(m1.Groups[6].Value) ? int.Parse(m1.Groups[6].Value) : 0;
 
             for (var i = 0; i < count; i++)
             {
                 var result = _random.Next(1, faces + 1);
 
-                if (reroll && !DiceResultComparation(result, rerollOperator, rerollComparedValue))
+                if (reRoll && !DiceResultComparison(result, reRollOperator, reRollComparedValue))
                 {
                     do
                     {
                         result = _random.Next(1, faces + 1);
-                    } while (rerollExplicit && !DiceResultComparation(result, rerollOperator, rerollComparedValue));
+                    } while (reRollExplicit && !DiceResultComparison(result, reRollOperator, reRollComparedValue));
                 }
 	
                 output.Add(_random.Next(1, faces+1));
