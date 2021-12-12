@@ -258,7 +258,7 @@
         <Canvas.Resources>
             <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
         </Canvas.Resources>
-        <Canvas Name="g10">
+        <Canvas>
             <Canvas.RenderTransform>
                 <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
             </Canvas.RenderTransform>
@@ -269,6 +269,32 @@
                 <Path Stroke="{StaticResource ColorBrush}" Data="M2.73 11.9a5 5 0 0 1 8.54 0"/>
                 <Ellipse Canvas.Left="0.5" Canvas.Top="0.5" 
                          Width="13" Height="13" 
+                         Stroke="{StaticResource ColorBrush}"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
+    
+    <Canvas Width="20" Height="20" x:Key="IconDice">
+        <Canvas.Resources>
+            <SolidColorBrush x:Key="ColorBrush" Color="{StaticResource ColorForeground1}"/>
+        </Canvas.Resources>
+        <Canvas>
+            <Canvas.RenderTransform>
+                <MatrixTransform Matrix="1.4285714285714286 0 0 1.4285714285714286 0 0"/>
+            </Canvas.RenderTransform>
+            <Canvas>
+                <Rectangle Canvas.Left="0.5" Canvas.Top="0.5" 
+                           Width="13" Height="13" 
+                           RadiusX="1" RadiusY="1" 
+                           Stroke="{StaticResource ColorBrush}"/>
+                <Ellipse Canvas.Left="6" Canvas.Top="6" 
+                         Width="2" Height="2"
+                         Stroke="{StaticResource ColorBrush}"/>
+                <Ellipse Canvas.Left="2.5" Canvas.Top="2.5" 
+                         Width="2" Height="2"
+                         Stroke="{StaticResource ColorBrush}"/>
+                <Ellipse Canvas.Left="9.5" Canvas.Top="9.5" 
+                         Width="2" Height="2"
                          Stroke="{StaticResource ColorBrush}"/>
             </Canvas>
         </Canvas>

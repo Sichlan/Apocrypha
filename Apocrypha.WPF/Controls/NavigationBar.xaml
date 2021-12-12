@@ -36,6 +36,15 @@
                         <TextBlock Text="Character Selection" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </RadioButton>
+
+                <RadioButton IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:DiceRollerViewModel}, Mode=OneWay}"
+                          Command="{Binding UpdateCurrentViewModelCommand}"
+                          CommandParameter="{x:Static navigators:ViewType.DiceRoller}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Content="{StaticResource IconDice}" Width="20" Height="20" VerticalAlignment="Center"/>
+                        <TextBlock Text="Dice Roller" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
             </StackPanel>
         </Grid>
         
