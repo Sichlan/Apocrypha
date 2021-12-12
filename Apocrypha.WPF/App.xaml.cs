@@ -1,11 +1,5 @@
 ﻿using System.Windows;
 using Apocrypha.WPF.HostBuilders;
-using Apocrypha.WPF.State.Navigators.Authenticators;
-using Apocrypha.WPF.State.Navigators.Navigators;
-using Apocrypha.WPF.State.Navigators.Users;
-using Apocrypha.WPF.ViewModels;
-using Apocrypha.WPF.ViewModels.Factories;
-using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
