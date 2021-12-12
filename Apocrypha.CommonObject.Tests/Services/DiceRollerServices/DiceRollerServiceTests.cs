@@ -58,5 +58,21 @@ namespace Apocrypha.CommonObject.Tests.Services.DiceRollerServices
             Assert.AreEqual(2, roundResult);
             Assert.AreEqual(1.8, absResult);
         }
+
+        [Test]
+        public async Task RollDice_TestSeparators()
+        {
+            // Arrange
+            string parenthesis = "4*((15+1)/8)";
+            string curlyBrackest = "{0,1,2}dh1 + {12+4}dh1+ {4d6r!>2+4}dh1 +{4d6d1+4}dh1";
+
+            // Act
+            var parenthesisResult = await _diceRollerService.RollDice(parenthesis);
+            var curlyBracketsResult = await _diceRollerService.RollDice(curlyBrackest);
+
+            // Assert
+            Assert.AreEqual(8, parenthesisResult);
+            Assert.AreEqual(20, curlyBracketsResult);
+        }
     }
 }
