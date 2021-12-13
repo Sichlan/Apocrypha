@@ -17,7 +17,27 @@ namespace Apocrypha.WPF.ViewModels
         {
             _diceRollerService = diceRollerService;
             ClearHistoryCommand = new RelayCommand(s => Output = "", s => true);
-            RollDiceCommand = new RelayCommand(async s => Output = await _diceRollerService.RollDice(Expression) + "\n\n" + Output, s => true);
+            RollDiceCommand = new RelayCommand(async s => ExecuteNewRoll(s), s => true);
+        }
+
+        private async Task ExecuteNewRoll(object o)
+        {
+            var result = await _diceRollerService.RollDice(Expression);
+
+            string textResult = "";
+            for (int i = 0; i < result.Count; i++)
+            {
+                string text = $"Roll {1 + i}: ";
+
+                for (int j = 0; j < result[i].Count; j++)
+                {
+                    text += (text.EndsWith(": ") ? "" : ", ") + result[i][j];
+                }
+
+                textResult += "\n" + text;
+            }
+
+            Output = textResult.Trim('\n') + "\n-----\n" + Output;
         }
 
         private string _expression;
@@ -36,5 +56,7 @@ namespace Apocrypha.WPF.ViewModels
 
         public ICommand RollDiceCommand { get; set; }
         public ICommand ClearHistoryCommand { get; set; }
+        
+        
     }
 }

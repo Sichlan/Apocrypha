@@ -36,9 +36,9 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
         }
 
 #pragma warning disable 1998
-        public async Task<double[,]> RollDice(string equation)
+        public async Task<List<List<double>>> RollDice(string equation)
         {
-            double[,] output = new double[1,1];
+            List<List<double>> output = new List<List<double>>();
             
             var match = Regex.Match(equation, @"^t(c([0-9]+))?(r([0-9]+))?\[((?>\[(?<c>)|[^\[\]]+|\](?<-c>))*(?(c)(?!)))\]$");
 
@@ -49,19 +49,19 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
                 if (!int.TryParse(match.Groups[4].Value, out int dim2))
                     dim2 = 1;
 
-                output = new double[dim1, dim2];
-
                 for (int i = 0; i < dim1; i++)
                 {
+                    output.Add(new List<double>());
                     for (int j = 0; j < dim2; j++)
                     {
-                        output[i, j] = Equate(match.Groups[5].Value);
+                        output[i].Add(Equate(match.Groups[5].Value));
                     }
                 }
             }
             else
             {
-                output[0,0] = Equate(equation);
+                output.Add(new List<double>());
+                output[0].Add(Equate(equation));
             }
 
             return output;
@@ -234,7 +234,6 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
         }
 
         #endregion
-
 
         #region FunctionMethods
 
