@@ -18,14 +18,14 @@ namespace Apocrypha.CommonObject.Tests.Services.DiceRollerServices
             _mockRandom = new Mock<Random>();
             _diceRollerService = new DiceRollerService(_mockRandom.Object);
             
-            _mockRandom.Setup(s => s.Next(It.IsAny<int>(),It.IsAny<int>())).Returns(5);
+            //_mockRandom.Setup(s => s.Next(It.IsAny<int>(),It.IsAny<int>())).Returns(5);
         }
 
         // [Test]
         // public async Task RollDice_TestEachValidOperatorAndOneInvalid()
         // {
         //     #region Arrange
-        //
+        //     _mockRandom.Setup(s => s.Next(It.IsAny<int>(),It.IsAny<int>())).Returns(5);
         //     //   cleanup tests:
         //     var cleanup_Spaces = "1 1";
         //     var cleanup_encaseInCurlyBrackets = "3d2d1";
@@ -116,14 +116,15 @@ namespace Apocrypha.CommonObject.Tests.Services.DiceRollerServices
             // Arrange
             string equation = "1-2*3.2/4%3+4d9";
             string exponent = "20^2";
-            
+            _mockRandom.Setup(s => s.Next(It.IsAny<int>(),It.IsAny<int>())).Returns(5);
+
             // Act
             var value = await _diceRollerService.RollDice(equation);
             var value2 = await _diceRollerService.RollDice(exponent);
 
             // Assert
-            Assert.AreEqual(14.6, value);
-            Assert.AreEqual(400, value2);
+            Assert.AreEqual(14.6, value[0,0]);
+            Assert.AreEqual(400, value2[0,0]);
         }
 
         [Test]
@@ -134,6 +135,7 @@ namespace Apocrypha.CommonObject.Tests.Services.DiceRollerServices
             string ceil = "ceil(1.8)";
             string round = "round(1.8)";
             string abs = "abs(-1.8)";
+            _mockRandom.Setup(s => s.Next(It.IsAny<int>(),It.IsAny<int>())).Returns(5);
             
             // Act
             var floorResult = await _diceRollerService.RollDice(floor);
@@ -142,10 +144,10 @@ namespace Apocrypha.CommonObject.Tests.Services.DiceRollerServices
             var absResult = await _diceRollerService.RollDice(abs);
             
             // Assert
-            Assert.AreEqual(1, floorResult);
-            Assert.AreEqual(2, ceilResult);
-            Assert.AreEqual(2, roundResult);
-            Assert.AreEqual(1.8, absResult);
+            Assert.AreEqual(1, floorResult[0,0]);
+            Assert.AreEqual(2, ceilResult[0,0]);
+            Assert.AreEqual(2, roundResult[0,0]);
+            Assert.AreEqual(1.8, absResult[0,0]);
         }
 
         [Test]
@@ -154,14 +156,31 @@ namespace Apocrypha.CommonObject.Tests.Services.DiceRollerServices
             // Arrange
             string parenthesis = "4*((15+1)/8)";
             string curlyBrackest = "{0,1,2}dh1 + {12+4}dh1+ {4d6r!>2+4}dh1 +{4d6d1+4}dh1";
+            _mockRandom.Setup(s => s.Next(It.IsAny<int>(),It.IsAny<int>())).Returns(5);
 
             // Act
             var parenthesisResult = await _diceRollerService.RollDice(parenthesis);
             var curlyBracketsResult = await _diceRollerService.RollDice(curlyBrackest);
 
             // Assert
-            Assert.AreEqual(8, parenthesisResult);
-            Assert.AreEqual(20, curlyBracketsResult);
+            Assert.AreEqual(8, parenthesisResult[0,0]);
+            Assert.AreEqual(20, curlyBracketsResult[0,0]);
+        }
+
+        [Test]
+        public async Task RollDice_TestMultiTables()
+        {
+            // Arrange
+            string multitable = "tc2r7[4d6d1]";
+            _mockRandom.Setup(s => s.Next(It.IsAny<int>(),It.IsAny<int>())).Returns(5);
+            
+            // Act
+            var multitableResult = await _diceRollerService.RollDice(multitable);
+            TestContext.Out.WriteLine(multitableResult);
+            
+            // Assert
+            Assert.AreEqual(2,multitableResult.GetLength(0));
+            Assert.AreEqual(7,multitableResult.GetLength(1));
         }
     }
 }

@@ -10,6 +10,6 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
         /// </summary>
         /// <param name="equation">The equation to evaluate.</param>
         /// <returns></returns>
-        Task<double> RollDice(string equation);
+        Task<double[,]> RollDice(string equation);
     }
 }
