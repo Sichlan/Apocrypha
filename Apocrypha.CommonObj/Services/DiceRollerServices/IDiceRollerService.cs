@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Apocrypha.CommonObject.Services.DiceRollerServices
 {
@@ -10,6 +11,6 @@ namespace Apocrypha.CommonObject.Services.DiceRollerServices
         /// </summary>
         /// <param name="equation">The equation to evaluate.</param>
         /// <returns></returns>
-        Task<double> RollDice(string equation);
+        Task<List<List<double>>> RollDice(string equation);
     }
 }
