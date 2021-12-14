@@ -7,6 +7,5 @@ namespace Apocrypha.CommonObject.Models
         public User CreatorUser { get; set; }
         public int Budget { get; set; }
         public IEnumerable<CharacterItem> InventoryItems { get; set; }
-        public byte[] ProfilePicture { get; set; }
     }
 }

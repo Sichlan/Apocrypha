@@ -23,6 +23,10 @@
                 <views:CharacterSelectionView />
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModels:CharacterPreviewViewModel}">
+                <views:CharacterPreviewView />
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
                 <views:LoginView />
             </DataTemplate>

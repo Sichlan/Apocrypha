@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ICSharpCode.AvalonEdit.Document;
 
 namespace Apocrypha.WPF.ViewModels
 {
@@ -22,7 +23,7 @@ namespace Apocrypha.WPF.ViewModels
 
         private async Task ExecuteNewRoll(object o)
         {
-            var result = await _diceRollerService.RollDice(Expression);
+            var result = await _diceRollerService.RollDice(TextDocument.Text);
 
             string textResult = "";
             for (int i = 0; i < result.Count; i++)
@@ -40,12 +41,7 @@ namespace Apocrypha.WPF.ViewModels
             Output = textResult.Trim('\n') + "\n-----\n" + Output;
         }
 
-        private string _expression;
-        public string Expression
-        {
-            get { return _expression; }
-            set { _expression = value; OnPropertyChanged(nameof(Expression)); }
-        }
+        public TextDocument TextDocument { get; set; } = new("");
 
         private string _output;
         public string Output
