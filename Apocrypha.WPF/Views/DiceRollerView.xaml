@@ -26,15 +26,14 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <avalonedit:TextEditor Document="{Binding TextDocument, UpdateSourceTrigger=PropertyChanged}"
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="3" Grid.Row="0" Grid.Column="0" Margin="5">
+                    <avalonedit:TextEditor Document="{Binding TextDocument, UpdateSourceTrigger=PropertyChanged}"
                                        FontFamily="Consolas"
                                        SyntaxHighlighting="DiceRoll"
                                        FontSize="20pt"
-                                       Grid.Row="0" 
-                                       Grid.Column="0"
                                        HorizontalScrollBarVisibility="Auto"
-                                       VerticalScrollBarVisibility="Auto"
-                                       Margin="5"/>
+                                       VerticalScrollBarVisibility="Auto"/>
+                </Border>
                 <Button Command="{Binding RollDiceCommand}" Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <ContentControl Content="{StaticResource IconDice}" Margin="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>

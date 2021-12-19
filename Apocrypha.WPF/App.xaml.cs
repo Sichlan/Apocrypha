@@ -13,6 +13,7 @@ namespace Apocrypha.WPF
     /// <summary>
     ///     Interaction logic for App.xaml
     /// </summary>
+    // ReSharper disable once RedundantExtendsListEntry
     public partial class App : Application
     {
         private readonly IHost _host;
@@ -20,7 +21,6 @@ namespace Apocrypha.WPF
         public App()
         {
             _host = CreateHostBuilder().Build();
-            LoadAvalonHighlighting();
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
@@ -57,6 +57,7 @@ namespace Apocrypha.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
+            LoadAvalonHighlighting();
             
             Window window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();

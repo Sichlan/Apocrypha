@@ -8,7 +8,7 @@
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
         mc:Ignorable="d"
         Title="{Binding Title}"
-        Height="450" Width="800">
+        Height="550" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
