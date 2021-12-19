@@ -17,7 +17,7 @@ namespace Apocrypha.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Character>().Property(p => p.ProfilePicture).HasColumnType("MediumBlob");
+            // modelBuilder.Entity<Character>().Property(p => p.ProfilePicture).HasColumnType("MediumBlob");
             
             base.OnModelCreating(modelBuilder);
         }

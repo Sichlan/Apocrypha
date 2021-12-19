@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Apocrypha.WPF.Views" xmlns:viewmodels="clr-namespace:Apocrypha.WPF.ViewModels"
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodels:DiceRollerViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -25,8 +26,15 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Text="{Binding Expression, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0" Margin="5"/>
-                <Button Command="{Binding RollDiceCommand}" Grid.Row="0" Grid.Column="1" Margin="5">
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="3" Grid.Row="0" Grid.Column="0" Margin="5">
+                    <avalonedit:TextEditor Document="{Binding TextDocument, UpdateSourceTrigger=PropertyChanged}"
+                                       FontFamily="Consolas"
+                                       SyntaxHighlighting="DiceRoll"
+                                       FontSize="20pt"
+                                       HorizontalScrollBarVisibility="Auto"
+                                       VerticalScrollBarVisibility="Auto"/>
+                </Border>
+                <Button Command="{Binding RollDiceCommand}" Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <ContentControl Content="{StaticResource IconDice}" Margin="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
 

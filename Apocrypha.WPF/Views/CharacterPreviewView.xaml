@@ -26,18 +26,18 @@
                 </Border.Clip>
                 <Grid>
                     <ContentControl Content="{StaticResource IconUser}"/>
-                    <Image Source="{Binding Character.ProfilePicture, Converter={StaticResource ImageToBitmapConverter}}">
-                        <Image.Style>
-                            <Style TargetType="Image">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Character.ProfilePicture, Converter={StaticResource ImageToBitmapConverter}}" Value="{x:Null}">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </Style>
-                        </Image.Style>
-                    </Image>
+                    <!-- <Image Source="{Binding Character.ProfilePicture, Converter={StaticResource ImageToBitmapConverter}}"> -->
+                    <!--     <Image.Style> -->
+                    <!--         <Style TargetType="Image"> -->
+                    <!--             <Style.Triggers> -->
+                    <!--                 <DataTrigger Binding="{Binding Character.ProfilePicture, Converter={StaticResource ImageToBitmapConverter}}" Value="{x:Null}"> -->
+                    <!--                     <Setter Property="Visibility" Value="Hidden"/> -->
+                    <!--                 </DataTrigger> -->
+                    <!--             </Style.Triggers> -->
+                    <!--             <Setter Property="Visibility" Value="Visible"/> -->
+                    <!--         </Style> -->
+                    <!--     </Image.Style> -->
+                    <!-- </Image> -->
                 </Grid>
             </Border>
 

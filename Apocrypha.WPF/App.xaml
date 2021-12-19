@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Styles/NavigationBarStyle.xaml" />
                 <ResourceDictionary Source="Styles/MessageViewStyles.xaml" />
                 <ResourceDictionary Source="Styles/Icons.xaml" />
+                <ResourceDictionary Source="Styles/DiceRollerStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--#region DataTemplates-->
@@ -21,6 +22,10 @@
 
             <DataTemplate DataType="{x:Type viewModels:CharacterSelectionViewModel}">
                 <views:CharacterSelectionView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:CharacterPreviewViewModel}">
+                <views:CharacterPreviewView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
