@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Styles/MessageViewStyles.xaml" />
                 <ResourceDictionary Source="Styles/Icons.xaml" />
                 <ResourceDictionary Source="Styles/DiceRollerStyles.xaml" />
+                <ResourceDictionary Source="Styles/GroupBoxStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--#region DataTemplates-->
