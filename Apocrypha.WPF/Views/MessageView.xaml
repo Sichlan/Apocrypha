@@ -10,32 +10,41 @@
     <Border Style="{StaticResource MessageViewBorderStyle}" Height="30">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <ContentControl Grid.Column="0" Margin="5 0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ContentControl Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding MessageType}" Value="{x:Static viewmodels:MessageType.Error}">
-                                <Setter Property="Content" Value="{StaticResource IconError}"/>
+                            <DataTrigger Binding="{Binding MessageType}"
+                                         Value="{x:Static viewmodels:MessageType.Error}">
+                                <Setter Property="Foreground" Value="{StaticResource ErrorForegroundBrush}" />
+                                <Setter Property="Template" Value="{StaticResource IconError}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding MessageType}" Value="{x:Static viewmodels:MessageType.Warning}">
-                                <Setter Property="Content" Value="{StaticResource IconWarning}"/>
+                            <DataTrigger Binding="{Binding MessageType}"
+                                         Value="{x:Static viewmodels:MessageType.Warning}">
+                                <Setter Property="Foreground" Value="{StaticResource WarningForegroundBrush}" />
+                                <Setter Property="Template" Value="{StaticResource IconWarning}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding MessageType}" Value="{x:Static viewmodels:MessageType.Information}">
-                                <Setter Property="Content" Value="{StaticResource IconInformation}"/>
+                            <DataTrigger Binding="{Binding MessageType}"
+                                         Value="{x:Static viewmodels:MessageType.Information}">
+                                <Setter Property="Foreground" Value="{StaticResource InformationForegroundBrush}" />
+                                <Setter Property="Template" Value="{StaticResource IconInformation}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding MessageType}" Value="{x:Static viewmodels:MessageType.Success}">
-                                <Setter Property="Content" Value="{StaticResource IconSuccess}"/>
+                            <DataTrigger Binding="{Binding MessageType}"
+                                         Value="{x:Static viewmodels:MessageType.Success}">
+                                <Setter Property="Foreground" Value="{StaticResource SuccessForegroundBrush}" />
+                                <Setter Property="Template" Value="{StaticResource IconSuccess}" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </ContentControl.Style>
             </ContentControl>
-            
-            <TextBlock Text="{Binding Message}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MessageViewTextBlockStyle}"/>
+
+            <TextBlock Text="{Binding Message}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Style="{StaticResource MessageViewTextBlockStyle}" />
         </Grid>
     </Border>
 </UserControl>

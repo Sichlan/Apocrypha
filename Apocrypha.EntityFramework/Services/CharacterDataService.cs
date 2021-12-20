@@ -31,8 +31,7 @@ namespace Apocrypha.EntityFramework.Services
             using var context = _contextFactory.CreateDbContext();
 
             IEnumerable<Character> entities = await context.Characters
-                .Include(nameof(CharacterItem))
-                .Include(nameof(Item))
+                .Include(x => x.InventoryItems)
                 .Where(predicate)
                 .ToListAsync();
 
@@ -44,8 +43,7 @@ namespace Apocrypha.EntityFramework.Services
             using var context = _contextFactory.CreateDbContext();
 
             var character = await context.Characters
-                .Include(nameof(CharacterItem))
-                .Include(nameof(Item))
+                .Include(x => x.InventoryItems)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return character;

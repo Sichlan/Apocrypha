@@ -3,7 +3,7 @@
 namespace Apocrypha.WPF.Styles
 {
     /// <summary>
-    /// Interaction logic for IconDisplayControl.xaml
+    ///     Interaction logic for IconDisplayControl.xaml
     /// </summary>
     public partial class IconDisplayControl : UserControl
     {

@@ -6,7 +6,9 @@ namespace Apocrypha.WPF.ViewModels.Factories
     public class ApocryphaViewModelFactory : IApocryphaViewModelFactory
     {
         public ApocryphaViewModelFactory(CreateViewModel<HomeViewModel> createHomeViewModelFactory,
-            CreateViewModel<CharacterSelectionViewModel> createCharacterSelectionViewModelFactory, CreateViewModel<LoginViewModel> createLoginViewModelFactory, CreateViewModel<RegistrationViewModel> createRegistrationViewModelFactory, CreateViewModel<DiceRollerViewModel> createDiceRollerViewModelFactory)
+            CreateViewModel<CharacterSelectionViewModel> createCharacterSelectionViewModelFactory,
+            CreateViewModel<LoginViewModel> createLoginViewModelFactory, CreateViewModel<RegistrationViewModel> createRegistrationViewModelFactory,
+            CreateViewModel<DiceRollerViewModel> createDiceRollerViewModelFactory)
         {
             _createHomeViewModelFactory = createHomeViewModelFactory;
             _createCharacterSelectionViewModelFactory = createCharacterSelectionViewModelFactory;

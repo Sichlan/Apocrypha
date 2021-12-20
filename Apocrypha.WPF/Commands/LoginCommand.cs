@@ -1,7 +1,7 @@
-﻿using Apocrypha.WPF.State.Navigators.Authenticators;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Apocrypha.CommonObject.Exceptions;
+using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
 using Apocrypha.WPF.ViewModels;
 
@@ -10,8 +10,8 @@ namespace Apocrypha.WPF.Commands
     public class LoginCommand : AsyncCommandBase
     {
         private readonly IAuthenticator _authenticator;
-        private readonly IRenavigator _renavigator;
         private readonly LoginViewModel _loginViewModel;
+        private readonly IRenavigator _renavigator;
 
         public LoginCommand(IAuthenticator authenticator, IRenavigator renavigator, LoginViewModel loginViewModel)
         {

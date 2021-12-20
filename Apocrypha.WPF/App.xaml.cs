@@ -36,8 +36,11 @@ namespace Apocrypha.WPF
         }
 
         /// <summary>
-        /// Initiates highlighting grammars for AvalonEdit.
-        /// <a href="https://stackoverflow.com/questions/5057210/how-do-i-create-an-avalonedit-syntax-file-xshd-and-embed-it-into-my-assembly">Source</a>
+        ///     Initiates highlighting grammars for AvalonEdit.
+        ///     <a
+        ///         href="https://stackoverflow.com/questions/5057210/how-do-i-create-an-avalonedit-syntax-file-xshd-and-embed-it-into-my-assembly">
+        ///         Source
+        ///     </a>
         /// </summary>
         private void LoadAvalonHighlighting()
         {
@@ -47,7 +50,7 @@ namespace Apocrypha.WPF
         private void LoadSyntaxFromFile(string path, string name)
         {
             var contents = File.ReadAllBytes(path);
-            
+
             using var stream = new MemoryStream(contents);
             using var reader = new XmlTextReader(stream);
 
@@ -58,7 +61,7 @@ namespace Apocrypha.WPF
         {
             _host.Start();
             LoadAvalonHighlighting();
-            
+
             Window window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();
 

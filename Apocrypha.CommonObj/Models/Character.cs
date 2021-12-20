@@ -4,14 +4,19 @@ namespace Apocrypha.CommonObject.Models
 {
     public class Character : DatabaseObject
     {
+        public User CreatorUser { get; set; }
+        public int Budget { get; set; }
+        /// <summary>
+        /// Disables some editing features to ensure no accidental edits during playtime.
+        /// </summary>
+        public bool DisableNonPlaytimeEditing { get; set; }
+        public ICollection<CharacterItem> InventoryItems { get; set; }
+
         #region Profile
 
         public string CharacterName { get; set; }
         public string DisplayName { get; set; }
 
         #endregion
-        public User CreatorUser { get; set; }
-        public int Budget { get; set; }
-        public IEnumerable<CharacterItem> InventoryItems { get; set; }
     }
 }

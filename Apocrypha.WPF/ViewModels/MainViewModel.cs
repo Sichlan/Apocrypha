@@ -12,7 +12,10 @@ namespace Apocrypha.WPF.ViewModels
         private readonly INavigator _navigator;
         private readonly IApocryphaViewModelFactory _viewModelFactory;
 
-        public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory, IRenavigator logoutCommandRenavigator)
+        private bool _menuExpanded;
+
+        public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory,
+            IRenavigator logoutCommandRenavigator)
         {
             _authenticator = authenticator;
             _navigator = navigator;
@@ -36,11 +39,14 @@ namespace Apocrypha.WPF.ViewModels
 
         public string Title => "Apocrypha";
 
-        private bool _menuExpanded;
         public bool MenuExpanded
         {
-            get { return _menuExpanded; }
-            set { _menuExpanded = value; OnPropertyChanged(); }
+            get => _menuExpanded;
+            set
+            {
+                _menuExpanded = value;
+                OnPropertyChanged();
+            }
         }
 
 

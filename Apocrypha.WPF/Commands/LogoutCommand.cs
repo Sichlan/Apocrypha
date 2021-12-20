@@ -1,6 +1,6 @@
-﻿using Apocrypha.WPF.State.Navigators.Authenticators;
+﻿using System.Threading.Tasks;
+using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
-using System.Threading.Tasks;
 
 namespace Apocrypha.WPF.Commands
 {

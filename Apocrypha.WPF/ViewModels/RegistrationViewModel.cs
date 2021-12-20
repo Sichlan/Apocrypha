@@ -7,9 +7,22 @@ namespace Apocrypha.WPF.ViewModels
 {
     public class RegistrationViewModel : BaseViewModel
     {
+        public RegistrationViewModel(IAuthenticator authenticator, IRenavigator successfulRegistrationNavigator, IRenavigator loginNavigator)
+        {
+            RegistrationCommand = new RegistrationCommand(this, authenticator, successfulRegistrationNavigator);
+            ChangeToLoginCommand = new RenavigateCommand(loginNavigator);
+
+            ErrorMessageViewModel = new MessageViewModel
+                {MessageType = MessageType.Error};
+        }
+
+        public ICommand RegistrationCommand { get; }
+        public ICommand ChangeToLoginCommand { get; }
+
         #region Properties
 
         private string _email;
+
         public string Email
         {
             get => _email;
@@ -21,6 +34,7 @@ namespace Apocrypha.WPF.ViewModels
         }
 
         private string _username;
+
         public string Username
         {
             get => _username;
@@ -54,7 +68,7 @@ namespace Apocrypha.WPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public MessageViewModel ErrorMessageViewModel { get; }
 
         public string ErrorMessage
@@ -63,16 +77,5 @@ namespace Apocrypha.WPF.ViewModels
         }
 
         #endregion
-
-        public ICommand RegistrationCommand { get; }
-        public ICommand ChangeToLoginCommand { get; }
-
-        public RegistrationViewModel(IAuthenticator authenticator, IRenavigator successfulRegistrationNavigator, IRenavigator loginNavigator)
-        {
-            RegistrationCommand = new RegistrationCommand(this, authenticator, successfulRegistrationNavigator);
-            ChangeToLoginCommand = new RenavigateCommand(loginNavigator);
-
-            ErrorMessageViewModel = new MessageViewModel() {MessageType = MessageType.Error};
-        }
     }
 }

@@ -8,28 +8,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Resources\Fonts\AngerStyles.ttf" />
-        <None Remove="Resources\Fonts\TheCenturion.ttf" />
-        <None Remove="Resources\Fonts\WrathStyles.ttf" />
-        <None Remove="Resources\Icons\chart.png" />
-        <None Remove="Resources\Icons\database.png" />
-        <None Remove="Resources\Icons\home.png" />
-        <None Remove="Resources\Icons\logout.png" />
-        <None Remove="Resources\Icons\menu.png" />
-        <None Remove="Resources\Icons\search.png" />
-        <None Remove="Resources\Icons\settings.png" />
+        <None Remove="Resources\Fonts\AngerStyles.ttf"/>
+        <None Remove="Resources\Fonts\TheCenturion.ttf"/>
+        <None Remove="Resources\Fonts\WrathStyles.ttf"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AvalonEdit" Version="6.1.2.30" />
-        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
+        <PackageReference Include="AvalonEdit" Version="6.1.2.30"/>
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-        <PackageReference Include="PasswordBoxMVVM" Version="1.0.5" />
-        <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0"/>
+        <PackageReference Include="PasswordBoxMVVM" Version="1.0.5"/>
+        <PackageReference Include="System.Drawing.Common" Version="6.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -40,23 +33,23 @@
 
     <ItemGroup>
         <None Include="Resources\DiceRoll.xshd">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <Resource Include="Resources\Fonts\AngerStyles.ttf">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
         <Resource Include="Resources\Fonts\TheCenturion.ttf">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
         <Resource Include="Resources\Fonts\WrathStyles.ttf">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
-        <None Remove="DiceRoll.xshd" />
+        <None Remove="DiceRoll.xshd"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj" />
-      <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj" />
+        <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj"/>
+        <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj"/>
     </ItemGroup>
 
 </Project>

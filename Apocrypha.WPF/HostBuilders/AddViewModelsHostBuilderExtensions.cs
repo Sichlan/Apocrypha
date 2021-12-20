@@ -1,5 +1,4 @@
 ﻿using System;
-using Apocrypha.CommonObject.Services.DiceRollerServices;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
 using Apocrypha.WPF.ViewModels;
@@ -15,9 +14,10 @@ namespace Apocrypha.WPF.HostBuilders
         {
             hostBuilder.ConfigureServices(services =>
             {
-                services.AddTransient<MainViewModel>(s => CreateMainViewModel(s));
-                
+                services.AddTransient(s => CreateMainViewModel(s));
+
                 // Register viewmodels that have no explicit creation method like login or register viewmodel
+
                 #region ViewModels
 
                 services.AddTransient<HomeViewModel>();
@@ -31,7 +31,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<CreateViewModel<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
                 services.AddSingleton<CreateViewModel<CharacterSelectionViewModel>>(s => s.GetRequiredService<CharacterSelectionViewModel>);
                 services.AddSingleton<CreateViewModel<DiceRollerViewModel>>(s => s.GetRequiredService<DiceRollerViewModel>);
-                
+
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(s => () => CreateLoginViewModel(s));
                 services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => () => CreateRegistrationViewModel(s));
 
