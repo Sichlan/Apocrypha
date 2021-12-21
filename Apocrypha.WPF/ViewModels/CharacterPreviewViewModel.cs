@@ -5,6 +5,7 @@ using System.Windows.Media;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Characters;
+using Apocrypha.WPF.State.Navigators.Navigators;
 
 namespace Apocrypha.WPF.ViewModels
 {
@@ -14,11 +15,11 @@ namespace Apocrypha.WPF.ViewModels
 
         private Character _character;
 
-        public CharacterPreviewViewModel(Random random, Character character, ICharacterStore characterStore)
+        public CharacterPreviewViewModel(Random random, Character character, ICharacterStore characterStore, ViewModelDelegateRenavigator<CharacterProfileViewModel> renavigator)
         {
             _random = random;
             _character = character;
-            SetCurrentCharacterCommand = new SetCurrentCharacterCommand(_character, characterStore);
+            SetCurrentCharacterCommand = new SetCurrentCharacterCommand(_character, characterStore, renavigator);
 
             var colorInt = _random.Next(0, 72);
             LeftColor = LeftColor ?? GetColorFromStandardColorsByInt(colorInt);
