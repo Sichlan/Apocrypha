@@ -19,11 +19,14 @@ namespace Apocrypha.WPF.HostBuilders
                 // Retrieve the DB connection string from appsettings.json
                 var connectionString = context.Configuration.GetConnectionString("mariadb");
 
-                void ConfigureDbContext(DbContextOptionsBuilder o) => o.UseMySQL(connectionString);
+                void ConfigureDbContext(DbContextOptionsBuilder o)
+                {
+                    o.UseMySQL(connectionString);
+                }
 
                 // Configure DB service for migrations
                 services.AddDbContext<ApocryphaDbContext>(ConfigureDbContext);
-                
+
                 // Configure DB service for runtime
                 services.AddSingleton(o => new ApocryphaDbContextFactory(ConfigureDbContext));
 

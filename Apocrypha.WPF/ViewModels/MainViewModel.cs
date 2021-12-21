@@ -1,4 +1,5 @@
 ﻿using Apocrypha.WPF.Commands;
+using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
@@ -9,17 +10,23 @@ namespace Apocrypha.WPF.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private readonly IAuthenticator _authenticator;
+        private readonly ICharacterStore _characterStore;
         private readonly INavigator _navigator;
         private readonly IApocryphaViewModelFactory _viewModelFactory;
 
-        public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory, IRenavigator logoutCommandRenavigator)
+        private bool _menuExpanded;
+
+        public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory,
+            IRenavigator logoutCommandRenavigator, ICharacterStore characterStore)
         {
             _authenticator = authenticator;
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
+            _characterStore = characterStore;
 
             _navigator.StateChange += Navigator_StateChange;
             _authenticator.StateChange += Authenticator_StateChange;
+            _characterStore.StateChange += CharacterStore_StateChange;
 
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
             UpdateCurrentViewModelCommand.Execute(ViewType.Login);
@@ -30,17 +37,21 @@ namespace Apocrypha.WPF.ViewModels
 
         public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
         public bool IsLoggedIn => _authenticator.IsLoggedIn;
+        public bool HasActiveCharacter => _characterStore.HasActiveCharacter;
         public AsyncCommandBase UpdateCurrentViewModelCommand { get; }
         public AsyncCommandBase LogoutCommand { get; }
         public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
 
         public string Title => "Apocrypha";
 
-        private bool _menuExpanded;
         public bool MenuExpanded
         {
-            get { return _menuExpanded; }
-            set { _menuExpanded = value; OnPropertyChanged(); }
+            get => _menuExpanded;
+            set
+            {
+                _menuExpanded = value;
+                OnPropertyChanged();
+            }
         }
 
 
@@ -57,6 +68,11 @@ namespace Apocrypha.WPF.ViewModels
         private void Navigator_StateChange()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
+        }
+
+        private void CharacterStore_StateChange()
+        {
+            OnPropertyChanged(nameof(HasActiveCharacter));
         }
     }
 }

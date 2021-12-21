@@ -6,60 +6,109 @@
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
              xmlns:navigators="clr-namespace:Apocrypha.WPF.State.Navigators"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}" d:DesignHeight="406.143">
+             d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
+             d:DesignHeight="406.143">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="{StaticResource BrushPrimary2}" RenderOptions.EdgeMode="Aliased" VerticalAlignment="Stretch">
+        <Grid Grid.Row="0" Background="{StaticResource BrushPrimary2}" RenderOptions.EdgeMode="Aliased"
+              VerticalAlignment="Stretch">
             <StackPanel Orientation="Vertical">
                 <StackPanel.Resources>
-                    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MenuRadioButtonTheme}"/>
+                    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MenuRadioButtonTheme}" />
                 </StackPanel.Resources>
 
-                <RadioButton IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:HomeViewModel}, Mode=OneWay}"
-                          Command="{Binding UpdateCurrentViewModelCommand}"
-                          CommandParameter="{x:Static navigators:ViewType.Home}">
+                <RadioButton
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:HomeViewModel}, Mode=OneWay}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static navigators:ViewType.Home}">
                     <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{StaticResource IconHome}" Width="20" Height="20" VerticalAlignment="Center"/>
-                        <TextBlock Text="Home" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
+                        <ContentControl Template="{StaticResource IconHome}" Width="20" Height="20"
+                                        VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                        <TextBlock Text="Home" Margin="10 0 0 0"
+                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   VerticalAlignment="Center" />
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterSelectionViewModel}, Mode=OneWay}"
-                          Command="{Binding UpdateCurrentViewModelCommand}"
-                          CommandParameter="{x:Static navigators:ViewType.CharacterSelection}">
+                <Border BorderBrush="{StaticResource BrushForeground1}" BorderThickness="0,2,0,0" Padding="10" Height="45">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MenuExpanded}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Text="CHARACTER" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource BrushForeground1}" FontSize="20" FontWeight="Medium" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                </Border>
+                
+                <RadioButton
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterSelectionViewModel}, Mode=OneWay}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static navigators:ViewType.CharacterSelection}">
                     <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{StaticResource IconDatabase}" Width="20" Height="20" VerticalAlignment="Center"/>
-                        <TextBlock Text="Character Selection" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
+                        <ContentControl Template="{StaticResource IconDatabase}" Width="20" Height="20"
+                                        VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                        <TextBlock Text="Character Selection" Margin="10 0 0 0"
+                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </RadioButton>
+                
+                <RadioButton
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterProfileViewModel}, Mode=OneWay}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static navigators:ViewType.Profile}"
+                    IsEnabled="{Binding HasActiveCharacter}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{StaticResource IconUser}" Width="20" Height="20"
+                                        VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                        <TextBlock Text="Profile" Margin="10 0 0 0"
+                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   VerticalAlignment="Center" />
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:DiceRollerViewModel}, Mode=OneWay}"
-                          Command="{Binding UpdateCurrentViewModelCommand}"
-                          CommandParameter="{x:Static navigators:ViewType.DiceRoller}">
+                <RadioButton
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:DiceRollerViewModel}, Mode=OneWay}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static navigators:ViewType.DiceRoller}">
                     <StackPanel Orientation="Horizontal">
-                        <ContentControl Content="{StaticResource IconDice}" Width="20" Height="20" VerticalAlignment="Center"/>
-                        <TextBlock Text="Dice Roller" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
+                        <ContentControl Template="{StaticResource IconDice}" Width="20" Height="20"
+                                        VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                        <TextBlock Text="Dice Roller" Margin="10 0 0 0"
+                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   VerticalAlignment="Center" />
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
         </Grid>
-        
+
         <StackPanel Orientation="Vertical" Grid.Row="1">
-            <Button Style="{StaticResource MenuButtonTheme}" Command="{Binding LogoutCommand}" HorizontalAlignment="Stretch">
+            <Button Style="{StaticResource MenuButtonTheme}" Command="{Binding LogoutCommand}"
+                    HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{StaticResource IconLogout}" Width="20" Height="20" VerticalAlignment="Center"/>
-                    <TextBlock Text="Logout" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
+                    <ContentControl Template="{StaticResource IconLogout}" Width="20" Height="20"
+                                    VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                    <TextBlock Text="Logout" Margin="10 0 0 0"
+                               Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                               VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
 
             <ToggleButton IsChecked="{Binding MenuExpanded}" Style="{StaticResource MenuToggleButtonTheme}">
                 <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{StaticResource IconMenu}" Width="20" Height="20" VerticalAlignment="Center"/>
-                    <TextBlock Text="Menu" Margin="10 0 0 0" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Center"/>
+                    <ContentControl Template="{StaticResource IconMenu}" Width="20" Height="20"
+                                    VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                    <TextBlock Text="Menu" Margin="10 0 0 0"
+                               Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                               VerticalAlignment="Center" />
                 </StackPanel>
             </ToggleButton>
         </StackPanel>

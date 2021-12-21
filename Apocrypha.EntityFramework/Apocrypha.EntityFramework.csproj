@@ -5,17 +5,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.0+m8.0.27" />
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.0+m8.0.27"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj" />
+        <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj"/>
     </ItemGroup>
 
 </Project>

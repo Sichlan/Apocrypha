@@ -25,7 +25,7 @@ namespace Apocrypha.EntityFramework.Services
         {
             using var context = _contextFactory.CreateDbContext();
 
-            IEnumerable<User> entities = await context.Users.ToListAsync();
+            IEnumerable<User> entities = await context.Users.Include(x => x.Characters).ToListAsync();
 
             return entities;
         }
@@ -34,7 +34,7 @@ namespace Apocrypha.EntityFramework.Services
         {
             using var context = _contextFactory.CreateDbContext();
 
-            IEnumerable<User> entities = await context.Users.Where(predicate).ToListAsync();
+            IEnumerable<User> entities = await context.Users.Include(x => x.Characters).Where(predicate).ToListAsync();
 
             return entities;
         }
@@ -44,6 +44,7 @@ namespace Apocrypha.EntityFramework.Services
             using var context = _contextFactory.CreateDbContext();
 
             return await context.Users
+                .Include(x => x.Characters)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
@@ -67,6 +68,7 @@ namespace Apocrypha.EntityFramework.Services
             using var context = _contextFactory.CreateDbContext();
 
             return await context.Users
+                .Include(x => x.Characters)
                 .FirstOrDefaultAsync(x => x.Username == username);
         }
 
@@ -75,6 +77,7 @@ namespace Apocrypha.EntityFramework.Services
             using var context = _contextFactory.CreateDbContext();
 
             return await context.Users
+                .Include(x => x.Characters)
                 .FirstOrDefaultAsync(x => x.Email == email);
         }
     }

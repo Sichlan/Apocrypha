@@ -1,31 +1,33 @@
 ﻿<UserControl x:Class="Apocrypha.WPF.Views.CharacterPreviewView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Apocrypha.WPF.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodel="clr-namespace:Apocrypha.WPF.ViewModels"
-             mc:Ignorable="d" 
-             d:DataContext="{d:DesignData Type=viewmodel:CharacterPreviewViewModel, IsDesignTimeCreatable=True}" 
-             d:DesignWidth="300" d:DesignHeight="200">
-    <Border Background="{Binding Background, UpdateSourceTrigger=PropertyChanged}" CornerRadius="10" Cursor="Hand">
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewmodel:CharacterPreviewViewModel, IsDesignTimeCreatable=True}">
+    <Border Background="{Binding Background, UpdateSourceTrigger=PropertyChanged}" CornerRadius="10" Cursor="Hand"
+            Width="150" Height="100" Margin="5">
+        <Border.Effect>
+        <DropShadowEffect Color="Gray" BlurRadius="20"/>
+        </Border.Effect>
         <Border.InputBindings>
-            <MouseBinding MouseAction="LeftClick" Command="{Binding LoadSelectedCharacter}"/>
+            <MouseBinding MouseAction="LeftClick" Command="{Binding SetCurrentCharacterCommand}" />
         </Border.InputBindings>
 
-        <Grid Margin="10">
+        <Grid Margin="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Border Width="130" Height="130" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border Width="65" Height="65" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Border.Clip>
-                    <RectangleGeometry RadiusX="65" RadiusY="65" Rect="0,0,130,130"/>
+                    <RectangleGeometry RadiusX="32.5" RadiusY="32.5" Rect="0,0,65,65" />
                 </Border.Clip>
                 <Grid>
-                    <ContentControl Content="{StaticResource IconUser}"/>
+                    <ContentControl Template="{StaticResource IconUser}"/>
                     <!-- <Image Source="{Binding Character.ProfilePicture, Converter={StaticResource ImageToBitmapConverter}}"> -->
                     <!--     <Image.Style> -->
                     <!--         <Style TargetType="Image"> -->
@@ -41,8 +43,11 @@
                 </Grid>
             </Border>
 
-            <TextBlock Grid.Row="1" Text="{Binding Character.Name, UpdateSourceTrigger=PropertyChanged, TargetNullValue='Name'}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
-            <TextBlock Grid.Row="2" Text="Preview Info" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock Grid.Row="1"
+                       Text="{Binding Character.DisplayName, UpdateSourceTrigger=PropertyChanged, FallbackValue=Name}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
+            <TextBlock Grid.Row="2" Text="{Binding PreviewInfo, FallbackValue=PREVIEW INFO}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" />
         </Grid>
     </Border>
 </UserControl>

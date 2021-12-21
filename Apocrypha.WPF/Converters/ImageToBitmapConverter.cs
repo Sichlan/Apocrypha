@@ -13,7 +13,6 @@ namespace Apocrypha.WPF.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is Image image)
-            {
                 using (var ms = new MemoryStream())
                 {
                     image.Save(ms, ImageFormat.Png);
@@ -27,7 +26,6 @@ namespace Apocrypha.WPF.Converters
 
                     return bitmapImage;
                 }
-            }
 
             return null;
         }

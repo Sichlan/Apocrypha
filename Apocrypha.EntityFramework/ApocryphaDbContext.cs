@@ -11,14 +11,12 @@ namespace Apocrypha.EntityFramework
     /// </summary>
     public class ApocryphaDbContext : DbContext
     {
-        public ApocryphaDbContext(DbContextOptions options) : base(options)
-        {
-        }
+        public ApocryphaDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // modelBuilder.Entity<Character>().Property(p => p.ProfilePicture).HasColumnType("MediumBlob");
-            
+
             base.OnModelCreating(modelBuilder);
         }
 

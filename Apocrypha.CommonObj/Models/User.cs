@@ -9,6 +9,6 @@ namespace Apocrypha.CommonObject.Models
         public string Username { get; set; }
         public DateTime DateJoined { get; set; }
         public string PasswordHash { get; set; }
-        public IEnumerable<Character> Characters { get; set; }
+        public ICollection<Character> Characters { get; set; }
     }
 }

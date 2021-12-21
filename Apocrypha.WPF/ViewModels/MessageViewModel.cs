@@ -7,10 +7,12 @@
         Error,
         Success
     }
-    
+
     public class MessageViewModel : BaseViewModel
     {
         private string _message = string.Empty;
+
+        private MessageType _messageType;
 
         public string Message
         {
@@ -22,8 +24,6 @@
                 OnPropertyChanged(nameof(HasMessage));
             }
         }
-
-        private MessageType _messageType;
 
         public MessageType MessageType
         {

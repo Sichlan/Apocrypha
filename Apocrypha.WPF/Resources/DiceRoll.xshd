@@ -4,20 +4,20 @@
     <Color name="Modifier" foreground="#c191ff"/>
     <Color name="Function" foreground="#2EAD8F"/>
     <Color name="Operator" foreground="#66c3cc"/>
-    
+
     <RuleSet>
         <Span color="Table" begin="^t(c([0-9]+))?(r([0-9]+))?" end="\["/>
         <Span color="Table" begin="\]" end="."/>
 
         <Span color="Operator" begin="([0-9]{1,})d" end="([0-9]{1,})(r(!)?(&gt;|&gt;=|=|&lt;=|&lt;|&lt;&gt;)([0-9]))?"/>
         <Span color="Operator" begin="(%^/*\+-)" end=""/>
-        
+
         <Span color="Modifier" begin="(d|dh|dl|k|kh|kl|&gt;|&gt;=|=|&lt;=|&lt;|&lt;&gt;)" end="[0-9]+"/>
         <Span color="Modifier" begin="\}" end=""/>
         <Span color="Modifier" begin="\{" end=""/>
-        
+
         <Span color="Function" begin="(floor|ceil|round|abs)" end="\("/>
         <Span color="Function" begin="\)" end=""/>
-        
+
     </RuleSet>
 </SyntaxDefinition>

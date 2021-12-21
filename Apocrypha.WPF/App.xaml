@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Styles/MessageViewStyles.xaml" />
                 <ResourceDictionary Source="Styles/Icons.xaml" />
                 <ResourceDictionary Source="Styles/DiceRollerStyles.xaml" />
+                <ResourceDictionary Source="Styles/GroupBoxStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--#region DataTemplates-->
@@ -43,12 +44,16 @@
             <DataTemplate DataType="{x:Type viewModels:DiceRollerViewModel}">
                 <views:DiceRollerView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:CharacterProfileViewModel}">
+                <views:CharacterProfileView />
+            </DataTemplate>
             <!--#endregion-->
 
             <!--#region Converters-->
             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
-            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-            <converters:ImageToBitmapConverter x:Key="ImageToBitmapConverter"/>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:ImageToBitmapConverter x:Key="ImageToBitmapConverter" />
             <!--#endregion-->
 
             <!--#region Fonts-->

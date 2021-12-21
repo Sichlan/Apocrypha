@@ -8,8 +8,8 @@
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
         mc:Ignorable="d"
         Title="{Binding Title}"
-        Height="550" Width="900">
-    <Grid>
+        Height="600" Width="1056">
+    <Grid Background="{StaticResource BrushBackgroundBeige}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
@@ -27,16 +27,13 @@
                 </Style>
             </Grid.Style>
 
-            <controls:NavigationBar VerticalAlignment="Stretch"/>
+            <controls:NavigationBar VerticalAlignment="Stretch" />
         </Grid>
 
         <Grid Grid.Column="1">
             <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}"
                                 HorizontalAlignment="Stretch">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                              Background="{StaticResource BrushBackgroundBeige}">
-                    <ContentControl Content="{Binding CurrentViewModel}" />
-                </ScrollViewer>
+                <ContentControl Content="{Binding CurrentViewModel}" Margin="25" />
             </xctk:BusyIndicator>
         </Grid>
     </Grid>

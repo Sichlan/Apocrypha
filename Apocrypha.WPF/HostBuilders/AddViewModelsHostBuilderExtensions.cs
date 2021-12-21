@@ -1,5 +1,5 @@
 ﻿using System;
-using Apocrypha.CommonObject.Services.DiceRollerServices;
+using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
 using Apocrypha.WPF.ViewModels;
@@ -15,13 +15,15 @@ namespace Apocrypha.WPF.HostBuilders
         {
             hostBuilder.ConfigureServices(services =>
             {
-                services.AddTransient<MainViewModel>(s => CreateMainViewModel(s));
-                
+                services.AddTransient(s => CreateMainViewModel(s));
+
                 // Register viewmodels that have no explicit creation method like login or register viewmodel
+
                 #region ViewModels
 
                 services.AddTransient<HomeViewModel>();
                 services.AddTransient<CharacterSelectionViewModel>();
+                services.AddTransient<CharacterProfileViewModel>();
                 services.AddTransient<DiceRollerViewModel>();
 
                 #endregion
@@ -30,8 +32,9 @@ namespace Apocrypha.WPF.HostBuilders
 
                 services.AddSingleton<CreateViewModel<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
                 services.AddSingleton<CreateViewModel<CharacterSelectionViewModel>>(s => s.GetRequiredService<CharacterSelectionViewModel>);
+                services.AddSingleton<CreateViewModel<CharacterProfileViewModel>>(s => s.GetRequiredService<CharacterProfileViewModel>);
                 services.AddSingleton<CreateViewModel<DiceRollerViewModel>>(s => s.GetRequiredService<DiceRollerViewModel>);
-                
+
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(s => () => CreateLoginViewModel(s));
                 services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => () => CreateRegistrationViewModel(s));
 
@@ -43,6 +46,7 @@ namespace Apocrypha.WPF.HostBuilders
 
                 services.AddSingleton<ViewModelDelegateRenavigator<HomeViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<CharacterSelectionViewModel>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<CharacterProfileViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RegistrationViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<DiceRollerViewModel>>();
@@ -58,7 +62,8 @@ namespace Apocrypha.WPF.HostBuilders
             return new MainViewModel(service.GetRequiredService<IAuthenticator>(),
                 service.GetRequiredService<INavigator>(),
                 service.GetRequiredService<IApocryphaViewModelFactory>(),
-                service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
+                service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
+                service.GetRequiredService<ICharacterStore>());
         }
 
         private static LoginViewModel CreateLoginViewModel(IServiceProvider service)

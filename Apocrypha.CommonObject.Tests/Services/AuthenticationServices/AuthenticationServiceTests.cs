@@ -12,10 +12,6 @@ namespace Apocrypha.CommonObject.Tests.Services.AuthenticationServices
     [TestFixture]
     public class AuthenticationServiceTests
     {
-        private Mock<IUserService> _mockUserService;
-        private Mock<IPasswordHasher> _mockPasswordHasher;
-        private AuthenticationService _authenticationService;
-
         [SetUp]
         public void Setup()
         {
@@ -23,7 +19,11 @@ namespace Apocrypha.CommonObject.Tests.Services.AuthenticationServices
             _mockPasswordHasher = new Mock<IPasswordHasher>();
             _authenticationService = new AuthenticationService(_mockUserService.Object, _mockPasswordHasher.Object);
         }
-        
+
+        private Mock<IUserService> _mockUserService;
+        private Mock<IPasswordHasher> _mockPasswordHasher;
+        private AuthenticationService _authenticationService;
+
         [Test]
         public async Task Login_WithCorrectPasswordForExistingUser_ReturnsAccountForCorrectUsername()
         {
@@ -32,7 +32,8 @@ namespace Apocrypha.CommonObject.Tests.Services.AuthenticationServices
             var password = "TestPassword";
 
             _mockUserService.Setup(s => s.GetByUsername(expectedUsername))
-                .ReturnsAsync(new User() {Username = expectedUsername});
+                .ReturnsAsync(new User
+                    {Username = expectedUsername});
             _mockPasswordHasher.Setup(s => s.VerifyHashedPassword(It.IsAny<string>(), password))
                 .Returns(PasswordVerificationResult.Success);
 
@@ -52,7 +53,8 @@ namespace Apocrypha.CommonObject.Tests.Services.AuthenticationServices
             var password = "TestPassword";
 
             _mockUserService.Setup(s => s.GetByUsername(expectedUsername))
-                .ReturnsAsync(new User() {Username = expectedUsername});
+                .ReturnsAsync(new User
+                    {Username = expectedUsername});
             _mockPasswordHasher.Setup(s => s.VerifyHashedPassword(It.IsAny<string>(), password))
                 .Returns(PasswordVerificationResult.Failed);
 

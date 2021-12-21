@@ -4,8 +4,6 @@ namespace Apocrypha.CommonObject.Exceptions
 {
     public class UnrecognizedModifierException : Exception
     {
-        public string Modifier { get; set; }
-        
         public UnrecognizedModifierException(string modifier)
         {
             Modifier = modifier;
@@ -20,5 +18,7 @@ namespace Apocrypha.CommonObject.Exceptions
         {
             Modifier = modifier;
         }
+
+        public string Modifier { get; set; }
     }
 }
