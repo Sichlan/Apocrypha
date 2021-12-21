@@ -17,6 +17,9 @@ namespace Apocrypha.WPF.State.Characters
             }
         }
 
+        public bool HasActiveCharacter =>
+            CurrentCharacter != null;
+
         public event Action StateChange;
     }
 }

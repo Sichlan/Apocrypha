@@ -44,6 +44,10 @@
             <DataTemplate DataType="{x:Type viewModels:DiceRollerViewModel}">
                 <views:DiceRollerView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:CharacterProfileViewModel}">
+                <views:CharacterProfileView />
+            </DataTemplate>
             <!--#endregion-->
 
             <!--#region Converters-->

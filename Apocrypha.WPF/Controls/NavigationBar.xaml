@@ -34,6 +34,20 @@
                     </StackPanel>
                 </RadioButton>
 
+                <Border BorderBrush="{StaticResource BrushForeground1}" BorderThickness="0,2,0,0" Padding="10" Height="45">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MenuExpanded}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Text="CHARACTER" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource BrushForeground1}" FontSize="20" FontWeight="Medium" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                </Border>
+                
                 <RadioButton
                     IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterSelectionViewModel}, Mode=OneWay}"
                     Command="{Binding UpdateCurrentViewModelCommand}"
@@ -42,6 +56,20 @@
                         <ContentControl Template="{StaticResource IconDatabase}" Width="20" Height="20"
                                         VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
                         <TextBlock Text="Character Selection" Margin="10 0 0 0"
+                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </RadioButton>
+                
+                <RadioButton
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:CharacterProfileViewModel}, Mode=OneWay}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static navigators:ViewType.Profile}"
+                    IsEnabled="{Binding HasActiveCharacter}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{StaticResource IconUser}" Width="20" Height="20"
+                                        VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                        <TextBlock Text="Profile" Margin="10 0 0 0"
                                    Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
                                    VerticalAlignment="Center" />
                     </StackPanel>

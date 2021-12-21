@@ -6,6 +6,7 @@
         Login,
         Register,
         CharacterSelection,
+        Profile,
         DiceRoller
     }
 }
