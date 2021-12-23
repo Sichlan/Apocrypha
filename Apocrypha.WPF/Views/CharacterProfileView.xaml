@@ -9,6 +9,34 @@
              d:DataContext="{d:DesignInstance Type=viewModels:CharacterProfileViewModel, IsDesignTimeCreatable=False}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
+        <Border Grid.Column="0" Grid.Row="0" MaxWidth="800" MaxHeight="475" Cursor="Hand">
+            <!--TODO: Add image to character-->
+        </Border>
+        
+        <Border Grid.Column="1" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
