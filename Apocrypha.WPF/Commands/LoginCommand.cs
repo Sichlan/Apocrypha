@@ -29,15 +29,15 @@ namespace Apocrypha.WPF.Commands
             }
             catch (UserNotFoundException)
             {
-                _loginViewModel.ErrorMessage = "Username does not exist.";
+                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginUsernameDoesNotExist;
             }
             catch (InvalidPasswordException)
             {
-                _loginViewModel.ErrorMessage = "Incorrect Password.";
+                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginIncorrectPassword;
             }
             catch (Exception)
             {
-                _loginViewModel.ErrorMessage = "Login failed.";
+                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginFailed;
             }
         }
     }

@@ -3,14 +3,16 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211223130020_EditionAndRulebook")]
+    partial class EditionAndRulebook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,17 +127,15 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Abbreviation")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<int>("EditionId")
+                    b.Property<int?>("EditionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("PublishedAt")
@@ -199,9 +199,7 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Edition", "Edition")
                         .WithMany("RuleBooks")
-                        .HasForeignKey("EditionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EditionId");
 
                     b.Navigation("Edition");
                 });

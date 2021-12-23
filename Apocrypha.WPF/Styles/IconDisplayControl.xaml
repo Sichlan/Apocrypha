@@ -50,6 +50,14 @@
                                 Width="20" Height="20" />
                 <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconDice}"
                                 Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconMinimizeWindow}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconRestoreWindow}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconMaximizeWindow}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconCloseWindow}"
+                                Width="20" Height="20" />
             </WrapPanel>
 
             <TextBlock Text="Fonts" />

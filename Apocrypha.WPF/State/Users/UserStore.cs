@@ -1,7 +1,7 @@
 ﻿using System;
 using Apocrypha.CommonObject.Models;
 
-namespace Apocrypha.WPF.State.Navigators.Users
+namespace Apocrypha.WPF.State.Users
 {
     public class UserStore : IUserStore
     {

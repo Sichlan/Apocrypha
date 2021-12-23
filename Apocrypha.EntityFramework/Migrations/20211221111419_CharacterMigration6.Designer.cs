@@ -3,14 +3,16 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211221111419_CharacterMigration6")]
+    partial class CharacterMigration6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,26 +80,6 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("CharacterItems");
                 });
 
-            modelBuilder.Entity("Apocrypha.CommonObject.Models.Edition", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Core")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("System")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Editions");
-                });
-
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -116,36 +98,6 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("Apocrypha.CommonObject.Models.RuleBook", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Abbreviation")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<int>("EditionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("PublishedAt")
-                        .HasColumnType("datetime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EditionId");
-
-                    b.ToTable("RuleBooks");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.User", b =>
@@ -195,25 +147,9 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("Apocrypha.CommonObject.Models.RuleBook", b =>
-                {
-                    b.HasOne("Apocrypha.CommonObject.Models.Edition", "Edition")
-                        .WithMany("RuleBooks")
-                        .HasForeignKey("EditionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Edition");
-                });
-
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Character", b =>
                 {
                     b.Navigation("InventoryItems");
-                });
-
-            modelBuilder.Entity("Apocrypha.CommonObject.Models.Edition", b =>
-                {
-                    b.Navigation("RuleBooks");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.User", b =>

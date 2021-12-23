@@ -300,4 +300,45 @@
             </Canvas>
         </Viewbox>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="IconRestoreWindow" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="16" Height="16">
+                <Canvas>
+                    <Path Fill="{TemplateBinding Foreground}" Data="M3 5v9h9V5H3zm8 8H4V6h7v7z"/>
+                    <Path Fill="{TemplateBinding Foreground}" Data="M5 5h1V4h7v7h-1v1h2V3H5v2z"/>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="IconMinimizeWindow" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="16" Height="16">
+                <Canvas>
+                    <Path Fill="{TemplateBinding Foreground}" Data="M14 8v1H3V8h11z"/>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="IconCloseWindow" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="16" Height="16">
+                <Canvas>
+                    <Path Fill="{TemplateBinding Foreground}" Data="M8 8.707l3.646 3.647.708-.707L8.707 8l3.647-3.646-.707-.708L8 7.293 4.354 3.646l-.707.708L7.293 8l-3.646 3.646.707.708L8 8.707z"/>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="IconMaximizeWindow" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="16" Height="16">
+                <Canvas>
+                    <Path Fill="{TemplateBinding Foreground}" Data="M3 3v10h10V3H3zm9 9H4V4h8v8z"/>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
 </ResourceDictionary>

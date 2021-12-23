@@ -3,6 +3,7 @@
     <!--#region Colors-->
     <Color x:Key="ColorPrimary1">#2ba3fd</Color>
     <Color x:Key="ColorPrimary2">#368ccc</Color>
+    <Color x:Key="ColorPrimary3">#2472ac</Color>
     <Color x:Key="ColorForeground1">#ffffffff</Color>
     <Color x:Key="ColorForeground2">#ff000000</Color>
     <Color x:Key="ColorBackgroundBeige">#f0efe2</Color>
@@ -12,6 +13,7 @@
     <!--#region Brushes-->
     <SolidColorBrush x:Key="BrushPrimary1" Color="{StaticResource ColorPrimary1}" />
     <SolidColorBrush x:Key="BrushPrimary2" Color="{StaticResource ColorPrimary2}" />
+    <SolidColorBrush x:Key="BrushPrimary3" Color="{StaticResource ColorPrimary3}" />
     <SolidColorBrush x:Key="BrushForeground1" Color="{StaticResource ColorForeground1}" />
     <SolidColorBrush x:Key="BrushForeground2" Color="{StaticResource ColorForeground2}" />
     <SolidColorBrush x:Key="BrushBackgroundBeige" Color="{StaticResource ColorBackgroundBeige}" />
@@ -43,7 +45,7 @@
         </Border>
     </ControlTemplate>
 
-    <Style TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type Button}" x:Key="StandardButtonStyle">
         <Setter Property="Background" Value="{StaticResource BrushPrimary2}" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Cursor" Value="Hand" />
@@ -59,6 +61,10 @@
                 <Setter Property="Opacity" Value="0.5" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StandardButtonStyle}">
+        
     </Style>
     <!--#endregion-->
 </ResourceDictionary>

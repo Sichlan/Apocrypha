@@ -1,7 +1,7 @@
 ﻿using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
-using Apocrypha.WPF.State.Navigators.Users;
+using Apocrypha.WPF.State.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

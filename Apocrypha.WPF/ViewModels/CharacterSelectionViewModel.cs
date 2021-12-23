@@ -8,7 +8,7 @@ using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators.Navigators;
-using Apocrypha.WPF.State.Navigators.Users;
+using Apocrypha.WPF.State.Users;
 
 namespace Apocrypha.WPF.ViewModels
 {
@@ -29,7 +29,7 @@ namespace Apocrypha.WPF.ViewModels
             _random = random;
             _profileRenavigator = profileRenavigator;
 
-            NewCharacterCommand = new NewCharacterCommand(userDataService, characterStore, userStore, this, profileRenavigator);
+            NewCharacterCommand = new NewCharacterCommand(userDataService, characterStore, userStore, profileRenavigator);
 
             InitData();
         }

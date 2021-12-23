@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Apocrypha.CommonObject.Models
@@ -6,6 +7,8 @@ namespace Apocrypha.CommonObject.Models
     {
         public User CreatorUser { get; set; }
         public int Budget { get; set; }
+        public DateTime CreationDateTime { get; set; }
+        public DateTime LastModifiedDateTime { get; set; }
         /// <summary>
         /// Disables some editing features to ensure no accidental edits during playtime.
         /// </summary>

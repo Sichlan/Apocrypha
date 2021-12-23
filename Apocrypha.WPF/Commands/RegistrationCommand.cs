@@ -36,26 +36,26 @@ namespace Apocrypha.WPF.Commands
 
                         break;
                     case RegistrationResult.PasswordsDoNotMatch:
-                        _registerViewModel.ErrorMessage = "Passwords do not match!";
+                        _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationPasswordsDoNotMatch;
 
                         break;
                     case RegistrationResult.EmailAlreadyExists:
-                        _registerViewModel.ErrorMessage = "Email already in use!";
+                        _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationEmailAlreadyInUse;
 
                         break;
                     case RegistrationResult.UsernameAlreadyExists:
-                        _registerViewModel.ErrorMessage = "Username already exists!";
+                        _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationUsernameAlreadyExists;
 
                         break;
                     case RegistrationResult.Failure:
-                        _registerViewModel.ErrorMessage = "Registration failed!";
+                        _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationFailed;
 
                         break;
                 }
             }
             catch (Exception)
             {
-                _registerViewModel.ErrorMessage = "Registration failed!";
+                _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationFailed;
 
                 throw;
             }

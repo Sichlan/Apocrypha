@@ -26,6 +26,8 @@ namespace Apocrypha.EntityFramework
         public DbSet<CharacterItem> CharacterItems { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Edition> Editions { get; set; }
+        public DbSet<RuleBook> RuleBooks { get; set; }
 
         #endregion
     }

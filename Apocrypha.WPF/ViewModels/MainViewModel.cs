@@ -1,4 +1,6 @@
-﻿using Apocrypha.WPF.Commands;
+﻿using System.Windows;
+using System.Windows.Input;
+using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Navigators.Authenticators;
@@ -15,6 +17,7 @@ namespace Apocrypha.WPF.ViewModels
         private readonly IApocryphaViewModelFactory _viewModelFactory;
 
         private bool _menuExpanded;
+        private WindowState _currentWindowState;
 
         public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory,
             IRenavigator logoutCommandRenavigator, ICharacterStore characterStore)
@@ -32,7 +35,39 @@ namespace Apocrypha.WPF.ViewModels
             UpdateCurrentViewModelCommand.Execute(ViewType.Login);
             UpdateCurrentViewModelCommand.StateChange += UpdateCurrentViewModelCommand_StateChange;
 
-            LogoutCommand = new LogoutCommand(_authenticator, logoutCommandRenavigator);
+            LogoutCommand = new LogoutCommand(_authenticator, logoutCommandRenavigator, _characterStore);
+            MinimizeCommand = new RelayCommand(o => MinimizeWindow(o));
+            MaximizeCommand = new RelayCommand(o => MaximizeWindow(o));
+            CloseCommand = new RelayCommand(o => CloseWindow(o));
+        }
+
+        private void CloseWindow(object obj)
+        {
+            if (obj is Window window)
+            {
+                window.Close();
+            }
+        }
+
+        private void MaximizeWindow(object obj)
+        {
+            CurrentWindowState = CurrentWindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
+        }
+
+        private void MinimizeWindow(object obj)
+        {
+            CurrentWindowState = WindowState.Minimized;
+        }
+
+
+        public WindowState CurrentWindowState
+        {
+            get => _currentWindowState;
+            set 
+            { 
+                _currentWindowState = value;
+                OnPropertyChanged(nameof(CurrentWindowState));
+            }
         }
 
         public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
@@ -40,9 +75,10 @@ namespace Apocrypha.WPF.ViewModels
         public bool HasActiveCharacter => _characterStore.HasActiveCharacter;
         public AsyncCommandBase UpdateCurrentViewModelCommand { get; }
         public AsyncCommandBase LogoutCommand { get; }
+        public ICommand MinimizeCommand { get; set; }
+        public ICommand MaximizeCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
         public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
-
-        public string Title => "Apocrypha";
 
         public bool MenuExpanded
         {
