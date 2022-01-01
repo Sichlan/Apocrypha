@@ -17,6 +17,42 @@ namespace Apocrypha.EntityFramework.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Allignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Abbreviation")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Allignments");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.AllignmentTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AllignmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AllignmentId");
+
+                    b.ToTable("AllignmentTranslation");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Character", b =>
                 {
                     b.Property<int>("Id")
@@ -29,6 +65,9 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("CharacterName")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("datetime");
+
                     b.Property<int?>("CreatorUserId")
                         .HasColumnType("int");
 
@@ -38,9 +77,17 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("DisplayName")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("LastModifiedDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("TrueAllignmentId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("TrueAllignmentId");
 
                     b.ToTable("Characters");
                 });
@@ -72,6 +119,26 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("CharacterItems");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Edition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Core")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("System")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Editions");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -92,6 +159,36 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("Items");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.RuleBook", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Abbreviation")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int>("EditionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("PublishedAt")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EditionId");
+
+                    b.ToTable("RuleBooks");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -104,6 +201,9 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
@@ -115,13 +215,28 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.AllignmentTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Allignment", "Allignment")
+                        .WithMany("Translations")
+                        .HasForeignKey("AllignmentId");
+
+                    b.Navigation("Allignment");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Character", b =>
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.User", "CreatorUser")
                         .WithMany("Characters")
                         .HasForeignKey("CreatorUserId");
 
+                    b.HasOne("Apocrypha.CommonObject.Models.Allignment", "TrueAllignment")
+                        .WithMany()
+                        .HasForeignKey("TrueAllignmentId");
+
                     b.Navigation("CreatorUser");
+
+                    b.Navigation("TrueAllignment");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.CharacterItem", b =>
@@ -139,9 +254,30 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.RuleBook", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Edition", "Edition")
+                        .WithMany("RuleBooks")
+                        .HasForeignKey("EditionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Edition");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Allignment", b =>
+                {
+                    b.Navigation("Translations");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Character", b =>
                 {
                     b.Navigation("InventoryItems");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Edition", b =>
+                {
+                    b.Navigation("RuleBooks");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.User", b =>

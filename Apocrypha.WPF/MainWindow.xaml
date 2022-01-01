@@ -5,36 +5,105 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
         xmlns:controls="clr-namespace:Apocrypha.WPF.Controls" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
         mc:Ignorable="d"
-        Title="{Binding Title}"
-        Height="600" Width="1056">
-    <Grid Background="{StaticResource BrushBackgroundBeige}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="0" VerticalAlignment="Stretch">
-            <Grid.Style>
-                <Style TargetType="{x:Type Grid}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsLoggedIn}" Value="True">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                    <Setter Property="Visibility" Value="Collapsed" />
-                </Style>
-            </Grid.Style>
-
-            <controls:NavigationBar VerticalAlignment="Stretch" />
+        Title="{x:Static res:Localization.ApplicationTitle}"
+        Height="600" Width="1056"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="False"
+        WindowState="{Binding CurrentWindowState, UpdateSourceTrigger=PropertyChanged, TargetNullValue={x:Static WindowState.Normal}}">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+    <Grid Background="{StaticResource BrushPrimary2}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" MouseDown="HeaderGrid_OnMouseDown" MouseMove="HeaderGrid_OnMouseMove">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Application header -->
+            <Grid Grid.Column="0">
+                <TextBlock Text="{x:Static res:Localization.ApplicationTitle}" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BrushForeground1}" FontWeight="Medium" Margin="10,0"/>
+            </Grid>
+            
+            <!-- Close, resize etc. -->
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding MinimizeCommand}">
+                        <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconMinimizeWindow}"/>
+                    </Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding MaximizeCommand}">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StandardButtonStyle}">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconRestoreWindow}"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=WindowState}" Value="{x:Static WindowState.Normal}">
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconMaximizeWindow}"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}">
+                        <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconCloseWindow}"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
         </Grid>
+        
+        <Grid Grid.Row="1" Background="{StaticResource BrushBackgroundBeige}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Column="1">
-            <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}"
-                                HorizontalAlignment="Stretch">
-                <ContentControl Content="{Binding CurrentViewModel}" Margin="25" />
-            </xctk:BusyIndicator>
+            <Grid Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Stretch">
+                <Grid.Style>
+                    <Style TargetType="{x:Type Grid}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsLoggedIn}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </Grid.Style>
+
+                <controls:NavigationBar VerticalAlignment="Stretch" />
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="0">
+                <controls:CharacterButtonBar/>
+            </Grid>
+            
+            <Grid Grid.Column="1" Grid.Row="1">
+                <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}"
+                                    HorizontalAlignment="Stretch">
+                    <ContentControl Content="{Binding CurrentViewModel}" Margin="25" />
+                </xctk:BusyIndicator>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

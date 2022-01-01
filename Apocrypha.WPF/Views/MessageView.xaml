@@ -43,7 +43,7 @@
                 </ContentControl.Style>
             </ContentControl>
 
-            <TextBlock Text="{Binding Message}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
+            <TextBlock Text="{Binding Message, FallbackValue='ERROR MESSAGE'}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
                        Style="{StaticResource MessageViewTextBlockStyle}" />
         </Grid>
     </Border>

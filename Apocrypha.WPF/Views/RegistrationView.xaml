@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodel="clr-namespace:Apocrypha.WPF.ViewModels"
              xmlns:components="clr-namespace:PasswordBoxMVVM.Components;assembly=PasswordBoxMVVM"
+             xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodel:RegistrationViewModel, IsDesignTimeCreatable=False}"
              d:DesignHeight="682.895" d:DesignWidth="800">
@@ -24,10 +25,10 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Apocrypha" FontSize="48" Grid.Row="0" HorizontalAlignment="Center"
+            <TextBlock Text="{x:Static res:Localization.ApplicationTitle}" FontSize="48" Grid.Row="0" HorizontalAlignment="Center"
                        FontFamily="{DynamicResource AngerFont}" />
 
-            <TextBlock Text="Character creator for D&amp;D 3.5" FontSize="18" Grid.Row="1" Margin="0 10"
+            <TextBlock Text="{x:Static res:Localization.ApplicationSubTitle}" FontSize="18" Grid.Row="1" Margin="0 10"
                        HorizontalAlignment="Center" />
 
             <ContentPresenter Grid.Row="2"
@@ -49,7 +50,7 @@
                         <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Email" Grid.Column="0" />
+                    <TextBlock Text="{x:Static res:Localization.InputLabelEmail}" Grid.Column="0" />
                     <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="20 0" />
                 </Grid>
 
@@ -59,7 +60,7 @@
                         <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Username" Grid.Column="0" />
+                    <TextBlock Text="{x:Static res:Localization.InputLabelUsername}" Grid.Column="0" />
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"
                              Margin="20 0" />
                 </Grid>
@@ -70,7 +71,7 @@
                         <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Password" Grid.Column="0" />
+                    <TextBlock Text="{x:Static res:Localization.InputLabelPassword}" Grid.Column="0" />
                     <components:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                                                     Grid.Column="1" Margin="20 0" />
                 </Grid>
@@ -81,18 +82,18 @@
                         <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Confirm Password" Grid.Column="0" />
+                    <TextBlock Text="{x:Static res:Localization.InputLabelConfirmPassword}" Grid.Column="0" />
                     <components:BindablePasswordBox
                         Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"
                         Margin="20 0" />
                 </Grid>
 
-                <Button Grid.Row="4" Content="Register" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                <Button Grid.Row="4" Content="{x:Static res:Localization.ButtonLabelRegister}" Grid.ColumnSpan="2" HorizontalAlignment="Center"
                         Command="{Binding RegistrationCommand}" Margin="0 10" IsDefault="True" />
             </Grid>
 
             <Button Grid.Row="4" Margin="0 10 0 0" HorizontalAlignment="Center" Background="Transparent"
-                    Command="{Binding ChangeToLoginCommand}" Content="Don't have an account?" FontSize="14"
+                    Command="{Binding ChangeToLoginCommand}" Content="{x:Static res:Localization.LinkLabelAlreadyHaveAnAccount}" FontSize="14"
                     Foreground="Blue" />
         </Grid>
     </Border>

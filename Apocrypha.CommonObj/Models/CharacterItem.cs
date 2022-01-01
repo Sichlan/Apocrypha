@@ -1,4 +1,5 @@
 using System;
+using Apocrypha.CommonObject.Models.Common;
 
 namespace Apocrypha.CommonObject.Models
 {

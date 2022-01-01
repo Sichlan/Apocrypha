@@ -1,4 +1,5 @@
 ﻿using Apocrypha.CommonObject.Models;
+using Apocrypha.EntityFramework.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.EntityFramework
@@ -15,9 +16,15 @@ namespace Apocrypha.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            AddConfigurations(modelBuilder);
             // modelBuilder.Entity<Character>().Property(p => p.ProfilePicture).HasColumnType("MediumBlob");
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        private void AddConfigurations(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new AllignmentConfiguration());
         }
 
         #region DatabaseTables
@@ -26,6 +33,10 @@ namespace Apocrypha.EntityFramework
         public DbSet<CharacterItem> CharacterItems { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Edition> Editions { get; set; }
+        public DbSet<RuleBook> RuleBooks { get; set; }
+        public DbSet<Allignment> Allignments { get; set; }
+        public DbSet<AllignmentTranslation> AllignmentTranslations { get; set; }
 
         #endregion
     }

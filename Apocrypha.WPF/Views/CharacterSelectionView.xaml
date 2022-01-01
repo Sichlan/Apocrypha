@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodel="clr-namespace:Apocrypha.WPF.ViewModels"
+             xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodel:CharacterSelectionViewModel, IsDesignTimeCreatable=False}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -15,7 +16,7 @@
 
         <Border Grid.Row="0" Style="{StaticResource CategoryBorderStyle}">
             <StackPanel Orientation="Horizontal">
-                <Button Content="New Character" Command="{Binding NewCharacterCommand}" />
+                <Button Content="{x:Static res:Localization.ButtonLabelNewCharacter}" Command="{Binding NewCharacterCommand}" />
             </StackPanel>
         </Border>
 

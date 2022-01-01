@@ -32,6 +32,7 @@ namespace Apocrypha.EntityFramework.Services
 
             IEnumerable<Character> entities = await context.Characters
                 .Include(x => x.InventoryItems)
+                .Include(x => x.TrueAllignment)
                 .Where(predicate)
                 .ToListAsync();
 
@@ -44,6 +45,7 @@ namespace Apocrypha.EntityFramework.Services
 
             var character = await context.Characters
                 .Include(x => x.InventoryItems)
+                .Include(x => x.TrueAllignment)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return character;

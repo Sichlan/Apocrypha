@@ -1,4 +1,6 @@
 ﻿using System;
+using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
@@ -63,7 +65,8 @@ namespace Apocrypha.WPF.HostBuilders
                 service.GetRequiredService<INavigator>(),
                 service.GetRequiredService<IApocryphaViewModelFactory>(),
                 service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
-                service.GetRequiredService<ICharacterStore>());
+                service.GetRequiredService<ICharacterStore>(),
+                service.GetRequiredService<IDataService<Character>>());
         }
 
         private static LoginViewModel CreateLoginViewModel(IServiceProvider service)

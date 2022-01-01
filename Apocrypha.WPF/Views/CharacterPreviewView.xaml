@@ -8,9 +8,6 @@
              d:DataContext="{d:DesignInstance Type=viewmodel:CharacterPreviewViewModel, IsDesignTimeCreatable=True}">
     <Border Background="{Binding Background, UpdateSourceTrigger=PropertyChanged}" CornerRadius="10" Cursor="Hand"
             Width="150" Height="100" Margin="5">
-        <Border.Effect>
-        <DropShadowEffect Color="Gray" BlurRadius="20"/>
-        </Border.Effect>
         <Border.InputBindings>
             <MouseBinding MouseAction="LeftClick" Command="{Binding SetCurrentCharacterCommand}" />
         </Border.InputBindings>
@@ -44,7 +41,7 @@
             </Border>
 
             <TextBlock Grid.Row="1"
-                       Text="{Binding Character.DisplayName, UpdateSourceTrigger=PropertyChanged, FallbackValue=Name}"
+                       Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged, FallbackValue=Name}"
                        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
             <TextBlock Grid.Row="2" Text="{Binding PreviewInfo, FallbackValue=PREVIEW INFO}"
                        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" />

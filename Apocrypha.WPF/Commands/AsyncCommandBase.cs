@@ -23,7 +23,7 @@ namespace Apocrypha.WPF.Commands
 
         public bool CanExecute(object parameter)
         {
-            return !IsExecuting;
+            return !IsExecuting && CanExecuteAsync(parameter);
         }
 
         public async void Execute(object parameter)
@@ -38,5 +38,6 @@ namespace Apocrypha.WPF.Commands
         public event Action StateChange;
 
         public abstract Task ExecuteAsync(object parameter);
+        public abstract bool CanExecuteAsync(object parameter);
     }
 }

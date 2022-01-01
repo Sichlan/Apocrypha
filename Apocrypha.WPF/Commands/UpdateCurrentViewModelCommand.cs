@@ -21,5 +21,10 @@ namespace Apocrypha.WPF.Commands
             if (parameter is ViewType type)
                 _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(type);
         }
+
+        public override bool CanExecuteAsync(object parameter)
+        {
+            return true;
+        }
     }
 }

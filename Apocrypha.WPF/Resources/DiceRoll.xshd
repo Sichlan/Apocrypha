@@ -16,7 +16,7 @@
         <Span color="Modifier" begin="\}" end=""/>
         <Span color="Modifier" begin="\{" end=""/>
 
-        <Span color="Function" begin="(floor|ceil|round|abs)" end="\("/>
+        <Span color="Function" begin="(floor|ceil|round|abs)?\(" end=""/>
         <Span color="Function" begin="\)" end=""/>
 
     </RuleSet>

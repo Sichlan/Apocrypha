@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.EntityFramework.Services.Common;
 using Microsoft.EntityFrameworkCore;

@@ -1,3 +1,5 @@
+using Apocrypha.CommonObject.Models.Common;
+
 namespace Apocrypha.CommonObject.Models
 {
     public class Item : DatabaseObject

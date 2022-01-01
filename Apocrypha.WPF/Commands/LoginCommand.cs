@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
@@ -29,16 +30,22 @@ namespace Apocrypha.WPF.Commands
             }
             catch (UserNotFoundException)
             {
-                _loginViewModel.ErrorMessage = "Username does not exist.";
+                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginUsernameDoesNotExist;
             }
             catch (InvalidPasswordException)
             {
-                _loginViewModel.ErrorMessage = "Incorrect Password.";
+                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginIncorrectPassword;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _loginViewModel.ErrorMessage = "Login failed.";
+                MessageBox.Show(ex.ToString());
+                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginFailed;
             }
+        }
+
+        public override bool CanExecuteAsync(object parameter)
+        {
+            return true;
         }
     }
 }

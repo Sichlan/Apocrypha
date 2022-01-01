@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ApplicationTitle" xml:space="preserve">
+        <value>Apocrypha</value>
+    </data>
+    <data name="ApplicationSubTitle" xml:space="preserve">
+        <value>Character creator for D&amp;D 3.5</value>
+    </data>
+    <data name="InputLabelEmail" xml:space="preserve">
+        <value>email</value>
+    </data>
+    <data name="InputLabelUsername" xml:space="preserve">
+        <value>username</value>
+    </data>
+    <data name="InputLabelPassword" xml:space="preserve">
+        <value>password</value>
+    </data>
+    <data name="InputLabelConfirmPassword" xml:space="preserve">
+        <value>confirm password</value>
+    </data>
+    <data name="ButtonLabelRegister" xml:space="preserve">
+        <value>register</value>
+    </data>
+    <data name="LinkLabelAlreadyHaveAnAccount" xml:space="preserve">
+        <value>Already have an account?</value>
+    </data>
+    <data name="LinkLabelDontHaveAnAccount" xml:space="preserve">
+        <value>Don't have an account?</value>
+    </data>
+    <data name="ErrorRegistrationPasswordsDoNotMatch" xml:space="preserve">
+        <value>Passwords do not match.</value>
+    </data>
+    <data name="ErrorRegistrationEmailAlreadyInUse" xml:space="preserve">
+        <value>Email already in use.</value>
+    </data>
+    <data name="ErrorRegistrationUsernameAlreadyExists" xml:space="preserve">
+        <value>Username already in use.</value>
+    </data>
+    <data name="ErrorRegistrationFailed" xml:space="preserve">
+        <value>Registartion failed.</value>
+    </data>
+    <data name="ErrorLoginUsernameDoesNotExist" xml:space="preserve">
+        <value>Username does not exist.</value>
+    </data>
+    <data name="ErrorLoginIncorrectPassword" xml:space="preserve">
+        <value>Incorrect password.</value>
+    </data>
+    <data name="ErrorLoginFailed" xml:space="preserve">
+        <value>Login failed.</value>
+    </data>
+    <data name="ButtonLabelLogin" xml:space="preserve">
+        <value>login</value>
+    </data>
+    <data name="ButtonLabelClearDiceHistory" xml:space="preserve">
+        <value>Clear dice history</value>
+    </data>
+    <data name="ButtonLabelNewCharacter" xml:space="preserve">
+        <value>New character</value>
+    </data>
+    <data name="MenuLabelHome" xml:space="preserve">
+        <value>Home</value>
+    </data>
+    <data name="MenuLabelCharacterSelection" xml:space="preserve">
+        <value>Character selection</value>
+    </data>
+    <data name="MenuLabelProfile" xml:space="preserve">
+        <value>Profile</value>
+    </data>
+    <data name="MenuLabelDiceRoller" xml:space="preserve">
+        <value>Dice roller</value>
+    </data>
+    <data name="MenuLabelLogout" xml:space="preserve">
+        <value>Logout</value>
+    </data>
+    <data name="MenuLabelMenu" xml:space="preserve">
+        <value>Menu</value>
+    </data>
+    <data name="MenuCategoryLabelCharacter" xml:space="preserve">
+        <value>CHARACTER</value>
+    </data>
+    <data name="LabelInputCharacterName" xml:space="preserve">
+        <value>character name</value>
+    </data>
+    <data name="LabelInputCharacterDisplayName" xml:space="preserve">
+        <value>display name</value>
+    </data>
+    <data name="ButtonLabelSaveCharacter" xml:space="preserve">
+        <value>Save Character</value>
+    </data>
+    <data name="LabelInputAllignment" xml:space="preserve">
+        <value>allignment</value>
+    </data>
+</root>

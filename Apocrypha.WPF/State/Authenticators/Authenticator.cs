@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
-using Apocrypha.WPF.State.Navigators.Users;
+using Apocrypha.WPF.State.Users;
 
 namespace Apocrypha.WPF.State.Navigators.Authenticators
 {
