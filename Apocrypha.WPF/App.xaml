@@ -54,6 +54,7 @@
             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <converters:ImageToBitmapConverter x:Key="ImageToBitmapConverter" />
+            <converters:DatabaseObjectHasSpecificIdToBoolConverter x:Key="DatabaseObjectHasSpecificIdToBoolConverter"/>
             <!--#endregion-->
 
             <!--#region Fonts-->

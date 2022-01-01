@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.WPF.State.Navigators.Authenticators;
 using Apocrypha.WPF.State.Navigators.Navigators;
@@ -35,10 +36,16 @@ namespace Apocrypha.WPF.Commands
             {
                 _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginIncorrectPassword;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginFailed;
             }
+        }
+
+        public override bool CanExecuteAsync(object parameter)
+        {
+            return true;
         }
     }
 }

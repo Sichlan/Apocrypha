@@ -96,4 +96,16 @@
     <data name="MenuCategoryLabelCharacter" xml:space="preserve">
         <value>CHARACTER</value>
     </data>
+    <data name="LabelInputCharacterName" xml:space="preserve">
+        <value>character name</value>
+    </data>
+    <data name="LabelInputCharacterDisplayName" xml:space="preserve">
+        <value>display name</value>
+    </data>
+    <data name="ButtonLabelSaveCharacter" xml:space="preserve">
+        <value>Save Character</value>
+    </data>
+    <data name="LabelInputAllignment" xml:space="preserve">
+        <value>allignment</value>
+    </data>
 </root>

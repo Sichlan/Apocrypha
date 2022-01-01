@@ -3,14 +3,16 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211223213748_TestLocalization")]
+    partial class TestLocalization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace Apocrypha.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Allignments");
+                    b.ToTable("Allignment");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.AllignmentTranslation", b =>
@@ -80,14 +82,9 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<DateTime>("LastModifiedDateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("TrueAllignmentId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorUserId");
-
-                    b.HasIndex("TrueAllignmentId");
 
                     b.ToTable("Characters");
                 });
@@ -201,9 +198,6 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
@@ -230,13 +224,7 @@ namespace Apocrypha.EntityFramework.Migrations
                         .WithMany("Characters")
                         .HasForeignKey("CreatorUserId");
 
-                    b.HasOne("Apocrypha.CommonObject.Models.Allignment", "TrueAllignment")
-                        .WithMany()
-                        .HasForeignKey("TrueAllignmentId");
-
                     b.Navigation("CreatorUser");
-
-                    b.Navigation("TrueAllignment");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.CharacterItem", b =>

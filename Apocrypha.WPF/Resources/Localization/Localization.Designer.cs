@@ -115,6 +115,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Character.
+        /// </summary>
+        public static string ButtonLabelSaveCharacter {
+            get {
+                return ResourceManager.GetString("ButtonLabelSaveCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login failed..
         /// </summary>
         public static string ErrorLoginFailed {
@@ -210,6 +219,33 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string InputLabelUsername {
             get {
                 return ResourceManager.GetString("InputLabelUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to allignment.
+        /// </summary>
+        public static string LabelInputAllignment {
+            get {
+                return ResourceManager.GetString("LabelInputAllignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to display name.
+        /// </summary>
+        public static string LabelInputCharacterDisplayName {
+            get {
+                return ResourceManager.GetString("LabelInputCharacterDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to character name.
+        /// </summary>
+        public static string LabelInputCharacterName {
+            get {
+                return ResourceManager.GetString("LabelInputCharacterName", resourceCulture);
             }
         }
         

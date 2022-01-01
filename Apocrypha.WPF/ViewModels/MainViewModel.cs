@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
@@ -20,7 +22,7 @@ namespace Apocrypha.WPF.ViewModels
         private WindowState _currentWindowState;
 
         public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory,
-            IRenavigator logoutCommandRenavigator, ICharacterStore characterStore)
+            IRenavigator logoutCommandRenavigator, ICharacterStore characterStore, IDataService<Character> characterDataService)
         {
             _authenticator = authenticator;
             _navigator = navigator;
@@ -39,6 +41,7 @@ namespace Apocrypha.WPF.ViewModels
             MinimizeCommand = new RelayCommand(o => MinimizeWindow(o));
             MaximizeCommand = new RelayCommand(o => MaximizeWindow(o));
             CloseCommand = new RelayCommand(o => CloseWindow(o));
+            SaveCharacterCommand = new SaveCharacterCommand(_characterStore, characterDataService);
         }
 
         private void CloseWindow(object obj)
@@ -78,6 +81,7 @@ namespace Apocrypha.WPF.ViewModels
         public ICommand MinimizeCommand { get; set; }
         public ICommand MaximizeCommand { get; set; }
         public ICommand CloseCommand { get; set; }
+        public ICommand SaveCharacterCommand { get; set; }
         public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
 
         public bool MenuExpanded
@@ -109,6 +113,7 @@ namespace Apocrypha.WPF.ViewModels
         private void CharacterStore_StateChange()
         {
             OnPropertyChanged(nameof(HasActiveCharacter));
+            CommandManager.InvalidateRequerySuggested();
         }
     }
 }

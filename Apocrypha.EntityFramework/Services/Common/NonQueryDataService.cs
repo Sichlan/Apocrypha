@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Models.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.EntityFramework.Services.Common

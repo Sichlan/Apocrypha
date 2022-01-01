@@ -46,7 +46,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
+    
     <Style x:Key="MenuButtonTheme" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
         <Style.Setters>
             <Setter Property="Template">
@@ -144,6 +144,34 @@
                 <Setter Property="Foreground" Value="LightGray" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MenuRadioButtonTheme}">
+        <Setter Property="Padding" Value="2 2" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Height" Value="auto" />
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border CornerRadius="3" Padding="{TemplateBinding Padding}"
+                            Opacity="{TemplateBinding Opacity}" x:Name="gridMain"
+                            Background="{TemplateBinding Background}">
+                        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Label Content="{TemplateBinding Content}" VerticalAlignment="Center"
+                                   Padding="{TemplateBinding Padding}" HorizontalAlignment="Left" Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                    </Border>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="gridMain" Property="Background"
+                                    Value="{StaticResource BrushPrimary1}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     <!--#endregion-->
 

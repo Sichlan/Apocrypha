@@ -89,4 +89,16 @@
     <data name="MenuLabelProfile" xml:space="preserve">
         <value>Profil</value>
     </data>
+    <data name="LabelInputCharacterDisplayName" xml:space="preserve">
+        <value>Anzeigename</value>
+    </data>
+    <data name="LabelInputCharacterName" xml:space="preserve">
+        <value>Charaktername</value>
+    </data>
+    <data name="ButtonLabelSaveCharacter" xml:space="preserve">
+        <value>Charakter speichern</value>
+    </data>
+    <data name="LabelInputAllignment" xml:space="preserve">
+        <value>Gesinnung</value>
+    </data>
 </root>

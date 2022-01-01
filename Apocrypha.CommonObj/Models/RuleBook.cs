@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Apocrypha.CommonObject.Models.Common;
 
 namespace Apocrypha.CommonObject.Models
 {

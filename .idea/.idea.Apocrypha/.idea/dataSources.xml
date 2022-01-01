@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ApocryphaDB" uuid="8c85d05f-fd6c-4b35-9eea-8cd23a9963f3">
+    <data-source source="LOCAL" name="Pi" uuid="8c85d05f-fd6c-4b35-9eea-8cd23a9963f3">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mariadb://192.168.178.29:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="ApocryphaLocalDB" uuid="9a535ebb-e4bd-469c-9b91-e414a8a6ea29">
-      <driver-ref>sqlite.xerial</driver-ref>
+    <data-source source="LOCAL" name="Apocrypha" uuid="70d89b86-abf0-41ae-8139-691e724fc387">
+      <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Apocrypha.WPF/LocalDatabase.db</jdbc-url>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://www.apocrypha-dnd.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

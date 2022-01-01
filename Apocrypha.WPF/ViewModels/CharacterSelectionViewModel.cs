@@ -42,7 +42,7 @@ namespace Apocrypha.WPF.ViewModels
         public async Task InitData()
         {
             CharacterPreviewViewModels = new ObservableCollection<CharacterPreviewViewModel>(
-                (await _characterDataService.GetAllWhere(x => x.CreatorUser.Id == _userStore.CurrentUser.Id)).Select(character =>
+                (await _characterDataService.GetAllWhere(x => x.CreatorUser.Id == _userStore.CurrentUser.Id || _userStore.CurrentUser.IsAdmin)).Select(character =>
                     new CharacterPreviewViewModel(_random, character, _characterStore, _profileRenavigator)));
             OnPropertyChanged(nameof(CharacterPreviewViewModels));
         }

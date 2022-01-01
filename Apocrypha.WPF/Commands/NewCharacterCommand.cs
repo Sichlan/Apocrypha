@@ -40,5 +40,10 @@ namespace Apocrypha.WPF.Commands
 
             new SetCurrentCharacterCommand(updatedCharacter, _characterStore, _renavigator).Execute(null);
         }
+
+        public override bool CanExecuteAsync(object parameter)
+        {
+            return true;
+        }
     }
 }

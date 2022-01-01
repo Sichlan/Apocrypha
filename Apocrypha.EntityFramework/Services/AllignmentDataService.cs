@@ -10,53 +10,51 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.EntityFramework.Services
 {
-    public class CharacterDataService : IDataService<Character>
+    public class AllignmentDataService : IDataService<Allignment>
     {
         private readonly ApocryphaDbContextFactory _contextFactory;
-        private readonly NonQueryDataService<Character> _nonQueryDataService;
+        private readonly NonQueryDataService<Allignment> _nonQueryDataService;
 
-        public CharacterDataService(ApocryphaDbContextFactory contextFactory)
+        public AllignmentDataService(ApocryphaDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
-            _nonQueryDataService = new NonQueryDataService<Character>(contextFactory);
+            _nonQueryDataService = new NonQueryDataService<Allignment>(contextFactory);
         }
 
-        public async Task<IEnumerable<Character>> GetAll()
+        public async Task<IEnumerable<Allignment>> GetAll()
         {
             return await GetAllWhere(x => true);
         }
 
-        public async Task<IEnumerable<Character>> GetAllWhere(Expression<Func<Character, bool>> predicate)
+        public async Task<IEnumerable<Allignment>> GetAllWhere(Expression<Func<Allignment, bool>> predicate)
         {
             using var context = _contextFactory.CreateDbContext();
 
-            IEnumerable<Character> entities = await context.Characters
-                .Include(x => x.InventoryItems)
-                .Include(x => x.TrueAllignment)
+            var allignments = await context.Allignments
+                .Include(x => x.Translations)
                 .Where(predicate)
                 .ToListAsync();
 
-            return entities;
+            return allignments;
         }
 
-        public async Task<Character> GetById(int id)
+        public async Task<Allignment> GetById(int id)
         {
             using var context = _contextFactory.CreateDbContext();
 
-            var character = await context.Characters
-                .Include(x => x.InventoryItems)
-                .Include(x => x.TrueAllignment)
+            var allignment = await context.Allignments
+                .Include(x => x.Translations)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            return character;
+            return allignment;
         }
 
-        public async Task<Character> Create(Character entity)
+        public async Task<Allignment> Create(Allignment entity)
         {
             return await _nonQueryDataService.Create(entity);
         }
 
-        public async Task<Character> Update(int id, Character entity)
+        public async Task<Allignment> Update(int id, Allignment entity)
         {
             return await _nonQueryDataService.Update(id, entity);
         }

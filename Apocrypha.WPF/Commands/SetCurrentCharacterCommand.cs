@@ -2,7 +2,6 @@
 using Apocrypha.CommonObject.Models;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators.Navigators;
-using Apocrypha.WPF.ViewModels;
 
 namespace Apocrypha.WPF.Commands
 {
@@ -25,6 +24,11 @@ namespace Apocrypha.WPF.Commands
             
             if (_renavigator != null)
                 _renavigator.Renavigate();
+        }
+
+        public override bool CanExecuteAsync(object parameter)
+        {
+            return true;
         }
     }
 }

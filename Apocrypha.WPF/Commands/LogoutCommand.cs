@@ -24,5 +24,10 @@ namespace Apocrypha.WPF.Commands
             _characterStore.CurrentCharacter = null;
             _renavigator.Renavigate();
         }
+
+        public override bool CanExecuteAsync(object parameter)
+        {
+            return true;
+        }
     }
 }

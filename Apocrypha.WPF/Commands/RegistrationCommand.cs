@@ -60,5 +60,10 @@ namespace Apocrypha.WPF.Commands
                 throw;
             }
         }
+
+        public override bool CanExecuteAsync(object parameter)
+        {
+            return true;
+        }
     }
 }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models.Common
 {
     public class DatabaseObject
     {

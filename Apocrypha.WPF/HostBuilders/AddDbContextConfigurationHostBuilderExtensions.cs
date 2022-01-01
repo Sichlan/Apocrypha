@@ -31,6 +31,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton(o => new ApocryphaDbContextFactory(ConfigureDbContext));
 
                 services.AddSingleton<IAuthenticationService, AuthenticationService>();
+                services.AddSingleton<IDataService<Allignment>, AllignmentDataService>();
                 services.AddSingleton<IDataService<Character>, CharacterDataService>();
                 services.AddSingleton<IDataService<User>, UserDataService>();
                 services.AddSingleton<IUserService, UserDataService>();

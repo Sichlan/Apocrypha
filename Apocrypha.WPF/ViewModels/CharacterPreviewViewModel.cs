@@ -26,15 +26,9 @@ namespace Apocrypha.WPF.ViewModels
             RightColor = RightColor ?? GetComplementaryColor(LeftColor.Value);
         }
 
-        public Character Character
+        public string CharacterName
         {
-            get => _character;
-            set
-            {
-                _character = value;
-                OnPropertyChanged(nameof(Character));
-                OnPropertyChanged(nameof(PreviewInfo));
-            }
+            get => String.IsNullOrWhiteSpace(_character.DisplayName) ? _character.CharacterName : _character.DisplayName;
         }
 
         public string PreviewInfo =>
@@ -63,10 +57,7 @@ namespace Apocrypha.WPF.ViewModels
 
         /// <summary>
         ///     Gets the complementary color to a given colour.
-        ///     <a href="https://www.quora.com/Whats-the-algorithm-for-obtaining-a-hexadecimal-colors-opposite-in-the-color-wheel">
-        ///         Source
-        ///         for this algorithm
-        ///     </a>
+        ///     <a href="https://www.quora.com/Whats-the-algorithm-for-obtaining-a-hexadecimal-colors-opposite-in-the-color-wheel">Source for this algorithm</a>
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>

@@ -16,5 +16,10 @@ namespace Apocrypha.WPF.Commands
         {
             _renavigator.Renavigate();
         }
+
+        public override bool CanExecuteAsync(object parameter)
+        {
+            return true;
+        }
     }
 }

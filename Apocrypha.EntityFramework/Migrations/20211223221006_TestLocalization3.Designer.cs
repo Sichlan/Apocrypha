@@ -3,14 +3,16 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211223221006_TestLocalization3")]
+    partial class TestLocalization3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,9 +202,6 @@ namespace Apocrypha.EntityFramework.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
-
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
