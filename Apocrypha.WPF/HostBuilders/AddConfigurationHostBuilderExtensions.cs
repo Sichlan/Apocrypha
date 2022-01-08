@@ -15,7 +15,7 @@ namespace Apocrypha.WPF.HostBuilders
                 .ConfigureAppConfiguration((context, config) =>
                 {
                     config.AddJsonFile("appsettings.json", true, true);
-                    config.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true);
+                    //config.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true);
                     config.AddEnvironmentVariables();
                 });
 

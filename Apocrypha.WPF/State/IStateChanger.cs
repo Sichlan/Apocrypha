@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Apocrypha.WPF.State.Navigators
+namespace Apocrypha.WPF.State
 {
     public interface IStateChanger
     {

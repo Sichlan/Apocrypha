@@ -1,9 +1,9 @@
 ﻿using System;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
+using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
-using Apocrypha.WPF.State.Navigators.Authenticators;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.ViewModels;
 using Apocrypha.WPF.ViewModels.Factories;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +27,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddTransient<CharacterSelectionViewModel>();
                 services.AddTransient<CharacterProfileViewModel>();
                 services.AddTransient<DiceRollerViewModel>();
+                services.AddTransient<SpellCardEditorViewModel>();
 
                 #endregion
 
@@ -36,6 +37,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<CreateViewModel<CharacterSelectionViewModel>>(s => s.GetRequiredService<CharacterSelectionViewModel>);
                 services.AddSingleton<CreateViewModel<CharacterProfileViewModel>>(s => s.GetRequiredService<CharacterProfileViewModel>);
                 services.AddSingleton<CreateViewModel<DiceRollerViewModel>>(s => s.GetRequiredService<DiceRollerViewModel>);
+                services.AddSingleton<CreateViewModel<SpellCardEditorViewModel>>(s => s.GetRequiredService<SpellCardEditorViewModel>);
 
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(s => () => CreateLoginViewModel(s));
                 services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => () => CreateRegistrationViewModel(s));

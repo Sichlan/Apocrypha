@@ -4,7 +4,7 @@ using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
 using Apocrypha.WPF.State.Users;
 
-namespace Apocrypha.WPF.State.Navigators.Authenticators
+namespace Apocrypha.WPF.State.Authenticators
 {
     public class Authenticator : IAuthenticator
     {

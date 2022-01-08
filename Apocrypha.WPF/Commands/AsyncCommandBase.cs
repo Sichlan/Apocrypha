@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.State;
 
 namespace Apocrypha.WPF.Commands
 {

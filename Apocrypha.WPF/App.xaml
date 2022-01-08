@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="Styles/Icons.xaml" />
                 <ResourceDictionary Source="Styles/DiceRollerStyles.xaml" />
                 <ResourceDictionary Source="Styles/GroupBoxStyles.xaml" />
+                <ResourceDictionary Source="Styles/SpellCardStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--#region DataTemplates-->
@@ -47,6 +48,14 @@
 
             <DataTemplate DataType="{x:Type viewModels:CharacterProfileViewModel}">
                 <views:CharacterProfileView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:SpellCardViewModel}">
+                <views:SpellCardView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:SpellCardEditorViewModel}">
+                <views:SpellCardEditorView />
             </DataTemplate>
             <!--#endregion-->
 

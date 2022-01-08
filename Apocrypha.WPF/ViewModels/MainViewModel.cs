@@ -3,10 +3,10 @@ using System.Windows.Input;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.Commands;
+using Apocrypha.WPF.State;
+using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
-using Apocrypha.WPF.State.Navigators.Authenticators;
-using Apocrypha.WPF.State.Navigators.Navigators;
 using Apocrypha.WPF.ViewModels.Factories;
 
 namespace Apocrypha.WPF.ViewModels

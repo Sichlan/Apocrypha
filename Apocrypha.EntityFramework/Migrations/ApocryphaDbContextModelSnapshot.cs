@@ -43,6 +43,9 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("CultureName")
                         .HasColumnType("text");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
@@ -50,7 +53,7 @@ namespace Apocrypha.EntityFramework.Migrations
 
                     b.HasIndex("AllignmentId");
 
-                    b.ToTable("AllignmentTranslation");
+                    b.ToTable("AllignmentTranslations");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Character", b =>
@@ -189,6 +192,319 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("RuleBooks");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.Spell", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Spells");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellComponent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CountIndicator")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("MinimalItemGoldValue")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("OtherComponentName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("OtherComponentText")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpellComponentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SpellVariantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("SpellComponentTypeId");
+
+                    b.HasIndex("SpellVariantId");
+
+                    b.ToTable("SpellComponents");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellComponentType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SpellComponentTypes");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellComponentTypeTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpellComponentTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpellComponentTypeId");
+
+                    b.ToTable("SpellComponentTypeTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellDescriptor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SpellVariantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpellVariantId");
+
+                    b.ToTable("SpellDescriptors");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellDescriptorTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpellDescriptorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpellDescriptorId");
+
+                    b.ToTable("SpellDescriptorTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellRangeType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SpellRangeTypes");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellRangeTypeTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpellRangeTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpellRangeTypeId");
+
+                    b.ToTable("SpellRangeTypeTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellSchool", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SpellSchools");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellSchoolTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpellSchoolId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpellSchoolId");
+
+                    b.ToTable("SpellSchoolTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellSubSchool", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SpellSubSchools");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellSubSchoolTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpellSubSchoolId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpellSubSchoolId");
+
+                    b.ToTable("SpellSubSchoolTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpellId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpellId");
+
+                    b.ToTable("SpellTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellVariant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CastingTimeValue")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RuleBookId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RuleBookPage")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SpellId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SpellRangeTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RuleBookId");
+
+                    b.HasIndex("SpellId");
+
+                    b.HasIndex("SpellRangeTypeId");
+
+                    b.ToTable("SpellVariants");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellVariantTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SpellVariantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpellVariantId");
+
+                    b.ToTable("SpellVariantTranslations");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -213,6 +529,36 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SpellSchoolSpellVariant", b =>
+                {
+                    b.Property<int>("SpellSchoolsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpellVariantsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SpellSchoolsId", "SpellVariantsId");
+
+                    b.HasIndex("SpellVariantsId");
+
+                    b.ToTable("SpellSchoolSpellVariant");
+                });
+
+            modelBuilder.Entity("SpellSubSchoolSpellVariant", b =>
+                {
+                    b.Property<int>("SpellSubSchoolsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpellVariantsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SpellSubSchoolsId", "SpellVariantsId");
+
+                    b.HasIndex("SpellVariantsId");
+
+                    b.ToTable("SpellSubSchoolSpellVariant");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.AllignmentTranslation", b =>
@@ -265,6 +611,146 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Navigation("Edition");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellComponent", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellComponentType", "SpellComponentType")
+                        .WithMany("SpellComponents")
+                        .HasForeignKey("SpellComponentTypeId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellVariant", null)
+                        .WithMany("SpellComponents")
+                        .HasForeignKey("SpellVariantId");
+
+                    b.Navigation("Item");
+
+                    b.Navigation("SpellComponentType");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellComponentTypeTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellComponentType", "SpellComponentType")
+                        .WithMany("SpellComponentTypeTranslations")
+                        .HasForeignKey("SpellComponentTypeId");
+
+                    b.Navigation("SpellComponentType");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellDescriptor", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellVariant", "SpellVariant")
+                        .WithMany("SpellDescriptors")
+                        .HasForeignKey("SpellVariantId");
+
+                    b.Navigation("SpellVariant");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellDescriptorTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellDescriptor", "SpellDescriptor")
+                        .WithMany("SpellDescriptorTranslations")
+                        .HasForeignKey("SpellDescriptorId");
+
+                    b.Navigation("SpellDescriptor");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellRangeTypeTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellRangeType", "SpellRangeType")
+                        .WithMany("SpellRangeTypeTranslations")
+                        .HasForeignKey("SpellRangeTypeId");
+
+                    b.Navigation("SpellRangeType");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellSchoolTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellSchool", "SpellSchool")
+                        .WithMany("SpellSchoolTranslations")
+                        .HasForeignKey("SpellSchoolId");
+
+                    b.Navigation("SpellSchool");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellSubSchoolTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellSubSchool", "SpellSubSchool")
+                        .WithMany("SpellSubSchoolTranslations")
+                        .HasForeignKey("SpellSubSchoolId");
+
+                    b.Navigation("SpellSubSchool");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.Spell", "Spell")
+                        .WithMany("SpellTranslations")
+                        .HasForeignKey("SpellId");
+
+                    b.Navigation("Spell");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellVariant", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.RuleBook", "RuleBook")
+                        .WithMany("SpellVariants")
+                        .HasForeignKey("RuleBookId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.Spell", "Spell")
+                        .WithMany("SpellVariants")
+                        .HasForeignKey("SpellId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellRangeType", null)
+                        .WithMany("SpellVariants")
+                        .HasForeignKey("SpellRangeTypeId");
+
+                    b.Navigation("RuleBook");
+
+                    b.Navigation("Spell");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellVariantTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellVariant", "SpellVariant")
+                        .WithMany("SpellVariantTranslations")
+                        .HasForeignKey("SpellVariantId");
+
+                    b.Navigation("SpellVariant");
+                });
+
+            modelBuilder.Entity("SpellSchoolSpellVariant", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellSchool", null)
+                        .WithMany()
+                        .HasForeignKey("SpellSchoolsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellVariant", null)
+                        .WithMany()
+                        .HasForeignKey("SpellVariantsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SpellSubSchoolSpellVariant", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellSubSchool", null)
+                        .WithMany()
+                        .HasForeignKey("SpellSubSchoolsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellVariant", null)
+                        .WithMany()
+                        .HasForeignKey("SpellVariantsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Allignment", b =>
                 {
                     b.Navigation("Translations");
@@ -278,6 +764,56 @@ namespace Apocrypha.EntityFramework.Migrations
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Edition", b =>
                 {
                     b.Navigation("RuleBooks");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.RuleBook", b =>
+                {
+                    b.Navigation("SpellVariants");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.Spell", b =>
+                {
+                    b.Navigation("SpellTranslations");
+
+                    b.Navigation("SpellVariants");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellComponentType", b =>
+                {
+                    b.Navigation("SpellComponents");
+
+                    b.Navigation("SpellComponentTypeTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellDescriptor", b =>
+                {
+                    b.Navigation("SpellDescriptorTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellRangeType", b =>
+                {
+                    b.Navigation("SpellRangeTypeTranslations");
+
+                    b.Navigation("SpellVariants");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellSchool", b =>
+                {
+                    b.Navigation("SpellSchoolTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellSubSchool", b =>
+                {
+                    b.Navigation("SpellSubSchoolTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellVariant", b =>
+                {
+                    b.Navigation("SpellComponents");
+
+                    b.Navigation("SpellDescriptors");
+
+                    b.Navigation("SpellVariantTranslations");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.User", b =>

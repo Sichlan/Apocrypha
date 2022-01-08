@@ -18,7 +18,7 @@
         <value>Charaktergenerator für D&amp;D 3.5</value>
     </data>
     <data name="InputLabelEmail" xml:space="preserve">
-        <value>Email</value>
+        <value>E-Mail</value>
     </data>
     <data name="InputLabelUsername" xml:space="preserve">
         <value>Benutzername</value>
@@ -100,5 +100,20 @@
     </data>
     <data name="LabelInputAllignment" xml:space="preserve">
         <value>Gesinnung</value>
+    </data>
+    <data name="MenuCategoryLabelTools" xml:space="preserve">
+        <value>WERKZEUGE</value>
+    </data>
+    <data name="MenuLabelSpellCardEditor" xml:space="preserve">
+        <value>Zauberkarteneditor</value>
+    </data>
+    <data name="LabelSpellSchool" xml:space="preserve">
+        <value>Schule</value>
+    </data>
+    <data name="LabelSpellSubSchool" xml:space="preserve">
+        <value>Unterschule</value>
+    </data>
+    <data name="LabelSpellDescriptor" xml:space="preserve">
+        <value>Kategorie</value>
     </data>
 </root>

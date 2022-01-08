@@ -1,4 +1,5 @@
 ﻿using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Models.Spells;
 using Apocrypha.EntityFramework.Configurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,9 +23,14 @@ namespace Apocrypha.EntityFramework
             base.OnModelCreating(modelBuilder);
         }
 
+        /// <summary>
+        /// Used to apply special configurations to the model builder.<br/>
+        /// Obsolete as of now because it was only used to mark columns as not mapped, which is done now with the [NotMapped] attribute
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         private void AddConfigurations(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AllignmentConfiguration());
+            //modelBuilder.ApplyConfiguration(new AllignmentConfiguration());
         }
 
         #region DatabaseTables
@@ -37,6 +43,32 @@ namespace Apocrypha.EntityFramework
         public DbSet<RuleBook> RuleBooks { get; set; }
         public DbSet<Allignment> Allignments { get; set; }
         public DbSet<AllignmentTranslation> AllignmentTranslations { get; set; }
+        
+        #region Spells
+
+        public DbSet<Spell> Spells { get; set; }
+        public DbSet<SpellTranslation> SpellTranslations { get; set; }
+
+        public DbSet<SpellVariant> SpellVariants { get; set; }
+        public DbSet<SpellVariantTranslation> SpellVariantTranslations { get; set; }
+
+        public DbSet<SpellSchool> SpellSchools { get; set; }
+        public DbSet<SpellSchoolTranslation> SpellSchoolTranslations { get; set; }
+
+        public DbSet<SpellSubSchool> SpellSubSchools { get; set; }
+        public DbSet<SpellSubSchoolTranslation> SpellSubSchoolTranslations { get; set; }
+
+        public DbSet<SpellDescriptor> SpellDescriptors { get; set; }
+        public DbSet<SpellDescriptorTranslation> SpellDescriptorTranslations { get; set; }
+
+        public DbSet<SpellComponent> SpellComponents { get; set; }
+        public DbSet<SpellComponentType> SpellComponentTypes { get; set; }
+        public DbSet<SpellComponentTypeTranslation> SpellComponentTypeTranslations { get; set; }
+
+        public DbSet<SpellRangeType> SpellRangeTypes { get; set; }
+        public DbSet<SpellRangeTypeTranslation> SpellRangeTypeTranslations { get; set; }
+        
+        #endregion Spells
 
         #endregion
     }

@@ -1,4 +1,4 @@
-﻿namespace Apocrypha.WPF.State.Navigators.Navigators
+﻿namespace Apocrypha.WPF.State.Navigators
 {
     public interface IRenavigator
     {

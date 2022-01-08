@@ -6,5 +6,6 @@ namespace Apocrypha.CommonObject.Models
     {
         public Allignment Allignment { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

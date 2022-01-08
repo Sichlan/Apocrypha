@@ -58,6 +58,30 @@
                                 Width="20" Height="20" />
                 <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconCloseWindow}"
                                 Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconSpellCastingTime}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconSpellDuration}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconSpellTarget}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconSpellArea}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconSpellEffect}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconSpellRange}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconVerbalComponent}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconSomaticComponent}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconMaterialComponent}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconArcaneFocus}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconDivineFocus}"
+                                Width="20" Height="20" />
+                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconExperienceComponent}"
+                                Width="20" Height="20" />
             </WrapPanel>
 
             <TextBlock Text="Fonts" />

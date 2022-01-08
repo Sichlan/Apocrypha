@@ -5,7 +5,7 @@ using System.Windows.Media;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Characters;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Navigators;
 
 namespace Apocrypha.WPF.ViewModels
 {

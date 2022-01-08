@@ -8,7 +8,7 @@ namespace Apocrypha.EntityFramework.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Allignment",
+                name: "Allignments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -36,14 +36,14 @@ namespace Apocrypha.EntityFramework.Migrations
                     table.ForeignKey(
                         name: "FK_AllignmentTranslation_Allignment_AllignmentId",
                         column: x => x.AllignmentId,
-                        principalTable: "Allignment",
+                        principalTable: "Allignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AllignmentTranslation_AllignmentId",
-                table: "AllignmentTranslation",
+                name: "IX_AllignmentTranslations_AllignmentId",
+                table: "AllignmentTranslations",
                 column: "AllignmentId");
         }
 

@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Apocrypha.WPF.Views.SpellCardEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Apocrypha.WPF.Views"
+             xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewModels:SpellCardEditorViewModel, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Border Grid.Row="0" Style="{StaticResource CategoryBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Spellname"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Class / Level"/>
+                    
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SpellName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                        <TextBox Text="{Binding SpellCasterClass, UpdateSourceTrigger=PropertyChanged}" MinWidth="60"/>
+                        <TextBox Text="{Binding SpellLevel, UpdateSourceTrigger=PropertyChanged}" MinWidth="20"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <ContentControl Grid.Column="1" Content="{Binding SpellCardViewModel}" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="500" MinHeight="750"/>
+    </Grid>
+</UserControl>

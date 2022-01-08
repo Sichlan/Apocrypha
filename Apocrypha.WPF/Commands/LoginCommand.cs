@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows;
 using Apocrypha.CommonObject.Exceptions;
-using Apocrypha.WPF.State.Navigators.Authenticators;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Authenticators;
+using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.ViewModels;
 
 namespace Apocrypha.WPF.Commands

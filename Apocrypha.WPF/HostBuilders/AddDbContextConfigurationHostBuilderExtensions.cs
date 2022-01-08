@@ -17,7 +17,11 @@ namespace Apocrypha.WPF.HostBuilders
             hostBuilder.ConfigureServices((context, services) =>
             {
                 // Retrieve the DB connection string from appsettings.json
-                var connectionString = context.Configuration.GetConnectionString("mariadb");
+                var connectionString = context.HostingEnvironment.EnvironmentName switch
+                {
+                    "Test" => context.Configuration.GetConnectionString("mariadb-test"),
+                    _ => context.Configuration.GetConnectionString("mariadb-live")
+                };
 
                 void ConfigureDbContext(DbContextOptionsBuilder o)
                 {

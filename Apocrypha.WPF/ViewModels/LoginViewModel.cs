@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using Apocrypha.WPF.Commands;
-using Apocrypha.WPF.State.Navigators.Authenticators;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Authenticators;
+using Apocrypha.WPF.State.Navigators;
 
 namespace Apocrypha.WPF.ViewModels
 {

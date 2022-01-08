@@ -25,19 +25,19 @@
         <value>Character creator for D&amp;D 3.5</value>
     </data>
     <data name="InputLabelEmail" xml:space="preserve">
-        <value>email</value>
+        <value>Email</value>
     </data>
     <data name="InputLabelUsername" xml:space="preserve">
-        <value>username</value>
+        <value>Username</value>
     </data>
     <data name="InputLabelPassword" xml:space="preserve">
-        <value>password</value>
+        <value>Password</value>
     </data>
     <data name="InputLabelConfirmPassword" xml:space="preserve">
-        <value>confirm password</value>
+        <value>Confirm password</value>
     </data>
     <data name="ButtonLabelRegister" xml:space="preserve">
-        <value>register</value>
+        <value>Register</value>
     </data>
     <data name="LinkLabelAlreadyHaveAnAccount" xml:space="preserve">
         <value>Already have an account?</value>
@@ -97,15 +97,30 @@
         <value>CHARACTER</value>
     </data>
     <data name="LabelInputCharacterName" xml:space="preserve">
-        <value>character name</value>
+        <value>Character name</value>
     </data>
     <data name="LabelInputCharacterDisplayName" xml:space="preserve">
-        <value>display name</value>
+        <value>Display name</value>
     </data>
     <data name="ButtonLabelSaveCharacter" xml:space="preserve">
         <value>Save Character</value>
     </data>
     <data name="LabelInputAllignment" xml:space="preserve">
-        <value>allignment</value>
+        <value>Allignment</value>
+    </data>
+    <data name="MenuCategoryLabelTools" xml:space="preserve">
+        <value>TOOLS</value>
+    </data>
+    <data name="MenuLabelSpellCardEditor" xml:space="preserve">
+        <value>Spell card editor</value>
+    </data>
+    <data name="LabelSpellSchool" xml:space="preserve">
+        <value>Spell school</value>
+    </data>
+    <data name="LabelSpellSubSchool" xml:space="preserve">
+        <value>Sub school</value>
+    </data>
+    <data name="LabelSpellDescriptor" xml:space="preserve">
+        <value>Descriptor</value>
     </data>
 </root>

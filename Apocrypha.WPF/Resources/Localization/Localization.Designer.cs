@@ -106,7 +106,7 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to register.
+        ///   Looks up a localized string similar to Register.
         /// </summary>
         public static string ButtonLabelRegister {
             get {
@@ -187,7 +187,7 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to confirm password.
+        ///   Looks up a localized string similar to Confirm password.
         /// </summary>
         public static string InputLabelConfirmPassword {
             get {
@@ -196,7 +196,7 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to email.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string InputLabelEmail {
             get {
@@ -205,7 +205,7 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to password.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string InputLabelPassword {
             get {
@@ -214,7 +214,7 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to username.
+        ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string InputLabelUsername {
             get {
@@ -223,7 +223,7 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to allignment.
+        ///   Looks up a localized string similar to Allignment.
         /// </summary>
         public static string LabelInputAllignment {
             get {
@@ -232,7 +232,7 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to display name.
+        ///   Looks up a localized string similar to Display name.
         /// </summary>
         public static string LabelInputCharacterDisplayName {
             get {
@@ -241,11 +241,38 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to character name.
+        ///   Looks up a localized string similar to Character name.
         /// </summary>
         public static string LabelInputCharacterName {
             get {
                 return ResourceManager.GetString("LabelInputCharacterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descriptor.
+        /// </summary>
+        public static string LabelSpellDescriptor {
+            get {
+                return ResourceManager.GetString("LabelSpellDescriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spell school.
+        /// </summary>
+        public static string LabelSpellSchool {
+            get {
+                return ResourceManager.GetString("LabelSpellSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub school.
+        /// </summary>
+        public static string LabelSpellSubSchool {
+            get {
+                return ResourceManager.GetString("LabelSpellSubSchool", resourceCulture);
             }
         }
         
@@ -273,6 +300,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string MenuCategoryLabelCharacter {
             get {
                 return ResourceManager.GetString("MenuCategoryLabelCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOOLS.
+        /// </summary>
+        public static string MenuCategoryLabelTools {
+            get {
+                return ResourceManager.GetString("MenuCategoryLabelTools", resourceCulture);
             }
         }
         
@@ -327,6 +363,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string MenuLabelProfile {
             get {
                 return ResourceManager.GetString("MenuLabelProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spell card editor.
+        /// </summary>
+        public static string MenuLabelSpellCardEditor {
+            get {
+                return ResourceManager.GetString("MenuLabelSpellCardEditor", resourceCulture);
             }
         }
     }

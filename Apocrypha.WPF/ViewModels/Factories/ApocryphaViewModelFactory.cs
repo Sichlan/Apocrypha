@@ -1,5 +1,5 @@
 ﻿using System;
-using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.State;
 
 namespace Apocrypha.WPF.ViewModels.Factories
 {
@@ -8,7 +8,7 @@ namespace Apocrypha.WPF.ViewModels.Factories
         public ApocryphaViewModelFactory(CreateViewModel<HomeViewModel> createHomeViewModelFactory,
             CreateViewModel<CharacterSelectionViewModel> createCharacterSelectionViewModelFactory,
             CreateViewModel<LoginViewModel> createLoginViewModelFactory, CreateViewModel<RegistrationViewModel> createRegistrationViewModelFactory,
-            CreateViewModel<DiceRollerViewModel> createDiceRollerViewModelFactory, CreateViewModel<CharacterProfileViewModel> createCharacterProfileViewModelFactory)
+            CreateViewModel<DiceRollerViewModel> createDiceRollerViewModelFactory, CreateViewModel<CharacterProfileViewModel> createCharacterProfileViewModelFactory, CreateViewModel<SpellCardEditorViewModel> createSpellCardEditorViewModelFactory)
         {
             _createHomeViewModelFactory = createHomeViewModelFactory;
             _createCharacterSelectionViewModelFactory = createCharacterSelectionViewModelFactory;
@@ -16,6 +16,7 @@ namespace Apocrypha.WPF.ViewModels.Factories
             _createRegistrationViewModelFactory = createRegistrationViewModelFactory;
             _createDiceRollerViewModelFactory = createDiceRollerViewModelFactory;
             _createCharacterProfileViewModelFactory = createCharacterProfileViewModelFactory;
+            _createSpellCardEditorViewModelFactory = createSpellCardEditorViewModelFactory;
         }
 
         public BaseViewModel CreateViewModel(ViewType viewType)
@@ -34,6 +35,8 @@ namespace Apocrypha.WPF.ViewModels.Factories
                     return _createDiceRollerViewModelFactory();
                 case ViewType.Profile:
                     return _createCharacterProfileViewModelFactory();
+                case ViewType.SpellCardEditor:
+                    return _createSpellCardEditorViewModelFactory();
                 default:
                     throw new ArgumentException("The view type does not have a view model", nameof(viewType));
             }
@@ -47,6 +50,7 @@ namespace Apocrypha.WPF.ViewModels.Factories
         private readonly CreateViewModel<LoginViewModel> _createLoginViewModelFactory;
         private readonly CreateViewModel<RegistrationViewModel> _createRegistrationViewModelFactory;
         private readonly CreateViewModel<DiceRollerViewModel> _createDiceRollerViewModelFactory;
+        private readonly CreateViewModel<SpellCardEditorViewModel> _createSpellCardEditorViewModelFactory;
 
         #endregion
     }

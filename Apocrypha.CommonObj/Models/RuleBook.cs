@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Apocrypha.CommonObject.Models.Common;
+using Apocrypha.CommonObject.Models.Spells;
 
 namespace Apocrypha.CommonObject.Models
 {
@@ -12,6 +15,8 @@ namespace Apocrypha.CommonObject.Models
         [Required]
         public string Abbreviation { get; set; }
         public string Description { get; set; }
-        public System.DateTime? PublishedAt { get; set; }
+        public DateTime? PublishedAt { get; set; }
+
+        public ICollection<SpellVariant> SpellVariants { get; set; }
     }
 }
