@@ -8,7 +8,7 @@
              xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModels:SpellCardViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="750" d:DesignWidth="500">
+             Height="700" Width="500">
     <Border Style="{StaticResource SpellCardOuterBorderStyle}">
         <ContentControl Margin="5" Style="{StaticResource SpellCardInnerBorderStyle}">
             <Grid>
@@ -101,13 +101,12 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{x:Static res:Localization.LabelSpellSchool}" Grid.Column="0" Grid.Row="0"/>
-                            <TextBlock Text="{x:Static res:Localization.LabelSpellSubSchool}" Grid.Column="0" Grid.Row="1"/>
-                            <TextBlock Text="{x:Static res:Localization.LabelSpellDescriptor}" Grid.Column="0" Grid.Row="2"/>
-                            
-                            <TextBlock Text="{Binding SpellSchool}" Grid.Column="2" Grid.Row="0"/>
-                            <TextBlock Text="{Binding SpellSubSchoolsString}" Grid.Column="2" Grid.Row="1"/>
-                            <TextBlock Text="{Binding SpellDescriptorsString}" Grid.Column="2" Grid.Row="2"/>
+                            <TextBlock Text="{x:Static res:Localization.LabelSpellSchool}" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{x:Static res:Localization.LabelSpellSubSchool}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="{x:Static res:Localization.LabelSpellDescriptor}" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding SpellSchoolString, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="0"/>
+                            <TextBlock Text="{Binding SpellSubSchoolString, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="1"/>
+                            <TextBlock Text="{Binding SpellDescriptorString, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="2"/>
                         </Grid>
 
                         <Border Style="{StaticResource SpellCardCategorySeparatorBorderStyle}" Grid.Row="3"/>

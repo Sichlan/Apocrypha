@@ -90,11 +90,9 @@ namespace Apocrypha.WPF.ViewModels
             }
         }
 
-        public bool CharacterHasDisplayName
-        {
-            get => !String.IsNullOrEmpty(DisplayName);
-        }
-        
+        public bool CharacterHasDisplayName =>
+            !String.IsNullOrEmpty(DisplayName);
+
         public ICommand ChangeCharacterAllignmentCommand { get; set; }
     }
 }

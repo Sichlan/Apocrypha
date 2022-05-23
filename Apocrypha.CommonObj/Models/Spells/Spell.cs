@@ -11,10 +11,11 @@ namespace Apocrypha.CommonObject.Models.Spells
         public TranslationCollection<SpellTranslation> SpellTranslations { get; set; }
         public ICollection<SpellVariant> SpellVariants { get; set; }
 
+        public string NameFallback { get; set; }
         [NotMapped]
         public string Name
         {
-            get => SpellTranslations[CultureInfo.CurrentCulture].Name;
+            get => SpellTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
             set => SpellTranslations[CultureInfo.CurrentCulture].Name = value;
         }
     }

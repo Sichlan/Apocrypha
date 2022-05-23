@@ -5,14 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.17" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.17" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.0+m8.0.27" />
+        <PackageReference Include="MySql.Data" Version="8.0.29" />
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.13" />
     </ItemGroup>
 
     <ItemGroup>

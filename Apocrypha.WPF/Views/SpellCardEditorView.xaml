@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Apocrypha.WPF.Views"
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
+             xmlns:controls="clr-namespace:Apocrypha.WPF.Controls"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModels:SpellCardEditorViewModel, IsDesignTimeCreatable=True}">
     <Grid>
@@ -20,30 +21,63 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             
-            <Border Grid.Row="0" Style="{StaticResource CategoryBorderStyle}">
+            <Border Grid.Row="0" Style="{StaticResource CategoryBorderStyle}" Margin="5">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     
-                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Spellname"/>
-                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Class / Level"/>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Spellname" Margin="5" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Class / Level" Margin="5" VerticalAlignment="Center"/>
                     
-                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SpellName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SpellName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
                     <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-                        <TextBox Text="{Binding SpellCasterClass, UpdateSourceTrigger=PropertyChanged}" MinWidth="60"/>
-                        <TextBox Text="{Binding SpellLevel, UpdateSourceTrigger=PropertyChanged}" MinWidth="20"/>
+                        <TextBox Text="{Binding SpellCasterClass, UpdateSourceTrigger=PropertyChanged}" MinWidth="60" Margin="5"/>
+                        <TextBox Text="{Binding SpellLevel, UpdateSourceTrigger=PropertyChanged}" MinWidth="20" Margin="5"/>
                     </StackPanel>
                 </Grid>
             </Border>
+            
+            <Border Grid.Row="1" Style="{StaticResource CategoryBorderStyle}" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Spellschool" Margin="5" VerticalAlignment="Center"/>
+                    
+                    <ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"
+                              ItemsSource="{Binding SelectableSpellSchools}" IsReadOnly="True" IsEditable="True"
+                              TextSearch.TextPath="Name"
+                              Text="{Binding SpellSchools, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource CollectionToCountConverter}}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Stretch" Content="{Binding Name}" ToolTip="{Binding Description}"
+                                          Checked="ToggleButton_ToggleChecked" Unchecked="ToggleButton_ToggleChecked"
+                                          CommandParameter="{Binding Id}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    
+                    <controls:MultiSelectComboBox Grid.Column="1" Grid.Row="1" Width="100" Height="25"
+                                                  ItemSource="{Binding SelectableSpellSchools}"
+                                                  SelectedItems="{Binding SpellSchools}"/>
+                </Grid>
+            </Border>
         </Grid>
-        
-        <ContentControl Grid.Column="1" Content="{Binding SpellCardViewModel}" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="500" MinHeight="750"/>
+
+        <ContentControl Grid.Column="1" Content="{Binding SpellCardViewModel}" HorizontalAlignment="Center"
+                        VerticalAlignment="Center" MinWidth="500" MinHeight="750" />
     </Grid>
 </UserControl>

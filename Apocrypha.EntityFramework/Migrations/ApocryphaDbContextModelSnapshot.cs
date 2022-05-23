@@ -17,6 +17,48 @@ namespace Apocrypha.EntityFramework.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.ActionTimeIndicator", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActionTimeIndicator");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.ActionTimeIndicatorTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ActionTimeIndicatorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActionTimeIndicatorId");
+
+                    b.ToTable("ActionTimeIndicatorTranslation");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Allignment", b =>
                 {
                     b.Property<int>("Id")
@@ -24,6 +66,12 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Abbreviation")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameFallback")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -198,6 +246,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("Spells");
@@ -250,6 +301,15 @@ namespace Apocrypha.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("AbbreviationFallback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("SpellComponentTypes");
@@ -260,6 +320,9 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("Abbreviation")
+                        .HasColumnType("text");
 
                     b.Property<string>("CultureName")
                         .HasColumnType("text");
@@ -286,12 +349,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("SpellVariantId")
-                        .HasColumnType("int");
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SpellVariantId");
 
                     b.ToTable("SpellDescriptors");
                 });
@@ -326,6 +390,12 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -363,6 +433,12 @@ namespace Apocrypha.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("SpellSchools");
@@ -398,6 +474,12 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -457,8 +539,14 @@ namespace Apocrypha.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("CastingTimeIndicatorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CastingTimeValue")
                         .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("text");
 
                     b.Property<int?>("RuleBookId")
                         .HasColumnType("int");
@@ -473,6 +561,8 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CastingTimeIndicatorId");
 
                     b.HasIndex("RuleBookId");
 
@@ -531,6 +621,21 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("SpellDescriptorSpellVariant", b =>
+                {
+                    b.Property<int>("SpellDescriptorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpellVariantsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SpellDescriptorsId", "SpellVariantsId");
+
+                    b.HasIndex("SpellVariantsId");
+
+                    b.ToTable("SpellDescriptorSpellVariant");
+                });
+
             modelBuilder.Entity("SpellSchoolSpellVariant", b =>
                 {
                     b.Property<int>("SpellSchoolsId")
@@ -561,10 +666,19 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("SpellSubSchoolSpellVariant");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.ActionTimeIndicatorTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.ActionTimeIndicator", "ActionTimeIndicator")
+                        .WithMany("ActionTimeIndicatorTranslations")
+                        .HasForeignKey("ActionTimeIndicatorId");
+
+                    b.Navigation("ActionTimeIndicator");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.AllignmentTranslation", b =>
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Allignment", "Allignment")
-                        .WithMany("Translations")
+                        .WithMany("AllignmentTranslations")
                         .HasForeignKey("AllignmentId");
 
                     b.Navigation("Allignment");
@@ -639,15 +753,6 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Navigation("SpellComponentType");
                 });
 
-            modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellDescriptor", b =>
-                {
-                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellVariant", "SpellVariant")
-                        .WithMany("SpellDescriptors")
-                        .HasForeignKey("SpellVariantId");
-
-                    b.Navigation("SpellVariant");
-                });
-
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellDescriptorTranslation", b =>
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellDescriptor", "SpellDescriptor")
@@ -695,6 +800,10 @@ namespace Apocrypha.EntityFramework.Migrations
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellVariant", b =>
                 {
+                    b.HasOne("Apocrypha.CommonObject.Models.ActionTimeIndicator", "CastingTimeIndicator")
+                        .WithMany("SpellVariants")
+                        .HasForeignKey("CastingTimeIndicatorId");
+
                     b.HasOne("Apocrypha.CommonObject.Models.RuleBook", "RuleBook")
                         .WithMany("SpellVariants")
                         .HasForeignKey("RuleBookId");
@@ -706,6 +815,8 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellRangeType", null)
                         .WithMany("SpellVariants")
                         .HasForeignKey("SpellRangeTypeId");
+
+                    b.Navigation("CastingTimeIndicator");
 
                     b.Navigation("RuleBook");
 
@@ -719,6 +830,21 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasForeignKey("SpellVariantId");
 
                     b.Navigation("SpellVariant");
+                });
+
+            modelBuilder.Entity("SpellDescriptorSpellVariant", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellDescriptor", null)
+                        .WithMany()
+                        .HasForeignKey("SpellDescriptorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Spells.SpellVariant", null)
+                        .WithMany()
+                        .HasForeignKey("SpellVariantsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SpellSchoolSpellVariant", b =>
@@ -751,9 +877,16 @@ namespace Apocrypha.EntityFramework.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.ActionTimeIndicator", b =>
+                {
+                    b.Navigation("ActionTimeIndicatorTranslations");
+
+                    b.Navigation("SpellVariants");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Allignment", b =>
                 {
-                    b.Navigation("Translations");
+                    b.Navigation("AllignmentTranslations");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Character", b =>
@@ -810,8 +943,6 @@ namespace Apocrypha.EntityFramework.Migrations
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellVariant", b =>
                 {
                     b.Navigation("SpellComponents");
-
-                    b.Navigation("SpellDescriptors");
 
                     b.Navigation("SpellVariantTranslations");
                 });

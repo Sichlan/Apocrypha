@@ -17,7 +17,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<IPasswordHasher, PasswordHasher>();
                 services.AddSingleton<Random>();
                 services.AddSingleton<IDiceRollerService, DiceRollerService>();
-                services.AddScoped(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
+                services.AddSingleton(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
             });
 
             return hostBuilder;

@@ -44,7 +44,7 @@
     
     <Style TargetType="{x:Type ContentControl}" x:Key="SpellCardInnerBorderStyle">
         <Setter Property="Template" Value="{StaticResource SpellCardInnerBorderTemplate}"/>
-        <Setter Property="Background" Value="#b8ece5"/>
+        <Setter Property="Background" Value="{Binding BackgroundBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
     

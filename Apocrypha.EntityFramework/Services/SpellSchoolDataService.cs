@@ -3,58 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Models.Spells;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.EntityFramework.Services.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.EntityFramework.Services
 {
-    public class AllignmentDataService : IDataService<Allignment>
+    public class SpellSchoolDataService : IDataService<SpellSchool>
     {
         private readonly ApocryphaDbContextFactory _contextFactory;
-        private readonly NonQueryDataService<Allignment> _nonQueryDataService;
+        private readonly NonQueryDataService<SpellSchool> _nonQueryDataService;
 
-        public AllignmentDataService(ApocryphaDbContextFactory contextFactory)
+        public SpellSchoolDataService(ApocryphaDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
-            _nonQueryDataService = new NonQueryDataService<Allignment>(contextFactory);
+            _nonQueryDataService = new NonQueryDataService<SpellSchool>(_contextFactory);
         }
 
-        public async Task<IEnumerable<Allignment>> GetAll()
+        public async Task<IEnumerable<SpellSchool>> GetAll()
         {
             return await GetAllWhere(x => true);
         }
 
-        public async Task<IEnumerable<Allignment>> GetAllWhere(Expression<Func<Allignment, bool>> predicate)
+        public async Task<IEnumerable<SpellSchool>> GetAllWhere(Expression<Func<SpellSchool, bool>> predicate)
         {
             using var context = _contextFactory.CreateDbContext();
 
-            var allignments = await context.Allignments
-                .Include(x => x.AllignmentTranslations)
+            IEnumerable<SpellSchool> entities = await context.SpellSchools
+                .Include(x => x.SpellSchoolTranslations)
                 .Where(predicate)
                 .ToListAsync();
 
-            return allignments;
+            return entities;
         }
 
-        public async Task<Allignment> GetById(int id)
+        public async Task<SpellSchool> GetById(int id)
         {
             using var context = _contextFactory.CreateDbContext();
 
-            var allignment = await context.Allignments
-                .Include(x => x.AllignmentTranslations)
+            SpellSchool spellSchool = await context.SpellSchools
+                .Include(x => x.SpellSchoolTranslations)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            return allignment;
+            return spellSchool;
         }
 
-        public async Task<Allignment> Create(Allignment entity)
+        public async Task<SpellSchool> Create(SpellSchool entity)
         {
             return await _nonQueryDataService.Create(entity);
         }
 
-        public async Task<Allignment> Update(int id, Allignment entity)
+        public async Task<SpellSchool> Update(int id, SpellSchool entity)
         {
             return await _nonQueryDataService.Update(id, entity);
         }

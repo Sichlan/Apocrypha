@@ -1,4 +1,5 @@
 ﻿using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Models.Spells;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
 using Apocrypha.EntityFramework;
@@ -19,8 +20,9 @@ namespace Apocrypha.WPF.HostBuilders
                 // Retrieve the DB connection string from appsettings.json
                 var connectionString = context.HostingEnvironment.EnvironmentName switch
                 {
-                    "Test" => context.Configuration.GetConnectionString("mariadb-test"),
-                    _ => context.Configuration.GetConnectionString("mariadb-live")
+                    "Development" => context.Configuration.GetConnectionString("mysql_development"),
+                    "Staging" => context.Configuration.GetConnectionString("mysql_staging"),
+                    _ => context.Configuration.GetConnectionString("mysql_productive")
                 };
 
                 void ConfigureDbContext(DbContextOptionsBuilder o)
@@ -39,6 +41,12 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<IDataService<Character>, CharacterDataService>();
                 services.AddSingleton<IDataService<User>, UserDataService>();
                 services.AddSingleton<IUserService, UserDataService>();
+                
+                #region Spells
+
+                services.AddSingleton<IDataService<SpellSchool>, SpellSchoolDataService>();
+
+                #endregion
             });
 
             return hostBuilder;

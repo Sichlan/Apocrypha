@@ -26,10 +26,8 @@ namespace Apocrypha.WPF.ViewModels
             RightColor = RightColor ?? GetComplementaryColor(LeftColor.Value);
         }
 
-        public string CharacterName
-        {
-            get => String.IsNullOrWhiteSpace(_character.DisplayName) ? _character.CharacterName : _character.DisplayName;
-        }
+        public string CharacterName =>
+            String.IsNullOrWhiteSpace(_character.DisplayName) ? _character.CharacterName : _character.DisplayName;
 
         public string PreviewInfo =>
             "Human SaBa 1 / Ar 4 / Ur 2 / PsTh 3 / SuCh 1 / MyTh 3 / PsTh 1 / Cere 5";

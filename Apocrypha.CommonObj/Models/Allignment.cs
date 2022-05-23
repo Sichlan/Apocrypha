@@ -8,20 +8,22 @@ namespace Apocrypha.CommonObject.Models
     public class Allignment : DatabaseObject
     {
         public string Abbreviation { get; set; }
-        public TranslationCollection<AllignmentTranslation> Translations { get; set; }
+        public TranslationCollection<AllignmentTranslation> AllignmentTranslations { get; set; }
 
+        public string NameFallback { get; set; }
         [NotMapped]
         public string Name
         {
-            get => Translations[CultureInfo.CurrentCulture].Name;
-            set => Translations[CultureInfo.CurrentCulture].Name = value;
+            get => AllignmentTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+            set => AllignmentTranslations[CultureInfo.CurrentCulture].Name = value;
         }
 
+        public string DescriptionFallback { get; set; }
         [NotMapped]
         public string Description
         {
-            get => Translations[CultureInfo.CurrentCulture].Description;
-            set => Translations[CultureInfo.CurrentCulture].Description = value;
+            get => AllignmentTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+            set => AllignmentTranslations[CultureInfo.CurrentCulture].Description = value;
         }
     }
 }

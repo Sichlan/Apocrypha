@@ -17,12 +17,12 @@ namespace Apocrypha.CommonObject.Models.Spells
         public ICollection<SpellDescriptor> SpellDescriptors { get; set; }
         public ICollection<SpellComponent> SpellComponents { get; set; }
         public int CastingTimeValue { get; set; }
-        
-        
+        public ActionTimeIndicator CastingTimeIndicator { get; set; }
+        public string DescriptionFallback { get; set; }
         [NotMapped]
         public string Description
         {
-            get => SpellVariantTranslations[CultureInfo.CurrentCulture].Description;
+            get => SpellVariantTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
             set => SpellVariantTranslations[CultureInfo.CurrentCulture].Description = value;
         }
     }

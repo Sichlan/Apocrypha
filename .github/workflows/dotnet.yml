@@ -35,6 +35,15 @@ jobs:
 
       - name: Build Solution
         run: dotnet build --configuration Release --no-restore
+        
+      - name: Update development database
+        run: dotnet ef database update --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Development
+        
+      - name: Update development database
+        run: dotnet ef database update --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Staging
+        
+      - name: Update development database
+        run: dotnet ef database update --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Production
 
       - name: Test
         run: dotnet test --configuration Release --no-build --verbosity normal

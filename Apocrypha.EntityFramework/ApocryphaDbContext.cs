@@ -9,11 +9,13 @@ namespace Apocrypha.EntityFramework
     ///     Represents the database context.
     ///     Add migration from root folder:
     ///     dotnet ef migrations add [NAME] --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF
-    ///     dotnet ef database upgrade --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF
+    ///     dotnet ef database upgrade --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Development
+    ///     dotnet ef database upgrade --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Staging
+    ///     dotnet ef database upgrade --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Production
     /// </summary>
     public class ApocryphaDbContext : DbContext
     {
-        public ApocryphaDbContext(DbContextOptions options) : base(options) { }
+        public ApocryphaDbContext(DbContextOptions<ApocryphaDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,23 +50,23 @@ namespace Apocrypha.EntityFramework
 
         public DbSet<Spell> Spells { get; set; }
         public DbSet<SpellTranslation> SpellTranslations { get; set; }
-
+        
         public DbSet<SpellVariant> SpellVariants { get; set; }
         public DbSet<SpellVariantTranslation> SpellVariantTranslations { get; set; }
-
+        
         public DbSet<SpellSchool> SpellSchools { get; set; }
         public DbSet<SpellSchoolTranslation> SpellSchoolTranslations { get; set; }
-
+        
         public DbSet<SpellSubSchool> SpellSubSchools { get; set; }
         public DbSet<SpellSubSchoolTranslation> SpellSubSchoolTranslations { get; set; }
-
+        
         public DbSet<SpellDescriptor> SpellDescriptors { get; set; }
         public DbSet<SpellDescriptorTranslation> SpellDescriptorTranslations { get; set; }
-
+        
         public DbSet<SpellComponent> SpellComponents { get; set; }
         public DbSet<SpellComponentType> SpellComponentTypes { get; set; }
         public DbSet<SpellComponentTypeTranslation> SpellComponentTypeTranslations { get; set; }
-
+        
         public DbSet<SpellRangeType> SpellRangeTypes { get; set; }
         public DbSet<SpellRangeTypeTranslation> SpellRangeTypeTranslations { get; set; }
         

@@ -16,7 +16,7 @@
     <ItemGroup>
         <PackageReference Include="AvalonEdit" Version="6.1.2.30" />
         <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

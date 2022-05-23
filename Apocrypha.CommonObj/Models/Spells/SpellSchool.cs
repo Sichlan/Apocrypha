@@ -11,17 +11,19 @@ namespace Apocrypha.CommonObject.Models.Spells
         public ICollection<SpellVariant> SpellVariants { get; set; }
         public TranslationCollection<SpellSchoolTranslation> SpellSchoolTranslations { get; set; }
 
+        public string NameFallback { get; set; }
         [NotMapped]
         public string Name
         {
-            get => SpellSchoolTranslations[CultureInfo.CurrentCulture].Name;
+            get => SpellSchoolTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
             set => SpellSchoolTranslations[CultureInfo.CurrentCulture].Name = value;
         }
 
+        public string DescriptionFallback { get; set; }
         [NotMapped]
         public string Description
         {
-            get => SpellSchoolTranslations[CultureInfo.CurrentCulture].Description;
+            get => SpellSchoolTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
             set => SpellSchoolTranslations[CultureInfo.CurrentCulture].Description = value;
         }
     }
