@@ -58,7 +58,7 @@
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Spellschool" Margin="5" VerticalAlignment="Center"/>
                     
                     <ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"
-                              ItemsSource="{Binding SelectableSpellSchools}" IsReadOnly="True" IsEditable="True"
+                              ItemsSource="{Binding SelectableSpellSchools, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" IsEditable="True"
                               TextSearch.TextPath="Name"
                               Text="{Binding SpellSchools, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource CollectionToCountConverter}}">
                         <ComboBox.ItemTemplate>
@@ -69,10 +69,6 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    
-                    <controls:MultiSelectComboBox Grid.Column="1" Grid.Row="1" Width="100" Height="25"
-                                                  ItemSource="{Binding SelectableSpellSchools}"
-                                                  SelectedItems="{Binding SpellSchools}"/>
                 </Grid>
             </Border>
         </Grid>

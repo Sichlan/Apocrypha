@@ -65,7 +65,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public WindowState CurrentWindowState
         {
-            get => _currentWindowState;
+            get
+            {
+                return _currentWindowState;
+            }
             set 
             { 
                 _currentWindowState = value;
@@ -73,20 +76,50 @@ namespace Apocrypha.WPF.ViewModels
             }
         }
 
-        public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
-        public bool IsLoggedIn => _authenticator.IsLoggedIn;
-        public bool HasActiveCharacter => _characterStore.HasActiveCharacter;
+        public BaseViewModel CurrentViewModel
+        {
+            get
+            {
+                return _navigator.CurrentViewModel;
+            }
+        }
+
+        public bool IsLoggedIn
+        {
+            get
+            {
+                return _authenticator.IsLoggedIn;
+            }
+        }
+
+        public bool HasActiveCharacter
+        {
+            get
+            {
+                return _characterStore.HasActiveCharacter;
+            }
+        }
+
         public AsyncCommandBase UpdateCurrentViewModelCommand { get; }
         public AsyncCommandBase LogoutCommand { get; }
         public ICommand MinimizeCommand { get; set; }
         public ICommand MaximizeCommand { get; set; }
         public ICommand CloseCommand { get; set; }
         public ICommand SaveCharacterCommand { get; set; }
-        public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
+        public bool IsExecutingCommand
+        {
+            get
+            {
+                return UpdateCurrentViewModelCommand?.IsExecuting == true;
+            }
+        }
 
         public bool MenuExpanded
         {
-            get => _menuExpanded;
+            get
+            {
+                return _menuExpanded;
+            }
             set
             {
                 _menuExpanded = value;

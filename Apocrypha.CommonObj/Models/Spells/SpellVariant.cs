@@ -22,8 +22,14 @@ namespace Apocrypha.CommonObject.Models.Spells
         [NotMapped]
         public string Description
         {
-            get => SpellVariantTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-            set => SpellVariantTranslations[CultureInfo.CurrentCulture].Description = value;
+            get
+            {
+                return SpellVariantTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+            }
+            set
+            {
+                SpellVariantTranslations[CultureInfo.CurrentCulture].Description = value;
+            }
         }
     }
 }

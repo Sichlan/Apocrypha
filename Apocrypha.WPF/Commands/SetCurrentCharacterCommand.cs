@@ -21,9 +21,8 @@ namespace Apocrypha.WPF.Commands
         public override async Task ExecuteAsync(object parameter)
         {
             _characterStore.CurrentCharacter = _character;
-            
-            if (_renavigator != null)
-                _renavigator.Renavigate();
+
+            _renavigator?.Renavigate();
         }
 
         public override bool CanExecuteAsync(object parameter)

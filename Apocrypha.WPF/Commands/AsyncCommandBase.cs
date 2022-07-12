@@ -11,7 +11,10 @@ namespace Apocrypha.WPF.Commands
 
         public bool IsExecuting
         {
-            get => _isExecuting;
+            get
+            {
+                return _isExecuting;
+            }
             set
             {
                 _isExecuting = value;

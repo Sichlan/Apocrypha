@@ -53,7 +53,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public string SpellName
         {
-            get => _spellName;
+            get
+            {
+                return _spellName;
+            }
             set
             {
                 _spellName = value;
@@ -63,7 +66,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public string CasterClass
         {
-            get => _casterClass;
+            get
+            {
+                return _casterClass;
+            }
             set
             {
                 _casterClass = value;
@@ -73,7 +79,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public int SpellLevel
         {
-            get => _spellLevel;
+            get
+            {
+                return _spellLevel;
+            }
             set
             {
                 _spellLevel = value;
@@ -81,12 +90,20 @@ namespace Apocrypha.WPF.ViewModels
             }
         }
 
-        public string SpellSchoolString =>
-            string.Join(',', SpellSchools.OrderBy(x => x.Id).Select(x => x.Name));
+        public string SpellSchoolString
+        {
+            get
+            {
+                return string.Join(',', SpellSchools.OrderBy(x => x.Id).Select(x => x.Name));
+            }
+        }
 
         public ObservableCollection<SpellSchool> SpellSchools
         {
-            get => _spellSchools;
+            get
+            {
+                return _spellSchools;
+            }
             set
             {
                 _spellSchools = value;
@@ -96,12 +113,20 @@ namespace Apocrypha.WPF.ViewModels
             }
         }
 
-        public string SpellSubSchoolString =>
-            string.Join(',', SpellSubSchools.OrderBy(x => x.Id).Select(x => x.Name));
+        public string SpellSubSchoolString
+        {
+            get
+            {
+                return string.Join(',', SpellSubSchools.OrderBy(x => x.Id).Select(x => x.Name));
+            }
+        }
 
         public ObservableCollection<SpellSubSchool> SpellSubSchools
         {
-            get => _spellSubSchools;
+            get
+            {
+                return _spellSubSchools;
+            }
             set
             {
                 _spellSubSchools = value;
@@ -110,12 +135,20 @@ namespace Apocrypha.WPF.ViewModels
             }
         }
 
-        public string SpellDescriptorString =>
-            string.Join(',', SpellDescriptors.OrderBy(x => x.Id).Select(x => x.Name));
+        public string SpellDescriptorString
+        {
+            get
+            {
+                return string.Join(',', SpellDescriptors.OrderBy(x => x.Id).Select(x => x.Name));
+            }
+        }
 
         public ObservableCollection<SpellDescriptor> SpellDescriptors
         {
-            get => _spellDescriptors;
+            get
+            {
+                return _spellDescriptors;
+            }
             set
             {
                 _spellDescriptors = value;

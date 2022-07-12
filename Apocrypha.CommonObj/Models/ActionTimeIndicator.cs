@@ -17,16 +17,28 @@ namespace Apocrypha.CommonObject.Models
         [NotMapped]
         public string Name
         {
-            get => ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-            set => ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name = value;
+            get
+            {
+                return ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+            }
+            set
+            {
+                ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name = value;
+            }
         }
 
         public string DescriptionFallback { get; set; }
         [NotMapped]
         public string Description
         {
-            get => ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-            set => ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description = value;
+            get
+            {
+                return ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+            }
+            set
+            {
+                ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description = value;
+            }
         }
     }
 }

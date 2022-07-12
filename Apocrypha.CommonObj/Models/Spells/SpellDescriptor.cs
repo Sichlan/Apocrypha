@@ -15,16 +15,28 @@ namespace Apocrypha.CommonObject.Models.Spells
         [NotMapped]
         public string Name
         {
-            get => SpellDescriptorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-            set => SpellDescriptorTranslations[CultureInfo.CurrentCulture].Name = value;
+            get
+            {
+                return SpellDescriptorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+            }
+            set
+            {
+                SpellDescriptorTranslations[CultureInfo.CurrentCulture].Name = value;
+            }
         }
 
         public string DescriptionFallback { get; set; }
         [NotMapped]
         public string Description
         {
-            get => SpellDescriptorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-            set => SpellDescriptorTranslations[CultureInfo.CurrentCulture].Description = value;
+            get
+            {
+                return SpellDescriptorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+            }
+            set
+            {
+                SpellDescriptorTranslations[CultureInfo.CurrentCulture].Description = value;
+            }
         }
     }
 }

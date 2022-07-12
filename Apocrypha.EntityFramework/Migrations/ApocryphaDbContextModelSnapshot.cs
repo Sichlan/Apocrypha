@@ -15,7 +15,7 @@ namespace Apocrypha.EntityFramework.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.17");
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.ActionTimeIndicator", b =>
                 {
@@ -24,10 +24,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DescriptionFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NameFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -44,13 +44,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -66,13 +66,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Abbreviation")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DescriptionFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NameFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -89,13 +89,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -114,10 +114,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CharacterName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("CreationDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("CreatorUserId")
                         .HasColumnType("int");
@@ -126,10 +126,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("DisplayName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("LastModifiedDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("TrueAllignmentId")
                         .HasColumnType("int");
@@ -150,7 +150,7 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("AquiredAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("ItemId")
                         .HasColumnType("int");
@@ -180,10 +180,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("System")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -197,10 +197,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -218,26 +218,47 @@ namespace Apocrypha.EntityFramework.Migrations
 
                     b.Property<string>("Abbreviation")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("EditionId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<string>("FallbackName")
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime?>("PublishedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EditionId");
 
                     b.ToTable("RuleBooks");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.RuleBookTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("RuleBookId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RuleBookId");
+
+                    b.ToTable("RuleBookTranslation");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.Spell", b =>
@@ -247,7 +268,7 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NameFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -264,19 +285,19 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CountIndicator")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("ItemId")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("MinimalItemGoldValue")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("OtherComponentName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("OtherComponentText")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("SpellComponentTypeId")
                         .HasColumnType("int");
@@ -302,13 +323,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AbbreviationFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DescriptionFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NameFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -322,16 +343,16 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Abbreviation")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("SpellComponentTypeId")
                         .HasColumnType("int");
@@ -350,10 +371,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DescriptionFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NameFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -367,13 +388,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("SpellDescriptorId")
                         .HasColumnType("int");
@@ -392,10 +413,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DescriptionFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NameFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -409,13 +430,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("SpellRangeTypeId")
                         .HasColumnType("int");
@@ -434,10 +455,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DescriptionFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NameFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -451,13 +472,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("SpellSchoolId")
                         .HasColumnType("int");
@@ -476,10 +497,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DescriptionFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NameFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -493,13 +514,13 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("SpellSubSchoolId")
                         .HasColumnType("int");
@@ -518,10 +539,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("SpellId")
                         .HasColumnType("int");
@@ -546,7 +567,7 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DescriptionFallback")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("RuleBookId")
                         .HasColumnType("int");
@@ -580,10 +601,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CultureName")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("SpellVariantId")
                         .HasColumnType("int");
@@ -602,19 +623,19 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateJoined")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Username")
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -723,6 +744,15 @@ namespace Apocrypha.EntityFramework.Migrations
                         .IsRequired();
 
                     b.Navigation("Edition");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.RuleBookTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.RuleBook", "RuleBook")
+                        .WithMany("RuleBookTranslations")
+                        .HasForeignKey("RuleBookId");
+
+                    b.Navigation("RuleBook");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellComponent", b =>
@@ -901,6 +931,8 @@ namespace Apocrypha.EntityFramework.Migrations
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.RuleBook", b =>
                 {
+                    b.Navigation("RuleBookTranslations");
+
                     b.Navigation("SpellVariants");
                 });
 

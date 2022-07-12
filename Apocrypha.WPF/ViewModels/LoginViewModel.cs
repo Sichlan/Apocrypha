@@ -25,7 +25,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public string Username
         {
-            get => _username;
+            get
+            {
+                return _username;
+            }
             set
             {
                 _username = value;
@@ -37,7 +40,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public string Password
         {
-            get => _password;
+            get
+            {
+                return _password;
+            }
             set
             {
                 _password = value;
@@ -49,7 +55,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public string ErrorMessage
         {
-            set => ErrorMessageViewModel.Message = value;
+            set
+            {
+                ErrorMessageViewModel.Message = value;
+            }
         }
 
         #endregion

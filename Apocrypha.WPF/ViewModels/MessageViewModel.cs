@@ -16,7 +16,10 @@
 
         public string Message
         {
-            get => _message;
+            get
+            {
+                return _message;
+            }
             set
             {
                 _message = value;
@@ -27,7 +30,10 @@
 
         public MessageType MessageType
         {
-            get => _messageType;
+            get
+            {
+                return _messageType;
+            }
             set
             {
                 _messageType = value;
@@ -35,6 +41,12 @@
             }
         }
 
-        public bool HasMessage => !string.IsNullOrEmpty(Message);
+        public bool HasMessage
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Message);
+            }
+        }
     }
 }

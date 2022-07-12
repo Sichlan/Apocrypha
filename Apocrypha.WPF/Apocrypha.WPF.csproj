@@ -11,6 +11,9 @@
         <None Remove="Resources\Fonts\AngerStyles.ttf" />
         <None Remove="Resources\Fonts\TheCenturion.ttf" />
         <None Remove="Resources\Fonts\WrathStyles.ttf" />
+        <None Update="Resources\Images\login_background.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +25,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
         <PackageReference Include="PasswordBoxMVVM" Version="1.0.5" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
         <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     </ItemGroup>
 

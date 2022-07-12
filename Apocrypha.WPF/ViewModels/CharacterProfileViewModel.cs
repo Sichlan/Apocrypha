@@ -61,7 +61,10 @@ namespace Apocrypha.WPF.ViewModels
         
         public string CharacterName
         {
-            get => _characterStore.CurrentCharacter.CharacterName;
+            get
+            {
+                return _characterStore.CurrentCharacter.CharacterName;
+            }
             set
             {
                 _characterStore.CurrentCharacter.CharacterName = value;
@@ -71,7 +74,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public string DisplayName
         {
-            get => _characterStore.CurrentCharacter.DisplayName;
+            get
+            {
+                return _characterStore.CurrentCharacter.DisplayName;
+            }
             set
             {
                 _characterStore.CurrentCharacter.DisplayName = value;
@@ -82,7 +88,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public Allignment TrueAllignment
         {
-            get => _characterStore.CurrentCharacter.TrueAllignment;
+            get
+            {
+                return _characterStore.CurrentCharacter.TrueAllignment;
+            }
             set
             {
                 _characterStore.CurrentCharacter.TrueAllignment = value;
@@ -90,8 +99,13 @@ namespace Apocrypha.WPF.ViewModels
             }
         }
 
-        public bool CharacterHasDisplayName =>
-            !String.IsNullOrEmpty(DisplayName);
+        public bool CharacterHasDisplayName
+        {
+            get
+            {
+                return !String.IsNullOrEmpty(DisplayName);
+            }
+        }
 
         public ICommand ChangeCharacterAllignmentCommand { get; set; }
     }

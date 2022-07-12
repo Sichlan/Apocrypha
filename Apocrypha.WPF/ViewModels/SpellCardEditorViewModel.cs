@@ -19,15 +19,24 @@ namespace Apocrypha.WPF.ViewModels
 
         public List<SpellSchool> SelectableSpellSchools
         {
-            get => _selectableSpellSchools;
-            set => _selectableSpellSchools = value;
+            get
+            {
+                return _selectableSpellSchools;
+            }
+            set
+            {
+                _selectableSpellSchools = value;
+            }
         }
 
         #endregion
         
         public SpellCardViewModel SpellCardViewModel
         {
-            get => _spellCardViewModel;
+            get
+            {
+                return _spellCardViewModel;
+            }
             set
             {
                 _spellCardViewModel = value;
@@ -37,25 +46,36 @@ namespace Apocrypha.WPF.ViewModels
 
         public string SpellName
         {
-            get => SpellCardViewModel.SpellName;
+            get
+            {
+                return SpellCardViewModel.SpellName;
+            }
             set
             {
                 SpellCardViewModel.SpellName = value;
                 OnPropertyChanged();
             }
         }
+
         public string SpellCasterClass
         {
-            get => SpellCardViewModel.CasterClass;
+            get
+            {
+                return SpellCardViewModel.CasterClass;
+            }
             set
             {
                 SpellCardViewModel.CasterClass = value;
                 OnPropertyChanged();
             }
         }
+
         public int SpellLevel
         {
-            get => SpellCardViewModel.SpellLevel;
+            get
+            {
+                return SpellCardViewModel.SpellLevel;
+            }
             set
             {
                 SpellCardViewModel.SpellLevel = value;
@@ -65,13 +85,17 @@ namespace Apocrypha.WPF.ViewModels
 
         public ObservableCollection<SpellSchool> SpellSchools
         {
-            get => SpellCardViewModel.SpellSchools;
+            get
+            {
+                return SpellCardViewModel.SpellSchools;
+            }
             set
             {
                 SpellCardViewModel.SpellSchools = value;
                 OnPropertyChanged();
             }
         }
+
         public SpellCardEditorViewModel(IDataService<SpellSchool> spellSchoolDataService)
         {
             _spellSchoolDataService = spellSchoolDataService;

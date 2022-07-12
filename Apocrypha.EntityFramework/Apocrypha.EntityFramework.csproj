@@ -12,12 +12,18 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MySql.Data" Version="8.0.29" />
-        <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.13" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Migrations\20220711162402_thiswontworkanyways.cs" />
+      <Compile Remove="Migrations\20220711162402_thiswontworkanyways.Designer.cs" />
+      <Compile Remove="Migrations\20220711161820_testmigration.cs" />
+      <Compile Remove="Migrations\20220711161820_testmigration.Designer.cs" />
     </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using Apocrypha.CommonObject.Models;
+﻿using System;
+using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Spells;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
@@ -27,7 +28,7 @@ namespace Apocrypha.WPF.HostBuilders
 
                 void ConfigureDbContext(DbContextOptionsBuilder o)
                 {
-                    o.UseMySQL(connectionString);
+                    o.UseMySql(connectionString, new MySqlServerVersion(new Version(8,0,29)));
                 }
 
                 // Configure DB service for migrations

@@ -9,7 +9,10 @@ namespace Apocrypha.WPF.State.Navigators
 
         public BaseViewModel CurrentViewModel
         {
-            get => _currentViewModel;
+            get
+            {
+                return _currentViewModel;
+            }
             set
             {
                 _currentViewModel = value;
