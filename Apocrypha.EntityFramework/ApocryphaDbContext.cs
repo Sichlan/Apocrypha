@@ -37,14 +37,40 @@ namespace Apocrypha.EntityFramework
 
         #region DatabaseTables
 
-        public DbSet<Character> Characters { get; set; }
-        public DbSet<CharacterItem> CharacterItems { get; set; }
-        public DbSet<Item> Items { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Edition> Editions { get; set; }
-        public DbSet<RuleBook> RuleBooks { get; set; }
         public DbSet<Allignment> Allignments { get; set; }
         public DbSet<AllignmentTranslation> AllignmentTranslations { get; set; }
+        public DbSet<Alphabet> Alphabets { get; set; }
+        public DbSet<AlphabetTranslation> AlphabetTranslations { get; set; }
+        public DbSet<Character> Characters { get; set; }
+        public DbSet<CharacterItem> CharacterItems { get; set; }
+        public DbSet<CreatureSizeCategory> CreatureSizeCategories { get; set; }
+        public DbSet<CreatureSizeCategoryTranslation> CreatureSizeCategoryTranslations { get; set; }
+        public DbSet<CreatureSubType> CreatureSubTypes { get; set; }
+        public DbSet<CreatureSubTypeTranslation> CreatureSubTypeTranslations { get; set; }
+        public DbSet<CreatureType> CreatureTypes { get; set; }
+        public DbSet<CreatureTypeTranslation> CreatureTypeTranslations { get; set; }
+        public DbSet<Edition> Editions { get; set; }
+        public DbSet<FeatOption> FeatOptions { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<LanguageTranslation> LanguageTranslations { get; set; }
+        public DbSet<MovementManeuverability> MovementManeuverabilities { get; set; }
+        public DbSet<MovementManeuverabilityTranslation> MovementManeuverabilityTranslations { get; set; }
+        public DbSet<MovementMode> MovementModes { get; set; }
+        public DbSet<MovementModeTranslation> MovementModeTranslations { get; set; }
+        public DbSet<Race> Races { get; set; }
+        public DbSet<RaceAdditionalLanguage> RaceAdditionalLanguages { get; set; }
+        public DbSet<RaceBonusLanguage> RaceBonusLanguages { get; set; }
+        public DbSet<RaceMovementMode> RaceMovementModes { get; set; }
+        public DbSet<RaceSense> RaceSenses { get; set; }
+        public DbSet<RaceSpecialAbility> RaceSpecialAbilities { get; set; }
+        public DbSet<RaceSpecialAbilityTranslation> RaceSpecialAbilityTranslations { get; set; }
+        public DbSet<RaceTranslation> RaceTranslations { get; set; }
+        public DbSet<RuleBook> RuleBooks { get; set; }
+        public DbSet<RuleBookTranslation> RuleBookTranslations { get; set; }
+        public DbSet<Sense> Senses { get; set; }
+        public DbSet<SenseTranslation> SenseTranslations { get; set; }
+        public DbSet<User> Users { get; set; }
         
         #region Spells
 
