@@ -5,19 +5,15 @@ using Apocrypha.CommonObject.Models.Common;
 
 namespace Apocrypha.CommonObject.Models
 {
-    // TODO: Expand this when Feats are added
-    // TODO: Implement method to retrieve Feats based upon a FeatOption input
     /// <summary>
     /// Displays the option to take a feat and criteria for feats selectable with this option.<br/>
-    /// <b>IMPORTANT:</b> This is neither a collection of feats nor has it a direct relation via foreign key or similar to feats. This class only displays criteria to filter the list of available feats!
+    /// <inheritdoc cref="IFeatOption"/>
     /// </summary>
-    public class FeatOption : DatabaseObject
+    public class RaceFeatOption : DatabaseObject, IFeatOption
     {
-        /// <summary>
-        /// A concatted list of feat ids allowed to take when this option is presented.
-        /// </summary>
-        public string IdList { get; private set; }
-
+        public Race Race { get; set; }
+        /// <inheritdoc/>
+        public string IdList { get; set; }
         [NotMapped]
         public ICollection<int> FeatIds
         {

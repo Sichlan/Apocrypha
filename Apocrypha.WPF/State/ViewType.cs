@@ -8,6 +8,8 @@
         CharacterSelection,
         Profile,
         DiceRoller,
-        SpellCardEditor
+        SpellCardEditor,
+        RaceEditor,
+        RaceList
     }
 }

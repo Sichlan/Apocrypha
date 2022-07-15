@@ -88,6 +88,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit race.
+        /// </summary>
+        public static string ButtonLabelEditRace {
+            get {
+                return ResourceManager.GetString("ButtonLabelEditRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to login.
         /// </summary>
         public static string ButtonLabelLogin {
@@ -102,6 +111,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string ButtonLabelNewCharacter {
             get {
                 return ResourceManager.GetString("ButtonLabelNewCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New race.
+        /// </summary>
+        public static string ButtonLabelNewRace {
+            get {
+                return ResourceManager.GetString("ButtonLabelNewRace", resourceCulture);
             }
         }
         
@@ -183,6 +201,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string ErrorRegistrationUsernameAlreadyExists {
             get {
                 return ResourceManager.GetString("ErrorRegistrationUsernameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The view type does not have a view model..
+        /// </summary>
+        public static string ErrorViewTypeNotReckognized {
+            get {
+                return ResourceManager.GetString("ErrorViewTypeNotReckognized", resourceCulture);
             }
         }
         
@@ -363,6 +390,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string MenuLabelProfile {
             get {
                 return ResourceManager.GetString("MenuLabelProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Race editor.
+        /// </summary>
+        public static string MenuLabelRaceEditor {
+            get {
+                return ResourceManager.GetString("MenuLabelRaceEditor", resourceCulture);
             }
         }
         

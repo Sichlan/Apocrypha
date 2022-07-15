@@ -3,14 +3,16 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220715173657_update_feat_options")]
+    partial class update_feat_options
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -382,6 +384,25 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("Editions");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.FeatOption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdList")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("RaceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("FeatOptions");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -640,25 +661,6 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.HasIndex("RaceId");
 
                     b.ToTable("RaceBonusLanguages");
-                });
-
-            modelBuilder.Entity("Apocrypha.CommonObject.Models.RaceFeatOption", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdList")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("RaceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RaceId");
-
-                    b.ToTable("FeatOptions");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.RaceMovementMode", b =>
@@ -1392,6 +1394,15 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Navigation("CreatureType");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.FeatOption", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Race", "Race")
+                        .WithMany("AdditionalFeatOptions")
+                        .HasForeignKey("RaceId");
+
+                    b.Navigation("Race");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Language", b =>
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Alphabet", "Alphabet")
@@ -1481,15 +1492,6 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasForeignKey("RaceId");
 
                     b.Navigation("Language");
-
-                    b.Navigation("Race");
-                });
-
-            modelBuilder.Entity("Apocrypha.CommonObject.Models.RaceFeatOption", b =>
-                {
-                    b.HasOne("Apocrypha.CommonObject.Models.Race", "Race")
-                        .WithMany("AdditionalFeatOptions")
-                        .HasForeignKey("RaceId");
 
                     b.Navigation("Race");
                 });

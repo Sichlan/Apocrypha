@@ -7,9 +7,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace Apocrypha.WPF.HostBuilders
 {
-    public static class AddMiscelaneousConfigurationHostBuilderExtension
+    public static class AddMiscellaneousConfigurationHostBuilderExtension
     {
-        public static IHostBuilder AddMiscelaneousConfiguration(this IHostBuilder hostBuilder)
+        public static IHostBuilder AddMiscellaneousConfiguration(this IHostBuilder hostBuilder)
         {
             hostBuilder.ConfigureServices(services =>
             {

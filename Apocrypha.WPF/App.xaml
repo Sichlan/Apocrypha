@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
              xmlns:views="clr-namespace:Apocrypha.WPF.Views"
-             xmlns:converters="clr-namespace:Apocrypha.WPF.Converters">
+             xmlns:converters="clr-namespace:Apocrypha.WPF.Converters"
+             xmlns:models="clr-namespace:Apocrypha.CommonObject.Models;assembly=Apocrypha.CommonObject">
     <Application.Resources>
 
         <ResourceDictionary>
@@ -56,6 +57,18 @@
 
             <DataTemplate DataType="{x:Type viewModels:SpellCardEditorViewModel}">
                 <views:SpellCardEditorView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:RaceEditorViewModel}">
+                <views:RaceEditorView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:RaceListViewModel}">
+                <views:RaceListView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type models:Race}" x:Key="RaceListBoxItemDataTemplate">
+                <views:RaceListItemView />
             </DataTemplate>
             <!--#endregion-->
 

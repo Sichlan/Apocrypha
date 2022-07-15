@@ -50,7 +50,7 @@ namespace Apocrypha.EntityFramework
         public DbSet<CreatureType> CreatureTypes { get; set; }
         public DbSet<CreatureTypeTranslation> CreatureTypeTranslations { get; set; }
         public DbSet<Edition> Editions { get; set; }
-        public DbSet<FeatOption> FeatOptions { get; set; }
+        public DbSet<RaceFeatOption> FeatOptions { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<LanguageTranslation> LanguageTranslations { get; set; }

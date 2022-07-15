@@ -24,7 +24,7 @@ namespace Apocrypha.CommonObject.Models
         public ICollection<RaceAdditionalLanguage> AutomaticLanguages {get;set;} 
         public ICollection<RaceBonusLanguage> BonusLanguages {get;set;} 
         public int AdditionalSkillPoints {get;set;} 
-        public ICollection<FeatOption> AdditionalFeatOptions {get;set;} 
+        public ICollection<RaceFeatOption> AdditionalFeatOptions {get;set;} 
         public ICollection<RaceSpecialAbility> SpecialAbilities {get;set;} 
         public int? LevelAdjustment {get;set;} 
         public int ChallengeRating {get;set;} 

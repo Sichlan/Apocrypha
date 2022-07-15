@@ -13,6 +13,15 @@ namespace Apocrypha.WPF.ViewModels
     {
         private readonly ICharacterStore _characterStore;
         private readonly IDataService<Allignment> _allignmentService;
+        private Allignment _allignmentLg;
+        private Allignment _allignmentLn;
+        private Allignment _allignmentLe;
+        private Allignment _allignmentNg;
+        private Allignment _allignmentTn;
+        private Allignment _allignmentNe;
+        private Allignment _allignmentCg;
+        private Allignment _allignmentCn;
+        private Allignment _allignmentCe;
 
         public CharacterProfileViewModel(ICharacterStore characterStore, IDataService<Allignment> allignmentService)
         {
@@ -23,22 +32,22 @@ namespace Apocrypha.WPF.ViewModels
 
             ChangeCharacterAllignmentCommand = new ChangeCharacterAllignmentCommand(_characterStore);
 
-            InitAllignmentProperties().Wait();
+            InitAllignmentProperties();
         }
 
-        private async Task InitAllignmentProperties()
+        private async void InitAllignmentProperties()
         {
             var allignments = (await _allignmentService.GetAll()).ToList();
 
-            AllignmentLG = allignments.FirstOrDefault(x => x.Abbreviation == "LG");
-            AllignmentLN = allignments.FirstOrDefault(x => x.Abbreviation == "LN");
-            AllignmentLE = allignments.FirstOrDefault(x => x.Abbreviation == "LE");
-            AllignmentNG = allignments.FirstOrDefault(x => x.Abbreviation == "NG");
-            AllignmentTN = allignments.FirstOrDefault(x => x.Abbreviation == "TN");
-            AllignmentNE = allignments.FirstOrDefault(x => x.Abbreviation == "NE");
-            AllignmentCG = allignments.FirstOrDefault(x => x.Abbreviation == "CG");
-            AllignmentCN = allignments.FirstOrDefault(x => x.Abbreviation == "CN");
-            AllignmentCE = allignments.FirstOrDefault(x => x.Abbreviation == "CE");
+            AllignmentLg = allignments.FirstOrDefault(x => x.Abbreviation == "LG");
+            AllignmentLn = allignments.FirstOrDefault(x => x.Abbreviation == "LN");
+            AllignmentLe = allignments.FirstOrDefault(x => x.Abbreviation == "LE");
+            AllignmentNg = allignments.FirstOrDefault(x => x.Abbreviation == "NG");
+            AllignmentTn = allignments.FirstOrDefault(x => x.Abbreviation == "TN");
+            AllignmentNe = allignments.FirstOrDefault(x => x.Abbreviation == "NE");
+            AllignmentCg = allignments.FirstOrDefault(x => x.Abbreviation == "CG");
+            AllignmentCn = allignments.FirstOrDefault(x => x.Abbreviation == "CN");
+            AllignmentCe = allignments.FirstOrDefault(x => x.Abbreviation == "CE");
         }
 
         private void CharacterStoreOnStateChange()
@@ -49,16 +58,123 @@ namespace Apocrypha.WPF.ViewModels
             OnPropertyChanged(nameof(TrueAllignment));
         }
 
-        public Allignment AllignmentLG { get; private set; }
-        public Allignment AllignmentLN { get; private set; }
-        public Allignment AllignmentLE { get; private set; }
-        public Allignment AllignmentNG { get; private set; }
-        public Allignment AllignmentTN { get; private set; }
-        public Allignment AllignmentNE { get; private set; }
-        public Allignment AllignmentCG { get; private set; }
-        public Allignment AllignmentCN { get; private set; }
-        public Allignment AllignmentCE { get; private set; }
-        
+        public Allignment AllignmentLg
+        {
+            get
+            {
+                return _allignmentLg;
+            }
+            private set
+            {
+                _allignmentLg = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Allignment AllignmentLn
+        {
+            get
+            {
+                return _allignmentLn;
+            }
+            private set
+            {
+                _allignmentLn = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Allignment AllignmentLe
+        {
+            get
+            {
+                return _allignmentLe;
+            }
+            private set
+            {
+                _allignmentLe = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Allignment AllignmentNg
+        {
+            get
+            {
+                return _allignmentNg;
+            }
+            private set
+            {
+                _allignmentNg = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Allignment AllignmentTn
+        {
+            get
+            {
+                return _allignmentTn;
+            }
+            private set
+            {
+                _allignmentTn = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Allignment AllignmentNe
+        {
+            get
+            {
+                return _allignmentNe;
+            }
+            private set
+            {
+                _allignmentNe = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Allignment AllignmentCg
+        {
+            get
+            {
+                return _allignmentCg;
+            }
+            private set
+            {
+                _allignmentCg = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Allignment AllignmentCn
+        {
+            get
+            {
+                return _allignmentCn;
+            }
+            private set
+            {
+                _allignmentCn = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Allignment AllignmentCe
+        {
+            get
+            {
+                return _allignmentCe;
+            }
+            private set
+            {
+                _allignmentCe = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string CharacterName
         {
             get

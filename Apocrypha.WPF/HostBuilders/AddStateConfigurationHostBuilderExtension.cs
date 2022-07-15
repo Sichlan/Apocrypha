@@ -1,6 +1,7 @@
 ﻿using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.State.Races;
 using Apocrypha.WPF.State.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,6 +18,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<IAuthenticator, Authenticator>();
                 services.AddSingleton<IUserStore, UserStore>();
                 services.AddSingleton<ICharacterStore, CharacterStore>();
+                services.AddSingleton<IRaceStore, RaceStore>();
             });
 
             return hostBuilder;

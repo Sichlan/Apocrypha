@@ -79,39 +79,39 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <RadioButton Grid.Column="0" Grid.Row="0" DataContext="{Binding AllignmentLG}"
+                        <RadioButton Grid.Column="0" Grid.Row="0" DataContext="{Binding AllignmentLg, UpdateSourceTrigger=PropertyChanged}"
                                 Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                 IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=1, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                 Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>
-                        <RadioButton Grid.Column="1" Grid.Row="0" DataContext="{Binding AllignmentNG}"
+                        <RadioButton Grid.Column="1" Grid.Row="0" DataContext="{Binding AllignmentNg}"
                                      Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=2, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                      Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>
-                        <RadioButton Grid.Column="2" Grid.Row="0" DataContext="{Binding AllignmentCG}"
+                        <RadioButton Grid.Column="2" Grid.Row="0" DataContext="{Binding AllignmentCg}"
                                      Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=3, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                      Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>
-                        <RadioButton Grid.Column="0" Grid.Row="1" DataContext="{Binding AllignmentLN}"
+                        <RadioButton Grid.Column="0" Grid.Row="1" DataContext="{Binding AllignmentLn}"
                                      Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=4, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                      Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>
-                        <RadioButton Grid.Column="1" Grid.Row="1" DataContext="{Binding AllignmentTN}"
+                        <RadioButton Grid.Column="1" Grid.Row="1" DataContext="{Binding AllignmentTn}"
                                      Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=5, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                      Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>
-                        <RadioButton Grid.Column="2" Grid.Row="1" DataContext="{Binding AllignmentCN}"
+                        <RadioButton Grid.Column="2" Grid.Row="1" DataContext="{Binding AllignmentCn}"
                                      Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=6, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                      Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>
-                        <RadioButton Grid.Column="0" Grid.Row="2" DataContext="{Binding AllignmentLE}"
+                        <RadioButton Grid.Column="0" Grid.Row="2" DataContext="{Binding AllignmentLe}"
                                      Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=7, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                      Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>
-                        <RadioButton Grid.Column="1" Grid.Row="2" DataContext="{Binding AllignmentNE}"
+                        <RadioButton Grid.Column="1" Grid.Row="2" DataContext="{Binding AllignmentNe}"
                                      Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=8, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                      Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>
-                        <RadioButton Grid.Column="2" Grid.Row="2" DataContext="{Binding AllignmentCE}"
+                        <RadioButton Grid.Column="2" Grid.Row="2" DataContext="{Binding AllignmentCe}"
                                      Content="{Binding Abbreviation}" ToolTip="{Binding Name}"
                                      IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.TrueAllignment, Converter={StaticResource DatabaseObjectHasSpecificIdToBoolConverter}, ConverterParameter=9, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                                      Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:CharacterProfileView}, Path=DataContext.ChangeCharacterAllignmentCommand}" CommandParameter="{Binding}"/>

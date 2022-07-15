@@ -24,6 +24,11 @@ namespace Apocrypha.WPF.Commands
 
         public event EventHandler CanExecuteChanged;
 
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         public bool CanExecute(object parameter)
         {
             return !IsExecuting && CanExecuteAsync(parameter);

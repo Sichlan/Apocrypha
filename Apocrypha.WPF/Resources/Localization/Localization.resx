@@ -123,4 +123,16 @@
     <data name="LabelSpellDescriptor" xml:space="preserve">
         <value>Descriptor</value>
     </data>
+    <data name="MenuLabelRaceEditor" xml:space="preserve">
+        <value>Race editor</value>
+    </data>
+    <data name="ErrorViewTypeNotReckognized" xml:space="preserve">
+        <value>The view type does not have a view model.</value>
+    </data>
+    <data name="ButtonLabelNewRace" xml:space="preserve">
+        <value>New race</value>
+    </data>
+    <data name="ButtonLabelEditRace" xml:space="preserve">
+        <value>Edit race</value>
+    </data>
 </root>

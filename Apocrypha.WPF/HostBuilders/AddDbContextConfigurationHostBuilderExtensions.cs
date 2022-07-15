@@ -41,6 +41,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<IDataService<Allignment>, AllignmentDataService>();
                 services.AddSingleton<IDataService<Character>, CharacterDataService>();
                 services.AddSingleton<IDataService<User>, UserDataService>();
+                services.AddSingleton<IDataService<Race>, RaceDataService>();
                 services.AddSingleton<IUserService, UserDataService>();
                 
                 #region Spells

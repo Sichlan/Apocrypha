@@ -115,6 +115,19 @@
                                    VerticalAlignment="Center" />
                     </StackPanel>
                 </RadioButton>
+
+                <RadioButton
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:RaceEditorViewModel}, Mode=OneWay}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static navigators:ViewType.RaceList}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{StaticResource IconDice}" Width="20" Height="20"
+                                        VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                        <TextBlock Text="{x:Static res:Localization.MenuLabelRaceEditor}" Margin="10 0 0 0"
+                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </RadioButton>
             </StackPanel>
         </Grid>
 
