@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    
     runs-on: windows-latest
     strategy:
       matrix:
@@ -35,6 +34,13 @@ jobs:
 
       - name: Build Solution
         run: dotnet build --configuration Release --no-restore
-
+  
+  test:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '5.0.x' ]
+    
+    steps:
       - name: Test
         run: dotnet test --configuration Release --no-build --verbosity normal
