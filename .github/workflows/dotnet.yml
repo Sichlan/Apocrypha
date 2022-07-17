@@ -36,6 +36,9 @@ jobs:
         run: dotnet build --configuration Release --no-restore
   
   test:
+    needs:
+      - build
+    
     runs-on: windows-latest
     strategy:
       matrix:
