@@ -72,7 +72,7 @@ namespace Apocrypha.EntityFramework.Services
         /// <inheritdoc />
         public IIncludableQueryable<SpellSchool, object> GetDefaultIncludes(ApocryphaDbContext context)
         {
-            return context.SpellSchools
+            return context.SpellSchools.AsNoTracking()
                 .Include(x => x.SpellSchoolTranslations);
         }
     }

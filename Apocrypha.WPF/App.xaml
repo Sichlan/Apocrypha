@@ -4,7 +4,8 @@
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
              xmlns:views="clr-namespace:Apocrypha.WPF.Views"
              xmlns:converters="clr-namespace:Apocrypha.WPF.Converters"
-             xmlns:models="clr-namespace:Apocrypha.CommonObject.Models;assembly=Apocrypha.CommonObject">
+             xmlns:models="clr-namespace:Apocrypha.CommonObject.Models;assembly=Apocrypha.CommonObject"
+             xmlns:popup="clr-namespace:Apocrypha.WPF.ViewModels.Popup">
     <Application.Resources>
 
         <ResourceDictionary>
@@ -16,6 +17,8 @@
                 <ResourceDictionary Source="Styles/DiceRollerStyles.xaml" />
                 <ResourceDictionary Source="Styles/GroupBoxStyles.xaml" />
                 <ResourceDictionary Source="Styles/SpellCardStyles.xaml" />
+                <ResourceDictionary Source="Styles/GridStyles.xaml" />
+                <ResourceDictionary Source="Styles/ComboBoxStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--#region DataTemplates-->
@@ -69,6 +72,10 @@
 
             <DataTemplate DataType="{x:Type models:Race}" x:Key="RaceListBoxItemDataTemplate">
                 <views:RaceListItemView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type popup:TestPopupViewModel}">
+                <views:TestPopupView />
             </DataTemplate>
             <!--#endregion-->
 

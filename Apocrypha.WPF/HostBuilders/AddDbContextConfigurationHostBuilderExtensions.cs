@@ -28,7 +28,7 @@ namespace Apocrypha.WPF.HostBuilders
 
                 void ConfigureDbContext(DbContextOptionsBuilder o)
                 {
-                    o.UseMySql(connectionString, new MySqlServerVersion(new Version(8,0,29)));
+                    o.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 29)));
                 }
 
                 // Configure DB service for migrations
@@ -42,8 +42,12 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<IDataService<Character>, CharacterDataService>();
                 services.AddSingleton<IDataService<User>, UserDataService>();
                 services.AddSingleton<IDataService<Race>, RaceDataService>();
+                services.AddSingleton<IDataService<CreatureType>, CreatureTypeDataService>();
+                services.AddSingleton<IDataService<CreatureSubType>, CreatureSubTypeDataService>();
+                services.AddSingleton<IDataService<CreatureSizeCategory>, CreatureSizeCategoryDataService>();
+                services.AddSingleton<IDataService<RuleBook>, RuleBookDataService>();
                 services.AddSingleton<IUserService, UserDataService>();
-                
+
                 #region Spells
 
                 services.AddSingleton<IDataService<SpellSchool>, SpellSchoolDataService>();

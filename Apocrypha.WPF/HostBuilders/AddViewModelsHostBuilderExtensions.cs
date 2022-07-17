@@ -4,6 +4,7 @@ using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.State.PopupService;
 using Apocrypha.WPF.State.Races;
 using Apocrypha.WPF.ViewModels;
 using Apocrypha.WPF.ViewModels.Factories;
@@ -41,7 +42,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<CreateViewModel<CharacterProfileViewModel>>(s => s.GetRequiredService<CharacterProfileViewModel>);
                 services.AddSingleton<CreateViewModel<DiceRollerViewModel>>(s => s.GetRequiredService<DiceRollerViewModel>);
                 services.AddSingleton<CreateViewModel<SpellCardEditorViewModel>>(s => s.GetRequiredService<SpellCardEditorViewModel>);
-                
+
                 services.AddSingleton<CreateViewModel<RaceEditorViewModel>>(s => () => CreateRaceEditorViewModel(s));
                 services.AddSingleton<CreateViewModel<RaceListViewModel>>(s => () => CreateRaceListViewModel(s));
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(s => () => CreateLoginViewModel(s));
@@ -75,7 +76,7 @@ namespace Apocrypha.WPF.HostBuilders
                 service.GetRequiredService<IApocryphaViewModelFactory>(),
                 service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
                 service.GetRequiredService<ICharacterStore>(),
-                service.GetRequiredService<IDataService<Character>>());
+                service.GetRequiredService<IShowGlobalPopupService>());
         }
 
         private static LoginViewModel CreateLoginViewModel(IServiceProvider service)
@@ -94,8 +95,13 @@ namespace Apocrypha.WPF.HostBuilders
 
         private static RaceEditorViewModel CreateRaceEditorViewModel(IServiceProvider service)
         {
-            return new RaceEditorViewModel(service.GetRequiredService<IDataService<Race>>(),
-                service.GetRequiredService<IRaceStore>());
+            return new RaceEditorViewModel(service.GetRequiredService<IRaceStore>(),
+                service.GetRequiredService<ViewModelDelegateRenavigator<RaceListViewModel>>(),
+                service.GetRequiredService<IDataService<Race>>(),
+                service.GetRequiredService<IDataService<CreatureType>>(),
+                service.GetRequiredService<IDataService<CreatureSubType>>(),
+                service.GetRequiredService<IDataService<CreatureSizeCategory>>(),
+                service.GetRequiredService<IDataService<RuleBook>>());
         }
 
         private static RaceListViewModel CreateRaceListViewModel(IServiceProvider service)

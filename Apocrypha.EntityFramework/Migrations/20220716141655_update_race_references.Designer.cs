@@ -3,14 +3,16 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220716141655_update_race_references")]
+    partial class update_race_references
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -575,10 +577,10 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<int?>("LevelAdjustment")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RuleBookId")
+                    b.Property<int?>("Page")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RuleBookPage")
+                    b.Property<int?>("RuleBookId")
                         .HasColumnType("int");
 
                     b.Property<int>("StrengthBonus")

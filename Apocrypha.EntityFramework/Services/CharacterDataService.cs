@@ -72,7 +72,7 @@ namespace Apocrypha.EntityFramework.Services
         /// <inheritdoc />
         public IIncludableQueryable<Character, object> GetDefaultIncludes(ApocryphaDbContext context)
         {
-            return context.Characters
+            return context.Characters.AsNoTracking()
                 .Include(x => x.InventoryItems)
                 .Include(x => x.TrueAllignment);
         }

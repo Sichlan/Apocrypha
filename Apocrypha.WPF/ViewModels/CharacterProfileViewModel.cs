@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
@@ -13,6 +12,7 @@ namespace Apocrypha.WPF.ViewModels
     {
         private readonly ICharacterStore _characterStore;
         private readonly IDataService<Allignment> _allignmentService;
+        private IDataService<Character> _characterDataService;
         private Allignment _allignmentLg;
         private Allignment _allignmentLn;
         private Allignment _allignmentLe;
@@ -23,16 +23,23 @@ namespace Apocrypha.WPF.ViewModels
         private Allignment _allignmentCn;
         private Allignment _allignmentCe;
 
-        public CharacterProfileViewModel(ICharacterStore characterStore, IDataService<Allignment> allignmentService)
+        public CharacterProfileViewModel(ICharacterStore characterStore, IDataService<Allignment> allignmentService,
+            IDataService<Character> characterDataService)
         {
             _characterStore = characterStore;
             _allignmentService = allignmentService;
+            _characterDataService = characterDataService;
 
             _characterStore.StateChange += CharacterStoreOnStateChange;
 
-            ChangeCharacterAllignmentCommand = new ChangeCharacterAllignmentCommand(_characterStore);
-
+            SetCommands();
             InitAllignmentProperties();
+        }
+
+        private void SetCommands()
+        {
+            ChangeCharacterAllignmentCommand = new ChangeCharacterAllignmentCommand(_characterStore);
+            SaveCharacterCommand = new SaveCharacterCommand(_characterStore, _characterDataService);
         }
 
         private async void InitAllignmentProperties()
@@ -224,5 +231,6 @@ namespace Apocrypha.WPF.ViewModels
         }
 
         public ICommand ChangeCharacterAllignmentCommand { get; set; }
+        public AsyncCommandBase SaveCharacterCommand { get; set; }
     }
 }

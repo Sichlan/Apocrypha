@@ -16,14 +16,21 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Border Grid.Column="0" Grid.Row="0" MaxWidth="800" MaxHeight="475" Cursor="Hand" Style="{StaticResource CategoryBorderStyle}">
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource CategoryBorderStyle}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Command="{Binding SaveCharacterCommand}" Content="{x:Static res:Localization.ButtonLabelSaveCharacter}" Margin="5"/>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Column="0" Grid.Row="1" MaxWidth="800" MaxHeight="475" MinWidth="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}" Cursor="Hand" Style="{StaticResource CategoryBorderStyle}">
             <!--TODO: Add image to character-->
         </Border>
         
-        <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource CategoryBorderStyle}">
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource CategoryBorderStyle}">
             <StackPanel Orientation="Vertical">
                 <Grid>
                     <Grid.ColumnDefinitions>

@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <ControlTemplate TargetType="{x:Type ComboBox}" x:Key="StandardComboBoxControlTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Popup Grid.Column="0" Grid.ColumnSpan="2" x:Name="PART_Popup"/>
+            
+            <ToggleButton Grid.Column="0" Grid.ColumnSpan="2" x:Name="toggleButton">
+                <Border x:Name="templateRoot" Background="{TemplateBinding Background}" 
+                        CornerRadius="2" BorderBrush="Gray" BorderThickness="1" />
+            </ToggleButton>
+            
+            <ContentPresenter Grid.Column="0" x:Name="contentPresenter"/>
+        </Grid>
+    </ControlTemplate>
+    
+    <!-- TODO: Rework combobox to be similar to text box -->
+    <Style TargetType="{x:Type ComboBox}" x:Key="StandardComboBoxStyle">
+        <Setter Property="Background" Value="White"/>
+    </Style>
+    
+    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource StandardComboBoxStyle}" />
+</ResourceDictionary>

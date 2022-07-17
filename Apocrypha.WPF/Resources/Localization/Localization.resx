@@ -135,4 +135,49 @@
     <data name="ButtonLabelEditRace" xml:space="preserve">
         <value>Edit race</value>
     </data>
+    <data name="ButtonLabelSaveRace" xml:space="preserve">
+        <value>Save Race</value>
+    </data>
+    <data name="ButtonLabelCancelRace" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="InputLabelRaceName" xml:space="preserve">
+        <value>Race name</value>
+    </data>
+    <data name="InputLabelRaceType" xml:space="preserve">
+        <value>Type</value>
+    </data>
+    <data name="InputLabelRaceSubType" xml:space="preserve">
+        <value>Sub type</value>
+    </data>
+    <data name="InputLabelRaceSizeCategory" xml:space="preserve">
+        <value>Size category</value>
+    </data>
+    <data name="InputLabelRuleBook" xml:space="preserve">
+        <value>Rule book</value>
+    </data>
+    <data name="InputLabelRuleBookPage" xml:space="preserve">
+        <value>Page</value>
+    </data>
+    <data name="InputLabelStrengthShortCapitalized" xml:space="preserve">
+        <value>STR</value>
+    </data>
+    <data name="InputLabelDexterityShortCapitalized" xml:space="preserve">
+        <value>DEX</value>
+    </data>
+    <data name="InputLabelConstitutionShortCapitalized" xml:space="preserve">
+        <value>CON</value>
+    </data>
+    <data name="InputLabelIntelligenceShortCapitalized" xml:space="preserve">
+        <value>INT</value>
+    </data>
+    <data name="InputLabelWisdomShortCapitalized" xml:space="preserve">
+        <value>WIS</value>
+    </data>
+    <data name="InputLabelCharismaShortCapitalized" xml:space="preserve">
+        <value>CHA</value>
+    </data>
+    <data name="InputLabelDescription" xml:space="preserve">
+        <value>Description</value>
+    </data>
 </root>

@@ -79,6 +79,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ButtonLabelCancelRace {
+            get {
+                return ResourceManager.GetString("ButtonLabelCancelRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear dice history.
         /// </summary>
         public static string ButtonLabelClearDiceHistory {
@@ -138,6 +147,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string ButtonLabelSaveCharacter {
             get {
                 return ResourceManager.GetString("ButtonLabelSaveCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Race.
+        /// </summary>
+        public static string ButtonLabelSaveRace {
+            get {
+                return ResourceManager.GetString("ButtonLabelSaveRace", resourceCulture);
             }
         }
         
@@ -214,11 +232,47 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CHA.
+        /// </summary>
+        public static string InputLabelCharismaShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelCharismaShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm password.
         /// </summary>
         public static string InputLabelConfirmPassword {
             get {
                 return ResourceManager.GetString("InputLabelConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CON.
+        /// </summary>
+        public static string InputLabelConstitutionShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelConstitutionShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string InputLabelDescription {
+            get {
+                return ResourceManager.GetString("InputLabelDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEX.
+        /// </summary>
+        public static string InputLabelDexterityShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelDexterityShortCapitalized", resourceCulture);
             }
         }
         
@@ -232,6 +286,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INT.
+        /// </summary>
+        public static string InputLabelIntelligenceShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelIntelligenceShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string InputLabelPassword {
@@ -241,11 +304,83 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Race name.
+        /// </summary>
+        public static string InputLabelRaceName {
+            get {
+                return ResourceManager.GetString("InputLabelRaceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size category.
+        /// </summary>
+        public static string InputLabelRaceSizeCategory {
+            get {
+                return ResourceManager.GetString("InputLabelRaceSizeCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub type.
+        /// </summary>
+        public static string InputLabelRaceSubType {
+            get {
+                return ResourceManager.GetString("InputLabelRaceSubType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string InputLabelRaceType {
+            get {
+                return ResourceManager.GetString("InputLabelRaceType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rule book.
+        /// </summary>
+        public static string InputLabelRuleBook {
+            get {
+                return ResourceManager.GetString("InputLabelRuleBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        public static string InputLabelRuleBookPage {
+            get {
+                return ResourceManager.GetString("InputLabelRuleBookPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STR.
+        /// </summary>
+        public static string InputLabelStrengthShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelStrengthShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string InputLabelUsername {
             get {
                 return ResourceManager.GetString("InputLabelUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WIS.
+        /// </summary>
+        public static string InputLabelWisdomShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelWisdomShortCapitalized", resourceCulture);
             }
         }
         

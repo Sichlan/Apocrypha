@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
-using Apocrypha.CommonObject.Models.Common.Translation;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.EntityFramework.Services.Common;
 using Microsoft.EntityFrameworkCore;
@@ -73,29 +72,24 @@ namespace Apocrypha.EntityFramework.Services
         /// <inheritdoc />
         public IIncludableQueryable<Race, object> GetDefaultIncludes(ApocryphaDbContext context)
         {
-            return context.Races.Include(x => x.RuleBook)
+            return context.Races.AsNoTracking() // Disable entity tracking as it isn't used anyways
+                .Include(x => x.RuleBook)
                 .ThenInclude(x => x.RuleBookTranslations)
-                
-                .Include(x => x.Type)
+                .Include(x => x.CreatureType)
                 .ThenInclude(x => x.CreatureTypeTranslations)
-
-                .Include(x => x.SubType)
+                .Include(x => x.CreatureSubType)
                 .ThenInclude(x => x.CreatureSubTypeTranslations)
-
-                .Include(x => x.Size)
+                .Include(x => x.CreatureSizeCategory)
                 .ThenInclude(x => x.CreatureSizeCategoryTranslations)
-
                 .Include(x => x.RaceMovementModes)
                 .ThenInclude(x => x.MovementMode)
                 .ThenInclude(x => x.MovementModeTranslations)
                 .Include(x => x.RaceMovementModes)
                 .ThenInclude(x => x.MovementManeuverability)
                 .ThenInclude(x => x.MovementManeuverabilityTranslations)
-
                 .Include(x => x.RaceSenses)
                 .ThenInclude(x => x.Sense)
                 .ThenInclude(x => x.SenseTranslations)
-
                 .Include(x => x.AutomaticLanguages)
                 .ThenInclude(x => x.Language)
                 .ThenInclude(x => x.Alphabet)
@@ -103,7 +97,6 @@ namespace Apocrypha.EntityFramework.Services
                 .Include(x => x.AutomaticLanguages)
                 .ThenInclude(x => x.Language)
                 .ThenInclude(x => x.LanguageTranslations)
-
                 .Include(x => x.BonusLanguages)
                 .ThenInclude(x => x.Language)
                 .ThenInclude(x => x.Alphabet)
@@ -111,12 +104,9 @@ namespace Apocrypha.EntityFramework.Services
                 .Include(x => x.BonusLanguages)
                 .ThenInclude(x => x.Language)
                 .ThenInclude(x => x.LanguageTranslations)
-
                 .Include(x => x.AdditionalFeatOptions)
-
                 .Include(x => x.SpecialAbilities)
                 .ThenInclude(x => x.RaceSpecialAbilityTranslations)
-                
                 .Include(x => x.RaceTranslations);
         }
     }

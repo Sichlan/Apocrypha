@@ -1,6 +1,7 @@
 ﻿using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.State.PopupService;
 using Apocrypha.WPF.State.Races;
 using Apocrypha.WPF.State.Users;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<IUserStore, UserStore>();
                 services.AddSingleton<ICharacterStore, CharacterStore>();
                 services.AddSingleton<IRaceStore, RaceStore>();
+                services.AddSingleton<IShowGlobalPopupService, ShowGlobalPopupService>();
             });
 
             return hostBuilder;

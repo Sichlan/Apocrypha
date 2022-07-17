@@ -128,4 +128,49 @@
     <data name="ButtonLabelEditRace" xml:space="preserve">
         <value>Rasse bearbeiten</value>
     </data>
+    <data name="ButtonLabelSaveRace" xml:space="preserve">
+        <value>Rasse speichern</value>
+    </data>
+    <data name="ButtonLabelCancelRace" xml:space="preserve">
+        <value>Abbrechen</value>
+    </data>
+    <data name="InputLabelRaceName" xml:space="preserve">
+        <value>Rassenname</value>
+    </data>
+    <data name="InputLabelRaceSizeCategory" xml:space="preserve">
+        <value>Größenkategorie</value>
+    </data>
+    <data name="InputLabelRaceSubType" xml:space="preserve">
+        <value>Unterart</value>
+    </data>
+    <data name="InputLabelRaceType" xml:space="preserve">
+        <value>Art</value>
+    </data>
+    <data name="InputLabelRuleBook" xml:space="preserve">
+        <value>Regelwerk</value>
+    </data>
+    <data name="InputLabelRuleBookPage" xml:space="preserve">
+        <value>Seite</value>
+    </data>
+    <data name="InputLabelCharismaShortCapitalized" xml:space="preserve">
+        <value>CH</value>
+    </data>
+    <data name="InputLabelStrengthShortCapitalized" xml:space="preserve">
+        <value>ST</value>
+    </data>
+    <data name="InputLabelDexterityShortCapitalized" xml:space="preserve">
+        <value>GE</value>
+    </data>
+    <data name="InputLabelConstitutionShortCapitalized" xml:space="preserve">
+        <value>KO</value>
+    </data>
+    <data name="InputLabelIntelligenceShortCapitalized" xml:space="preserve">
+        <value>IN</value>
+    </data>
+    <data name="InputLabelWisdomShortCapitalized" xml:space="preserve">
+        <value>WE</value>
+    </data>
+    <data name="InputLabelDescription" xml:space="preserve">
+        <value>Beschreibung</value>
+    </data>
 </root>
