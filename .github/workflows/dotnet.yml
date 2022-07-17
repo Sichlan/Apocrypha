@@ -46,4 +46,4 @@ jobs:
     
     steps:
       - name: Test
-        run: dotnet test --configuration Release --no-build --verbosity normal
+        run: dotnet test --configuration Release --verbosity normal
