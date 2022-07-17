@@ -36,5 +36,17 @@ jobs:
       - name: Build Solution
         run: dotnet build --configuration Release --no-restore
 
+      - name: Install dotnet ef
+        run: dotnet tool install --global dotnet-ef --version 5.0.17
+
+      - name: Update development database
+        run: dotnet ef database update --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Development
+
+      - name: Update staging database
+        run: dotnet ef database update --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Staging
+
+      - name: Update production database
+        run: dotnet ef database update --project Apocrypha.EntityFramework --startup-project Apocrypha.WPF -- --environment Production
+
       - name: Test
         run: dotnet test --configuration Release --no-build --verbosity normal
