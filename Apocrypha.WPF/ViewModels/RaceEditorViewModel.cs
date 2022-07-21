@@ -178,7 +178,7 @@ public class RaceEditorViewModel : BaseViewModel
         RuleBooks = new ObservableCollection<RuleBook>(await _ruleBookDataService.GetAll());
     }
 
-    private void RaceStoreOnStateChange()
+    private static void RaceStoreOnStateChange()
     {
         // TODO: Fill with fields that change or check if this is needed
     }
