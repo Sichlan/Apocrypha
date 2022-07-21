@@ -107,7 +107,7 @@ namespace Apocrypha.EntityFramework.Services
                 .Include(x => x.AdditionalFeatOptions)
                 .Include(x => x.SpecialAbilities)
                 .ThenInclude(x => x.RaceSpecialAbilityTranslations)
-                .Include(x => x.RaceTranslations);
+                .Include(x => x.Translations);
         }
     }
 }

@@ -6,7 +6,7 @@ using Apocrypha.CommonObject.Models.Common.Translation;
 
 namespace Apocrypha.CommonObject.Models
 {
-    public class Race : DatabaseObject
+    public class Race : DatabaseObject, ITranslatable<RaceTranslation>
     {
         public RuleBook RuleBook { get; set; }
         public int? RuleBookPage { get; set; }
@@ -28,14 +28,14 @@ namespace Apocrypha.CommonObject.Models
         public ICollection<RaceSpecialAbility> SpecialAbilities { get; set; }
         public int? LevelAdjustment { get; set; }
         public int ChallengeRating { get; set; }
-        public TranslationCollection<RaceTranslation> RaceTranslations { get; set; }
+        public TranslationCollection<RaceTranslation> Translations { get; set; }
 
 
         #region Translation
 
         public Race()
         {
-            RaceTranslations = new TranslationCollection<RaceTranslation>();
+            Translations = new TranslationCollection<RaceTranslation>();
         }
 
         public string FallbackName { get; set; }
@@ -45,11 +45,11 @@ namespace Apocrypha.CommonObject.Models
         {
             get
             {
-                return RaceTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+                return Translations[CultureInfo.CurrentCulture].Name ?? FallbackName;
             }
             set
             {
-                RaceTranslations[CultureInfo.CurrentCulture].Name = value;
+                Translations[CultureInfo.CurrentCulture].Name = value;
             }
         }
 
@@ -60,11 +60,11 @@ namespace Apocrypha.CommonObject.Models
         {
             get
             {
-                return RaceTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+                return Translations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
             }
             set
             {
-                RaceTranslations[CultureInfo.CurrentCulture].Description = value;
+                Translations[CultureInfo.CurrentCulture].Description = value;
             }
         }
 

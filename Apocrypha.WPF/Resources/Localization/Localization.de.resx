@@ -173,4 +173,7 @@
     <data name="InputLabelDescription" xml:space="preserve">
         <value>Beschreibung</value>
     </data>
+    <data name="ButtonLabelTranslate" xml:space="preserve">
+        <value>Übersetzen</value>
+    </data>
 </root>

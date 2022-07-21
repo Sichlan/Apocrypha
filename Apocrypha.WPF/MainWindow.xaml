@@ -106,7 +106,8 @@
                         <b:InvokeCommandAction Command="{Binding PopupViewModel.CancelCommand}"/>
                     </b:EventTrigger>
                 </b:Interaction.Triggers>
-                <Border Margin="5" Style="{StaticResource CategoryBorderStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Style="{StaticResource CategoryBorderStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Cursor="Arrow">
                     <ContentControl Content="{Binding PopupViewModel}"/>
                 </Border>
             </Grid>

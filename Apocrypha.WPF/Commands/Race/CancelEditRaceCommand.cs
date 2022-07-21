@@ -2,7 +2,7 @@
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Races;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands.Race
 {
     public class CancelEditRaceCommand : AsyncCommandBase
     {

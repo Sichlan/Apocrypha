@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.Commands;
+using Apocrypha.WPF.Commands.Race;
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Races;
 
@@ -40,6 +40,7 @@ namespace Apocrypha.WPF.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public RaceListItemViewModel SelectedRaceListItemViewModel
         {
             get
@@ -76,8 +77,8 @@ namespace Apocrypha.WPF.ViewModels
 
         public AsyncCommandBase NewRaceCommand { get; private set; }
         public AsyncCommandBase EditRaceCommand { get; private set; }
-        
-        
+
+
         private void SetCommands()
         {
             NewRaceCommand = new NewRaceCommand(_raceStore, _editRaceRenavigator);

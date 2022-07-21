@@ -4,7 +4,6 @@ namespace Apocrypha.CommonObject.Models
 {
     public class CreatureSizeCategoryTranslation : Translation<CreatureSizeCategoryTranslation>
     {
-        public CreatureSizeCategory CreatureSizeCategory {get;set;}
-        public string Name {get;set;}
+        public CreatureSizeCategory CreatureSizeCategory { get; set; }
     }
 }

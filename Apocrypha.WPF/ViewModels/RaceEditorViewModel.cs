@@ -3,7 +3,10 @@ using System.Linq;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.Commands;
+using Apocrypha.WPF.Commands.Race;
+using Apocrypha.WPF.Commands.Translation;
 using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.State.PopupService;
 using Apocrypha.WPF.State.Races;
 
 namespace Apocrypha.WPF.ViewModels
@@ -17,6 +20,7 @@ namespace Apocrypha.WPF.ViewModels
         private readonly IDataService<CreatureSubType> _creatureSubTypeDataService;
         private readonly IDataService<CreatureSizeCategory> _creatureSizeCategoryDataService;
         private readonly IDataService<RuleBook> _ruleBookDataService;
+        private readonly IShowGlobalPopupService _showGlobalPopupService;
         private readonly IRaceStore _raceStore;
         private readonly IRenavigator _raceListRenavigator;
 
@@ -149,7 +153,8 @@ namespace Apocrypha.WPF.ViewModels
 
         public RaceEditorViewModel(IRaceStore raceStore, IRenavigator raceListRenavigator, IDataService<Race> raceDataService,
             IDataService<CreatureType> creatureTypeDataService, IDataService<CreatureSubType> creatureSubTypeDataService,
-            IDataService<CreatureSizeCategory> creatureSizeCategoryDataService, IDataService<RuleBook> ruleBookDataService)
+            IDataService<CreatureSizeCategory> creatureSizeCategoryDataService, IDataService<RuleBook> ruleBookDataService,
+            IShowGlobalPopupService showGlobalPopupService)
         {
             _raceStore = raceStore;
             _raceListRenavigator = raceListRenavigator;
@@ -158,6 +163,7 @@ namespace Apocrypha.WPF.ViewModels
             _creatureSubTypeDataService = creatureSubTypeDataService;
             _creatureSizeCategoryDataService = creatureSizeCategoryDataService;
             _ruleBookDataService = ruleBookDataService;
+            _showGlobalPopupService = showGlobalPopupService;
 
             _raceStore.StateChange += RaceStoreOnStateChange;
 
@@ -180,13 +186,15 @@ namespace Apocrypha.WPF.ViewModels
 
         #region Commands
 
-        public AsyncCommandBase SaveEditRaceCommand { get; set; }
-        public AsyncCommandBase CancelEditRaceCommand { get; set; }
+        public AsyncCommandBase SaveEditRaceCommand { get; private set; }
+        public AsyncCommandBase CancelEditRaceCommand { get; private set; }
+        public AsyncCommandBase TranslateRaceCommand { get; private set; }
 
         private void SetCommands()
         {
             SaveEditRaceCommand = new SaveEditRaceCommand(_raceStore, _raceDataService, _raceListRenavigator);
             CancelEditRaceCommand = new CancelEditRaceCommand(_raceStore, _raceListRenavigator);
+            TranslateRaceCommand = new TranslateObjectCommand<RaceTranslation>(_raceStore.ActiveRace, _showGlobalPopupService);
         }
 
         #endregion

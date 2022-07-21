@@ -101,7 +101,8 @@ namespace Apocrypha.WPF.HostBuilders
                 service.GetRequiredService<IDataService<CreatureType>>(),
                 service.GetRequiredService<IDataService<CreatureSubType>>(),
                 service.GetRequiredService<IDataService<CreatureSizeCategory>>(),
-                service.GetRequiredService<IDataService<RuleBook>>());
+                service.GetRequiredService<IDataService<RuleBook>>(),
+                service.GetRequiredService<IShowGlobalPopupService>());
         }
 
         private static RaceListViewModel CreateRaceListViewModel(IServiceProvider service)

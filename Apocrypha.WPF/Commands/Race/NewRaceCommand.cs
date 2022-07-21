@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Apocrypha.CommonObject.Models;
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Races;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands.Race
 {
     public class NewRaceCommand : AsyncCommandBase
     {
@@ -18,7 +17,7 @@ namespace Apocrypha.WPF.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {
-            _raceStore.ActiveRace = new Race();
+            _raceStore.ActiveRace = new CommonObject.Models.Race();
             _editRaceRenavigator.Renavigate();
         }
 

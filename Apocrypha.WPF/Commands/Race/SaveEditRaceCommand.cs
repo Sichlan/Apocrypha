@@ -1,18 +1,17 @@
 ﻿using System.Threading.Tasks;
-using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Races;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands.Race
 {
     public class SaveEditRaceCommand : AsyncCommandBase
     {
         private readonly IRaceStore _raceStore;
-        private readonly IDataService<Race> _raceDataService;
+        private readonly IDataService<CommonObject.Models.Race> _raceDataService;
         private readonly IRenavigator _raceListRenavigator;
 
-        public SaveEditRaceCommand(IRaceStore raceStore, IDataService<Race> raceDataService, IRenavigator raceListRenavigator)
+        public SaveEditRaceCommand(IRaceStore raceStore, IDataService<CommonObject.Models.Race> raceDataService, IRenavigator raceListRenavigator)
         {
             _raceStore = raceStore;
             _raceDataService = raceDataService;

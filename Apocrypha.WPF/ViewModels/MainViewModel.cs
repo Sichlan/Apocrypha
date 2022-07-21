@@ -26,7 +26,7 @@ namespace Apocrypha.WPF.ViewModels
 
         #region Fields
 
-        private bool _menuExpanded;
+        private bool _isMenuExpanded;
         private WindowState _currentWindowState;
 
         #endregion
@@ -101,7 +101,7 @@ namespace Apocrypha.WPF.ViewModels
 
         private void SetCommands()
         {
-            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory);
+            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory, this);
             LogoutCommand = new LogoutCommand(_authenticator, _logoutCommandRenavigator, _characterStore);
             MinimizeCommand = new RelayCommand(o => MinimizeWindow(o));
             MaximizeCommand = new RelayCommand(o => MaximizeWindow(o));
@@ -175,15 +175,15 @@ namespace Apocrypha.WPF.ViewModels
             }
         }
 
-        public bool MenuExpanded
+        public bool IsMenuExpanded
         {
             get
             {
-                return _menuExpanded;
+                return _isMenuExpanded;
             }
             set
             {
-                _menuExpanded = value;
+                _isMenuExpanded = value;
                 OnPropertyChanged();
             }
         }

@@ -160,6 +160,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Translate.
+        /// </summary>
+        public static string ButtonLabelTranslate {
+            get {
+                return ResourceManager.GetString("ButtonLabelTranslate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login failed..
         /// </summary>
         public static string ErrorLoginFailed {

@@ -180,4 +180,7 @@
     <data name="InputLabelDescription" xml:space="preserve">
         <value>Description</value>
     </data>
+    <data name="ButtonLabelTranslate" xml:space="preserve">
+        <value>Translate</value>
+    </data>
 </root>

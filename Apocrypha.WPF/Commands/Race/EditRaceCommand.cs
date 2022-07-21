@@ -3,7 +3,7 @@ using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Races;
 using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands.Race
 {
     public class EditRaceCommand : AsyncCommandBase
     {
