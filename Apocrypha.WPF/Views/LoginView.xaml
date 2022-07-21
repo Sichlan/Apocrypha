@@ -7,10 +7,12 @@
              xmlns:components="clr-namespace:PasswordBoxMVVM.Components;assembly=PasswordBoxMVVM"
              xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
              mc:Ignorable="d"
-             
              d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel, IsDesignTimeCreatable=False}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border HorizontalAlignment="Center" Padding="50" VerticalAlignment="Center" Background="#eeffffff"
+    <Border HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            Padding="50"
+            Background="White"
             Style="{StaticResource CategoryBorderStyle}">
 
         <Grid Grid.IsSharedSizeScope="True">

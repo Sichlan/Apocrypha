@@ -1,30 +1,28 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands;
+
+public class RelayCommand : ICommand
 {
-    public class RelayCommand : ICommand
+    private readonly Func<object, bool> _canExecute;
+    private readonly Action<object> _execute;
+
+    public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
     {
-        private readonly Func<object, bool> _canExecute;
-        private readonly Action<object> _execute;
+        _execute = execute;
+        _canExecute = canExecute;
+    }
 
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            _execute = execute;
-            _canExecute = canExecute;
-        }
+    public int MyProperty { get; set; }
+    public event EventHandler CanExecuteChanged;
 
-        public int MyProperty { get; set; }
-        public event EventHandler CanExecuteChanged;
+    public bool CanExecute(object parameter)
+    {
+        return _canExecute == null || _canExecute(parameter);
+    }
 
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute == null || _canExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            _execute(parameter);
-        }
+    public void Execute(object parameter)
+    {
+        _execute(parameter);
     }
 }

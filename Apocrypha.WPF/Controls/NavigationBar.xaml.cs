@@ -1,12 +1,9 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Controls;
 
-namespace Apocrypha.WPF.Controls
+public partial class NavigationBar
 {
-    public partial class NavigationBar : UserControl
+    public NavigationBar()
     {
-        public NavigationBar()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

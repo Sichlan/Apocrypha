@@ -1,47 +1,46 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class CreatureType : DatabaseObject
 {
-    public class CreatureType : DatabaseObject
+    public ICollection<Race> Races { get; set; }
+    public TranslationCollection<CreatureTypeTranslation> CreatureTypeTranslations { get; set; }
+
+    #region Translation
+
+    public string FallbackName { get; set; }
+
+    [NotMapped]
+    public string Name
     {
-        
-        public ICollection<Race> Races { get; set; }
-        public TranslationCollection<CreatureTypeTranslation> CreatureTypeTranslations { get; set; } 
-
-        #region Translation
-
-        public string FallbackName { get; set; }
-        [NotMapped]
-        public string Name
+        get
         {
-            get
-            {
-                return CreatureTypeTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-            }
-            set
-            {
-                CreatureTypeTranslations[CultureInfo.CurrentCulture].Name = value;
-            }
+            return CreatureTypeTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
         }
-        
-        public string FallbackDescription { get; set; }
-        [NotMapped]
-        public string Description
+        set
         {
-            get
-            {
-                return CreatureTypeTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-            }
-            set
-            {
-                CreatureTypeTranslations[CultureInfo.CurrentCulture].Description = value;
-            }
+            CreatureTypeTranslations[CultureInfo.CurrentCulture].Name = value;
         }
-
-        #endregion
     }
+
+    public string FallbackDescription { get; set; }
+
+    [NotMapped]
+    public string Description
+    {
+        get
+        {
+            return CreatureTypeTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        }
+        set
+        {
+            CreatureTypeTranslations[CultureInfo.CurrentCulture].Description = value;
+        }
+    }
+
+    #endregion
 }

@@ -1,44 +1,44 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
 using Apocrypha.CommonObject.Models.Spells;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class ActionTimeIndicator : DatabaseObject
 {
-    public class ActionTimeIndicator : DatabaseObject
+    public TranslationCollection<ActionTimeIndicatorTranslation> ActionTimeIndicatorTranslations { get; set; }
+    public ICollection<SpellVariant> SpellVariants { get; set; }
+
+
+    public string NameFallback { get; set; }
+
+    [NotMapped]
+    public string Name
     {
-        public TranslationCollection<ActionTimeIndicatorTranslation> ActionTimeIndicatorTranslations { get; set; }
-        public ICollection<SpellVariant> SpellVariants { get; set; }
-        
-
-        public string NameFallback { get; set; }
-        [NotMapped]
-        public string Name
+        get
         {
-            get
-            {
-                return ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-            }
-            set
-            {
-                ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name = value;
-            }
+            return ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
         }
-
-        public string DescriptionFallback { get; set; }
-        [NotMapped]
-        public string Description
+        set
         {
-            get
-            {
-                return ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-            }
-            set
-            {
-                ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description = value;
-            }
+            ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name = value;
+        }
+    }
+
+    public string DescriptionFallback { get; set; }
+
+    [NotMapped]
+    public string Description
+    {
+        get
+        {
+            return ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        }
+        set
+        {
+            ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description = value;
         }
     }
 }

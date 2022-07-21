@@ -1,12 +1,9 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Views
+public partial class MessageView
 {
-    public partial class MessageView : UserControl
+    public MessageView()
     {
-        public MessageView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

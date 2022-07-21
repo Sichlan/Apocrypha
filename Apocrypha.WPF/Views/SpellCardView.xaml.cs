@@ -1,12 +1,9 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Views
+public partial class SpellCardView
 {
-    public partial class SpellCardView : UserControl
+    public SpellCardView()
     {
-        public SpellCardView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

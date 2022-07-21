@@ -1,15 +1,12 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Views
+/// <summary>
+///     Interaction logic for CharacterPreviewView.xaml
+/// </summary>
+public partial class CharacterPreviewView
 {
-    /// <summary>
-    ///     Interaction logic for CharacterPreviewView.xaml
-    /// </summary>
-    public partial class CharacterPreviewView : UserControl
+    public CharacterPreviewView()
     {
-        public CharacterPreviewView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

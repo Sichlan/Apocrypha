@@ -1,9 +1,8 @@
 ﻿using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class RaceTranslation : Translation<RaceTranslation>
 {
-    public class RaceTranslation : Translation<RaceTranslation>
-    {
-        public Race Race { get; set; }
-    }
+    public Race Race { get; set; }
 }

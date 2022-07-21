@@ -1,36 +1,36 @@
-﻿using System.Threading.Tasks;
-using Apocrypha.WPF.State;
+﻿using Apocrypha.WPF.State;
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.ViewModels;
 using Apocrypha.WPF.ViewModels.Factories;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands;
+
+public class UpdateCurrentViewModelCommand : AsyncCommandBase
 {
-    public class UpdateCurrentViewModelCommand : AsyncCommandBase
+    private readonly INavigator _navigator;
+    private readonly IApocryphaViewModelFactory _viewModelFactory;
+    private readonly MainViewModel _mainViewModel;
+
+    public UpdateCurrentViewModelCommand(INavigator navigator, IApocryphaViewModelFactory viewModelFactory, MainViewModel mainViewModel)
     {
-        private readonly INavigator _navigator;
-        private readonly IApocryphaViewModelFactory _viewModelFactory;
-        private readonly MainViewModel _mainViewModel;
+        _navigator = navigator;
+        _viewModelFactory = viewModelFactory;
+        _mainViewModel = mainViewModel;
+    }
 
-        public UpdateCurrentViewModelCommand(INavigator navigator, IApocryphaViewModelFactory viewModelFactory, MainViewModel mainViewModel)
+    protected override Task ExecuteAsync(object parameter)
+    {
+        if (parameter is ViewType type)
         {
-            _navigator = navigator;
-            _viewModelFactory = viewModelFactory;
-            _mainViewModel = mainViewModel;
+            _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(type);
+            _mainViewModel.IsMenuExpanded = false;
         }
 
-        public override async Task ExecuteAsync(object parameter)
-        {
-            if (parameter is ViewType type)
-            {
-                _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(type);
-                _mainViewModel.IsMenuExpanded = false;
-            }
-        }
+        return Task.CompletedTask;
+    }
 
-        public override bool CanExecuteAsync(object parameter)
-        {
-            return true;
-        }
+    protected override bool CanExecuteAsync(object parameter)
+    {
+        return true;
     }
 }

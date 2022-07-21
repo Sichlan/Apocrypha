@@ -1,46 +1,46 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class Sense : DatabaseObject
 {
-    public class Sense : DatabaseObject
+    public ICollection<RaceSense> RaceSense { get; set; }
+    public TranslationCollection<SenseTranslation> SenseTranslations { get; set; }
+
+    #region Translation
+
+    public string FallbackName { get; set; }
+
+    [NotMapped]
+    public string Name
     {
-        public ICollection<RaceSense> RaceSense { get; set; }
-        public TranslationCollection<SenseTranslation> SenseTranslations { get; set; }
-        
-        #region Translation
-
-        public string FallbackName { get; set; }
-        [NotMapped]
-        public string Name
+        get
         {
-            get
-            {
-                return SenseTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-            }
-            set
-            {
-                SenseTranslations[CultureInfo.CurrentCulture].Name = value;
-            }
+            return SenseTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
         }
-        
-        public string FallbackDescription { get; set; }
-        [NotMapped]
-        public string Description
+        set
         {
-            get
-            {
-                return SenseTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-            }
-            set
-            {
-                SenseTranslations[CultureInfo.CurrentCulture].Description = value;
-            }
+            SenseTranslations[CultureInfo.CurrentCulture].Name = value;
         }
-
-        #endregion
     }
+
+    public string FallbackDescription { get; set; }
+
+    [NotMapped]
+    public string Description
+    {
+        get
+        {
+            return SenseTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        }
+        set
+        {
+            SenseTranslations[CultureInfo.CurrentCulture].Description = value;
+        }
+    }
+
+    #endregion
 }

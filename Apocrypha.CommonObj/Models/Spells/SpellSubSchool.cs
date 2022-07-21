@@ -1,42 +1,42 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models.Spells
+namespace Apocrypha.CommonObject.Models.Spells;
+
+public class SpellSubSchool : DatabaseObject
 {
-    public class SpellSubSchool : DatabaseObject
+    public ICollection<SpellVariant> SpellVariants { get; set; }
+    public TranslationCollection<SpellSubSchoolTranslation> SpellSubSchoolTranslations { get; set; }
+
+    public string NameFallback { get; set; }
+
+    [NotMapped]
+    public string Name
     {
-        public ICollection<SpellVariant> SpellVariants { get; set; }
-        public TranslationCollection<SpellSubSchoolTranslation> SpellSubSchoolTranslations { get; set; }
-
-        public string NameFallback { get; set; }
-        [NotMapped]
-        public string Name
+        get
         {
-            get
-            {
-                return SpellSubSchoolTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-            }
-            set
-            {
-                SpellSubSchoolTranslations[CultureInfo.CurrentCulture].Name = value;
-            }
+            return SpellSubSchoolTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
         }
-
-        public string DescriptionFallback { get; set; }
-        [NotMapped]
-        public string Description
+        set
         {
-            get
-            {
-                return SpellSubSchoolTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-            }
-            set
-            {
-                SpellSubSchoolTranslations[CultureInfo.CurrentCulture].Description = value;
-            }
+            SpellSubSchoolTranslations[CultureInfo.CurrentCulture].Name = value;
         }
-    }   
+    }
+
+    public string DescriptionFallback { get; set; }
+
+    [NotMapped]
+    public string Description
+    {
+        get
+        {
+            return SpellSubSchoolTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        }
+        set
+        {
+            SpellSubSchoolTranslations[CultureInfo.CurrentCulture].Description = value;
+        }
+    }
 }

@@ -1,63 +1,64 @@
-﻿using System;
-using System.Threading.Tasks;
-using Apocrypha.WPF.ViewModels.Popup;
+﻿using Apocrypha.WPF.ViewModels.Popup;
 
-namespace Apocrypha.WPF.State.PopupService
+namespace Apocrypha.WPF.State.PopupService;
+
+public class ShowGlobalPopupService : IShowGlobalPopupService
 {
-    public class ShowGlobalPopupService : IShowGlobalPopupService
+    #region Fields
+
+    private IPopupViewModel _popupViewModel;
+    private bool _isVisible;
+    public event Action StateChange;
+
+    #endregion
+
+    #region Properties
+
+    /// <inheritdoc/>
+    public bool IsVisible
     {
-        #region Fields
-
-        private IPopupViewModel _popupViewModel;
-        private bool _isVisible;
-        public event Action StateChange;
-
-        #endregion
-
-        #region Properties
-
-        /// <inheritdoc/>
-        public bool IsVisible
+        get
         {
-            get
-            {
-                return _isVisible;
-            }
-            set
-            {
-                _isVisible = value;
-                StateChange?.Invoke();
-            }
+            return _isVisible;
         }
-
-        /// <inheritdoc/>
-        public IPopupViewModel PopupViewModel
+        set
         {
-            get
-            {
-                return _popupViewModel;
-            }
-            set
-            {
-                _popupViewModel = value;
-                StateChange?.Invoke();
-            }
+            _isVisible = value;
+            StateChange?.Invoke();
         }
+    }
 
-        #endregion
-
-        /// <inheritdoc/>
-        public async Task ShowPopup(IPopupViewModel popupViewModel)
+    /// <inheritdoc/>
+    public IPopupViewModel PopupViewModel
+    {
+        get
         {
-            PopupViewModel = popupViewModel;
-            IsVisible = true;
+            return _popupViewModel;
         }
-
-        /// <inheritdoc/>
-        public async Task ClosePopup()
+        set
         {
-            IsVisible = false;
-            PopupViewModel = null;
+            _popupViewModel = value;
+            StateChange?.Invoke();
         }
+    }
+
+    #endregion
+
+    /// <inheritdoc/>
+    public Task ShowPopup(IPopupViewModel popupViewModel)
+    {
+        PopupViewModel = popupViewModel;
+        IsVisible = true;
+
+        return Task.CompletedTask;
+    }
+
+    /// <inheritdoc/>
+    public Task ClosePopup()
+    {
+        IsVisible = false;
+        PopupViewModel = null;
+
+        return Task.CompletedTask;
     }
 }

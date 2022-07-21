@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace Apocrypha.WPF.State;
 
-namespace Apocrypha.WPF.State
+public interface IStateChanger
 {
-    public interface IStateChanger
-    {
-        event Action StateChange;
-    }
+    event Action StateChange;
 }

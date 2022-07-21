@@ -2,32 +2,31 @@
 using System.Windows.Input;
 using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF
+namespace Apocrypha.WPF;
+
+/// <summary>
+///     Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow
 {
-    /// <summary>
-    ///     Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public MainWindow(object dataContext)
     {
-        public MainWindow(object dataContext)
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            DataContext = dataContext;
-        }
+        DataContext = dataContext;
+    }
 
-        private void HeaderGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                DragMove();
-        }
+    private void HeaderGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton == MouseButton.Left)
+            DragMove();
+    }
 
-        private void HeaderGrid_OnMouseMove(object sender, MouseEventArgs e)
+    private void HeaderGrid_OnMouseMove(object sender, MouseEventArgs e)
+    {
+        if (Mouse.LeftButton == MouseButtonState.Pressed && DataContext is MainViewModel {CurrentWindowState: WindowState.Maximized} mainViewModel)
         {
-            if(Mouse.LeftButton == MouseButtonState.Pressed && (DataContext as MainViewModel)?.CurrentWindowState == WindowState.Maximized)
-            {
-                (DataContext as MainViewModel).CurrentWindowState = WindowState.Normal;
-            }
+            mainViewModel.CurrentWindowState = WindowState.Normal;
         }
     }
 }

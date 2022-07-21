@@ -3,43 +3,44 @@ using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class RaceSpecialAbility : DatabaseObject
 {
-    public class RaceSpecialAbility : DatabaseObject
+    public Race Race { get; set; }
+    public TranslationCollection<RaceSpecialAbilityTranslation> RaceSpecialAbilityTranslations { get; set; }
+
+    #region Translation
+
+    public string FallbackName { get; set; }
+
+    [NotMapped]
+    public string Name
     {
-        public Race Race { get; set; }
-        public TranslationCollection<RaceSpecialAbilityTranslation> RaceSpecialAbilityTranslations { get; set; }
-        
-        #region Translation
-
-        public string FallbackName { get; set; }
-        [NotMapped]
-        public string Name
+        get
         {
-            get
-            {
-                return RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-            }
-            set
-            {
-                RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Name = value;
-            }
+            return RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
         }
-        
-        public string FallbackDescription { get; set; }
-        [NotMapped]
-        public string Description
+        set
         {
-            get
-            {
-                return RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-            }
-            set
-            {
-                RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Description = value;
-            }
+            RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Name = value;
         }
-
-        #endregion
     }
+
+    public string FallbackDescription { get; set; }
+
+    [NotMapped]
+    public string Description
+    {
+        get
+        {
+            return RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        }
+        set
+        {
+            RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Description = value;
+        }
+    }
+
+    #endregion
 }

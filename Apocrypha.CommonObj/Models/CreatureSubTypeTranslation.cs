@@ -1,9 +1,8 @@
 ﻿using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class CreatureSubTypeTranslation : Translation<CreatureSubTypeTranslation>
 {
-    public class CreatureSubTypeTranslation : Translation<CreatureSubTypeTranslation>
-    {
-        public CreatureSubType CreatureSubType { get; set; }
-    }
+    public CreatureSubType CreatureSubType { get; set; }
 }

@@ -1,46 +1,46 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class Alphabet : DatabaseObject
 {
-    public class Alphabet : DatabaseObject
+    public ICollection<Language> Languages { get; set; }
+    public TranslationCollection<AlphabetTranslation> AlphabetTranslations { get; set; }
+
+    #region Translation
+
+    public string FallbackName { get; set; }
+
+    [NotMapped]
+    public string Name
     {
-        public ICollection<Language> Languages { get; set; }
-        public TranslationCollection<AlphabetTranslation> AlphabetTranslations { get; set; }
-        
-        #region Translation
-
-        public string FallbackName { get; set; }
-        [NotMapped]
-        public string Name
+        get
         {
-            get
-            {
-                return AlphabetTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-            }
-            set
-            {
-                AlphabetTranslations[CultureInfo.CurrentCulture].Name = value;
-            }
+            return AlphabetTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
         }
-        
-        public string FallbackDescription { get; set; }
-        [NotMapped]
-        public string Description
+        set
         {
-            get
-            {
-                return AlphabetTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-            }
-            set
-            {
-                AlphabetTranslations[CultureInfo.CurrentCulture].Description = value;
-            }
+            AlphabetTranslations[CultureInfo.CurrentCulture].Name = value;
         }
-
-        #endregion
     }
+
+    public string FallbackDescription { get; set; }
+
+    [NotMapped]
+    public string Description
+    {
+        get
+        {
+            return AlphabetTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        }
+        set
+        {
+            AlphabetTranslations[CultureInfo.CurrentCulture].Description = value;
+        }
+    }
+
+    #endregion
 }

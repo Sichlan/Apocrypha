@@ -1,47 +1,47 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Apocrypha.EntityFramework.Migrations
+namespace Apocrypha.EntityFramework.Migrations;
+
+public partial class add_race : Migration
 {
-    public partial class add_race : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropForeignKey(
-                name: "FK_RuleBookTranslation_RuleBooks_RuleBookId",
-                table: "RuleBookTranslation");
+        migrationBuilder.DropForeignKey(
+            name: "FK_RuleBookTranslation_RuleBooks_RuleBookId",
+            table: "RuleBookTranslation");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_RuleBookTranslation",
-                table: "RuleBookTranslation");
+        migrationBuilder.DropPrimaryKey(
+            name: "PK_RuleBookTranslation",
+            table: "RuleBookTranslation");
 
-            migrationBuilder.RenameTable(
-                name: "RuleBookTranslation",
-                newName: "RuleBookTranslations");
+        migrationBuilder.RenameTable(
+            name: "RuleBookTranslation",
+            newName: "RuleBookTranslations");
 
-            migrationBuilder.RenameColumn(
-                name: "Description",
-                table: "RuleBooks",
-                newName: "FallbackDescription");
+        migrationBuilder.RenameColumn(
+            name: "Description",
+            table: "RuleBooks",
+            newName: "FallbackDescription");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_RuleBookTranslation_RuleBookId",
-                table: "RuleBookTranslations",
-                newName: "IX_RuleBookTranslations_RuleBookId");
+        migrationBuilder.RenameIndex(
+            name: "IX_RuleBookTranslation_RuleBookId",
+            table: "RuleBookTranslations",
+            newName: "IX_RuleBookTranslations_RuleBookId");
 
-            migrationBuilder.AddColumn<string>(
+        migrationBuilder.AddColumn<string>(
                 name: "Description",
                 table: "RuleBookTranslations",
                 type: "longtext",
                 nullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_RuleBookTranslations",
-                table: "RuleBookTranslations",
-                column: "Id");
+        migrationBuilder.AddPrimaryKey(
+            name: "PK_RuleBookTranslations",
+            table: "RuleBookTranslations",
+            column: "Id");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Alphabets",
                 columns: table => new
                 {
@@ -52,9 +52,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_Alphabets", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "CreatureSizeCategories",
                 columns: table => new
                 {
@@ -77,9 +77,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_CreatureSizeCategories", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "CreatureSubTypes",
                 columns: table => new
                 {
@@ -94,9 +94,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_CreatureSubTypes", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "CreatureTypes",
                 columns: table => new
                 {
@@ -111,9 +111,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_CreatureTypes", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "MovementManeuverabilities",
                 columns: table => new
                 {
@@ -128,9 +128,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_MovementManeuverabilities", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "MovementModes",
                 columns: table => new
                 {
@@ -145,9 +145,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_MovementModes", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Senses",
                 columns: table => new
                 {
@@ -162,9 +162,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_Senses", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "AlphabetTranslations",
                 columns: table => new
                 {
@@ -188,9 +188,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Languages",
                 columns: table => new
                 {
@@ -212,9 +212,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "CreatureSizeCategoryTranslations",
                 columns: table => new
                 {
@@ -236,9 +236,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "CreatureSubTypeTranslations",
                 columns: table => new
                 {
@@ -262,9 +262,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "CreatureTypeTranslations",
                 columns: table => new
                 {
@@ -288,9 +288,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Races",
                 columns: table => new
                 {
@@ -343,9 +343,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "MovementManeuverabilityTranslations",
                 columns: table => new
                 {
@@ -369,9 +369,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "MovementModeTranslations",
                 columns: table => new
                 {
@@ -395,9 +395,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SenseTranslations",
                 columns: table => new
                 {
@@ -421,9 +421,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "LanguageTranslations",
                 columns: table => new
                 {
@@ -447,9 +447,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "FeatOptions",
                 columns: table => new
                 {
@@ -469,9 +469,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RaceAdditionalLanguages",
                 columns: table => new
                 {
@@ -496,9 +496,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RaceBonusLanguages",
                 columns: table => new
                 {
@@ -523,9 +523,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RaceMovementModes",
                 columns: table => new
                 {
@@ -558,9 +558,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RaceSenses",
                 columns: table => new
                 {
@@ -586,9 +586,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RaceSpecialAbilities",
                 columns: table => new
                 {
@@ -610,9 +610,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RaceTranslations",
                 columns: table => new
                 {
@@ -636,9 +636,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RaceSpecialAbilityTranslations",
                 columns: table => new
                 {
@@ -662,262 +662,261 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_AlphabetTranslations_AlphabetId",
-                table: "AlphabetTranslations",
-                column: "AlphabetId");
+        migrationBuilder.CreateIndex(
+            name: "IX_AlphabetTranslations_AlphabetId",
+            table: "AlphabetTranslations",
+            column: "AlphabetId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CreatureSizeCategoryTranslations_CreatureSizeCategoryId",
-                table: "CreatureSizeCategoryTranslations",
-                column: "CreatureSizeCategoryId");
+        migrationBuilder.CreateIndex(
+            name: "IX_CreatureSizeCategoryTranslations_CreatureSizeCategoryId",
+            table: "CreatureSizeCategoryTranslations",
+            column: "CreatureSizeCategoryId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CreatureSubTypeTranslations_CreatureSubTypeId",
-                table: "CreatureSubTypeTranslations",
-                column: "CreatureSubTypeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_CreatureSubTypeTranslations_CreatureSubTypeId",
+            table: "CreatureSubTypeTranslations",
+            column: "CreatureSubTypeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CreatureTypeTranslations_CreatureTypeId",
-                table: "CreatureTypeTranslations",
-                column: "CreatureTypeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_CreatureTypeTranslations_CreatureTypeId",
+            table: "CreatureTypeTranslations",
+            column: "CreatureTypeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_FeatOptions_RaceId",
-                table: "FeatOptions",
-                column: "RaceId");
+        migrationBuilder.CreateIndex(
+            name: "IX_FeatOptions_RaceId",
+            table: "FeatOptions",
+            column: "RaceId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Languages_AlphabetId",
-                table: "Languages",
-                column: "AlphabetId");
+        migrationBuilder.CreateIndex(
+            name: "IX_Languages_AlphabetId",
+            table: "Languages",
+            column: "AlphabetId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_LanguageTranslations_LanguageId",
-                table: "LanguageTranslations",
-                column: "LanguageId");
+        migrationBuilder.CreateIndex(
+            name: "IX_LanguageTranslations_LanguageId",
+            table: "LanguageTranslations",
+            column: "LanguageId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_MovementManeuverabilityTranslations_MovementManeuverabilityId",
-                table: "MovementManeuverabilityTranslations",
-                column: "MovementManeuverabilityId");
+        migrationBuilder.CreateIndex(
+            name: "IX_MovementManeuverabilityTranslations_MovementManeuverabilityId",
+            table: "MovementManeuverabilityTranslations",
+            column: "MovementManeuverabilityId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_MovementModeTranslations_MovementModeId",
-                table: "MovementModeTranslations",
-                column: "MovementModeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_MovementModeTranslations_MovementModeId",
+            table: "MovementModeTranslations",
+            column: "MovementModeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceAdditionalLanguages_LanguageId",
-                table: "RaceAdditionalLanguages",
-                column: "LanguageId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceAdditionalLanguages_LanguageId",
+            table: "RaceAdditionalLanguages",
+            column: "LanguageId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceAdditionalLanguages_RaceId",
-                table: "RaceAdditionalLanguages",
-                column: "RaceId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceAdditionalLanguages_RaceId",
+            table: "RaceAdditionalLanguages",
+            column: "RaceId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceBonusLanguages_LanguageId",
-                table: "RaceBonusLanguages",
-                column: "LanguageId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceBonusLanguages_LanguageId",
+            table: "RaceBonusLanguages",
+            column: "LanguageId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceBonusLanguages_RaceId",
-                table: "RaceBonusLanguages",
-                column: "RaceId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceBonusLanguages_RaceId",
+            table: "RaceBonusLanguages",
+            column: "RaceId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceMovementModes_MovementManeuverabilityId",
-                table: "RaceMovementModes",
-                column: "MovementManeuverabilityId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceMovementModes_MovementManeuverabilityId",
+            table: "RaceMovementModes",
+            column: "MovementManeuverabilityId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceMovementModes_MovementModeId",
-                table: "RaceMovementModes",
-                column: "MovementModeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceMovementModes_MovementModeId",
+            table: "RaceMovementModes",
+            column: "MovementModeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceMovementModes_RaceId",
-                table: "RaceMovementModes",
-                column: "RaceId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceMovementModes_RaceId",
+            table: "RaceMovementModes",
+            column: "RaceId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Races_RuleBookId",
-                table: "Races",
-                column: "RuleBookId");
+        migrationBuilder.CreateIndex(
+            name: "IX_Races_RuleBookId",
+            table: "Races",
+            column: "RuleBookId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Races_SizeId",
-                table: "Races",
-                column: "SizeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_Races_SizeId",
+            table: "Races",
+            column: "SizeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Races_SubTypeId",
-                table: "Races",
-                column: "SubTypeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_Races_SubTypeId",
+            table: "Races",
+            column: "SubTypeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Races_TypeId",
-                table: "Races",
-                column: "TypeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_Races_TypeId",
+            table: "Races",
+            column: "TypeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceSenses_RaceId",
-                table: "RaceSenses",
-                column: "RaceId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceSenses_RaceId",
+            table: "RaceSenses",
+            column: "RaceId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceSenses_SenseId",
-                table: "RaceSenses",
-                column: "SenseId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceSenses_SenseId",
+            table: "RaceSenses",
+            column: "SenseId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceSpecialAbilities_RaceId",
-                table: "RaceSpecialAbilities",
-                column: "RaceId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceSpecialAbilities_RaceId",
+            table: "RaceSpecialAbilities",
+            column: "RaceId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceSpecialAbilityTranslations_RaceSpecialAbilityId",
-                table: "RaceSpecialAbilityTranslations",
-                column: "RaceSpecialAbilityId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceSpecialAbilityTranslations_RaceSpecialAbilityId",
+            table: "RaceSpecialAbilityTranslations",
+            column: "RaceSpecialAbilityId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RaceTranslations_RaceId",
-                table: "RaceTranslations",
-                column: "RaceId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RaceTranslations_RaceId",
+            table: "RaceTranslations",
+            column: "RaceId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SenseTranslations_SenseId",
-                table: "SenseTranslations",
-                column: "SenseId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SenseTranslations_SenseId",
+            table: "SenseTranslations",
+            column: "SenseId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_RuleBookTranslations_RuleBooks_RuleBookId",
-                table: "RuleBookTranslations",
-                column: "RuleBookId",
-                principalTable: "RuleBooks",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-        }
+        migrationBuilder.AddForeignKey(
+            name: "FK_RuleBookTranslations_RuleBooks_RuleBookId",
+            table: "RuleBookTranslations",
+            column: "RuleBookId",
+            principalTable: "RuleBooks",
+            principalColumn: "Id",
+            onDelete: ReferentialAction.Restrict);
+    }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropForeignKey(
-                name: "FK_RuleBookTranslations_RuleBooks_RuleBookId",
-                table: "RuleBookTranslations");
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropForeignKey(
+            name: "FK_RuleBookTranslations_RuleBooks_RuleBookId",
+            table: "RuleBookTranslations");
 
-            migrationBuilder.DropTable(
-                name: "AlphabetTranslations");
+        migrationBuilder.DropTable(
+            name: "AlphabetTranslations");
 
-            migrationBuilder.DropTable(
-                name: "CreatureSizeCategoryTranslations");
+        migrationBuilder.DropTable(
+            name: "CreatureSizeCategoryTranslations");
 
-            migrationBuilder.DropTable(
-                name: "CreatureSubTypeTranslations");
+        migrationBuilder.DropTable(
+            name: "CreatureSubTypeTranslations");
 
-            migrationBuilder.DropTable(
-                name: "CreatureTypeTranslations");
+        migrationBuilder.DropTable(
+            name: "CreatureTypeTranslations");
 
-            migrationBuilder.DropTable(
-                name: "FeatOptions");
+        migrationBuilder.DropTable(
+            name: "FeatOptions");
 
-            migrationBuilder.DropTable(
-                name: "LanguageTranslations");
+        migrationBuilder.DropTable(
+            name: "LanguageTranslations");
 
-            migrationBuilder.DropTable(
-                name: "MovementManeuverabilityTranslations");
+        migrationBuilder.DropTable(
+            name: "MovementManeuverabilityTranslations");
 
-            migrationBuilder.DropTable(
-                name: "MovementModeTranslations");
+        migrationBuilder.DropTable(
+            name: "MovementModeTranslations");
 
-            migrationBuilder.DropTable(
-                name: "RaceAdditionalLanguages");
+        migrationBuilder.DropTable(
+            name: "RaceAdditionalLanguages");
 
-            migrationBuilder.DropTable(
-                name: "RaceBonusLanguages");
+        migrationBuilder.DropTable(
+            name: "RaceBonusLanguages");
 
-            migrationBuilder.DropTable(
-                name: "RaceMovementModes");
+        migrationBuilder.DropTable(
+            name: "RaceMovementModes");
 
-            migrationBuilder.DropTable(
-                name: "RaceSenses");
+        migrationBuilder.DropTable(
+            name: "RaceSenses");
 
-            migrationBuilder.DropTable(
-                name: "RaceSpecialAbilityTranslations");
+        migrationBuilder.DropTable(
+            name: "RaceSpecialAbilityTranslations");
 
-            migrationBuilder.DropTable(
-                name: "RaceTranslations");
+        migrationBuilder.DropTable(
+            name: "RaceTranslations");
 
-            migrationBuilder.DropTable(
-                name: "SenseTranslations");
+        migrationBuilder.DropTable(
+            name: "SenseTranslations");
 
-            migrationBuilder.DropTable(
-                name: "Languages");
+        migrationBuilder.DropTable(
+            name: "Languages");
 
-            migrationBuilder.DropTable(
-                name: "MovementManeuverabilities");
+        migrationBuilder.DropTable(
+            name: "MovementManeuverabilities");
 
-            migrationBuilder.DropTable(
-                name: "MovementModes");
+        migrationBuilder.DropTable(
+            name: "MovementModes");
 
-            migrationBuilder.DropTable(
-                name: "RaceSpecialAbilities");
+        migrationBuilder.DropTable(
+            name: "RaceSpecialAbilities");
 
-            migrationBuilder.DropTable(
-                name: "Senses");
+        migrationBuilder.DropTable(
+            name: "Senses");
 
-            migrationBuilder.DropTable(
-                name: "Alphabets");
+        migrationBuilder.DropTable(
+            name: "Alphabets");
 
-            migrationBuilder.DropTable(
-                name: "Races");
+        migrationBuilder.DropTable(
+            name: "Races");
 
-            migrationBuilder.DropTable(
-                name: "CreatureSizeCategories");
+        migrationBuilder.DropTable(
+            name: "CreatureSizeCategories");
 
-            migrationBuilder.DropTable(
-                name: "CreatureSubTypes");
+        migrationBuilder.DropTable(
+            name: "CreatureSubTypes");
 
-            migrationBuilder.DropTable(
-                name: "CreatureTypes");
+        migrationBuilder.DropTable(
+            name: "CreatureTypes");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_RuleBookTranslations",
-                table: "RuleBookTranslations");
+        migrationBuilder.DropPrimaryKey(
+            name: "PK_RuleBookTranslations",
+            table: "RuleBookTranslations");
 
-            migrationBuilder.DropColumn(
-                name: "Description",
-                table: "RuleBookTranslations");
+        migrationBuilder.DropColumn(
+            name: "Description",
+            table: "RuleBookTranslations");
 
-            migrationBuilder.RenameTable(
-                name: "RuleBookTranslations",
-                newName: "RuleBookTranslation");
+        migrationBuilder.RenameTable(
+            name: "RuleBookTranslations",
+            newName: "RuleBookTranslation");
 
-            migrationBuilder.RenameColumn(
-                name: "FallbackDescription",
-                table: "RuleBooks",
-                newName: "Description");
+        migrationBuilder.RenameColumn(
+            name: "FallbackDescription",
+            table: "RuleBooks",
+            newName: "Description");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_RuleBookTranslations_RuleBookId",
-                table: "RuleBookTranslation",
-                newName: "IX_RuleBookTranslation_RuleBookId");
+        migrationBuilder.RenameIndex(
+            name: "IX_RuleBookTranslations_RuleBookId",
+            table: "RuleBookTranslation",
+            newName: "IX_RuleBookTranslation_RuleBookId");
 
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_RuleBookTranslation",
-                table: "RuleBookTranslation",
-                column: "Id");
+        migrationBuilder.AddPrimaryKey(
+            name: "PK_RuleBookTranslation",
+            table: "RuleBookTranslation",
+            column: "Id");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_RuleBookTranslation_RuleBooks_RuleBookId",
-                table: "RuleBookTranslation",
-                column: "RuleBookId",
-                principalTable: "RuleBooks",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-        }
+        migrationBuilder.AddForeignKey(
+            name: "FK_RuleBookTranslation_RuleBooks_RuleBookId",
+            table: "RuleBookTranslation",
+            column: "RuleBookId",
+            principalTable: "RuleBooks",
+            principalColumn: "Id",
+            onDelete: ReferentialAction.Restrict);
     }
 }

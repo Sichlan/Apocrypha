@@ -1,15 +1,14 @@
-﻿namespace Apocrypha.WPF.State
+﻿namespace Apocrypha.WPF.State;
+
+public enum ViewType
 {
-    public enum ViewType
-    {
-        Home,
-        Login,
-        Register,
-        CharacterSelection,
-        Profile,
-        DiceRoller,
-        SpellCardEditor,
-        RaceEditor,
-        RaceList
-    }
+    Home,
+    Login,
+    Register,
+    CharacterSelection,
+    Profile,
+    DiceRoller,
+    SpellCardEditor,
+    RaceEditor,
+    RaceList
 }

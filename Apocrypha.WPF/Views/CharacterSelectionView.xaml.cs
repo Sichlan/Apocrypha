@@ -1,15 +1,12 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Views
+/// <summary>
+///     Interaction logic for CharacterSelectionView.xaml
+/// </summary>
+public partial class CharacterSelectionView
 {
-    /// <summary>
-    ///     Interaction logic for CharacterSelectionView.xaml
-    /// </summary>
-    public partial class CharacterSelectionView : UserControl
+    public CharacterSelectionView()
     {
-        public CharacterSelectionView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

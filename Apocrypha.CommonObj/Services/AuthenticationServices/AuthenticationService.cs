@@ -1,70 +1,67 @@
-using System;
-using System.Threading.Tasks;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.CommonObject.Models;
 using Microsoft.AspNet.Identity;
 
-namespace Apocrypha.CommonObject.Services.AuthenticationServices
+namespace Apocrypha.CommonObject.Services.AuthenticationServices;
+
+public class AuthenticationService : IAuthenticationService
 {
-    public class AuthenticationService : IAuthenticationService
+    private readonly IPasswordHasher _passwordHasher;
+    private readonly IUserService _userService;
+
+    public AuthenticationService(IUserService userService, IPasswordHasher passwordHasher)
     {
-        private readonly IPasswordHasher _passwordHasher;
-        private readonly IUserService _userService;
+        _userService = userService;
+        _passwordHasher = passwordHasher;
+    }
 
-        public AuthenticationService(IUserService userService, IPasswordHasher passwordHasher)
+    public async Task<User> Login(string username, string password)
+    {
+        var storedUser = await _userService.GetByUsername(username);
+
+        if (storedUser == null) throw new UserNotFoundException(username);
+
+        var passwordVerificationResult =
+            _passwordHasher.VerifyHashedPassword(storedUser.PasswordHash, password);
+
+        if (passwordVerificationResult != PasswordVerificationResult.Success)
+            throw new InvalidPasswordException(username, password);
+
+        return storedUser;
+    }
+
+    public async Task<RegistrationResult> Register(string email, string username, string password,
+        string confirmPassword)
+    {
+        var registrationResult = RegistrationResult.Success;
+
+        try
         {
-            _userService = userService;
-            _passwordHasher = passwordHasher;
-        }
+            if (password != confirmPassword) registrationResult = RegistrationResult.PasswordsDoNotMatch;
 
-        public async Task<User> Login(string username, string password)
-        {
-            var storedUser = await _userService.GetByUsername(username);
+            var emailAccount = await _userService.GetByEmail(email);
+            if (emailAccount != null) registrationResult = RegistrationResult.EmailAlreadyExists;
 
-            if (storedUser == null) throw new UserNotFoundException(username);
+            var usernameAccount = await _userService.GetByUsername(username);
+            if (usernameAccount != null) registrationResult = RegistrationResult.UsernameAlreadyExists;
 
-            var passwordVerificationResult =
-                _passwordHasher.VerifyHashedPassword(storedUser.PasswordHash, password);
-
-            if (passwordVerificationResult != PasswordVerificationResult.Success)
-                throw new InvalidPasswordException(username, password);
-
-            return storedUser;
-        }
-
-        public async Task<RegistrationResult> Register(string email, string username, string password,
-            string confirmPassword)
-        {
-            var registrationResult = RegistrationResult.Success;
-
-            try
+            if (registrationResult == RegistrationResult.Success)
             {
-                if (password != confirmPassword) registrationResult = RegistrationResult.PasswordsDoNotMatch;
+                var hashedPassword = _passwordHasher.HashPassword(password);
 
-                var emailAccount = await _userService.GetByEmail(email);
-                if (emailAccount != null) registrationResult = RegistrationResult.EmailAlreadyExists;
-
-                var usernameAccount = await _userService.GetByUsername(username);
-                if (usernameAccount != null) registrationResult = RegistrationResult.UsernameAlreadyExists;
-
-                if (registrationResult == RegistrationResult.Success)
+                var user = new User
                 {
-                    var hashedPassword = _passwordHasher.HashPassword(password);
+                    Email = email, Username = username, PasswordHash = hashedPassword, DateJoined = DateTime.Now
+                };
 
-                    var user = new User
-                    {
-                        Email = email, Username = username, PasswordHash = hashedPassword, DateJoined = DateTime.Now
-                    };
-
-                    _ = await _userService.Create(user);
-                }
+                _ = await _userService.Create(user);
             }
-            catch (Exception)
-            {
-                registrationResult = RegistrationResult.Failure;
-            }
-
-            return registrationResult;
         }
+        catch (Exception)
+        {
+            registrationResult = RegistrationResult.Failure;
+        }
+
+        return registrationResult;
     }
 }

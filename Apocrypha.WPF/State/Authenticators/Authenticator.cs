@@ -1,60 +1,57 @@
-﻿using System;
-using System.Threading.Tasks;
-using Apocrypha.CommonObject.Models;
+﻿using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
 using Apocrypha.WPF.State.Users;
 
-namespace Apocrypha.WPF.State.Authenticators
+namespace Apocrypha.WPF.State.Authenticators;
+
+public class Authenticator : IAuthenticator
 {
-    public class Authenticator : IAuthenticator
+    private readonly IAuthenticationService _authenticationService;
+    private readonly IUserStore _userStore;
+
+    public Authenticator(IAuthenticationService authenticationService, IUserStore userStore)
     {
-        private readonly IAuthenticationService _authenticationService;
-        private readonly IUserStore _userStore;
+        _authenticationService = authenticationService;
+        _userStore = userStore;
+    }
 
-        public Authenticator(IAuthenticationService authenticationService, IUserStore userStore)
+    public event Action StateChange;
+
+    public User CurrentUser
+    {
+        get
         {
-            _authenticationService = authenticationService;
-            _userStore = userStore;
+            return _userStore.CurrentUser;
         }
-
-        public event Action StateChange;
-
-        public User CurrentUser
+        private set
         {
-            get
-            {
-                return _userStore.CurrentUser;
-            }
-            private set
-            {
-                _userStore.CurrentUser = value;
-                StateChange?.Invoke();
-            }
+            _userStore.CurrentUser = value;
+            StateChange?.Invoke();
         }
+    }
 
-        public bool IsLoggedIn
+    public bool IsLoggedIn
+    {
+        get
         {
-            get
-            {
-                return CurrentUser != null;
-            }
+            return CurrentUser != null;
         }
+    }
 
-        public async Task<RegistrationResult> Register(string email, string username, string password, string confirmnPassword)
-        {
-            return await _authenticationService.Register(email, username, password, confirmnPassword);
-        }
+    public async Task<RegistrationResult> Register(string email, string username, string password, string confirmnPassword)
+    {
+        return await _authenticationService.Register(email, username, password, confirmnPassword);
+    }
 
-        public async Task Login(string username, string password)
-        {
-            CurrentUser = await _authenticationService.Login(username, password);
-        }
+    public async Task Login(string username, string password)
+    {
+        CurrentUser = await _authenticationService.Login(username, password);
+    }
 
-        public async Task<bool> Logout()
-        {
-            CurrentUser = null;
+    public Task<bool> Logout()
+    {
+        CurrentUser = null;
 
-            return true;
-        }
+        return Task.FromResult(true);
     }
 }

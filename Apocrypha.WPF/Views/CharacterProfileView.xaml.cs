@@ -1,12 +1,9 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Views
+public partial class CharacterProfileView
 {
-    public partial class CharacterProfileView : UserControl
+    public CharacterProfileView()
     {
-        public CharacterProfileView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

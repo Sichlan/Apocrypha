@@ -2,16 +2,16 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Apocrypha.EntityFramework.Migrations
-{
-    public partial class initial : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
+namespace Apocrypha.EntityFramework.Migrations;
 
-            migrationBuilder.CreateTable(
+public partial class initial : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.AlterDatabase()
+            .Annotation("MySql:CharSet", "utf8mb4");
+
+        migrationBuilder.CreateTable(
                 name: "ActionTimeIndicator",
                 columns: table => new
                 {
@@ -26,9 +26,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_ActionTimeIndicator", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Allignments",
                 columns: table => new
                 {
@@ -45,9 +45,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_Allignments", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Editions",
                 columns: table => new
                 {
@@ -63,9 +63,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_Editions", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
                 {
@@ -81,9 +81,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_Items", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellComponentTypes",
                 columns: table => new
                 {
@@ -100,9 +100,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_SpellComponentTypes", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellDescriptors",
                 columns: table => new
                 {
@@ -117,9 +117,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_SpellDescriptors", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellRangeTypes",
                 columns: table => new
                 {
@@ -134,9 +134,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_SpellRangeTypes", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Spells",
                 columns: table => new
                 {
@@ -149,9 +149,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_Spells", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellSchools",
                 columns: table => new
                 {
@@ -166,9 +166,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_SpellSchools", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellSubSchools",
                 columns: table => new
                 {
@@ -183,9 +183,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_SpellSubSchools", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -204,9 +204,9 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "ActionTimeIndicatorTranslation",
                 columns: table => new
                 {
@@ -230,9 +230,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "AllignmentTranslations",
                 columns: table => new
                 {
@@ -256,9 +256,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RuleBooks",
                 columns: table => new
                 {
@@ -283,9 +283,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellComponentTypeTranslations",
                 columns: table => new
                 {
@@ -311,9 +311,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellDescriptorTranslations",
                 columns: table => new
                 {
@@ -337,9 +337,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellRangeTypeTranslations",
                 columns: table => new
                 {
@@ -363,9 +363,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellTranslations",
                 columns: table => new
                 {
@@ -387,9 +387,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellSchoolTranslations",
                 columns: table => new
                 {
@@ -413,9 +413,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellSubSchoolTranslations",
                 columns: table => new
                 {
@@ -439,9 +439,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "Characters",
                 columns: table => new
                 {
@@ -474,9 +474,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "RuleBookTranslation",
                 columns: table => new
                 {
@@ -498,9 +498,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellVariants",
                 columns: table => new
                 {
@@ -543,9 +543,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "CharacterItems",
                 columns: table => new
                 {
@@ -572,9 +572,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellComponents",
                 columns: table => new
                 {
@@ -614,9 +614,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellDescriptorSpellVariant",
                 columns: table => new
                 {
@@ -625,7 +625,7 @@ namespace Apocrypha.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SpellDescriptorSpellVariant", x => new { x.SpellDescriptorsId, x.SpellVariantsId });
+                    table.PrimaryKey("PK_SpellDescriptorSpellVariant", x => new {x.SpellDescriptorsId, x.SpellVariantsId});
                     table.ForeignKey(
                         name: "FK_SpellDescriptorSpellVariant_SpellDescriptors_SpellDescriptor~",
                         column: x => x.SpellDescriptorsId,
@@ -639,9 +639,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellSchoolSpellVariant",
                 columns: table => new
                 {
@@ -650,7 +650,7 @@ namespace Apocrypha.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SpellSchoolSpellVariant", x => new { x.SpellSchoolsId, x.SpellVariantsId });
+                    table.PrimaryKey("PK_SpellSchoolSpellVariant", x => new {x.SpellSchoolsId, x.SpellVariantsId});
                     table.ForeignKey(
                         name: "FK_SpellSchoolSpellVariant_SpellSchools_SpellSchoolsId",
                         column: x => x.SpellSchoolsId,
@@ -664,9 +664,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellSubSchoolSpellVariant",
                 columns: table => new
                 {
@@ -675,7 +675,7 @@ namespace Apocrypha.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SpellSubSchoolSpellVariant", x => new { x.SpellSubSchoolsId, x.SpellVariantsId });
+                    table.PrimaryKey("PK_SpellSubSchoolSpellVariant", x => new {x.SpellSubSchoolsId, x.SpellVariantsId});
                     table.ForeignKey(
                         name: "FK_SpellSubSchoolSpellVariant_SpellSubSchools_SpellSubSchoolsId",
                         column: x => x.SpellSubSchoolsId,
@@ -689,9 +689,9 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
+        migrationBuilder.CreateTable(
                 name: "SpellVariantTranslations",
                 columns: table => new
                 {
@@ -713,222 +713,221 @@ namespace Apocrypha.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+            .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_ActionTimeIndicatorTranslation_ActionTimeIndicatorId",
-                table: "ActionTimeIndicatorTranslation",
-                column: "ActionTimeIndicatorId");
+        migrationBuilder.CreateIndex(
+            name: "IX_ActionTimeIndicatorTranslation_ActionTimeIndicatorId",
+            table: "ActionTimeIndicatorTranslation",
+            column: "ActionTimeIndicatorId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_AllignmentTranslations_AllignmentId",
-                table: "AllignmentTranslations",
-                column: "AllignmentId");
+        migrationBuilder.CreateIndex(
+            name: "IX_AllignmentTranslations_AllignmentId",
+            table: "AllignmentTranslations",
+            column: "AllignmentId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CharacterItems_ItemId",
-                table: "CharacterItems",
-                column: "ItemId");
+        migrationBuilder.CreateIndex(
+            name: "IX_CharacterItems_ItemId",
+            table: "CharacterItems",
+            column: "ItemId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CharacterItems_OwnerId",
-                table: "CharacterItems",
-                column: "OwnerId");
+        migrationBuilder.CreateIndex(
+            name: "IX_CharacterItems_OwnerId",
+            table: "CharacterItems",
+            column: "OwnerId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Characters_CreatorUserId",
-                table: "Characters",
-                column: "CreatorUserId");
+        migrationBuilder.CreateIndex(
+            name: "IX_Characters_CreatorUserId",
+            table: "Characters",
+            column: "CreatorUserId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Characters_TrueAllignmentId",
-                table: "Characters",
-                column: "TrueAllignmentId");
+        migrationBuilder.CreateIndex(
+            name: "IX_Characters_TrueAllignmentId",
+            table: "Characters",
+            column: "TrueAllignmentId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RuleBooks_EditionId",
-                table: "RuleBooks",
-                column: "EditionId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RuleBooks_EditionId",
+            table: "RuleBooks",
+            column: "EditionId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_RuleBookTranslation_RuleBookId",
-                table: "RuleBookTranslation",
-                column: "RuleBookId");
+        migrationBuilder.CreateIndex(
+            name: "IX_RuleBookTranslation_RuleBookId",
+            table: "RuleBookTranslation",
+            column: "RuleBookId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellComponents_ItemId",
-                table: "SpellComponents",
-                column: "ItemId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellComponents_ItemId",
+            table: "SpellComponents",
+            column: "ItemId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellComponents_SpellComponentTypeId",
-                table: "SpellComponents",
-                column: "SpellComponentTypeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellComponents_SpellComponentTypeId",
+            table: "SpellComponents",
+            column: "SpellComponentTypeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellComponents_SpellVariantId",
-                table: "SpellComponents",
-                column: "SpellVariantId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellComponents_SpellVariantId",
+            table: "SpellComponents",
+            column: "SpellVariantId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellComponentTypeTranslations_SpellComponentTypeId",
-                table: "SpellComponentTypeTranslations",
-                column: "SpellComponentTypeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellComponentTypeTranslations_SpellComponentTypeId",
+            table: "SpellComponentTypeTranslations",
+            column: "SpellComponentTypeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellDescriptorSpellVariant_SpellVariantsId",
-                table: "SpellDescriptorSpellVariant",
-                column: "SpellVariantsId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellDescriptorSpellVariant_SpellVariantsId",
+            table: "SpellDescriptorSpellVariant",
+            column: "SpellVariantsId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellDescriptorTranslations_SpellDescriptorId",
-                table: "SpellDescriptorTranslations",
-                column: "SpellDescriptorId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellDescriptorTranslations_SpellDescriptorId",
+            table: "SpellDescriptorTranslations",
+            column: "SpellDescriptorId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellRangeTypeTranslations_SpellRangeTypeId",
-                table: "SpellRangeTypeTranslations",
-                column: "SpellRangeTypeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellRangeTypeTranslations_SpellRangeTypeId",
+            table: "SpellRangeTypeTranslations",
+            column: "SpellRangeTypeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellSchoolSpellVariant_SpellVariantsId",
-                table: "SpellSchoolSpellVariant",
-                column: "SpellVariantsId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellSchoolSpellVariant_SpellVariantsId",
+            table: "SpellSchoolSpellVariant",
+            column: "SpellVariantsId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellSchoolTranslations_SpellSchoolId",
-                table: "SpellSchoolTranslations",
-                column: "SpellSchoolId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellSchoolTranslations_SpellSchoolId",
+            table: "SpellSchoolTranslations",
+            column: "SpellSchoolId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellSubSchoolSpellVariant_SpellVariantsId",
-                table: "SpellSubSchoolSpellVariant",
-                column: "SpellVariantsId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellSubSchoolSpellVariant_SpellVariantsId",
+            table: "SpellSubSchoolSpellVariant",
+            column: "SpellVariantsId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellSubSchoolTranslations_SpellSubSchoolId",
-                table: "SpellSubSchoolTranslations",
-                column: "SpellSubSchoolId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellSubSchoolTranslations_SpellSubSchoolId",
+            table: "SpellSubSchoolTranslations",
+            column: "SpellSubSchoolId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellTranslations_SpellId",
-                table: "SpellTranslations",
-                column: "SpellId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellTranslations_SpellId",
+            table: "SpellTranslations",
+            column: "SpellId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellVariants_CastingTimeIndicatorId",
-                table: "SpellVariants",
-                column: "CastingTimeIndicatorId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellVariants_CastingTimeIndicatorId",
+            table: "SpellVariants",
+            column: "CastingTimeIndicatorId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellVariants_RuleBookId",
-                table: "SpellVariants",
-                column: "RuleBookId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellVariants_RuleBookId",
+            table: "SpellVariants",
+            column: "RuleBookId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellVariants_SpellId",
-                table: "SpellVariants",
-                column: "SpellId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellVariants_SpellId",
+            table: "SpellVariants",
+            column: "SpellId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellVariants_SpellRangeTypeId",
-                table: "SpellVariants",
-                column: "SpellRangeTypeId");
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellVariants_SpellRangeTypeId",
+            table: "SpellVariants",
+            column: "SpellRangeTypeId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_SpellVariantTranslations_SpellVariantId",
-                table: "SpellVariantTranslations",
-                column: "SpellVariantId");
-        }
+        migrationBuilder.CreateIndex(
+            name: "IX_SpellVariantTranslations_SpellVariantId",
+            table: "SpellVariantTranslations",
+            column: "SpellVariantId");
+    }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "ActionTimeIndicatorTranslation");
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            name: "ActionTimeIndicatorTranslation");
 
-            migrationBuilder.DropTable(
-                name: "AllignmentTranslations");
+        migrationBuilder.DropTable(
+            name: "AllignmentTranslations");
 
-            migrationBuilder.DropTable(
-                name: "CharacterItems");
+        migrationBuilder.DropTable(
+            name: "CharacterItems");
 
-            migrationBuilder.DropTable(
-                name: "RuleBookTranslation");
+        migrationBuilder.DropTable(
+            name: "RuleBookTranslation");
 
-            migrationBuilder.DropTable(
-                name: "SpellComponents");
+        migrationBuilder.DropTable(
+            name: "SpellComponents");
 
-            migrationBuilder.DropTable(
-                name: "SpellComponentTypeTranslations");
+        migrationBuilder.DropTable(
+            name: "SpellComponentTypeTranslations");
 
-            migrationBuilder.DropTable(
-                name: "SpellDescriptorSpellVariant");
+        migrationBuilder.DropTable(
+            name: "SpellDescriptorSpellVariant");
 
-            migrationBuilder.DropTable(
-                name: "SpellDescriptorTranslations");
+        migrationBuilder.DropTable(
+            name: "SpellDescriptorTranslations");
 
-            migrationBuilder.DropTable(
-                name: "SpellRangeTypeTranslations");
+        migrationBuilder.DropTable(
+            name: "SpellRangeTypeTranslations");
 
-            migrationBuilder.DropTable(
-                name: "SpellSchoolSpellVariant");
+        migrationBuilder.DropTable(
+            name: "SpellSchoolSpellVariant");
 
-            migrationBuilder.DropTable(
-                name: "SpellSchoolTranslations");
+        migrationBuilder.DropTable(
+            name: "SpellSchoolTranslations");
 
-            migrationBuilder.DropTable(
-                name: "SpellSubSchoolSpellVariant");
+        migrationBuilder.DropTable(
+            name: "SpellSubSchoolSpellVariant");
 
-            migrationBuilder.DropTable(
-                name: "SpellSubSchoolTranslations");
+        migrationBuilder.DropTable(
+            name: "SpellSubSchoolTranslations");
 
-            migrationBuilder.DropTable(
-                name: "SpellTranslations");
+        migrationBuilder.DropTable(
+            name: "SpellTranslations");
 
-            migrationBuilder.DropTable(
-                name: "SpellVariantTranslations");
+        migrationBuilder.DropTable(
+            name: "SpellVariantTranslations");
 
-            migrationBuilder.DropTable(
-                name: "Characters");
+        migrationBuilder.DropTable(
+            name: "Characters");
 
-            migrationBuilder.DropTable(
-                name: "Items");
+        migrationBuilder.DropTable(
+            name: "Items");
 
-            migrationBuilder.DropTable(
-                name: "SpellComponentTypes");
+        migrationBuilder.DropTable(
+            name: "SpellComponentTypes");
 
-            migrationBuilder.DropTable(
-                name: "SpellDescriptors");
+        migrationBuilder.DropTable(
+            name: "SpellDescriptors");
 
-            migrationBuilder.DropTable(
-                name: "SpellSchools");
+        migrationBuilder.DropTable(
+            name: "SpellSchools");
 
-            migrationBuilder.DropTable(
-                name: "SpellSubSchools");
+        migrationBuilder.DropTable(
+            name: "SpellSubSchools");
 
-            migrationBuilder.DropTable(
-                name: "SpellVariants");
+        migrationBuilder.DropTable(
+            name: "SpellVariants");
 
-            migrationBuilder.DropTable(
-                name: "Allignments");
+        migrationBuilder.DropTable(
+            name: "Allignments");
 
-            migrationBuilder.DropTable(
-                name: "Users");
+        migrationBuilder.DropTable(
+            name: "Users");
 
-            migrationBuilder.DropTable(
-                name: "ActionTimeIndicator");
+        migrationBuilder.DropTable(
+            name: "ActionTimeIndicator");
 
-            migrationBuilder.DropTable(
-                name: "RuleBooks");
+        migrationBuilder.DropTable(
+            name: "RuleBooks");
 
-            migrationBuilder.DropTable(
-                name: "SpellRangeTypes");
+        migrationBuilder.DropTable(
+            name: "SpellRangeTypes");
 
-            migrationBuilder.DropTable(
-                name: "Spells");
+        migrationBuilder.DropTable(
+            name: "Spells");
 
-            migrationBuilder.DropTable(
-                name: "Editions");
-        }
+        migrationBuilder.DropTable(
+            name: "Editions");
     }
 }

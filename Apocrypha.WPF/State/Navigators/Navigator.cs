@@ -1,25 +1,23 @@
-﻿using System;
-using Apocrypha.WPF.ViewModels;
+﻿using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF.State.Navigators
+namespace Apocrypha.WPF.State.Navigators;
+
+public class Navigator : INavigator
 {
-    public class Navigator : INavigator
+    private BaseViewModel _currentViewModel;
+
+    public BaseViewModel CurrentViewModel
     {
-        private BaseViewModel _currentViewModel;
-
-        public BaseViewModel CurrentViewModel
+        get
         {
-            get
-            {
-                return _currentViewModel;
-            }
-            set
-            {
-                _currentViewModel = value;
-                StateChange?.Invoke();
-            }
+            return _currentViewModel;
         }
-
-        public event Action StateChange;
+        set
+        {
+            _currentViewModel = value;
+            StateChange?.Invoke();
+        }
     }
+
+    public event Action StateChange;
 }

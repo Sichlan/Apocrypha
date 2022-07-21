@@ -1,15 +1,12 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Views
+/// <summary>
+///     Interaction logic for RegistrationView.xaml
+/// </summary>
+public partial class RegistrationView
 {
-    /// <summary>
-    ///     Interaction logic for RegistrationView.xaml
-    /// </summary>
-    public partial class RegistrationView : UserControl
+    public RegistrationView()
     {
-        public RegistrationView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

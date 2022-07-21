@@ -1,36 +1,35 @@
 ﻿using Apocrypha.CommonObject.Models;
 
-namespace Apocrypha.WPF.ViewModels
+namespace Apocrypha.WPF.ViewModels;
+
+public class RaceListItemViewModel : BaseViewModel
 {
-    public class RaceListItemViewModel : BaseViewModel
+    private Race _race;
+
+    public RaceListItemViewModel(Race race)
     {
-        private Race _race;
+        Race = race;
+    }
 
-        public RaceListItemViewModel(Race race)
+    public Race Race
+    {
+        get
         {
-            Race = race;
+            return _race;
         }
-
-        public Race Race
+        set
         {
-            get
-            {
-                return _race;
-            }
-            set
-            {
-                _race = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(RuleBook));
-            }
+            _race = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(RuleBook));
         }
+    }
 
-        public RuleBook RuleBook
+    public RuleBook RuleBook
+    {
+        get
         {
-            get
-            {
-                return Race.RuleBook;
-            }
+            return Race.RuleBook;
         }
     }
 }

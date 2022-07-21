@@ -1,46 +1,46 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class MovementManeuverability : DatabaseObject
 {
-    public class MovementManeuverability : DatabaseObject
+    public ICollection<RaceMovementMode> RaceMovementModes { get; set; }
+    public TranslationCollection<MovementManeuverabilityTranslation> MovementManeuverabilityTranslations { get; set; }
+
+    #region Translation
+
+    public string FallbackName { get; set; }
+
+    [NotMapped]
+    public string Name
     {
-        public ICollection<RaceMovementMode> RaceMovementModes {get;set;}
-        public TranslationCollection<MovementManeuverabilityTranslation> MovementManeuverabilityTranslations {get;set;}
-
-        #region Translation
-
-        public string FallbackName { get; set; }
-        [NotMapped]
-        public string Name
+        get
         {
-            get
-            {
-                return MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-            }
-            set
-            {
-                MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Name = value;
-            }
+            return MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
         }
-        
-        public string FallbackDescription { get; set; }
-        [NotMapped]
-        public string Description
+        set
         {
-            get
-            {
-                return MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-            }
-            set
-            {
-                MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Description = value;
-            }
+            MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Name = value;
         }
-
-        #endregion
     }
+
+    public string FallbackDescription { get; set; }
+
+    [NotMapped]
+    public string Description
+    {
+        get
+        {
+            return MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        }
+        set
+        {
+            MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Description = value;
+        }
+    }
+
+    #endregion
 }

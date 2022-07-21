@@ -1,69 +1,66 @@
-﻿using System;
-using System.Threading.Tasks;
-using Apocrypha.CommonObject.Services.AuthenticationServices;
+﻿using Apocrypha.CommonObject.Services.AuthenticationServices;
 using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands;
+
+public class RegistrationCommand : AsyncCommandBase
 {
-    public class RegistrationCommand : AsyncCommandBase
+    private readonly IAuthenticator _authenticator;
+    private readonly IRenavigator _loginRenavigator;
+    private readonly RegistrationViewModel _registerViewModel;
+
+    public RegistrationCommand(RegistrationViewModel registerViewModel, IAuthenticator authenticator, IRenavigator loginRenavigator)
     {
-        private readonly IAuthenticator _authenticator;
-        private readonly IRenavigator _loginRenavigator;
-        private readonly RegistrationViewModel _registerViewModel;
+        _registerViewModel = registerViewModel;
+        _authenticator = authenticator;
+        _loginRenavigator = loginRenavigator;
+    }
 
-        public RegistrationCommand(RegistrationViewModel registerViewModel, IAuthenticator authenticator, IRenavigator loginRenavigator)
+    protected override async Task ExecuteAsync(object parameter)
+    {
+        _registerViewModel.ErrorMessage = string.Empty;
+
+        try
         {
-            _registerViewModel = registerViewModel;
-            _authenticator = authenticator;
-            _loginRenavigator = loginRenavigator;
-        }
+            var result = await _authenticator.Register(_registerViewModel.Email, _registerViewModel.Username, _registerViewModel.Password,
+                _registerViewModel.ConfirmPassword);
 
-        public override async Task ExecuteAsync(object parameter)
-        {
-            _registerViewModel.ErrorMessage = string.Empty;
-
-            try
+            switch (result)
             {
-                var result = await _authenticator.Register(_registerViewModel.Email, _registerViewModel.Username, _registerViewModel.Password,
-                    _registerViewModel.ConfirmPassword);
+                case RegistrationResult.Success:
+                    _loginRenavigator.Renavigate();
 
-                switch (result)
-                {
-                    case RegistrationResult.Success:
-                        _loginRenavigator.Renavigate();
+                    break;
+                case RegistrationResult.PasswordsDoNotMatch:
+                    _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationPasswordsDoNotMatch;
 
-                        break;
-                    case RegistrationResult.PasswordsDoNotMatch:
-                        _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationPasswordsDoNotMatch;
+                    break;
+                case RegistrationResult.EmailAlreadyExists:
+                    _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationEmailAlreadyInUse;
 
-                        break;
-                    case RegistrationResult.EmailAlreadyExists:
-                        _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationEmailAlreadyInUse;
+                    break;
+                case RegistrationResult.UsernameAlreadyExists:
+                    _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationUsernameAlreadyExists;
 
-                        break;
-                    case RegistrationResult.UsernameAlreadyExists:
-                        _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationUsernameAlreadyExists;
+                    break;
+                case RegistrationResult.Failure:
+                    _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationFailed;
 
-                        break;
-                    case RegistrationResult.Failure:
-                        _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationFailed;
-
-                        break;
-                }
-            }
-            catch (Exception)
-            {
-                _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationFailed;
-
-                throw;
+                    break;
             }
         }
-
-        public override bool CanExecuteAsync(object parameter)
+        catch (Exception)
         {
-            return true;
+            _registerViewModel.ErrorMessage = Resources.Localization.Localization.ErrorRegistrationFailed;
+
+            throw;
         }
+    }
+
+    protected override bool CanExecuteAsync(object parameter)
+    {
+        return true;
     }
 }

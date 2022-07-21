@@ -1,25 +1,22 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Apocrypha.EntityFramework
+namespace Apocrypha.EntityFramework;
+
+public class ApocryphaDbContextFactory
 {
-    public class ApocryphaDbContextFactory
+    private readonly Action<DbContextOptionsBuilder> _configureDbContext;
+
+    public ApocryphaDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
     {
-        private readonly Action<DbContextOptionsBuilder> _configureDbContext;
+        _configureDbContext = configureDbContext;
+    }
 
-        public ApocryphaDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
-        {
-            _configureDbContext = configureDbContext;
-        }
+    public ApocryphaDbContext CreateDbContext()
+    {
+        var options = new DbContextOptionsBuilder<ApocryphaDbContext>();
 
-        public ApocryphaDbContext CreateDbContext()
-        {
-            var options = new DbContextOptionsBuilder<ApocryphaDbContext>();
+        _configureDbContext(options);
 
-            _configureDbContext(options);
-
-            return new ApocryphaDbContext(options.Options);
-        }
+        return new ApocryphaDbContext(options.Options);
     }
 }

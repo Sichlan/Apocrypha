@@ -1,15 +1,12 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Views
+/// <summary>
+///     Interaction logic for LoginView.xaml
+/// </summary>
+public partial class LoginView
 {
-    /// <summary>
-    ///     Interaction logic for LoginView.xaml
-    /// </summary>
-    public partial class LoginView : UserControl
+    public LoginView()
     {
-        public LoginView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

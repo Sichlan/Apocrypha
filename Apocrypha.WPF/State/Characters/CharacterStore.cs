@@ -1,33 +1,31 @@
-﻿using System;
-using Apocrypha.CommonObject.Models;
+﻿using Apocrypha.CommonObject.Models;
 
-namespace Apocrypha.WPF.State.Characters
+namespace Apocrypha.WPF.State.Characters;
+
+public class CharacterStore : ICharacterStore
 {
-    public class CharacterStore : ICharacterStore
+    private Character _currentCharacter;
+
+    public Character CurrentCharacter
     {
-        private Character _currentCharacter;
-
-        public Character CurrentCharacter
+        get
         {
-            get
-            {
-                return _currentCharacter;
-            }
-            set
-            {
-                _currentCharacter = value;
-                StateChange?.Invoke();
-            }
+            return _currentCharacter;
         }
-
-        public bool HasActiveCharacter
+        set
         {
-            get
-            {
-                return CurrentCharacter != null;
-            }
+            _currentCharacter = value;
+            StateChange?.Invoke();
         }
-
-        public event Action StateChange;
     }
+
+    public bool HasActiveCharacter
+    {
+        get
+        {
+            return CurrentCharacter != null;
+        }
+    }
+
+    public event Action StateChange;
 }

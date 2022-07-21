@@ -1,9 +1,8 @@
 ﻿using Apocrypha.WPF.State;
 
-namespace Apocrypha.WPF.ViewModels.Factories
+namespace Apocrypha.WPF.ViewModels.Factories;
+
+public interface IApocryphaViewModelFactory
 {
-    public interface IApocryphaViewModelFactory
-    {
-        BaseViewModel CreateViewModel(ViewType viewType);
-    }
+    BaseViewModel CreateViewModel(ViewType viewType);
 }
