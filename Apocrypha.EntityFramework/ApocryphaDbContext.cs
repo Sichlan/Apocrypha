@@ -1,6 +1,5 @@
 ﻿using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Spells;
-using Apocrypha.EntityFramework.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.EntityFramework
@@ -70,32 +69,32 @@ namespace Apocrypha.EntityFramework
         public DbSet<RuleBookTranslation> RuleBookTranslations { get; set; }
         public DbSet<Sense> Senses { get; set; }
         public DbSet<SenseTranslation> SenseTranslations { get; set; }
-        public DbSet<User> Users { get; set; }
-        
+        public DbSet<User?> Users { get; set; }
+
         #region Spells
 
         public DbSet<Spell> Spells { get; set; }
         public DbSet<SpellTranslation> SpellTranslations { get; set; }
-        
+
         public DbSet<SpellVariant> SpellVariants { get; set; }
         public DbSet<SpellVariantTranslation> SpellVariantTranslations { get; set; }
-        
+
         public DbSet<SpellSchool> SpellSchools { get; set; }
         public DbSet<SpellSchoolTranslation> SpellSchoolTranslations { get; set; }
-        
+
         public DbSet<SpellSubSchool> SpellSubSchools { get; set; }
         public DbSet<SpellSubSchoolTranslation> SpellSubSchoolTranslations { get; set; }
-        
+
         public DbSet<SpellDescriptor> SpellDescriptors { get; set; }
         public DbSet<SpellDescriptorTranslation> SpellDescriptorTranslations { get; set; }
-        
+
         public DbSet<SpellComponent> SpellComponents { get; set; }
         public DbSet<SpellComponentType> SpellComponentTypes { get; set; }
         public DbSet<SpellComponentTypeTranslation> SpellComponentTypeTranslations { get; set; }
-        
+
         public DbSet<SpellRangeType> SpellRangeTypes { get; set; }
         public DbSet<SpellRangeTypeTranslation> SpellRangeTypeTranslations { get; set; }
-        
+
         #endregion Spells
 
         #endregion
