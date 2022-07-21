@@ -20,7 +20,7 @@ namespace Apocrypha.CommonObject.Models.Common.Translation
                     };
                     Add(translation);
                 }
-                
+
                 return translation;
             }
             set
@@ -36,13 +36,13 @@ namespace Apocrypha.CommonObject.Models.Common.Translation
                 Add(value);
             }
         }
-        
+
         public T this[string culture]
         {
             get
             {
                 var translation = this.FirstOrDefault(x => x.CultureName == culture);
-                
+
                 if (translation == null)
                 {
                     translation = new T
@@ -57,6 +57,7 @@ namespace Apocrypha.CommonObject.Models.Common.Translation
             set
             {
                 var translation = this.FirstOrDefault(x => x.CultureName == culture);
+
                 if (translation != null)
                 {
                     Remove(translation);
@@ -75,6 +76,24 @@ namespace Apocrypha.CommonObject.Models.Common.Translation
         public bool HasCulture(CultureInfo culture)
         {
             return this.Any(x => x.CultureName == culture.Name);
+        }
+
+        public TranslationCollection<T> Copy()
+        {
+            TranslationCollection<T> output = new TranslationCollection<T>();
+
+            foreach (var translation in this)
+            {
+                output.Add(new T()
+                {
+                    Id = translation.Id,
+                    CultureName = translation.CultureName,
+                    Name = translation.Name,
+                    Description = translation.Name
+                });
+            }
+
+            return output;
         }
     }
 }

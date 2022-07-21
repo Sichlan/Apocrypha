@@ -341,4 +341,229 @@
             </Canvas>
         </Viewbox>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="IconSpellTarget" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Ellipse Canvas.Left="2.5" Canvas.Top="2.5" 
+                                 Width="9" Height="9" 
+                                 Stroke="{TemplateBinding Foreground}"/>
+                        <Ellipse Canvas.Left="6.5" Canvas.Top="6.5" 
+                                 Width="1" Height="1" 
+                                 Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="7" Y1="2.5" X2="7" Y2="0.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="7" Y1="13.5" X2="7" Y2="11.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="11.5" Y1="7" X2="13.5" Y2="7" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="0.5" Y1="7" X2="2.5" Y2="7" Stroke="{TemplateBinding Foreground}"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="IconSpellEffect" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Line X1="0.5" Y1="13.5" X2="9.5" Y2="4.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="11.5" Y1="2.5" X2="12.5" Y2="1.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="9" Y1="2" X2="9" Y2="0.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="12" Y1="5" X2="13.5" Y2="5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="11" Y1="7" X2="12" Y2="8" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="6" Y1="2" X2="7" Y2="3" Stroke="{TemplateBinding Foreground}"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="IconSpellDuration" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M10.5 3.5a3.5 3.5 0 0 1-7 0V.5h7Z"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M10.5 10.5a3.5 3.5 0 0 0-7 0v3h7Z"/>
+                        <Line X1="1.5" Y1="0.5" X2="12.5" Y2="0.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="1.5" Y1="13.5" X2="12.5" Y2="13.5" Stroke="{TemplateBinding Foreground}"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="IconSpellCastingTime" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M13.5 7A6.5 6.5 0 0 0 7 .5V7Z"/>
+                        <Line X1="2" Y1="7" X2="0.5" Y2="7" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="3.46" Y1="3.46" X2="2.4" Y2="2.4" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="3.46" Y1="10.54" X2="2.4" Y2="11.6" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="7" Y1="12" X2="7" Y2="13.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="10.54" Y1="10.54" X2="11.6" Y2="11.6" Stroke="{TemplateBinding Foreground}"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="IconSpellArea" TargetType="{x:Type ContentControl}">
+        <Viewbox Stretch="Fill" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M8.5.67a6.7 6.7 0 0 0-3 0"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M3.59 1.47A7 7 0 0 0 2.4 2.4a7 7 0 0 0-.93 1.19"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M.67 5.5a6.7 6.7 0 0 0 0 3"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M1.47 10.41A7 7 0 0 0 2.4 11.6a7 7 0 0 0 1.19.93"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M5.5 13.33a6.7 6.7 0 0 0 3 0"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M10.41 12.53a7 7 0 0 0 1.19-.93 7 7 0 0 0 .93-1.19"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M13.33 8.5a6.7 6.7 0 0 0 0-3"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M12.53 3.59A7 7 0 0 0 11.6 2.4a7 7 0 0 0-1.19-.93"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="IconSpellRange" TargetType="{x:Type ContentControl}">
+        <Viewbox>
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Line X1="13.5" Y1="7" X2="0.5" Y2="7" Stroke="{TemplateBinding Foreground}"/>
+                        <Polyline Points="3.5 4 0.5 7 3.5 10" Stroke="{TemplateBinding Foreground}"/>
+                        <Polyline Points="10.5 4 13.5 7 10.5 10" Stroke="{TemplateBinding Foreground}"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="IconVerbalComponent" TargetType="{x:Type ContentControl}">
+        <Viewbox>
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M3 5H1.5a1 1 0 0 0-1 1V8a1 1 0 0 0 1 1H3Z"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M3 9l3.91 2.81a1 1 0 0 0 1 .08A1 1 0 0 0 8.5 11V3A1 1 0 0 0 8 2.11a1 1 0 0 0-1 .08L3 5"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M12.5 4a4.38 4.38 0 0 1 1 3 6.92 6.92 0 0 1-1 3.5"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M10.5 5.5A2.19 2.19 0 0 1 11 7a2.19 2.19 0 0 1-.5 1.5"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="IconSomaticComponent" TargetType="{x:Type ContentControl}">
+        <Viewbox>
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Ellipse Canvas.Left="5" Canvas.Top="0.5" Width="4" Height="4" Stroke="{TemplateBinding Foreground}"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M2.5 5a7.5 7.5 0 0 0 9 0"/>
+                        <Polyline Points="8.5 6.33 8.5 10.5 5.5 10.5 5.5 6.33" FillRule="NonZero" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="5.5" Y1="10.5" X2="5.5" Y2="13.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Line X1="8.5" Y1="10.5" X2="8.5" Y2="13.5" Stroke="{TemplateBinding Foreground}"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="IconMaterialComponent" TargetType="{x:Type ContentControl}">
+        <Viewbox>
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Canvas>
+                            <Line X1="7" Y1="10.02" X2="7" Y2="11.03" Stroke="{TemplateBinding Foreground}"/>
+                            <Line X1="7" Y1="5.01" X2="7" Y2="5.95" Stroke="{TemplateBinding Foreground}"/>
+                        </Canvas>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M7 13.49c3.5 0 6-1.24 6-4 0-3-1.5-5-4.5-6.5L9.68 1.47a.66.66 0 0 0-.56-1H4.88a.66.66 0 0 0-.56 1L5.5 3C2.5 4.51 1 6.51 1 9.51 1 12.25 3.5 13.49 7 13.49Z"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M6 9.56A1.24 1.24 0 0 0 7 10 1.12 1.12 0 0 0 8.19 9 1.12 1.12 0 0 0 7 8 1.12 1.12 0 0 1 5.81 7 1.11 1.11 0 0 1 7 6 1.26 1.26 0 0 1 8 6.4"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="IconExperienceComponent" TargetType="{x:Type ContentControl}">
+        <Viewbox>
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Ellipse Canvas.Left="4.8" Canvas.Top="4.5" Width="4.5" Height="4.5" Stroke="{TemplateBinding Foreground}"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M11 13.5A4.5 4.5 0 0 0 3 13.5"/>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M12 10.56a6.25 6.25 0 1 0-9.92 0"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="IconArcaneFocus" TargetType="{x:Type ContentControl}">
+        <Viewbox>
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Canvas>
+                        <Path Stroke="{TemplateBinding Foreground}" Data="M12.64 1.87 11.8 4.35a.41.41 0 0 0 0 .37l1.57 2.1a.4.4 0 0 1-.33.64l-2.62 0a.43.43 0 0 0-.33.17L8.63 9.73a.4.4 0 0 1-.71-.11l-.78-2.5a.38.38 0 0 0-.26-.26l-2.5-.78a.4.4 0 0 1-.11-.71L6.41 3.86a.43.43 0 0 0 .17-.33l0-2.62A.4.4 0 0 1 7.18.58l2.1 1.57a.41.41 0 0 0 .37.05l2.48-.84A.4.4 0 0 1 12.64 1.87Z"/>
+                        <Line X1="7.04" Y1="6.96" X2="0.5" Y2="13.5" Stroke="{TemplateBinding Foreground}"/>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="IconDivineFocus" TargetType="{x:Type ContentControl}">
+        <Viewbox>
+            <Canvas Width="100" Height="100">
+                <Canvas>
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="7.142857142857143 0 0 7.142857142857143 0 0"/>
+                    </Canvas.RenderTransform>
+                    <Polygon Points="12 3.5 9 3.5 9 0.5 5 0.5 5 3.5 2 3.5 2 7.5 5 7.5 5 13.5 9 13.5 9 7.5 12 7.5 12 3.5" FillRule="NonZero" Stroke="{TemplateBinding Foreground}"/>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
 </ResourceDictionary>

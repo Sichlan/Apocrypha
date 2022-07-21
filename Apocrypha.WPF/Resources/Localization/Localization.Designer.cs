@@ -79,11 +79,29 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ButtonLabelCancelRace {
+            get {
+                return ResourceManager.GetString("ButtonLabelCancelRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear dice history.
         /// </summary>
         public static string ButtonLabelClearDiceHistory {
             get {
                 return ResourceManager.GetString("ButtonLabelClearDiceHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit race.
+        /// </summary>
+        public static string ButtonLabelEditRace {
+            get {
+                return ResourceManager.GetString("ButtonLabelEditRace", resourceCulture);
             }
         }
         
@@ -106,7 +124,16 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to register.
+        ///   Looks up a localized string similar to New race.
+        /// </summary>
+        public static string ButtonLabelNewRace {
+            get {
+                return ResourceManager.GetString("ButtonLabelNewRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
         /// </summary>
         public static string ButtonLabelRegister {
             get {
@@ -120,6 +147,24 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string ButtonLabelSaveCharacter {
             get {
                 return ResourceManager.GetString("ButtonLabelSaveCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Race.
+        /// </summary>
+        public static string ButtonLabelSaveRace {
+            get {
+                return ResourceManager.GetString("ButtonLabelSaveRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translate.
+        /// </summary>
+        public static string ButtonLabelTranslate {
+            get {
+                return ResourceManager.GetString("ButtonLabelTranslate", resourceCulture);
             }
         }
         
@@ -187,7 +232,25 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to confirm password.
+        ///   Looks up a localized string similar to The view type does not have a view model..
+        /// </summary>
+        public static string ErrorViewTypeNotReckognized {
+            get {
+                return ResourceManager.GetString("ErrorViewTypeNotReckognized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CHA.
+        /// </summary>
+        public static string InputLabelCharismaShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelCharismaShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm password.
         /// </summary>
         public static string InputLabelConfirmPassword {
             get {
@@ -196,7 +259,34 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to email.
+        ///   Looks up a localized string similar to CON.
+        /// </summary>
+        public static string InputLabelConstitutionShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelConstitutionShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string InputLabelDescription {
+            get {
+                return ResourceManager.GetString("InputLabelDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEX.
+        /// </summary>
+        public static string InputLabelDexterityShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelDexterityShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string InputLabelEmail {
             get {
@@ -205,7 +295,16 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to password.
+        ///   Looks up a localized string similar to INT.
+        /// </summary>
+        public static string InputLabelIntelligenceShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelIntelligenceShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string InputLabelPassword {
             get {
@@ -214,7 +313,70 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to username.
+        ///   Looks up a localized string similar to Race name.
+        /// </summary>
+        public static string InputLabelRaceName {
+            get {
+                return ResourceManager.GetString("InputLabelRaceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size category.
+        /// </summary>
+        public static string InputLabelRaceSizeCategory {
+            get {
+                return ResourceManager.GetString("InputLabelRaceSizeCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub type.
+        /// </summary>
+        public static string InputLabelRaceSubType {
+            get {
+                return ResourceManager.GetString("InputLabelRaceSubType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string InputLabelRaceType {
+            get {
+                return ResourceManager.GetString("InputLabelRaceType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rule book.
+        /// </summary>
+        public static string InputLabelRuleBook {
+            get {
+                return ResourceManager.GetString("InputLabelRuleBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        public static string InputLabelRuleBookPage {
+            get {
+                return ResourceManager.GetString("InputLabelRuleBookPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STR.
+        /// </summary>
+        public static string InputLabelStrengthShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelStrengthShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string InputLabelUsername {
             get {
@@ -223,7 +385,16 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to allignment.
+        ///   Looks up a localized string similar to WIS.
+        /// </summary>
+        public static string InputLabelWisdomShortCapitalized {
+            get {
+                return ResourceManager.GetString("InputLabelWisdomShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allignment.
         /// </summary>
         public static string LabelInputAllignment {
             get {
@@ -232,7 +403,7 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to display name.
+        ///   Looks up a localized string similar to Display name.
         /// </summary>
         public static string LabelInputCharacterDisplayName {
             get {
@@ -241,11 +412,38 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to character name.
+        ///   Looks up a localized string similar to Character name.
         /// </summary>
         public static string LabelInputCharacterName {
             get {
                 return ResourceManager.GetString("LabelInputCharacterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descriptor.
+        /// </summary>
+        public static string LabelSpellDescriptor {
+            get {
+                return ResourceManager.GetString("LabelSpellDescriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spell school.
+        /// </summary>
+        public static string LabelSpellSchool {
+            get {
+                return ResourceManager.GetString("LabelSpellSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub school.
+        /// </summary>
+        public static string LabelSpellSubSchool {
+            get {
+                return ResourceManager.GetString("LabelSpellSubSchool", resourceCulture);
             }
         }
         
@@ -273,6 +471,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string MenuCategoryLabelCharacter {
             get {
                 return ResourceManager.GetString("MenuCategoryLabelCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOOLS.
+        /// </summary>
+        public static string MenuCategoryLabelTools {
+            get {
+                return ResourceManager.GetString("MenuCategoryLabelTools", resourceCulture);
             }
         }
         
@@ -327,6 +534,24 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string MenuLabelProfile {
             get {
                 return ResourceManager.GetString("MenuLabelProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Race editor.
+        /// </summary>
+        public static string MenuLabelRaceEditor {
+            get {
+                return ResourceManager.GetString("MenuLabelRaceEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spell card editor.
+        /// </summary>
+        public static string MenuLabelSpellCardEditor {
+            get {
+                return ResourceManager.GetString("MenuLabelSpellCardEditor", resourceCulture);
             }
         }
     }

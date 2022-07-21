@@ -9,7 +9,10 @@ namespace Apocrypha.WPF.State.Users
 
         public User CurrentUser
         {
-            get => _currentUser;
+            get
+            {
+                return _currentUser;
+            }
             set
             {
                 _currentUser = value;

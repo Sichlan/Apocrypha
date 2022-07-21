@@ -1,4 +1,4 @@
-﻿using Apocrypha.WPF.State.Navigators;
+﻿using Apocrypha.WPF.State;
 
 namespace Apocrypha.WPF.ViewModels.Factories
 {

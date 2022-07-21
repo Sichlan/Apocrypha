@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.WPF.State.Characters;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Navigators;
 
 namespace Apocrypha.WPF.Commands
 {
@@ -21,9 +21,8 @@ namespace Apocrypha.WPF.Commands
         public override async Task ExecuteAsync(object parameter)
         {
             _characterStore.CurrentCharacter = _character;
-            
-            if (_renavigator != null)
-                _renavigator.Renavigate();
+
+            _renavigator?.Renavigate();
         }
 
         public override bool CanExecuteAsync(object parameter)

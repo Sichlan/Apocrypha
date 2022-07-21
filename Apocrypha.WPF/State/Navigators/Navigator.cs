@@ -1,7 +1,7 @@
 ﻿using System;
 using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF.State.Navigators.Navigators
+namespace Apocrypha.WPF.State.Navigators
 {
     public class Navigator : INavigator
     {
@@ -9,7 +9,10 @@ namespace Apocrypha.WPF.State.Navigators.Navigators
 
         public BaseViewModel CurrentViewModel
         {
-            get => _currentViewModel;
+            get
+            {
+                return _currentViewModel;
+            }
             set
             {
                 _currentViewModel = value;

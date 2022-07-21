@@ -8,5 +8,7 @@
     public abstract class Translation<T> : DatabaseObject where T : Translation<T>, new()
     {
         public string CultureName { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

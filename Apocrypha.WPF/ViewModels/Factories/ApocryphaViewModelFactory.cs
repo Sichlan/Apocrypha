@@ -1,5 +1,6 @@
 ﻿using System;
-using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.Resources.Localization;
+using Apocrypha.WPF.State;
 
 namespace Apocrypha.WPF.ViewModels.Factories
 {
@@ -7,8 +8,13 @@ namespace Apocrypha.WPF.ViewModels.Factories
     {
         public ApocryphaViewModelFactory(CreateViewModel<HomeViewModel> createHomeViewModelFactory,
             CreateViewModel<CharacterSelectionViewModel> createCharacterSelectionViewModelFactory,
-            CreateViewModel<LoginViewModel> createLoginViewModelFactory, CreateViewModel<RegistrationViewModel> createRegistrationViewModelFactory,
-            CreateViewModel<DiceRollerViewModel> createDiceRollerViewModelFactory, CreateViewModel<CharacterProfileViewModel> createCharacterProfileViewModelFactory)
+            CreateViewModel<LoginViewModel> createLoginViewModelFactory, 
+            CreateViewModel<RegistrationViewModel> createRegistrationViewModelFactory,
+            CreateViewModel<DiceRollerViewModel> createDiceRollerViewModelFactory, 
+            CreateViewModel<CharacterProfileViewModel> createCharacterProfileViewModelFactory, 
+            CreateViewModel<SpellCardEditorViewModel> createSpellCardEditorViewModelFactory, 
+            CreateViewModel<RaceEditorViewModel> createRaceEditorViewModelFactory, 
+            CreateViewModel<RaceListViewModel> createRaceListViewModelFactory)
         {
             _createHomeViewModelFactory = createHomeViewModelFactory;
             _createCharacterSelectionViewModelFactory = createCharacterSelectionViewModelFactory;
@@ -16,6 +22,9 @@ namespace Apocrypha.WPF.ViewModels.Factories
             _createRegistrationViewModelFactory = createRegistrationViewModelFactory;
             _createDiceRollerViewModelFactory = createDiceRollerViewModelFactory;
             _createCharacterProfileViewModelFactory = createCharacterProfileViewModelFactory;
+            _createSpellCardEditorViewModelFactory = createSpellCardEditorViewModelFactory;
+            _createRaceEditorViewModelFactory = createRaceEditorViewModelFactory;
+            _createRaceListViewModelFactory = createRaceListViewModelFactory;
         }
 
         public BaseViewModel CreateViewModel(ViewType viewType)
@@ -34,8 +43,14 @@ namespace Apocrypha.WPF.ViewModels.Factories
                     return _createDiceRollerViewModelFactory();
                 case ViewType.Profile:
                     return _createCharacterProfileViewModelFactory();
+                case ViewType.SpellCardEditor:
+                    return _createSpellCardEditorViewModelFactory();
+                case ViewType.RaceEditor:
+                    return _createRaceEditorViewModelFactory();
+                case ViewType.RaceList:
+                    return _createRaceListViewModelFactory();
                 default:
-                    throw new ArgumentException("The view type does not have a view model", nameof(viewType));
+                    throw new ArgumentException(Localization.ErrorViewTypeNotReckognized, nameof(viewType));
             }
         }
 
@@ -47,6 +62,9 @@ namespace Apocrypha.WPF.ViewModels.Factories
         private readonly CreateViewModel<LoginViewModel> _createLoginViewModelFactory;
         private readonly CreateViewModel<RegistrationViewModel> _createRegistrationViewModelFactory;
         private readonly CreateViewModel<DiceRollerViewModel> _createDiceRollerViewModelFactory;
+        private readonly CreateViewModel<SpellCardEditorViewModel> _createSpellCardEditorViewModelFactory;
+        private readonly CreateViewModel<RaceEditorViewModel> _createRaceEditorViewModelFactory;
+        private readonly CreateViewModel<RaceListViewModel> _createRaceListViewModelFactory;
 
         #endregion
     }

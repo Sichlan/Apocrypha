@@ -4,7 +4,7 @@ using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
 using Apocrypha.WPF.State.Users;
 
-namespace Apocrypha.WPF.State.Navigators.Authenticators
+namespace Apocrypha.WPF.State.Authenticators
 {
     public class Authenticator : IAuthenticator
     {
@@ -21,7 +21,10 @@ namespace Apocrypha.WPF.State.Navigators.Authenticators
 
         public User CurrentUser
         {
-            get => _userStore.CurrentUser;
+            get
+            {
+                return _userStore.CurrentUser;
+            }
             private set
             {
                 _userStore.CurrentUser = value;
@@ -29,7 +32,13 @@ namespace Apocrypha.WPF.State.Navigators.Authenticators
             }
         }
 
-        public bool IsLoggedIn => CurrentUser != null;
+        public bool IsLoggedIn
+        {
+            get
+            {
+                return CurrentUser != null;
+            }
+        }
 
         public async Task<RegistrationResult> Register(string email, string username, string password, string confirmnPassword)
         {

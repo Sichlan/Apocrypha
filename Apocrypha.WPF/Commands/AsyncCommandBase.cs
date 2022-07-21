@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.State;
 
 namespace Apocrypha.WPF.Commands
 {
@@ -11,7 +11,10 @@ namespace Apocrypha.WPF.Commands
 
         public bool IsExecuting
         {
-            get => _isExecuting;
+            get
+            {
+                return _isExecuting;
+            }
             set
             {
                 _isExecuting = value;
@@ -20,6 +23,11 @@ namespace Apocrypha.WPF.Commands
         }
 
         public event EventHandler CanExecuteChanged;
+
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
 
         public bool CanExecute(object parameter)
         {

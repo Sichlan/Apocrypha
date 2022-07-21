@@ -4,7 +4,7 @@ using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
 
-namespace Apocrypha.WPF.State.Navigators.Authenticators
+namespace Apocrypha.WPF.State.Authenticators
 {
     public interface IAuthenticator : IStateChanger
     {

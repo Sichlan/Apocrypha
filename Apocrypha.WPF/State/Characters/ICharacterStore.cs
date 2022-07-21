@@ -1,5 +1,4 @@
 ﻿using Apocrypha.CommonObject.Models;
-using Apocrypha.WPF.State.Navigators;
 
 namespace Apocrypha.WPF.State.Characters
 {

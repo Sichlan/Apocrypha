@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
-             xmlns:navigators="clr-namespace:Apocrypha.WPF.State.Navigators"
              xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
+             xmlns:navigators="clr-namespace:Apocrypha.WPF.State"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
              d:DesignHeight="406.143">
-    <Grid>
+    <Grid Style="{StaticResource NavigationBarMainGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -30,7 +30,7 @@
                         <ContentControl Template="{StaticResource IconHome}" Width="20" Height="20"
                                         VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
                         <TextBlock Text="{x:Static res:Localization.MenuLabelHome}" Margin="10 0 0 0"
-                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
                                    VerticalAlignment="Center" />
                     </StackPanel>
                 </RadioButton>
@@ -39,14 +39,14 @@
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding MenuExpanded}" Value="True">
+                                <DataTrigger Binding="{Binding IsMenuExpanded}" Value="True">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
                             </Style.Triggers>
                             <Setter Property="Visibility" Value="Hidden"/>
                         </Style>
                     </Border.Style>
-                    <TextBlock Text="{x:Static res:Localization.MenuCategoryLabelCharacter}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource BrushForeground1}" FontSize="20" FontWeight="Medium" Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                    <TextBlock Text="{x:Static res:Localization.MenuCategoryLabelCharacter}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource BrushForeground1}" FontSize="20" FontWeight="Medium" Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                 </Border>
                 
                 <RadioButton
@@ -57,7 +57,7 @@
                         <ContentControl Template="{StaticResource IconDatabase}" Width="20" Height="20"
                                         VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
                         <TextBlock Text="{x:Static res:Localization.MenuLabelCharacterSelection}" Margin="10 0 0 0"
-                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
                                    VerticalAlignment="Center" />
                     </StackPanel>
                 </RadioButton>
@@ -71,10 +71,24 @@
                         <ContentControl Template="{StaticResource IconUser}" Width="20" Height="20"
                                         VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
                         <TextBlock Text="{x:Static res:Localization.MenuLabelProfile}" Margin="10 0 0 0"
-                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
                                    VerticalAlignment="Center" />
                     </StackPanel>
                 </RadioButton>
+
+                <Border BorderBrush="{StaticResource BrushForeground1}" BorderThickness="0,2,0,0" Padding="10" Height="45">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMenuExpanded}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Text="{x:Static res:Localization.MenuCategoryLabelTools}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource BrushForeground1}" FontSize="20" FontWeight="Medium" Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                </Border>
 
                 <RadioButton
                     IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:DiceRollerViewModel}, Mode=OneWay}"
@@ -84,7 +98,33 @@
                         <ContentControl Template="{StaticResource IconDice}" Width="20" Height="20"
                                         VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
                         <TextBlock Text="{x:Static res:Localization.MenuLabelDiceRoller}" Margin="10 0 0 0"
-                                   Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:SpellCardEditorViewModel}, Mode=OneWay}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static navigators:ViewType.SpellCardEditor}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{StaticResource IconDice}" Width="20" Height="20"
+                                        VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                        <TextBlock Text="{x:Static res:Localization.MenuLabelSpellCardEditor}" Margin="10 0 0 0"
+                                   Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:RaceEditorViewModel}, Mode=OneWay}"
+                    Command="{Binding UpdateCurrentViewModelCommand}"
+                    CommandParameter="{x:Static navigators:ViewType.RaceList}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl Template="{StaticResource IconDice}" Width="20" Height="20"
+                                        VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
+                        <TextBlock Text="{x:Static res:Localization.MenuLabelRaceEditor}" Margin="10 0 0 0"
+                                   Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
                                    VerticalAlignment="Center" />
                     </StackPanel>
                 </RadioButton>
@@ -98,17 +138,17 @@
                     <ContentControl Template="{StaticResource IconLogout}" Width="20" Height="20"
                                     VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
                     <TextBlock Text="{x:Static res:Localization.MenuLabelLogout}" Margin="10 0 0 0"
-                               Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                               Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
                                VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
 
-            <ToggleButton IsChecked="{Binding MenuExpanded}" Style="{StaticResource MenuToggleButtonTheme}">
+            <ToggleButton IsChecked="{Binding IsMenuExpanded}" Style="{StaticResource MenuToggleButtonTheme}">
                 <StackPanel Orientation="Horizontal">
                     <ContentControl Template="{StaticResource IconMenu}" Width="20" Height="20"
                                     VerticalAlignment="Center" Foreground="{StaticResource BrushForeground1}"/>
                     <TextBlock Text="{x:Static res:Localization.MenuLabelMenu}" Margin="10 0 0 0"
-                               Visibility="{Binding MenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                               Visibility="{Binding IsMenuExpanded, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
                                VerticalAlignment="Center" />
                 </StackPanel>
             </ToggleButton>

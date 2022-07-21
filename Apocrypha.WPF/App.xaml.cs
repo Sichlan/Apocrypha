@@ -36,7 +36,7 @@ namespace Apocrypha.WPF
                 .AddApiConfiguration()
                 .AddViewModels()
                 .AddStateConfiguration()
-                .AddMiscelaneousConfiguration();
+                .AddMiscellaneousConfiguration();
         }
 
         /// <summary>

@@ -1,50 +1,114 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Apocrypha.CommonObject.Models;
-using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.Commands;
+using Apocrypha.WPF.State;
+using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
-using Apocrypha.WPF.State.Navigators.Authenticators;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.PopupService;
 using Apocrypha.WPF.ViewModels.Factories;
+using Apocrypha.WPF.ViewModels.Popup;
 
 namespace Apocrypha.WPF.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        #region Services
+
         private readonly IAuthenticator _authenticator;
         private readonly ICharacterStore _characterStore;
+        private readonly IShowGlobalPopupService _showGlobalPopupService;
         private readonly INavigator _navigator;
         private readonly IApocryphaViewModelFactory _viewModelFactory;
+        private readonly IRenavigator _logoutCommandRenavigator;
 
-        private bool _menuExpanded;
+        #endregion
+
+        #region Fields
+
+        private bool _isMenuExpanded;
         private WindowState _currentWindowState;
 
-        public MainViewModel(IAuthenticator authenticator, INavigator navigator, IApocryphaViewModelFactory viewModelFactory,
-            IRenavigator logoutCommandRenavigator, ICharacterStore characterStore, IDataService<Character> characterDataService)
+        #endregion
+
+        public MainViewModel(IAuthenticator authenticator,
+            INavigator navigator,
+            IApocryphaViewModelFactory viewModelFactory,
+            IRenavigator logoutCommandRenavigator,
+            ICharacterStore characterStore,
+            IShowGlobalPopupService showGlobalPopupService)
         {
             _authenticator = authenticator;
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
+            _logoutCommandRenavigator = logoutCommandRenavigator;
             _characterStore = characterStore;
+            _showGlobalPopupService = showGlobalPopupService;
 
+            SetCommands();
+            SetEvents();
+
+            UpdateCurrentViewModelCommand.Execute(ViewType.Login);
+        }
+
+        #region EventHandler
+
+        private void SetEvents()
+        {
             _navigator.StateChange += Navigator_StateChange;
             _authenticator.StateChange += Authenticator_StateChange;
             _characterStore.StateChange += CharacterStore_StateChange;
-
-            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
-            UpdateCurrentViewModelCommand.Execute(ViewType.Login);
+            _showGlobalPopupService.StateChange += ShowGlobalPopupServiceOnStateChange;
             UpdateCurrentViewModelCommand.StateChange += UpdateCurrentViewModelCommand_StateChange;
+        }
 
-            LogoutCommand = new LogoutCommand(_authenticator, logoutCommandRenavigator, _characterStore);
+        private void UpdateCurrentViewModelCommand_StateChange()
+        {
+            OnPropertyChanged(nameof(IsExecutingCommand));
+        }
+
+        private void ShowGlobalPopupServiceOnStateChange()
+        {
+            OnPropertyChanged(nameof(PopupVisibility));
+            OnPropertyChanged(nameof(PopupViewModel));
+        }
+
+        private void CharacterStore_StateChange()
+        {
+            OnPropertyChanged(nameof(HasActiveCharacter));
+            CommandManager.InvalidateRequerySuggested();
+        }
+
+        private void Authenticator_StateChange()
+        {
+            OnPropertyChanged(nameof(IsLoggedIn));
+        }
+
+        private void Navigator_StateChange()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
+        }
+
+        #endregion
+
+        #region Commands
+
+        public AsyncCommandBase UpdateCurrentViewModelCommand { get; private set; }
+        public AsyncCommandBase LogoutCommand { get; private set; }
+        public ICommand MinimizeCommand { get; private set; }
+        public ICommand MaximizeCommand { get; private set; }
+        public ICommand CloseCommand { get; private set; }
+
+        private void SetCommands()
+        {
+            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(_navigator, _viewModelFactory, this);
+            LogoutCommand = new LogoutCommand(_authenticator, _logoutCommandRenavigator, _characterStore);
             MinimizeCommand = new RelayCommand(o => MinimizeWindow(o));
             MaximizeCommand = new RelayCommand(o => MaximizeWindow(o));
             CloseCommand = new RelayCommand(o => CloseWindow(o));
-            SaveCharacterCommand = new SaveCharacterCommand(_characterStore, characterDataService);
         }
 
-        private void CloseWindow(object obj)
+        private static void CloseWindow(object obj)
         {
             if (obj is Window window)
             {
@@ -62,58 +126,84 @@ namespace Apocrypha.WPF.ViewModels
             CurrentWindowState = WindowState.Minimized;
         }
 
+        #endregion
+
+        #region Properties
 
         public WindowState CurrentWindowState
         {
-            get => _currentWindowState;
-            set 
-            { 
+            get
+            {
+                return _currentWindowState;
+            }
+            set
+            {
                 _currentWindowState = value;
                 OnPropertyChanged(nameof(CurrentWindowState));
             }
         }
 
-        public BaseViewModel CurrentViewModel => _navigator.CurrentViewModel;
-        public bool IsLoggedIn => _authenticator.IsLoggedIn;
-        public bool HasActiveCharacter => _characterStore.HasActiveCharacter;
-        public AsyncCommandBase UpdateCurrentViewModelCommand { get; }
-        public AsyncCommandBase LogoutCommand { get; }
-        public ICommand MinimizeCommand { get; set; }
-        public ICommand MaximizeCommand { get; set; }
-        public ICommand CloseCommand { get; set; }
-        public ICommand SaveCharacterCommand { get; set; }
-        public bool IsExecutingCommand => UpdateCurrentViewModelCommand?.IsExecuting == true;
-
-        public bool MenuExpanded
+        public BaseViewModel CurrentViewModel
         {
-            get => _menuExpanded;
+            get
+            {
+                return _navigator.CurrentViewModel;
+            }
+        }
+
+        public bool IsLoggedIn
+        {
+            get
+            {
+                return _authenticator.IsLoggedIn;
+            }
+        }
+
+        public bool HasActiveCharacter
+        {
+            get
+            {
+                return _characterStore.HasActiveCharacter;
+            }
+        }
+
+        public bool IsExecutingCommand
+        {
+            get
+            {
+                return UpdateCurrentViewModelCommand?.IsExecuting == true;
+            }
+        }
+
+        public bool IsMenuExpanded
+        {
+            get
+            {
+                return _isMenuExpanded;
+            }
             set
             {
-                _menuExpanded = value;
+                _isMenuExpanded = value;
                 OnPropertyChanged();
             }
         }
 
-
-        private void UpdateCurrentViewModelCommand_StateChange()
+        public Visibility PopupVisibility
         {
-            OnPropertyChanged(nameof(IsExecutingCommand));
+            get
+            {
+                return _showGlobalPopupService?.IsVisible == true ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
-        private void Authenticator_StateChange()
+        public IPopupViewModel PopupViewModel
         {
-            OnPropertyChanged(nameof(IsLoggedIn));
+            get
+            {
+                return _showGlobalPopupService?.PopupViewModel;
+            }
         }
 
-        private void Navigator_StateChange()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
-        }
-
-        private void CharacterStore_StateChange()
-        {
-            OnPropertyChanged(nameof(HasActiveCharacter));
-            CommandManager.InvalidateRequerySuggested();
-        }
+        #endregion
     }
 }

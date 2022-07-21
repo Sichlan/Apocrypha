@@ -1,4 +1,4 @@
-﻿namespace Apocrypha.WPF.State.Navigators
+﻿namespace Apocrypha.WPF.State
 {
     public enum ViewType
     {
@@ -7,6 +7,9 @@
         Register,
         CharacterSelection,
         Profile,
-        DiceRoller
+        DiceRoller,
+        SpellCardEditor,
+        RaceEditor,
+        RaceList
     }
 }

@@ -6,7 +6,8 @@
         xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
         xmlns:controls="clr-namespace:Apocrypha.WPF.Controls" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
-        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=False}"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         Title="{x:Static res:Localization.ApplicationTitle}"
         Height="600" Width="1056"
@@ -73,13 +74,8 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
 
-            <Grid Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Stretch">
+            <Grid Grid.Column="0" VerticalAlignment="Stretch">
                 <Grid.Style>
                     <Style TargetType="{x:Type Grid}">
                         <Style.Triggers>
@@ -93,16 +89,27 @@
 
                 <controls:NavigationBar VerticalAlignment="Stretch" />
             </Grid>
-
-            <Grid Grid.Column="1" Grid.Row="0">
-                <controls:CharacterButtonBar/>
-            </Grid>
             
-            <Grid Grid.Column="1" Grid.Row="1">
+            <Grid Grid.Column="1">
                 <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}"
                                     HorizontalAlignment="Stretch">
-                    <ContentControl Content="{Binding CurrentViewModel}" Margin="25" />
+                    <ContentControl Content="{Binding CurrentViewModel}" Margin="10" />
                 </xctk:BusyIndicator>
+            </Grid>
+            
+            <!-- Has to be the last element within this grid to be always displayed on top. -->
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource ShadowBackgroundBrush}" 
+                  Visibility="{Binding PopupVisibility}" Style="{StaticResource GridAnimateChangeVisibilityStyle}"
+                  Cursor="No">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="MouseDown">
+                        <b:InvokeCommandAction Command="{Binding PopupViewModel.CancelCommand}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+                <Border Style="{StaticResource CategoryBorderStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Cursor="Arrow">
+                    <ContentControl Content="{Binding PopupViewModel}"/>
+                </Border>
             </Grid>
         </Grid>
     </Grid>

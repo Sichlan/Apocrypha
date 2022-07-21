@@ -5,7 +5,7 @@ using System.Windows.Media;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Characters;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Navigators;
 
 namespace Apocrypha.WPF.ViewModels
 {
@@ -28,11 +28,19 @@ namespace Apocrypha.WPF.ViewModels
 
         public string CharacterName
         {
-            get => String.IsNullOrWhiteSpace(_character.DisplayName) ? _character.CharacterName : _character.DisplayName;
+            get
+            {
+                return String.IsNullOrWhiteSpace(_character.DisplayName) ? _character.CharacterName : _character.DisplayName;
+            }
         }
 
-        public string PreviewInfo =>
-            "Human SaBa 1 / Ar 4 / Ur 2 / PsTh 3 / SuCh 1 / MyTh 3 / PsTh 1 / Cere 5";
+        public string PreviewInfo
+        {
+            get
+            {
+                return "Human SaBa 1 / Ar 4 / Ur 2 / PsTh 3 / SuCh 1 / MyTh 3 / PsTh 1 / Cere 5";
+            }
+        }
 
         public Color? LeftColor { get; set; }
         public Color? RightColor { get; set; }

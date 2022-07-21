@@ -1,9 +1,11 @@
 ﻿using System;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
+using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
-using Apocrypha.WPF.State.Navigators.Authenticators;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.State.PopupService;
+using Apocrypha.WPF.State.Races;
 using Apocrypha.WPF.ViewModels;
 using Apocrypha.WPF.ViewModels.Factories;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,14 +21,17 @@ namespace Apocrypha.WPF.HostBuilders
             {
                 services.AddTransient(s => CreateMainViewModel(s));
 
-                // Register viewmodels that have no explicit creation method like login or register viewmodel
 
                 #region ViewModels
 
+                // Important: Register viewmodels that have no explicit creation method like login or register viewmodel
+                // These view models will be retrieved with s.GetRequiredService<VIEWMODEL>
+                // Models retrieved via creation method MUST NOT BE ADDED HERE! 
                 services.AddTransient<HomeViewModel>();
                 services.AddTransient<CharacterSelectionViewModel>();
                 services.AddTransient<CharacterProfileViewModel>();
                 services.AddTransient<DiceRollerViewModel>();
+                services.AddTransient<SpellCardEditorViewModel>();
 
                 #endregion
 
@@ -36,7 +41,10 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<CreateViewModel<CharacterSelectionViewModel>>(s => s.GetRequiredService<CharacterSelectionViewModel>);
                 services.AddSingleton<CreateViewModel<CharacterProfileViewModel>>(s => s.GetRequiredService<CharacterProfileViewModel>);
                 services.AddSingleton<CreateViewModel<DiceRollerViewModel>>(s => s.GetRequiredService<DiceRollerViewModel>);
+                services.AddSingleton<CreateViewModel<SpellCardEditorViewModel>>(s => s.GetRequiredService<SpellCardEditorViewModel>);
 
+                services.AddSingleton<CreateViewModel<RaceEditorViewModel>>(s => () => CreateRaceEditorViewModel(s));
+                services.AddSingleton<CreateViewModel<RaceListViewModel>>(s => () => CreateRaceListViewModel(s));
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(s => () => CreateLoginViewModel(s));
                 services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => () => CreateRegistrationViewModel(s));
 
@@ -52,6 +60,8 @@ namespace Apocrypha.WPF.HostBuilders
                 services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RegistrationViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<DiceRollerViewModel>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<RaceEditorViewModel>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<RaceListViewModel>>();
 
                 #endregion
             });
@@ -66,7 +76,7 @@ namespace Apocrypha.WPF.HostBuilders
                 service.GetRequiredService<IApocryphaViewModelFactory>(),
                 service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
                 service.GetRequiredService<ICharacterStore>(),
-                service.GetRequiredService<IDataService<Character>>());
+                service.GetRequiredService<IShowGlobalPopupService>());
         }
 
         private static LoginViewModel CreateLoginViewModel(IServiceProvider service)
@@ -76,11 +86,30 @@ namespace Apocrypha.WPF.HostBuilders
                 service.GetRequiredService<ViewModelDelegateRenavigator<RegistrationViewModel>>());
         }
 
-        private static RegistrationViewModel CreateRegistrationViewModel(IServiceProvider s)
+        private static RegistrationViewModel CreateRegistrationViewModel(IServiceProvider service)
         {
-            return new RegistrationViewModel(s.GetRequiredService<IAuthenticator>(),
-                s.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
-                s.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
+            return new RegistrationViewModel(service.GetRequiredService<IAuthenticator>(),
+                service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
+                service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
+        }
+
+        private static RaceEditorViewModel CreateRaceEditorViewModel(IServiceProvider service)
+        {
+            return new RaceEditorViewModel(service.GetRequiredService<IRaceStore>(),
+                service.GetRequiredService<ViewModelDelegateRenavigator<RaceListViewModel>>(),
+                service.GetRequiredService<IDataService<Race>>(),
+                service.GetRequiredService<IDataService<CreatureType>>(),
+                service.GetRequiredService<IDataService<CreatureSubType>>(),
+                service.GetRequiredService<IDataService<CreatureSizeCategory>>(),
+                service.GetRequiredService<IDataService<RuleBook>>(),
+                service.GetRequiredService<IShowGlobalPopupService>());
+        }
+
+        private static RaceListViewModel CreateRaceListViewModel(IServiceProvider service)
+        {
+            return new RaceListViewModel(service.GetRequiredService<IDataService<Race>>(),
+                service.GetRequiredService<IRaceStore>(),
+                service.GetRequiredService<ViewModelDelegateRenavigator<RaceEditorViewModel>>());
         }
     }
 }

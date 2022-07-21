@@ -23,7 +23,10 @@ namespace Apocrypha.WPF.ViewModels
 
         public string Output
         {
-            get => _output;
+            get
+            {
+                return _output;
+            }
             set
             {
                 _output = value;

@@ -1,6 +1,6 @@
 ﻿using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF.State.Navigators.Navigators
+namespace Apocrypha.WPF.State.Navigators
 {
     public interface INavigator : IStateChanger
     {

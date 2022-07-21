@@ -7,10 +7,11 @@ using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.EntityFramework.Services.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Apocrypha.EntityFramework.Services
 {
-    public class AllignmentDataService : IDataService<Allignment>
+    public class AllignmentDataService : IDataService<Allignment>, IDefaultIncludes<Allignment>
     {
         private readonly ApocryphaDbContextFactory _contextFactory;
         private readonly NonQueryDataService<Allignment> _nonQueryDataService;
@@ -30,8 +31,7 @@ namespace Apocrypha.EntityFramework.Services
         {
             using var context = _contextFactory.CreateDbContext();
 
-            var allignments = await context.Allignments
-                .Include(x => x.Translations)
+            var allignments = await GetDefaultIncludes(context)
                 .Where(predicate)
                 .ToListAsync();
 
@@ -42,8 +42,7 @@ namespace Apocrypha.EntityFramework.Services
         {
             using var context = _contextFactory.CreateDbContext();
 
-            var allignment = await context.Allignments
-                .Include(x => x.Translations)
+            var allignment = await GetDefaultIncludes(context)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return allignment;
@@ -62,6 +61,12 @@ namespace Apocrypha.EntityFramework.Services
         public async Task<bool> Delete(int id)
         {
             return await _nonQueryDataService.Delete(id);
+        }
+
+        public IIncludableQueryable<Allignment, object> GetDefaultIncludes(ApocryphaDbContext context)
+        {
+            return context.Allignments
+                .Include(x => x.AllignmentTranslations);
         }
     }
 }

@@ -7,11 +7,11 @@
         <Setter Property="CornerRadius" Value="9" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="Margin" Value="5" />
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Color="Gray" BlurRadius="10" />
-            </Setter.Value>
-        </Setter>
+        <!-- <Setter Property="Effect"> -->
+        <!--     <Setter.Value> -->
+        <!--         <DropShadowEffect Color="Gray" BlurRadius="10" /> -->
+        <!--     </Setter.Value> -->
+        <!-- </Setter> -->
     </Style>
 
     <!-- <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BaseBorderStyle}"> -->

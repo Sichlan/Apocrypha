@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.State.Characters;
-using Apocrypha.WPF.State.Navigators.Navigators;
+using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.State.Users;
 using Apocrypha.WPF.ViewModels;
 

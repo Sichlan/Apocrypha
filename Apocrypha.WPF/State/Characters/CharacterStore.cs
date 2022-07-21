@@ -9,7 +9,10 @@ namespace Apocrypha.WPF.State.Characters
 
         public Character CurrentCharacter
         {
-            get => _currentCharacter;
+            get
+            {
+                return _currentCharacter;
+            }
             set
             {
                 _currentCharacter = value;
@@ -17,8 +20,13 @@ namespace Apocrypha.WPF.State.Characters
             }
         }
 
-        public bool HasActiveCharacter =>
-            CurrentCharacter != null;
+        public bool HasActiveCharacter
+        {
+            get
+            {
+                return CurrentCharacter != null;
+            }
+        }
 
         public event Action StateChange;
     }
