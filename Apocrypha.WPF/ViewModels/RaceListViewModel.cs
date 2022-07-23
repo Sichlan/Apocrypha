@@ -20,7 +20,7 @@ public class RaceListViewModel : BaseViewModel
 
     #region Fields
 
-    private ObservableCollection<RaceListItemViewModel> _races = new ObservableCollection<RaceListItemViewModel>();
+    private ObservableCollection<RaceListItemViewModel> _races = new();
     private RaceListItemViewModel _selectedRaceListItemViewModel;
 
     #endregion

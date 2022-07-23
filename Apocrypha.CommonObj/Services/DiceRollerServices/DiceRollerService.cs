@@ -40,15 +40,15 @@ public class DiceRollerService : IDiceRollerService
 
         if (Regex.IsMatch(equation, @"^t(c([0-9]+))?(r([0-9]+))?\[((?>\[(?<c>)|[^\[\]]+|\](?<-c>))*(?(c)(?!)))\]$"))
         {
-            if (!int.TryParse(match.Groups[2].Value, out var dim1))
-                dim1 = 1;
-            if (!int.TryParse(match.Groups[4].Value, out var dim2))
-                dim2 = 1;
+            if (!int.TryParse(match.Groups[2].Value, out var columns))
+                columns = 1;
+            if (!int.TryParse(match.Groups[4].Value, out var rows))
+                rows = 1;
 
-            for (var i = 0; i < dim1; i++)
+            for (var i = 0; i < columns; i++)
             {
                 output.Add(new List<double>());
-                for (var j = 0; j < dim2; j++)
+                for (var j = 0; j < rows; j++)
                     output[i].Add(Equate(match.Groups[5].Value));
             }
         }
@@ -188,7 +188,7 @@ public class DiceRollerService : IDiceRollerService
         {
             ">" => result > comparedValue,
             ">=" => result >= comparedValue,
-            "=" => result == comparedValue,
+            "==" => result == comparedValue,
             "<=" => result <= comparedValue,
             "<" => result < comparedValue,
             "<>" => result != comparedValue,

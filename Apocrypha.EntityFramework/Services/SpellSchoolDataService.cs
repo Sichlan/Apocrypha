@@ -41,7 +41,7 @@ public class SpellSchoolDataService : IDataService<SpellSchool>, IDefaultInclude
     {
         using var context = _contextFactory.CreateDbContext();
 
-        SpellSchool spellSchool = await GetDefaultIncludes(context)
+        var spellSchool = await GetDefaultIncludes(context)
             .FirstOrDefaultAsync(x => x.Id == id);
 
         return spellSchool;

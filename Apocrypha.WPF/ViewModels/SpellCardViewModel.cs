@@ -10,9 +10,9 @@ public class SpellCardViewModel : BaseViewModel
     private string _spellName;
     private string _casterClass;
     private int _spellLevel;
-    private ObservableCollection<SpellSchool> _spellSchools = new ObservableCollection<SpellSchool>();
-    private ObservableCollection<SpellSubSchool> _spellSubSchools = new ObservableCollection<SpellSubSchool>();
-    private ObservableCollection<SpellDescriptor> _spellDescriptors = new ObservableCollection<SpellDescriptor>();
+    private ObservableCollection<SpellSchool> _spellSchools = new();
+    private ObservableCollection<SpellSubSchool> _spellSubSchools = new();
+    private ObservableCollection<SpellDescriptor> _spellDescriptors = new();
 
     public LinearGradientBrush BackgroundBrush
     {

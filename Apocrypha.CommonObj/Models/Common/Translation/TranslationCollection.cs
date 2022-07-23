@@ -79,7 +79,7 @@ public class TranslationCollection<T> : Collection<T> where T : Translation<T>, 
 
     public TranslationCollection<T> Copy()
     {
-        TranslationCollection<T> output = new TranslationCollection<T>();
+        var output = new TranslationCollection<T>();
 
         foreach (var translation in this)
         {

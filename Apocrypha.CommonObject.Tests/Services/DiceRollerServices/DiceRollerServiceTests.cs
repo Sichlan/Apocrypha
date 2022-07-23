@@ -1,4 +1,5 @@
-﻿using Apocrypha.CommonObject.Services.DiceRollerServices;
+﻿using Apocrypha.CommonObject.Exceptions;
+using Apocrypha.CommonObject.Services.DiceRollerServices;
 using Moq;
 using NUnit.Framework;
 
@@ -172,8 +173,76 @@ public class DiceRollerServiceTests
         TestContext.Out.WriteLine(multiTableResult);
 
         // Assert
-        Assert.AreEqual(2, multiTableResult.Count);
-        Assert.AreEqual(7, multiTableResult[0].Count);
+        Assert.That(multiTableResult.Count, Is.EqualTo(2));
+        Assert.That(multiTableResult[0].Count, Is.EqualTo(7));
         Assert.That(multiTableResult.SelectMany(x => x.Select(y => y)).All(x => x == 15), Is.True);
+    }
+
+    [Test]
+    public void RollDice_IncorrectEquation_ThrowsUnsolvableException()
+    {
+        // Arrange
+        const string equation = "incorrectInput";
+
+        // Act
+        var unsolvableEquationException = Assert.ThrowsAsync<UnsolvableEquationException>(async () =>
+            await _diceRollerService.RollDice(equation));
+
+        // Assert
+        Assert.That(unsolvableEquationException?.Equation, Is.EqualTo(equation));
+    }
+
+    [Test]
+    public async Task RollDice_GenerateTableWithMissingColumnOrRow_ReturnsTables()
+    {
+        // Arrange
+        const string oneColumnTableEquation = "tr3[3]";
+        const string oneRowTableEquation = "tc3[3]";
+
+        var expectedOneColumnTable = new List<List<double>>
+        {
+            new()
+            {
+                3,
+                3,
+                3
+            }
+        };
+        var expectedOneRowTable = new List<List<double>>
+        {
+            new()
+            {
+                3
+            },
+            new()
+            {
+                3
+            },
+            new()
+            {
+                3
+            },
+        };
+
+        // Act
+        var actualColumnTableEquation = await _diceRollerService.RollDice(oneColumnTableEquation);
+        var actualRowTableEquation = await _diceRollerService.RollDice(oneRowTableEquation);
+
+        // Assert
+        Assert.That(actualColumnTableEquation, Is.EquivalentTo(expectedOneColumnTable));
+        Assert.That(actualRowTableEquation, Is.EquivalentTo(expectedOneRowTable));
+    }
+
+    [Test]
+    public void RollDice_EquateDivideByZero_ThrowsDivideByZeroException()
+    {
+        // Arrange
+        const string divideByZeroEquation = "1/0";
+
+        // Act
+        var divideByZeroException = Assert.ThrowsAsync<DivideByZeroException>(async () => await _diceRollerService.RollDice(divideByZeroEquation));
+
+        // Assert
+        Assert.That(divideByZeroException != null, Is.True);
     }
 }
