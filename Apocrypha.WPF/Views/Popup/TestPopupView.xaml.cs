@@ -1,4 +1,4 @@
-﻿namespace Apocrypha.WPF.Views;
+﻿namespace Apocrypha.WPF.Views.Popup;
 
 public partial class TestPopupView
 {

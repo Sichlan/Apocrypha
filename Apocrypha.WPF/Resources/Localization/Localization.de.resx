@@ -176,4 +176,10 @@
     <data name="ButtonLabelTranslate" xml:space="preserve">
         <value>Übersetzen</value>
     </data>
+    <data name="ButtonLabelSave" xml:space="preserve">
+        <value>Speichern</value>
+    </data>
+    <data name="ButtonLabelCancel" xml:space="preserve">
+        <value>Abbrechen</value>
+    </data>
 </root>

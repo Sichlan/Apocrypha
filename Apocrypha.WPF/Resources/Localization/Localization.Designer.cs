@@ -81,6 +81,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
+        public static string ButtonLabelCancel {
+            get {
+                return ResourceManager.GetString("ButtonLabelCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
         public static string ButtonLabelCancelRace {
             get {
                 return ResourceManager.GetString("ButtonLabelCancelRace", resourceCulture);
@@ -138,6 +147,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string ButtonLabelRegister {
             get {
                 return ResourceManager.GetString("ButtonLabelRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ButtonLabelSave {
+            get {
+                return ResourceManager.GetString("ButtonLabelSave", resourceCulture);
             }
         }
         

@@ -5,7 +5,8 @@
              xmlns:views="clr-namespace:Apocrypha.WPF.Views"
              xmlns:converters="clr-namespace:Apocrypha.WPF.Converters"
              xmlns:models="clr-namespace:Apocrypha.CommonObject.Models;assembly=Apocrypha.CommonObject"
-             xmlns:popup="clr-namespace:Apocrypha.WPF.ViewModels.Popup">
+             xmlns:popupViewModels="clr-namespace:Apocrypha.WPF.ViewModels.Popup"
+             xmlns:popupViews="clr-namespace:Apocrypha.WPF.Views.Popup">
     <Application.Resources>
 
         <ResourceDictionary>
@@ -74,8 +75,12 @@
                 <views:RaceListItemView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type popup:TestPopupViewModel}">
-                <views:TestPopupView />
+            <DataTemplate DataType="{x:Type popupViewModels:TestPopupViewModel}">
+                <popupViews:TestPopupView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type popupViewModels:RaceTranslationEditorPopupViewModel}">
+                <popupViews:RaceTranslationEditorPopupView />
             </DataTemplate>
             <!--#endregion-->
 

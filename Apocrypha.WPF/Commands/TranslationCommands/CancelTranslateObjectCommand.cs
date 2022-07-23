@@ -1,4 +1,4 @@
-﻿using Apocrypha.WPF.State.PopupService;
+﻿using Apocrypha.WPF.State.Popups;
 
 namespace Apocrypha.WPF.Commands.TranslationCommands;
 

@@ -1,6 +1,6 @@
 ﻿using Apocrypha.WPF.ViewModels.Popup;
 
-namespace Apocrypha.WPF.State.PopupService;
+namespace Apocrypha.WPF.State.Popups;
 
 public interface IShowGlobalPopupService : IStateChanger
 {

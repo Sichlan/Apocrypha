@@ -29,4 +29,9 @@ public partial class MainWindow
             mainViewModel.CurrentWindowState = WindowState.Normal;
         }
     }
+
+    private void PopupBorder_OnMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        e.Handled = true;
+    }
 }

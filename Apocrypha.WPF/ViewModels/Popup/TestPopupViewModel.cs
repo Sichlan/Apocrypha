@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 using Apocrypha.WPF.Commands;
-using Apocrypha.WPF.State.PopupService;
+using Apocrypha.WPF.State.Popups;
 
 namespace Apocrypha.WPF.ViewModels.Popup;
 

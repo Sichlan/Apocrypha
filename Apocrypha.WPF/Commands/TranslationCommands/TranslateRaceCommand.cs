@@ -1,5 +1,5 @@
 ﻿using Apocrypha.CommonObject.Models;
-using Apocrypha.WPF.State.PopupService;
+using Apocrypha.WPF.State.Popups;
 using Apocrypha.WPF.ViewModels.Popup;
 
 namespace Apocrypha.WPF.Commands.TranslationCommands;

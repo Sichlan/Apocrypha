@@ -3,7 +3,7 @@ using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
-using Apocrypha.WPF.State.PopupService;
+using Apocrypha.WPF.State.Popups;
 using Apocrypha.WPF.State.Races;
 using Apocrypha.WPF.ViewModels;
 using Apocrypha.WPF.ViewModels.Factories;

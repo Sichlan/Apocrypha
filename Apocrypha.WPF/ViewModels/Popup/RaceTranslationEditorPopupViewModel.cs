@@ -2,7 +2,7 @@
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Common.Translation;
 using Apocrypha.WPF.Commands.TranslationCommands;
-using Apocrypha.WPF.State.PopupService;
+using Apocrypha.WPF.State.Popups;
 
 namespace Apocrypha.WPF.ViewModels.Popup;
 
@@ -30,9 +30,11 @@ public class RaceTranslationEditorPopupViewModel : BaseViewModel, IPopupViewMode
     private void SetCommands()
     {
         CancelCommand = new CancelTranslateObjectCommand(_showGlobalPopupService);
+        SaveRaceTranslationCommand = new SaveRaceTranslationCommand(_race, _newTranslationCollection, _showGlobalPopupService);
     }
 
     public ICommand CancelCommand { get; set; }
+    public ICommand SaveRaceTranslationCommand { get; set; }
 
     public event Action ClosePopup;
 

@@ -1,8 +1,9 @@
 ﻿using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
-using Apocrypha.WPF.State.PopupService;
+using Apocrypha.WPF.State.Popups;
 using Apocrypha.WPF.State.Races;
+using Apocrypha.WPF.State.UserMessage;
 using Apocrypha.WPF.State.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +22,7 @@ public static class AddStateConfigurationHostBuilderExtension
             services.AddSingleton<ICharacterStore, CharacterStore>();
             services.AddSingleton<IRaceStore, RaceStore>();
             services.AddSingleton<IShowGlobalPopupService, ShowGlobalPopupService>();
+            services.AddSingleton<IUserMessageService, MessageBoxUserMessageService>();
         });
 
         return hostBuilder;

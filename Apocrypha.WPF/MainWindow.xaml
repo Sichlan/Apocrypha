@@ -107,7 +107,7 @@
                     </b:EventTrigger>
                 </b:Interaction.Triggers>
                 <Border Style="{StaticResource CategoryBorderStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Cursor="Arrow">
+                        Cursor="Arrow" Margin="25" MouseDown="PopupBorder_OnMouseDown">
                     <ContentControl Content="{Binding PopupViewModel}"/>
                 </Border>
             </Grid>

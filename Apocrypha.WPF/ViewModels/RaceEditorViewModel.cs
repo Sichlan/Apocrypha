@@ -5,7 +5,7 @@ using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.Commands.RaceCommands;
 using Apocrypha.WPF.Commands.TranslationCommands;
 using Apocrypha.WPF.State.Navigators;
-using Apocrypha.WPF.State.PopupService;
+using Apocrypha.WPF.State.Popups;
 using Apocrypha.WPF.State.Races;
 
 namespace Apocrypha.WPF.ViewModels;
@@ -149,6 +149,11 @@ public class RaceEditorViewModel : BaseViewModel
     }
 
     #endregion
+
+    [Obsolete("This is only used for creating a design time instance.")]
+    public RaceEditorViewModel()
+    {
+    }
 
     public RaceEditorViewModel(IRaceStore raceStore, IRenavigator raceListRenavigator, IDataService<Race> raceDataService,
         IDataService<CreatureType> creatureTypeDataService, IDataService<CreatureSubType> creatureSubTypeDataService,
