@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Reflection;
 
 namespace Apocrypha.CommonObject.Models.Common.Translation;
 
@@ -42,14 +43,14 @@ public class TranslationCollection<T> : Collection<T> where T : Translation<T>, 
         {
             var translation = this.FirstOrDefault(x => x.CultureName == culture);
 
-            if (translation == null)
-            {
-                translation = new T
-                {
-                    CultureName = culture
-                };
-                Add(translation);
-            }
+            // if (translation == null)
+            // {
+            //     translation = new T
+            //     {
+            //         CultureName = culture
+            //     };
+            //     Add(translation);
+            // }
 
             return translation;
         }
@@ -83,13 +84,18 @@ public class TranslationCollection<T> : Collection<T> where T : Translation<T>, 
 
         foreach (var translation in this)
         {
-            output.Add(new T()
+            var propertyInfos = translation.GetType().GetProperties();
+            var newTranslation = new T();
+
+            foreach (PropertyInfo propertyInfo in propertyInfos)
             {
-                Id = translation.Id,
-                CultureName = translation.CultureName,
-                Name = translation.Name,
-                Description = translation.Name
-            });
+                if (!propertyInfo.CanWrite)
+                    continue;
+
+                propertyInfo.SetValue(newTranslation, propertyInfo.GetValue(translation));
+            }
+
+            output.Add(newTranslation);
         }
 
         return output;

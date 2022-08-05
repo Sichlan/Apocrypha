@@ -182,4 +182,19 @@
     <data name="ButtonLabelCancel" xml:space="preserve">
         <value>Abbrechen</value>
     </data>
+    <data name="ColumnHeaderLabelCultureName" xml:space="preserve">
+        <value>Kultur</value>
+    </data>
+    <data name="ButtonLabelNewEntry" xml:space="preserve">
+        <value>Neuer Eintrag</value>
+    </data>
+    <data name="LabelFallbackValues" xml:space="preserve">
+        <value>Ausweichwerte</value>
+    </data>
+    <data name="LabelTranslations" xml:space="preserve">
+        <value>Übersetzungen</value>
+    </data>
+    <data name="ButtonLabelDelete" xml:space="preserve">
+        <value>Löschen</value>
+    </data>
 </root>

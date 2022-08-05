@@ -45,6 +45,7 @@ public static class AddDbContextConfigurationHostBuilderExtension
             services.AddSingleton<IDataService<CreatureSubType>, CreatureSubTypeDataService>();
             services.AddSingleton<IDataService<CreatureSizeCategory>, CreatureSizeCategoryDataService>();
             services.AddSingleton<IDataService<RuleBook>, RuleBookDataService>();
+            services.AddSingleton<IDataService<RaceTranslation>, GenericDataService<RaceTranslation>>();
             services.AddSingleton<IUserService, UserDataService>();
 
             #region Spells

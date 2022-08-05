@@ -1,4 +1,5 @@
-﻿using Apocrypha.CommonObject.Models;
+﻿using System.Globalization;
+using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.State.Characters;
@@ -101,7 +102,9 @@ public static class AddViewModelsHostBuilderExtensions
             service.GetRequiredService<IDataService<CreatureSubType>>(),
             service.GetRequiredService<IDataService<CreatureSizeCategory>>(),
             service.GetRequiredService<IDataService<RuleBook>>(),
-            service.GetRequiredService<IShowGlobalPopupService>());
+            service.GetRequiredService<IShowGlobalPopupService>(),
+            service.GetRequiredService<IEnumerable<CultureInfo>>(),
+            service.GetRequiredService<IDataService<RaceTranslation>>());
     }
 
     private static RaceListViewModel CreateRaceListViewModel(IServiceProvider service)

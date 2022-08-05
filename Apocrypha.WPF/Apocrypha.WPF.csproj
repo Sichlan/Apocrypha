@@ -67,11 +67,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Resources\Localization\Localization.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Localization.resx</DependentUpon>
-      </Compile>
+        <Compile Update="Resources\Localization\Localization.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Localization.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Properties\"/>
     </ItemGroup>
 
 </Project>

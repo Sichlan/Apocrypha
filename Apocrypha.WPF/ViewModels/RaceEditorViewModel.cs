@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.WPF.Commands;
@@ -31,6 +32,8 @@ public class RaceEditorViewModel : BaseViewModel
     private ObservableCollection<CreatureSubType> _creatureSubTypes;
     private ObservableCollection<CreatureSizeCategory> _creatureSizeCategories;
     private ObservableCollection<RuleBook> _ruleBooks;
+    private readonly IEnumerable<CultureInfo> _cultureInfos;
+    private readonly IDataService<RaceTranslation> _raceTranslationDataService;
 
     #endregion
 
@@ -151,14 +154,15 @@ public class RaceEditorViewModel : BaseViewModel
     #endregion
 
     [Obsolete("This is only used for creating a design time instance.")]
-    public RaceEditorViewModel()
+    public RaceEditorViewModel(IDataService<RaceTranslation> raceTranslationDataService)
     {
+        _raceTranslationDataService = raceTranslationDataService;
     }
 
     public RaceEditorViewModel(IRaceStore raceStore, IRenavigator raceListRenavigator, IDataService<Race> raceDataService,
         IDataService<CreatureType> creatureTypeDataService, IDataService<CreatureSubType> creatureSubTypeDataService,
         IDataService<CreatureSizeCategory> creatureSizeCategoryDataService, IDataService<RuleBook> ruleBookDataService,
-        IShowGlobalPopupService showGlobalPopupService)
+        IShowGlobalPopupService showGlobalPopupService, IEnumerable<CultureInfo> cultureInfos, IDataService<RaceTranslation> raceTranslationDataService)
     {
         _raceStore = raceStore;
         _raceListRenavigator = raceListRenavigator;
@@ -168,6 +172,8 @@ public class RaceEditorViewModel : BaseViewModel
         _creatureSizeCategoryDataService = creatureSizeCategoryDataService;
         _ruleBookDataService = ruleBookDataService;
         _showGlobalPopupService = showGlobalPopupService;
+        _cultureInfos = cultureInfos;
+        _raceTranslationDataService = raceTranslationDataService;
 
         _raceStore.StateChange += RaceStoreOnStateChange;
 
@@ -198,7 +204,7 @@ public class RaceEditorViewModel : BaseViewModel
     {
         SaveEditRaceCommand = new SaveEditRaceCommand(_raceStore, _raceDataService, _raceListRenavigator);
         CancelEditRaceCommand = new CancelEditRaceCommand(_raceStore, _raceListRenavigator);
-        TranslateRaceCommand = new TranslateRaceCommand(_raceStore.ActiveRace, _showGlobalPopupService);
+        TranslateRaceCommand = new TranslateRaceCommand(_raceStore.ActiveRace, _showGlobalPopupService, _cultureInfos, _raceTranslationDataService);
     }
 
     #endregion

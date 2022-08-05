@@ -189,4 +189,19 @@
     <data name="ButtonLabelCancel" xml:space="preserve">
         <value>Cancel</value>
     </data>
+    <data name="ColumnHeaderLabelCultureName" xml:space="preserve">
+        <value>Culture</value>
+    </data>
+    <data name="ButtonLabelNewEntry" xml:space="preserve">
+        <value>New entry</value>
+    </data>
+    <data name="LabelFallbackValues" xml:space="preserve">
+        <value>Fallback values</value>
+    </data>
+    <data name="LabelTranslations" xml:space="preserve">
+        <value>Translations</value>
+    </data>
+    <data name="ButtonLabelDelete" xml:space="preserve">
+        <value>Delete</value>
+    </data>
 </root>

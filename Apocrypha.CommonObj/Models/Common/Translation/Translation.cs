@@ -1,4 +1,7 @@
-﻿namespace Apocrypha.CommonObject.Models.Common.Translation;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
+
+namespace Apocrypha.CommonObject.Models.Common.Translation;
 
 /// <summary>
 /// Represents a translation entry for localizing database contents.
@@ -7,7 +10,34 @@
 /// <typeparam name="T"></typeparam>
 public abstract class Translation<T> : DatabaseObject where T : Translation<T>, new()
 {
-    public string CultureName { get; set; }
+    private string _cultureName;
+
+    public string CultureName
+    {
+        get
+        {
+            return _cultureName;
+        }
+        set
+        {
+            _cultureName = value;
+        }
+    }
+
     public string Name { get; set; }
     public string Description { get; set; }
+
+    [NotMapped]
+    public CultureInfo CultureInfo
+    {
+        get
+        {
+            return new CultureInfo(CultureName);
+        }
+        set
+        {
+            if (value != null)
+                CultureName = value.Name;
+        }
+    }
 }

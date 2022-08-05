@@ -52,7 +52,7 @@
                     
                     <TextBlock Grid.Column="2" Grid.Row="0" Text="{x:Static res:Localization.LabelInputCharacterDisplayName}"/>
                     <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" Margin="5 0"/>
-                    <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged}" Foreground="Gray" IsHitTestVisible="False" Margin="10 3 0 0">
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource StandardInputBorderBrush}" IsHitTestVisible="False" Margin="10 3 0 0">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="Visibility" Value="Collapsed"/>

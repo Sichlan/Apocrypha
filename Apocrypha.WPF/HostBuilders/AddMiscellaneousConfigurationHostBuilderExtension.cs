@@ -1,4 +1,5 @@
-﻿using Apocrypha.CommonObject.Services.DiceRollerServices;
+﻿using System.Globalization;
+using Apocrypha.CommonObject.Services.DiceRollerServices;
 using Apocrypha.WPF.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,9 @@ public static class AddMiscellaneousConfigurationHostBuilderExtension
             services.AddSingleton<Random>();
             services.AddSingleton<IDiceRollerService, DiceRollerService>();
             services.AddSingleton(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
+            services.AddSingleton<IEnumerable<CultureInfo>>(_ => new List<CultureInfo>(CultureInfo.GetCultures(CultureTypes.NeutralCultures)
+                .Where(x => !Equals(x, CultureInfo.InvariantCulture))
+                .OrderBy(x => x.EnglishName)));
         });
 
         return hostBuilder;

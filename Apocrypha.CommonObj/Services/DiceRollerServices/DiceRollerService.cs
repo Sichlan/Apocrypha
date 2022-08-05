@@ -32,6 +32,10 @@ public class DiceRollerService : IDiceRollerService
     }
 
 #pragma warning disable 1998
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public async Task<List<List<double>>> RollDice(string equation)
     {
         var output = new List<List<double>>();
