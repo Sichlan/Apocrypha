@@ -175,8 +175,7 @@ public class DiceRollerService : IDiceRollerService
             RollFunction.Floor => Math.Floor(content),
             RollFunction.Ceiling => Math.Ceiling(content),
             RollFunction.Round => Math.Round(content, 0),
-            RollFunction.Absolute => Math.Abs(content),
-            _ => output
+            RollFunction.Absolute => Math.Abs(content)
         };
 
         return output.ToString(CultureInfo.InvariantCulture);
@@ -274,18 +273,46 @@ public class DiceRollerService : IDiceRollerService
 
         for (var i = 0; i < count; i++)
         {
-            var result = _random.Next(1, faces + 1);
+            int result = 0;
 
-            if (reRoll && !DiceResultComparison(result, reRollOperator, reRollComparedValue))
-                do
+            if (reRollExplicit)
+            {
+                result = reRollOperator switch
                 {
-                    result = _random.Next(1, faces + 1);
-                } while (reRollExplicit && !DiceResultComparison(result, reRollOperator, reRollComparedValue));
+                    ">" => _random.Next(1, reRollComparedValue + 1),
+                    ">=" => _random.Next(1, reRollComparedValue),
+                    "==" => ReRollExplicitNotValue(reRollComparedValue, faces),
+                    "<=" => _random.Next(reRollComparedValue + 1, faces + 1),
+                    "<" => _random.Next(reRollComparedValue, faces + 1),
+                    "<>" => reRollComparedValue,
+                    _ => throw new ArgumentOutOfRangeException(reRollOperator + " is not a reckognized reroll operator!")
+                };
+            }
+            else
+            {
+                result = _random.Next(1, faces + 1);
 
-            output.Add(_random.Next(1, faces + 1));
+                if (reRoll && DiceResultComparison(result, reRollOperator, reRollComparedValue))
+                    result = _random.Next(1, faces + 1);
+            }
+
+            output.Add(result);
         }
 
         return output;
+    }
+
+    /// <summary>
+    /// Re-rolls a dice explicitly and disables one of the faces. Rolls a dice with effectively one face less than possible and increases the output by 1 if the result would be equal or above the left out face. 
+    /// </summary>
+    /// <param name="reRollComparedValue"></param>
+    /// <param name="faces"></param>
+    /// <returns></returns>
+    private int ReRollExplicitNotValue(int reRollComparedValue, int faces)
+    {
+        int output = _random.Next(1, faces);
+
+        return output + (output >= reRollComparedValue ? 1 : 0);
     }
 
     private string SumDice(Match match)
@@ -309,8 +336,7 @@ public class DiceRollerService : IDiceRollerService
         output = rollOperator switch
         {
             RollOperator.Exponent => Math.Pow(a, b),
-            RollOperator.Modulo => a % b,
-            _ => output
+            RollOperator.Modulo => a % b
         };
 
         return output.ToString(CultureInfo.InvariantCulture);
@@ -339,8 +365,7 @@ public class DiceRollerService : IDiceRollerService
             RollOperator.Division => a / b,
             RollOperator.Multiplication => a * b,
             RollOperator.Subtraction => a - b,
-            RollOperator.Addition => a + b,
-            _ => output
+            RollOperator.Addition => a + b
         };
 
         return output.ToString(CultureInfo.InvariantCulture);

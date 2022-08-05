@@ -245,4 +245,17 @@ public class DiceRollerServiceTests
         // Assert
         Assert.That(divideByZeroException != null, Is.True);
     }
+
+    [Test]
+    public async Task RollDice_ReRollLessThanFour_RESULT()
+    {
+        // Arrange
+        const string reRollLessThatThreeEquation = "100d4r!<4";
+
+        // Act
+        var result = await new DiceRollerService(new Random()).RollDice(reRollLessThatThreeEquation);
+
+        // Assert
+        Assert.That(result[0][0], Is.EqualTo(400d));
+    }
 }

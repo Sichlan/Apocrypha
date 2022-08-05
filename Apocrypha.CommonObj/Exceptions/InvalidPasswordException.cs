@@ -8,19 +8,6 @@ public class InvalidPasswordException : Exception
         Password = password;
     }
 
-    public InvalidPasswordException(string username, string password, string message) : base(message)
-    {
-        Username = username;
-        Password = password;
-    }
-
-    public InvalidPasswordException(string username, string password, string message, Exception innerException) :
-        base(message, innerException)
-    {
-        Username = username;
-        Password = password;
-    }
-
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public string Username { get; private set; }
+    public string Password { get; private set; }
 }
