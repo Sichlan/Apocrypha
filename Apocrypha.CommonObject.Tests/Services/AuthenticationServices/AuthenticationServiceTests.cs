@@ -49,22 +49,24 @@ public class AuthenticationServiceTests
     {
         // Arrange
         const string expectedUsername = "TestUser";
-        const string password = "TestPassword";
+        const string expectedPassword = "TestPassword";
 
         _mockUserService.Setup(s => s.GetByUsername(expectedUsername))
             .ReturnsAsync(new User
                 {Username = expectedUsername});
-        _mockPasswordHasher.Setup(s => s.VerifyHashedPassword(It.IsAny<string>(), password))
+        _mockPasswordHasher.Setup(s => s.VerifyHashedPassword(It.IsAny<string>(), expectedPassword))
             .Returns(PasswordVerificationResult.Failed);
 
         // Act
         var invalidPasswordException =
             Assert.ThrowsAsync<InvalidPasswordException>(async () =>
-                await _authenticationService.Login(expectedUsername, password));
+                await _authenticationService.Login(expectedUsername, expectedPassword));
 
         // Assert
         var actualUsername = invalidPasswordException?.Username;
+        var actualPassword = invalidPasswordException?.Password;
         Assert.AreEqual(expectedUsername, actualUsername);
+        Assert.AreEqual(expectedPassword, actualPassword);
     }
 
     [Test]
