@@ -10,7 +10,7 @@ namespace Apocrypha.EntityFramework.Services.Common;
 public interface IDefaultIncludes<T> where T : DatabaseObject
 {
     /// <summary>
-    /// Returns an <seealso cref="IIncludableQueryable{TEntity,TProperty}"/> with the default needed includes for <typeparamref name="T"/>. 
+    /// Returns an <see cref="IIncludableQueryable{TEntity,TProperty}"/> with the default needed includes for <typeparamref name="T"/>. 
     /// </summary>
     /// <param name="context">The database context, from which the entities are fetched</param>
     /// <returns></returns>

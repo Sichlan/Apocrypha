@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.WPF.State.Authenticators;
-using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.ViewModels;
+using Apocrypha.WPF.Views;
 
 namespace Apocrypha.WPF.Commands;
 
@@ -10,12 +10,12 @@ public class LoginCommand : AsyncCommandBase
 {
     private readonly IAuthenticator _authenticator;
     private readonly LoginViewModel _loginViewModel;
-    private readonly IRenavigator _renavigator;
+    private readonly INavigationService _navigationService;
 
-    public LoginCommand(IAuthenticator authenticator, IRenavigator renavigator, LoginViewModel loginViewModel)
+    public LoginCommand(IAuthenticator authenticator, INavigationService navigationService, LoginViewModel loginViewModel)
     {
         _authenticator = authenticator;
-        _renavigator = renavigator;
+        _navigationService = navigationService;
         _loginViewModel = loginViewModel;
     }
 
@@ -24,7 +24,7 @@ public class LoginCommand : AsyncCommandBase
         try
         {
             await _authenticator.Login(_loginViewModel.Username, _loginViewModel.Password);
-            _renavigator.Renavigate();
+            _navigationService.Navigate(typeof(HomeView));
         }
         catch (UserNotFoundException)
         {

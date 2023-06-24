@@ -1,19 +1,19 @@
-﻿using Apocrypha.WPF.State.Navigators;
-
-namespace Apocrypha.WPF.Commands;
+﻿namespace Apocrypha.WPF.Commands;
 
 public class RenavigateCommand : AsyncCommandBase
 {
-    private readonly IRenavigator _renavigator;
+    private readonly INavigationService _navigationService;
+    private readonly Type _viewType;
 
-    public RenavigateCommand(IRenavigator renavigator)
+    public RenavigateCommand(INavigationService navigationService, Type viewType)
     {
-        _renavigator = renavigator;
+        _navigationService = navigationService;
+        _viewType = viewType;
     }
 
     protected override Task ExecuteAsync(object parameter)
     {
-        _renavigator.Renavigate();
+        _navigationService.Navigate(_viewType);
 
         return Task.CompletedTask;
     }

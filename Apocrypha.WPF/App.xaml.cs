@@ -1,7 +1,9 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Markup;
+using System.Windows.Threading;
 using System.Xml;
 using Apocrypha.WPF.HostBuilders;
 using ICSharpCode.AvalonEdit.Highlighting;
@@ -27,6 +29,7 @@ public partial class App : Application
             .AddConfiguration(args)
             .AddDbContextConfiguration()
             .AddApiConfiguration()
+            .AddViews()
             .AddViewModels()
             .AddStateConfiguration()
             .AddMiscellaneousConfiguration();
@@ -81,5 +84,13 @@ public partial class App : Application
         _host.Dispose();
 
         base.OnExit(e);
+    }
+
+    private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+    {
+#if DEBUG
+        Debugger.Break();
+#endif
+        // TODO: Add Logger
     }
 }

@@ -1,16 +1,16 @@
 ﻿using System.Windows.Input;
 using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Authenticators;
-using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.Views;
 
 namespace Apocrypha.WPF.ViewModels;
 
 public class RegistrationViewModel : BaseViewModel
 {
-    public RegistrationViewModel(IAuthenticator authenticator, IRenavigator successfulRegistrationNavigator, IRenavigator loginNavigator)
+    public RegistrationViewModel(IAuthenticator authenticator, INavigationService navigationService)
     {
-        RegistrationCommand = new RegistrationCommand(this, authenticator, successfulRegistrationNavigator);
-        ChangeToLoginCommand = new RenavigateCommand(loginNavigator);
+        RegistrationCommand = new RegistrationCommand(this, authenticator, navigationService);
+        ChangeToLoginCommand = new RenavigateCommand(navigationService, typeof(LoginView));
 
         ErrorMessageViewModel = new MessageViewModel
             {MessageType = MessageType.Error};

@@ -45,8 +45,8 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource TextBoxBase}" />
-    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxBase}" />
+    <!-- <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource TextBoxBase}" /> -->
+    <!-- <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxBase}" /> -->
     <!--#endregion-->
 
     <!--#region Buttons-->
@@ -82,6 +82,6 @@
         </Style.Triggers>
     </Style>
     
-    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StandardButtonStyle}" />
+    <!-- <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StandardButtonStyle}" /> -->
     <!--#endregion-->
 </ResourceDictionary>

@@ -33,6 +33,9 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<DiceRollerViewModel>();
             services.AddTransient<SpellCardEditorViewModel>();
 
+            services.AddTransient<LoginViewModel>();
+            services.AddTransient<RegistrationViewModel>();
+
             #endregion
 
             #region Delegates
@@ -45,8 +48,8 @@ public static class AddViewModelsHostBuilderExtensions
 
             services.AddSingleton<CreateViewModel<RaceEditorViewModel>>(s => () => CreateRaceEditorViewModel(s));
             services.AddSingleton<CreateViewModel<RaceListViewModel>>(s => () => CreateRaceListViewModel(s));
-            services.AddSingleton<CreateViewModel<LoginViewModel>>(s => () => CreateLoginViewModel(s));
-            services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => () => CreateRegistrationViewModel(s));
+            services.AddSingleton<CreateViewModel<LoginViewModel>>(s => () => s.GetRequiredService<LoginViewModel>());
+            services.AddSingleton<CreateViewModel<RegistrationViewModel>>(s => () => s.GetRequiredService<RegistrationViewModel>());
 
             #endregion
 
@@ -77,20 +80,6 @@ public static class AddViewModelsHostBuilderExtensions
             service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
             service.GetRequiredService<ICharacterStore>(),
             service.GetRequiredService<IShowGlobalPopupService>());
-    }
-
-    private static LoginViewModel CreateLoginViewModel(IServiceProvider service)
-    {
-        return new LoginViewModel(service.GetRequiredService<IAuthenticator>(),
-            service.GetRequiredService<ViewModelDelegateRenavigator<HomeViewModel>>(),
-            service.GetRequiredService<ViewModelDelegateRenavigator<RegistrationViewModel>>());
-    }
-
-    private static RegistrationViewModel CreateRegistrationViewModel(IServiceProvider service)
-    {
-        return new RegistrationViewModel(service.GetRequiredService<IAuthenticator>(),
-            service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
-            service.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
     }
 
     private static RaceEditorViewModel CreateRaceEditorViewModel(IServiceProvider service)

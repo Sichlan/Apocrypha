@@ -17,7 +17,9 @@ public static class AddMiscellaneousConfigurationHostBuilderExtension
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
             services.AddSingleton<Random>();
             services.AddSingleton<IDiceRollerService, DiceRollerService>();
-            services.AddSingleton(o => new MainWindow(o.GetRequiredService<MainViewModel>()));
+            services.AddSingleton(o => new MainWindow(o.GetRequiredService<MainViewModel>(),
+                o.GetRequiredService<IPageService>(),
+                o.GetRequiredService<INavigationService>()));
             services.AddSingleton<IEnumerable<CultureInfo>>(_ => new List<CultureInfo>(CultureInfo.GetCultures(CultureTypes.NeutralCultures)
                 .Where(x => !Equals(x, CultureInfo.InvariantCulture))
                 .OrderBy(x => x.EnglishName)));

@@ -7,15 +7,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
         <NeutralLanguage>en</NeutralLanguage>
+        <ApplicationIcon>Resources\Images\apocrypha-logo.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
         <None Remove="Resources\Fonts\AngerStyles.ttf" />
         <None Remove="Resources\Fonts\TheCenturion.ttf" />
         <None Remove="Resources\Fonts\WrathStyles.ttf" />
-        <None Update="Resources\Images\login_background.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -51,7 +49,15 @@
         <Resource Include="Resources\Fonts\WrathStyles.ttf">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
-        <None Remove="DiceRoll.xshd" />
+        <None Remove="DiceRoll.xshd"/>
+        <None Remove="Resources\Images\apocrypha-logo.ico"/>
+        <Resource Include="Resources\Images\apocrypha-logo.ico">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
+        <None Remove="Resources\Images\apocrypha-logo.png"/>
+        <Resource Include="Resources\Images\apocrypha-logo.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
     </ItemGroup>
 
     <ItemGroup>
@@ -76,6 +82,12 @@
 
     <ItemGroup>
         <Folder Include="Properties\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Wpf.Ui">
+            <HintPath>..\..\..\.nuget\packages\wpf-ui\2.0.2\lib\net6.0-windows7.0\Wpf.Ui.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

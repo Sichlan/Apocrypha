@@ -1,21 +1,21 @@
 ﻿using Apocrypha.CommonObject.Services.AuthenticationServices;
 using Apocrypha.WPF.State.Authenticators;
-using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.ViewModels;
+using Apocrypha.WPF.Views;
 
 namespace Apocrypha.WPF.Commands;
 
 public class RegistrationCommand : AsyncCommandBase
 {
     private readonly IAuthenticator _authenticator;
-    private readonly IRenavigator _loginRenavigator;
+    private readonly INavigationService _navigationService;
     private readonly RegistrationViewModel _registerViewModel;
 
-    public RegistrationCommand(RegistrationViewModel registerViewModel, IAuthenticator authenticator, IRenavigator loginRenavigator)
+    public RegistrationCommand(RegistrationViewModel registerViewModel, IAuthenticator authenticator, INavigationService navigationService)
     {
         _registerViewModel = registerViewModel;
         _authenticator = authenticator;
-        _loginRenavigator = loginRenavigator;
+        _navigationService = navigationService;
     }
 
     protected override async Task ExecuteAsync(object parameter)
@@ -30,7 +30,7 @@ public class RegistrationCommand : AsyncCommandBase
             switch (result)
             {
                 case RegistrationResult.Success:
-                    _loginRenavigator.Renavigate();
+                    _navigationService.Navigate(typeof(LoginView));
 
                     break;
                 case RegistrationResult.PasswordsDoNotMatch:

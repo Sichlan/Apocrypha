@@ -204,5 +204,13 @@ public class MainViewModel : BaseViewModel
         }
     }
 
+    public string ApplicationTitle
+    {
+        get
+        {
+            return Resources.Localization.Localization.ApplicationTitle;
+        }
+    }
+
     #endregion
 }

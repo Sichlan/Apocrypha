@@ -1,16 +1,16 @@
 ﻿using System.Windows.Input;
 using Apocrypha.WPF.Commands;
 using Apocrypha.WPF.State.Authenticators;
-using Apocrypha.WPF.State.Navigators;
+using Apocrypha.WPF.Views;
 
 namespace Apocrypha.WPF.ViewModels;
 
-public class LoginViewModel : BaseViewModel
+public class LoginViewModel : BaseViewModel, INavigationAware
 {
-    public LoginViewModel(IAuthenticator authenticator, IRenavigator homeRenavigator, IRenavigator registerNavigator)
+    public LoginViewModel(IAuthenticator authenticator, INavigationService navigationService)
     {
-        LoginCommand = new LoginCommand(authenticator, homeRenavigator, this);
-        ChangeToRegistrationCommand = new RenavigateCommand(registerNavigator);
+        LoginCommand = new LoginCommand(authenticator, navigationService, this);
+        ChangeToRegistrationCommand = new RenavigateCommand(navigationService, typeof(RegistrationView));
 
         ErrorMessageViewModel = new MessageViewModel
             {MessageType = MessageType.Error};
@@ -59,6 +59,18 @@ public class LoginViewModel : BaseViewModel
         {
             ErrorMessageViewModel.Message = value;
         }
+    }
+
+    #endregion
+
+    #region INavigationAware
+
+    public void OnNavigatedTo()
+    {
+    }
+
+    public void OnNavigatedFrom()
+    {
     }
 
     #endregion
