@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using Apocrypha.ModernUi.Helpers.Commands;
+using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State;
 using Microsoft.Extensions.Hosting;
 

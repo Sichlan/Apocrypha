@@ -4,7 +4,7 @@ using Apocrypha.ModernUi.Services.State;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using Microsoft.Extensions.Hosting;
 
-namespace Apocrypha.ModernUi.Helpers.Commands;
+namespace Apocrypha.ModernUi.Helpers.Commands.Navigation;
 
 public class NavigateToPageCommand : ICommand
 {

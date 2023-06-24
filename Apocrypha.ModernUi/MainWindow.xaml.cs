@@ -1,12 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using System.Windows.Navigation;
 using Apocrypha.ModernUi.ViewModels;
 using ModernWpf;
 using ModernWpf.Controls;
-using ModernWpf.Navigation;
 
 namespace Apocrypha.ModernUi
 {
@@ -21,7 +20,29 @@ namespace Apocrypha.ModernUi
         {
             InitializeComponent();
 
-            DataContext = _mainViewModel = dataContext;
+            _mainViewModel = dataContext;
+            _mainViewModel.PropertyChanged += MainViewModelPropertyChanged;
+
+            DataContext = _mainViewModel;
+
+            UpdateSelectedNavItem();
+        }
+
+        private void MainViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(MainViewModel.ActiveViewModel):
+                    UpdateSelectedNavItem();
+
+                    break;
+            }
+        }
+
+        private void UpdateSelectedNavItem()
+        {
+            var type = _mainViewModel.ActiveViewModel.GetType();
+            NavView.SelectedItem = NavView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => GetPageType(x) == type);
         }
 
         private void Window_ActualThemeChanged(object sender, RoutedEventArgs e)
@@ -35,31 +56,17 @@ namespace Apocrypha.ModernUi
                 ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Dark ? ApplicationTheme.Light : ApplicationTheme.Dark;
         }
 
-        private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
-        {
-            throw new System.NotImplementedException();
-        }
-
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
+                //TODO: Fix this
                 // Navigate(typeof(SettingsPage));
             }
             else
             {
                 Navigate(args.InvokedItemContainer);
             }
-        }
-
-        private void NavView_PaneOpening(NavigationView sender, object args)
-        {
-            UpdateAppTitleMargin(sender);
-        }
-
-        private void NavView_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)
-        {
-            UpdateAppTitleMargin(sender);
         }
 
         private void NavView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
@@ -74,48 +81,23 @@ namespace Apocrypha.ModernUi
             {
                 AppTitleBar.Margin = new Thickness(sender.CompactPaneLength, currMargin.Top, currMargin.Right, currMargin.Bottom);
             }
-
-            UpdateAppTitleMargin(sender);
-        }
-
-        private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-            NavView.SelectedItem = NavView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => GetPageType(x) == e.SourcePageType());
-        }
-
-        private void UpdateAppTitleMargin(NavigationView sender)
-        {
-            const int smallLeftIndent = 4, largeLeftIndent = 24;
-
-            Thickness currMargin = AppTitle.Margin;
-
-            if ((sender.DisplayMode == NavigationViewDisplayMode.Expanded && sender.IsPaneOpen) ||
-                sender.DisplayMode == NavigationViewDisplayMode.Minimal)
-            {
-                AppTitle.Margin = new Thickness(smallLeftIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
-            }
-            else
-            {
-                AppTitle.Margin = new Thickness(largeLeftIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
-            }
         }
 
         private void Navigate(Type sourcePageType)
         {
-            //TODO: Fix this
+            if (ContentFrame.Content.GetType() != sourcePageType)
+            {
+                _mainViewModel.NavigateToPage(sourcePageType);
+            }
         }
 
         private void Navigate(object item)
         {
-            //TODO: Fix this
-            // if (item is NavigationViewItem menuItem)
-            // {
-            //     Type pageType = GetPageType(menuItem);
-            //     if (ContentFrame.CurrentSourcePageType != pageType)
-            //     {
-            //         ContentFrame.Navigate(pageType);
-            //     }
-            // }
+            if (item is NavigationViewItem menuItem)
+            {
+                Type pageType = GetPageType(menuItem);
+                Navigate(pageType);
+            }
         }
 
         private Type GetPageType(NavigationViewItem item)

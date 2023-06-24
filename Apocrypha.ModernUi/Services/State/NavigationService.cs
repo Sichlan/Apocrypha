@@ -26,6 +26,9 @@ public class NavigationService : INavigationService
         }
     }
 
+    public bool CanGoBack => _backHistory.Count > 0;
+    public bool CanGoForward => _forwardHistory.Count > 0;
+
     public void Navigate(NavigableViewModel target)
     {
         Navigate(target, false, true);
@@ -33,13 +36,19 @@ public class NavigationService : INavigationService
 
     private void Navigate(NavigableViewModel target, bool moveBack, bool clearForwardHistory)
     {
-        if (!moveBack)
-            _backHistory.Push(ActiveViewModel);
+        if (clearForwardHistory)
+            _forwardHistory.Clear();
+
+        if (ActiveViewModel != null)
+            if (moveBack)
+                _forwardHistory.Push(ActiveViewModel);
+            else
+                _backHistory.Push(ActiveViewModel);
 
         ActiveViewModel = target;
 
-        if (clearForwardHistory)
-            _forwardHistory.Clear();
+        OnPropertyChanged(nameof(CanGoBack));
+        OnPropertyChanged(nameof(CanGoForward));
     }
 
     public async Task NavigateAsync(NavigableViewModel target)
@@ -54,18 +63,10 @@ public class NavigationService : INavigationService
 
     #region Move Back
 
-    public bool CanGoBack()
-    {
-        return _backHistory.Count > 0;
-    }
-
     public void GoBack()
     {
-        if (!CanGoBack())
+        if (!CanGoBack)
             throw new Exception($"{nameof(_backHistory)} does not contain any items to go back to!");
-
-        // put current item into forward history
-        _forwardHistory.Push(_activeViewModel);
 
         // remove newest item from back history and set it as current item
         Navigate(_backHistory.Pop(), true, false);
@@ -87,11 +88,8 @@ public class NavigationService : INavigationService
 
     public async Task GoBackAsync()
     {
-        if (!CanGoBack())
+        if (!CanGoBack)
             throw new Exception($"{nameof(_backHistory)} does not contain any items to go back to!");
-
-        // put current item into forward history
-        _forwardHistory.Push(_activeViewModel);
 
         // remove newest item from back history and set it as current item
         await NavigateAsync(_backHistory.Pop(), true, false);
@@ -115,14 +113,9 @@ public class NavigationService : INavigationService
 
     #region Move Forward
 
-    public bool CanGoForward()
-    {
-        return _forwardHistory.Count > 0;
-    }
-
     public void GoForward()
     {
-        if (!CanGoForward())
+        if (!CanGoForward)
             throw new Exception($"{nameof(_forwardHistory)} does not contain any items to go forward to!");
 
         Navigate(_forwardHistory.Pop());
@@ -144,7 +137,7 @@ public class NavigationService : INavigationService
 
     public async Task GoForwardAsync()
     {
-        if (!CanGoForward())
+        if (!CanGoForward)
             throw new Exception($"{nameof(_forwardHistory)} does not contain any items to go forward to!");
 
         await NavigateAsync(_forwardHistory.Pop());

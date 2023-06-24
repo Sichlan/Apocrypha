@@ -7,18 +7,21 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:converters="clr-namespace:Apocrypha.ModernUi.Helpers.Converters"
         xmlns:viewModels="clr-namespace:Apocrypha.ModernUi.ViewModels"
+        xmlns:navigationViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:TitleBar.ExtendViewIntoTitleBar="True"
-        ui:TitleBar.IsBackButtonVisible="True"
+        ui:TitleBar.IsBackButtonVisible="False"
+        ui:TitleBar.IsIconVisible="False"
         ui:TitleBar.Style="{DynamicResource AppTitleBarStyle}"
         ui:TitleBar.ButtonStyle="{DynamicResource AppTitleBarButtonStyle}"
-        ui:TitleBar.BackButtonStyle="{DynamicResource AppTitleBarBackButtonStyle}"
         ui:ThemeManager.IsThemeAware="True"
         ui:ThemeManager.ActualThemeChanged="Window_ActualThemeChanged"
         mc:Ignorable="d"
         x:Name="Window"
         Title="MainWindow"
-        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}">
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}"
+        d:DesignHeight="450" d:DesignWidth="800">
+    
     <Window.Resources>
         <DataTemplate x:Key="NavigationViewHeaderTemplate">
             <TextBlock Text="{Binding}" Margin="12,32,0,0" />
@@ -35,37 +38,86 @@
             <Setter Property="IsActive" Value="{Binding IsActive, ElementName=Window}" />
         </Style>
     </Window.Resources>
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
         <Grid
             x:Name="AppTitleBar"
-            VerticalAlignment="Top"
-            Height="{Binding ElementName=NavView, Path=CompactPaneLength}"
-            Canvas.ZIndex="1"
-            Visibility="{Binding ElementName=Window, Path=(ui:TitleBar.ExtendViewIntoTitleBar), Converter={StaticResource BooleanToVisibilityConverter}}">
+            Height="{Binding ElementName=Window, Path=(ui:TitleBar.Height)}">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="TextElement.Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
+                    <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAccentBrush}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsActive, ElementName=Window}" Value="False">
+                            <Setter Property="TextElement.Foreground" Value="{DynamicResource SystemControlDisabledBaseMediumLowBrush}" />
+                            <Setter Property="Background" Value="Transparent"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="Auto" MinWidth="{Binding ElementName=Window, Path=(ui:TitleBar.SystemOverlayRightInset)}" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{Binding ElementName=Window, Path=(ui:TitleBar.SystemOverlayRightInset), Converter={StaticResource PixelsToGridLength}}" />
             </Grid.ColumnDefinitions>
+
+            <ui:TitleBarButton Grid.Column="0"
+                x:Name="BackwardButton"
+                Style="{StaticResource AppTitleBarBackButtonStyle}"
+                Content="&#xE830;"
+                ContentTemplate="{x:Null}"
+                Command="{Binding NavigateBackwardsCommand}" />
+
+            <ui:TitleBarButton Grid.Column="1"
+                x:Name="ForwardButton"
+                Style="{StaticResource AppTitleBarBackButtonStyle}"
+                Content="&#xEA47;"
+                ContentTemplate="{x:Null}"
+                Command="{Binding NavigateForwardsCommand}" />
+
+            <!-- Horizontally centered title -->
             <TextBlock
-                x:Name="AppTitle"
-                Text="{Binding ElementName=Window, Path=Title}"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                FontSize="13"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Style="{StaticResource CaptionTextBlockStyle}" />
+                Text="{Binding ElementName=Window, Path=Title}" />
+
+            <StackPanel
+                Grid.Column="3"
+                Orientation="Horizontal">
+                <ui:TitleBarButton
+                    Style="{StaticResource AppTitleBarButtonStyle}"
+                    FontFamily="{DynamicResource ContentControlThemeFontFamily}"
+                    FontSize="13"
+                    Width="NaN"
+                    Padding="16,0"
+                    Content="User Name" />
+                <Rectangle
+                    Fill="{Binding ElementName=AppTitleBar, Path=(TextElement.Foreground)}"
+                    Width="1"
+                    Margin="24,8" />
+            </StackPanel>
         </Grid>
 
         <ui:NavigationView
+            Grid.Row="1" 
             x:Name="NavView"
-            AlwaysShowHeader="True"
+            AlwaysShowHeader="False"
             Header="{Binding SelectedItem.Content, RelativeSource={RelativeSource Self}, FallbackValue=' '}"
             HeaderTemplate="{StaticResource NavigationViewHeaderTemplate}"
-            IsBackButtonVisible="Collapsed"
             IsTitleBarAutoPaddingEnabled="True"
+            IsBackButtonVisible="Collapsed"
             IsPaneOpen="True"
-            IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}"
-            BackRequested="NavView_BackRequested"
             ItemInvoked="NavView_ItemInvoked"
-            PaneOpening="NavView_PaneOpening"
-            PaneClosing="NavView_PaneClosing"
             DisplayModeChanged="NavView_DisplayModeChanged">
             <ui:NavigationView.AutoSuggestBox>
                 <ui:AutoSuggestBox PlaceholderText="Hint text" QueryIcon="Find" />
@@ -73,6 +125,8 @@
 
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItemHeader Content="Controls" />
+                
+                <ui:NavigationViewItem Icon="Home" Content="Home" Tag="{x:Type navigationViewModels:HomeViewModel}"/>
 
                 <!-- <ui:NavigationViewItem Content="Overview" Tag="{x:Type controlPages:ControlsPage}"> -->
                 <!--     <ui:NavigationViewItem.Icon> -->

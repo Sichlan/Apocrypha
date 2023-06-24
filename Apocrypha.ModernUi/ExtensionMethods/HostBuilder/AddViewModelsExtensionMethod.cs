@@ -15,7 +15,9 @@ public static class AddViewModelsExtensionMethod
             // Add view models to dependency injection
             services.AddScoped<HomeViewModel>();
             services.AddScoped<TestViewModel>();
-            services.AddScoped(s => new MainViewModel(s.GetRequiredService<INavigationService>(), s.GetRequiredService<HomeViewModel>()));
+            services.AddScoped(s => new MainViewModel(s.GetRequiredService<INavigationService>(),
+                s.GetRequiredService<HomeViewModel>(),
+                s.GetRequiredService<IHost>()));
 
             // Add main window so it can be resolved in App.xaml.cs
             services.AddScoped<MainWindow>();
