@@ -1,4 +1,6 @@
-﻿namespace Apocrypha.WPF.Commands;
+﻿using Wpf.Ui.Mvvm.Contracts;
+
+namespace Apocrypha.WPF.Commands;
 
 public class RenavigateCommand : AsyncCommandBase
 {

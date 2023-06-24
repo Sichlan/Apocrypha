@@ -2,13 +2,15 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Apocrypha.WPF.Views;
+using Wpf.Ui.Controls.Interfaces;
+using Wpf.Ui.Mvvm.Contracts;
 
 namespace Apocrypha.WPF;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window, INavigationWindow
+public partial class MainWindow : INavigationWindow
 {
     public MainWindow(object dataContext, IPageService pageService, INavigationService navigationService)
     {

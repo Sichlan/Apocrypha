@@ -4,6 +4,7 @@ using Apocrypha.WPF.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Wpf.Ui.Mvvm.Contracts;
 
 namespace Apocrypha.WPF.HostBuilders;
 

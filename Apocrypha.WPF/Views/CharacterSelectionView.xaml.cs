@@ -1,4 +1,5 @@
 ﻿using Apocrypha.WPF.ViewModels;
+using Wpf.Ui.Common.Interfaces;
 
 namespace Apocrypha.WPF.Views;
 

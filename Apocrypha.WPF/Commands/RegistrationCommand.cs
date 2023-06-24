@@ -2,6 +2,7 @@
 using Apocrypha.WPF.State.Authenticators;
 using Apocrypha.WPF.ViewModels;
 using Apocrypha.WPF.Views;
+using Wpf.Ui.Mvvm.Contracts;
 
 namespace Apocrypha.WPF.Commands;
 

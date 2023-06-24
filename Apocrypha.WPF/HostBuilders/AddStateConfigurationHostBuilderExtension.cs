@@ -8,6 +8,8 @@ using Apocrypha.WPF.State.UserMessage;
 using Apocrypha.WPF.State.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Wpf.Ui.Mvvm.Contracts;
+using Wpf.Ui.Mvvm.Services;
 
 namespace Apocrypha.WPF.HostBuilders;
 
