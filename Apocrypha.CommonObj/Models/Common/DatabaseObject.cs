@@ -1,10 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Apocrypha.CommonObject.Models.Common
+namespace Apocrypha.CommonObject.Models.Common;
+
+public class DatabaseObject
 {
-    public class DatabaseObject
-    {
-        [Key]
-        public int Id { get; set; }
-    }
+    [Key] public int Id { get; set; }
 }

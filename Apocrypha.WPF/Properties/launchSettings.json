@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Apocrypha.WPF": {
+      "commandName": "Project",
+      "commandLineArgs": "--environment Development"
+    }
+  }
+}

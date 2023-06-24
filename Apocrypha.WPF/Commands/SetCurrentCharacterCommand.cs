@@ -1,33 +1,33 @@
-﻿using System.Threading.Tasks;
-using Apocrypha.CommonObject.Models;
+﻿using Apocrypha.CommonObject.Models;
 using Apocrypha.WPF.State.Characters;
 using Apocrypha.WPF.State.Navigators;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands;
+
+public class SetCurrentCharacterCommand : AsyncCommandBase
 {
-    public class SetCurrentCharacterCommand : AsyncCommandBase
+    private readonly Character _character;
+    private readonly ICharacterStore _characterStore;
+    private readonly IRenavigator _renavigator;
+
+    public SetCurrentCharacterCommand(Character character, ICharacterStore characterStore, IRenavigator renavigator = null)
     {
-        private readonly Character _character;
-        private readonly ICharacterStore _characterStore;
-        private readonly IRenavigator _renavigator;
+        _character = character;
+        _characterStore = characterStore;
+        _renavigator = renavigator;
+    }
 
-        public SetCurrentCharacterCommand(Character character, ICharacterStore characterStore, IRenavigator renavigator = null)
-        {
-            _character = character;
-            _characterStore = characterStore;
-            _renavigator = renavigator;
-        }
+    protected override Task ExecuteAsync(object parameter)
+    {
+        _characterStore.CurrentCharacter = _character;
 
-        public override async Task ExecuteAsync(object parameter)
-        {
-            _characterStore.CurrentCharacter = _character;
+        _renavigator?.Renavigate();
 
-            _renavigator?.Renavigate();
-        }
+        return Task.CompletedTask;
+    }
 
-        public override bool CanExecuteAsync(object parameter)
-        {
-            return true;
-        }
+    protected override bool CanExecuteAsync(object parameter)
+    {
+        return true;
     }
 }

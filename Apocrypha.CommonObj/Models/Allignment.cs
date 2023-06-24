@@ -3,39 +3,40 @@ using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class Allignment : DatabaseObject
 {
-    public class Allignment : DatabaseObject
+    public string Abbreviation { get; set; }
+    public TranslationCollection<AllignmentTranslation> AllignmentTranslations { get; set; }
+
+    public string NameFallback { get; set; }
+
+    [NotMapped]
+    public string Name
     {
-        public string Abbreviation { get; set; }
-        public TranslationCollection<AllignmentTranslation> AllignmentTranslations { get; set; }
-
-        public string NameFallback { get; set; }
-        [NotMapped]
-        public string Name
+        get
         {
-            get
-            {
-                return AllignmentTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-            }
-            set
-            {
-                AllignmentTranslations[CultureInfo.CurrentCulture].Name = value;
-            }
+            return AllignmentTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
         }
-
-        public string DescriptionFallback { get; set; }
-        [NotMapped]
-        public string Description
+        set
         {
-            get
-            {
-                return AllignmentTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-            }
-            set
-            {
-                AllignmentTranslations[CultureInfo.CurrentCulture].Description = value;
-            }
+            AllignmentTranslations[CultureInfo.CurrentCulture].Name = value;
+        }
+    }
+
+    public string DescriptionFallback { get; set; }
+
+    [NotMapped]
+    public string Description
+    {
+        get
+        {
+            return AllignmentTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        }
+        set
+        {
+            AllignmentTranslations[CultureInfo.CurrentCulture].Description = value;
         }
     }
 }

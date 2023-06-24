@@ -1,9 +1,8 @@
 ﻿using Apocrypha.CommonObject.Models;
 
-namespace Apocrypha.WPF.State.Users
+namespace Apocrypha.WPF.State.Users;
+
+public interface IUserStore : IStateChanger
 {
-    public interface IUserStore : IStateChanger
-    {
-        User CurrentUser { get; set; }
-    }
+    User CurrentUser { get; set; }
 }

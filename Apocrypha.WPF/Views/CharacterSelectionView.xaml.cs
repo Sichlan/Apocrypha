@@ -1,15 +1,17 @@
-﻿using System.Windows.Controls;
+﻿using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF.Views
+namespace Apocrypha.WPF.Views;
+
+/// <summary>
+///     Interaction logic for CharacterSelectionView.xaml
+/// </summary>
+public partial class CharacterSelectionView : INavigableView<CharacterSelectionViewModel>
 {
-    /// <summary>
-    ///     Interaction logic for CharacterSelectionView.xaml
-    /// </summary>
-    public partial class CharacterSelectionView : UserControl
+    public CharacterSelectionView(CharacterSelectionViewModel viewModel)
     {
-        public CharacterSelectionView()
-        {
-            InitializeComponent();
-        }
+        ViewModel = viewModel;
+        InitializeComponent();
     }
+
+    public CharacterSelectionViewModel ViewModel { get; }
 }

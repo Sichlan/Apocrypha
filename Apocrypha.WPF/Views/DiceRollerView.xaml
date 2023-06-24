@@ -23,7 +23,7 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="3" Grid.Row="0" Grid.Column="0" Margin="5">
+                <Border BorderBrush="{StaticResource StandardInputBorderBrush}" BorderThickness="1" CornerRadius="3" Grid.Row="0" Grid.Column="0" Margin="5">
                     <avalonedit:TextEditor Document="{Binding TextDocument, UpdateSourceTrigger=PropertyChanged}"
                                            FontFamily="Consolas"
                                            SyntaxHighlighting="DiceRoll"

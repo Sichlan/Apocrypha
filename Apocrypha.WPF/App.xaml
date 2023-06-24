@@ -5,20 +5,25 @@
              xmlns:views="clr-namespace:Apocrypha.WPF.Views"
              xmlns:converters="clr-namespace:Apocrypha.WPF.Converters"
              xmlns:models="clr-namespace:Apocrypha.CommonObject.Models;assembly=Apocrypha.CommonObject"
-             xmlns:popup="clr-namespace:Apocrypha.WPF.ViewModels.Popup">
+             xmlns:popupViewModels="clr-namespace:Apocrypha.WPF.ViewModels.Popup"
+             xmlns:popupViews="clr-namespace:Apocrypha.WPF.Views.Popup"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+    <!--DispatcherUnhandledException="OnDispatcherUnhandledException"-->
     <Application.Resources>
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/CommonStyles.xaml" />
-                <ResourceDictionary Source="Styles/NavigationBarStyle.xaml" />
-                <ResourceDictionary Source="Styles/MessageViewStyles.xaml" />
-                <ResourceDictionary Source="Styles/Icons.xaml" />
-                <ResourceDictionary Source="Styles/DiceRollerStyles.xaml" />
-                <ResourceDictionary Source="Styles/GroupBoxStyles.xaml" />
-                <ResourceDictionary Source="Styles/SpellCardStyles.xaml" />
-                <ResourceDictionary Source="Styles/GridStyles.xaml" />
-                <ResourceDictionary Source="Styles/ComboBoxStyles.xaml" />
+                <!-- <ResourceDictionary Source="Styles/CommonStyles.xaml" /> -->
+                <!-- <ResourceDictionary Source="Styles/NavigationBarStyle.xaml" /> -->
+                <!-- <ResourceDictionary Source="Styles/MessageViewStyles.xaml" /> -->
+                <!-- <ResourceDictionary Source="Styles/Icons.xaml" /> -->
+                <!-- <ResourceDictionary Source="Styles/DiceRollerStyles.xaml" /> -->
+                <!-- <ResourceDictionary Source="Styles/GroupBoxStyles.xaml" /> -->
+                <!-- <ResourceDictionary Source="Styles/SpellCardStyles.xaml" /> -->
+                <!-- <ResourceDictionary Source="Styles/GridStyles.xaml" /> -->
+                <!-- <ResourceDictionary Source="Styles/ComboBoxStyles.xaml" /> -->
+                <ui:ThemesDictionary Theme="Dark" />
+                <ui:ControlsDictionary />
             </ResourceDictionary.MergedDictionaries>
 
             <!--#region DataTemplates-->
@@ -74,8 +79,12 @@
                 <views:RaceListItemView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type popup:TestPopupViewModel}">
-                <views:TestPopupView />
+            <DataTemplate DataType="{x:Type popupViewModels:TestPopupViewModel}">
+                <popupViews:TestPopupView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type popupViewModels:RaceTranslationEditorPopupViewModel}">
+                <popupViews:RaceTranslationEditorPopupView />
             </DataTemplate>
             <!--#endregion-->
 

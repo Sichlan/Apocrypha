@@ -1,9 +1,8 @@
 ﻿using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF.State.Navigators
+namespace Apocrypha.WPF.State.Navigators;
+
+public interface INavigator : IStateChanger
 {
-    public interface INavigator : IStateChanger
-    {
-        BaseViewModel CurrentViewModel { get; set; }
-    }
+    BaseViewModel CurrentViewModel { get; set; }
 }

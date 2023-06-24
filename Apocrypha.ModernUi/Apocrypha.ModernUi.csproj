@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>disable</Nullable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentWPF" Version="0.10.2"/>
+        <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9"/>
+        <PackageReference Include="MahApps.Metro" Version="2.4.9"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.18"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0"/>
+        <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
+        <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5"/>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Page Update="Views\Navigation\HomeView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+    </ItemGroup>
+
+</Project>

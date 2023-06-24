@@ -1,29 +1,29 @@
-﻿using System.Threading.Tasks;
-using Apocrypha.CommonObject.Models;
+﻿using Apocrypha.CommonObject.Models;
 using Apocrypha.WPF.State.Characters;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands;
+
+public class ChangeCharacterAllignmentCommand : AsyncCommandBase
 {
-    public class ChangeCharacterAllignmentCommand : AsyncCommandBase
+    private readonly ICharacterStore _characterStore;
+
+    public ChangeCharacterAllignmentCommand(ICharacterStore characterStore)
     {
-        private readonly ICharacterStore _characterStore;
+        _characterStore = characterStore;
+    }
 
-        public ChangeCharacterAllignmentCommand(ICharacterStore characterStore)
+    protected override Task ExecuteAsync(object parameter)
+    {
+        if (parameter is Allignment allignment)
         {
-            _characterStore = characterStore;
+            _characterStore.CurrentCharacter.TrueAllignment = allignment;
         }
 
-        public override async Task ExecuteAsync(object parameter)
-        {
-            if (parameter is Allignment allignment)
-            {
-                _characterStore.CurrentCharacter.TrueAllignment = allignment;
-            }
-        }
+        return Task.CompletedTask;
+    }
 
-        public override bool CanExecuteAsync(object parameter)
-        {
-            return true;
-        }
+    protected override bool CanExecuteAsync(object parameter)
+    {
+        return true;
     }
 }

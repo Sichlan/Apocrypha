@@ -1,75 +1,32 @@
-﻿<Window x:Class="Apocrypha.WPF.MainWindow"
+﻿<ui:UiWindow x:Class="Apocrypha.WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
-        xmlns:controls="clr-namespace:Apocrypha.WPF.Controls" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:views="clr-namespace:Apocrypha.WPF.Views"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        Title="{x:Static res:Localization.ApplicationTitle}"
-        Height="600" Width="1056"
-        WindowStyle="None"
-        Background="Transparent"
-        AllowsTransparency="False"
-        WindowState="{Binding CurrentWindowState, UpdateSourceTrigger=PropertyChanged, TargetNullValue={x:Static WindowState.Normal}}">
-    <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
-    </WindowChrome.WindowChrome>
-    <Grid Background="{StaticResource BrushPrimary2}">
+        Background="{ui:ThemeResource ApplicationBackgroundBrush}"
+        Foreground="{ui:ThemeResource TextFillColorPrimaryBrush}"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        WindowCornerPreference="Round"
+        WindowStartupLocation="CenterScreen"
+        Closed="MainWindow_OnClosed"
+        Loaded="MainWindow_OnLoaded">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         
-        <Grid Grid.Row="0" MouseDown="HeaderGrid_OnMouseDown" MouseMove="HeaderGrid_OnMouseMove">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            
-            <!-- Application header -->
-            <Grid Grid.Column="0">
-                <TextBlock Text="{x:Static res:Localization.ApplicationTitle}" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BrushForeground1}" FontWeight="Medium" Margin="10,0"/>
-            </Grid>
-            
-            <!-- Close, resize etc. -->
-            <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal">
-                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding MinimizeCommand}">
-                        <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconMinimizeWindow}"/>
-                    </Button>
-                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding MaximizeCommand}">
-                        <Button.Style>
-                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource StandardButtonStyle}">
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconRestoreWindow}"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=WindowState}" Value="{x:Static WindowState.Normal}">
-                                        <Setter Property="Content">
-                                            <Setter.Value>
-                                                <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconMaximizeWindow}"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                    <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}">
-                        <ContentControl Foreground="{StaticResource BrushForeground1}" Template="{StaticResource IconCloseWindow}"/>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Grid>
-        
-        <Grid Grid.Row="1" Background="{StaticResource BrushBackgroundBeige}">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -87,30 +44,90 @@
                     </Style>
                 </Grid.Style>
 
-                <controls:NavigationBar VerticalAlignment="Stretch" />
+                <ui:NavigationCompact
+                    x:Name="RootNavigation"
+                    Frame="{Binding ElementName=RootFrame, Mode=OneWay}">
+                    <ui:NavigationCompact.Items>
+                        <ui:NavigationItem
+                            Content="Login"
+                            PageType="{x:Type views:LoginView}"
+                            Visibility="Collapsed"/>
+                        <ui:NavigationItem
+                            Content="Registration"
+                            PageType="{x:Type views:RegistrationView}"
+                            Visibility="Collapsed"/>
+                        <ui:NavigationItem
+                            Content="{x:Static res:Localization.MenuLabelHome}"
+                            Icon="Home24"
+                            PageType="{x:Type views:HomeView}"/>
+                        <ui:NavigationSeparator/>
+                        <ui:NavigationItem
+                            Content="{x:Static res:Localization.MenuLabelCharacterSelection}"
+                            Icon="Album24"
+                            PageType="{x:Type views:CharacterSelectionView}"/>
+                    </ui:NavigationCompact.Items>
+                    <ui:NavigationCompact.Footer>
+                        <ui:NavigationItem
+                            Content="Test"/>
+                    </ui:NavigationCompact.Footer>
+                </ui:NavigationCompact>
             </Grid>
             
             <Grid Grid.Column="1">
                 <xctk:BusyIndicator IsBusy="{Binding IsExecutingCommand}"
                                     HorizontalAlignment="Stretch">
-                    <ContentControl Content="{Binding CurrentViewModel}" Margin="10" />
+                    <Border Background="{ui:ThemeResource ControlFillColorDefaultBrush}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Frame x:Name="RootFrame" Grid.Row="1" />
+                            <ui:Breadcrumb
+                                Grid.Row="0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                FontSize="24"
+                                Navigation="{Binding ElementName=RootNavigation, Mode=OneWay}" Margin="5"/>
+                        </Grid>
+                    </Border>
                 </xctk:BusyIndicator>
             </Grid>
             
             <!-- Has to be the last element within this grid to be always displayed on top. -->
-            <Grid Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource ShadowBackgroundBrush}" 
-                  Visibility="{Binding PopupVisibility}" Style="{StaticResource GridAnimateChangeVisibilityStyle}"
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" 
+                  Visibility="{Binding PopupVisibility}"
                   Cursor="No">
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="MouseDown">
                         <b:InvokeCommandAction Command="{Binding PopupViewModel.CancelCommand}"/>
                     </b:EventTrigger>
                 </b:Interaction.Triggers>
-                <Border Style="{StaticResource CategoryBorderStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Cursor="Arrow">
+                <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Cursor="Arrow" Margin="25" MouseDown="PopupBorder_OnMouseDown">
                     <ContentControl Content="{Binding PopupViewModel}"/>
                 </Border>
             </Grid>
         </Grid>
+        
+        <ui:TitleBar Background="{ui:ThemeResource ApplicationBackgroundBrush}"
+                     Title="{Binding ApplicationTitle}"
+                     Grid.Row="0">
+            <ui:TitleBar.Tray>
+                <ui:NotifyIcon
+                    FocusOnLeftClick="True"
+                    MenuOnRightClick="True"
+                    TooltipText="{x:Static res:Localization.ApplicationTitle}">
+                    <ui:NotifyIcon.Menu>
+                        <ContextMenu>
+                            <ui:MenuItem
+                                Header="Home"
+                                SymbolIcon="Library28"
+                                Tag="home" />
+                        </ContextMenu>
+                    </ui:NotifyIcon.Menu>
+                </ui:NotifyIcon>
+            </ui:TitleBar.Tray>
+        </ui:TitleBar>
     </Grid>
-</Window>
+</ui:UiWindow>

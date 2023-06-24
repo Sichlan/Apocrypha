@@ -1,9 +1,8 @@
 ﻿using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class ActionTimeIndicatorTranslation : Translation<ActionTimeIndicatorTranslation>
 {
-    public class ActionTimeIndicatorTranslation : Translation<ActionTimeIndicatorTranslation>
-    {
-        public ActionTimeIndicator ActionTimeIndicator { get; set; }
-    }
+    public ActionTimeIndicator ActionTimeIndicator { get; set; }
 }

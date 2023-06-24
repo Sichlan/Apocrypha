@@ -1,9 +1,8 @@
 ﻿using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class MovementModeTranslation : Translation<MovementModeTranslation>
 {
-    public class MovementModeTranslation : Translation<MovementModeTranslation>
-    {
-        public MovementMode MovementMode { get; set; }
-    }
+    public MovementMode MovementMode { get; set; }
 }

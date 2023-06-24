@@ -1,33 +1,57 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
-using Apocrypha.WPF.ViewModels;
+using Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF
+namespace Apocrypha.WPF;
+
+/// <summary>
+///     Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window, INavigationWindow
 {
-    /// <summary>
-    ///     Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public MainWindow(object dataContext, IPageService pageService, INavigationService navigationService)
     {
-        public MainWindow(object dataContext)
-        {
-            InitializeComponent();
+        DataContext = dataContext;
 
-            DataContext = dataContext;
-        }
+        InitializeComponent();
+        SetPageService(pageService);
 
-        private void HeaderGrid_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                DragMove();
-        }
+        navigationService.SetNavigationControl(RootNavigation);
+    }
 
-        private void HeaderGrid_OnMouseMove(object sender, MouseEventArgs e)
-        {
-            if(Mouse.LeftButton == MouseButtonState.Pressed && (DataContext as MainViewModel)?.CurrentWindowState == WindowState.Maximized)
-            {
-                (DataContext as MainViewModel).CurrentWindowState = WindowState.Normal;
-            }
-        }
+    private void PopupBorder_OnMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        e.Handled = true;
+    }
+
+    public Frame GetFrame()
+        => RootFrame;
+
+    public INavigation GetNavigation()
+        => RootNavigation;
+
+    public bool Navigate(Type pageType)
+        => RootNavigation.Navigate(pageType);
+
+    public void SetPageService(IPageService pageService)
+        => RootNavigation.PageService = pageService;
+
+    public void ShowWindow()
+        => Show();
+
+    public void CloseWindow()
+        => Close();
+
+    private void MainWindow_OnClosed(object sender, EventArgs e)
+    {
+        base.OnClosed(e);
+
+        Application.Current.Shutdown();
+    }
+
+    private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        Navigate(typeof(LoginView));
     }
 }

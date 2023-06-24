@@ -1,12 +1,9 @@
-﻿using System.Windows.Controls;
+﻿namespace Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Views
+public partial class RaceListView
 {
-    public partial class RaceListView : UserControl
+    public RaceListView()
     {
-        public RaceListView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

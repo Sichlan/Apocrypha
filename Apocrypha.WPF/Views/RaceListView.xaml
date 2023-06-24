@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
-             xmlns:views="clr-namespace:Apocrypha.WPF.Views"
              xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
@@ -25,8 +24,7 @@
         <Border Grid.Row="1" Style="{StaticResource CategoryBorderStyle}">
             <ListView ItemsSource="{Binding Races, UpdateSourceTrigger=PropertyChanged}" 
                      SelectedItem="{Binding SelectedRaceListItemViewModel, Mode=TwoWay}"
-                     ItemTemplate="{StaticResource RaceListBoxItemDataTemplate}">
-            </ListView>
+                     ItemTemplate="{StaticResource RaceListBoxItemDataTemplate}" />
         </Border>
     </Grid>
 </UserControl>

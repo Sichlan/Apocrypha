@@ -1,15 +1,19 @@
-﻿using System.Windows.Controls;
+﻿using Apocrypha.WPF.ViewModels;
 
-namespace Apocrypha.WPF.Views
+namespace Apocrypha.WPF.Views;
+
+/// <summary>
+///     Interaction logic for RegistrationView.xaml
+/// </summary>
+public partial class RegistrationView : INavigableView<RegistrationViewModel>
 {
-    /// <summary>
-    ///     Interaction logic for RegistrationView.xaml
-    /// </summary>
-    public partial class RegistrationView : UserControl
+    public RegistrationView(RegistrationViewModel viewModel)
     {
-        public RegistrationView()
-        {
-            InitializeComponent();
-        }
+        ViewModel = viewModel;
+
+        InitializeComponent();
     }
+
+    /// <inheritdoc/>
+    public RegistrationViewModel ViewModel { get; }
 }

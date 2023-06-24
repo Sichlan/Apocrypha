@@ -81,6 +81,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
+        public static string ButtonLabelCancel {
+            get {
+                return ResourceManager.GetString("ButtonLabelCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
         public static string ButtonLabelCancelRace {
             get {
                 return ResourceManager.GetString("ButtonLabelCancelRace", resourceCulture);
@@ -93,6 +102,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string ButtonLabelClearDiceHistory {
             get {
                 return ResourceManager.GetString("ButtonLabelClearDiceHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string ButtonLabelDelete {
+            get {
+                return ResourceManager.GetString("ButtonLabelDelete", resourceCulture);
             }
         }
         
@@ -124,6 +142,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New entry.
+        /// </summary>
+        public static string ButtonLabelNewEntry {
+            get {
+                return ResourceManager.GetString("ButtonLabelNewEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New race.
         /// </summary>
         public static string ButtonLabelNewRace {
@@ -138,6 +165,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string ButtonLabelRegister {
             get {
                 return ResourceManager.GetString("ButtonLabelRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ButtonLabelSave {
+            get {
+                return ResourceManager.GetString("ButtonLabelSave", resourceCulture);
             }
         }
         
@@ -165,6 +201,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string ButtonLabelTranslate {
             get {
                 return ResourceManager.GetString("ButtonLabelTranslate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Culture.
+        /// </summary>
+        public static string ColumnHeaderLabelCultureName {
+            get {
+                return ResourceManager.GetString("ColumnHeaderLabelCultureName", resourceCulture);
             }
         }
         
@@ -394,6 +439,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fallback values.
+        /// </summary>
+        public static string LabelFallbackValues {
+            get {
+                return ResourceManager.GetString("LabelFallbackValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allignment.
         /// </summary>
         public static string LabelInputAllignment {
@@ -444,6 +498,15 @@ namespace Apocrypha.WPF.Resources.Localization {
         public static string LabelSpellSubSchool {
             get {
                 return ResourceManager.GetString("LabelSpellSubSchool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translations.
+        /// </summary>
+        public static string LabelTranslations {
+            get {
+                return ResourceManager.GetString("LabelTranslations", resourceCulture);
             }
         }
         

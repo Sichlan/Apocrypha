@@ -1,33 +1,31 @@
-﻿using System;
-using Apocrypha.CommonObject.Models;
+﻿using Apocrypha.CommonObject.Models;
 
-namespace Apocrypha.WPF.State.Races
+namespace Apocrypha.WPF.State.Races;
+
+public class RaceStore : IRaceStore
 {
-    public class RaceStore : IRaceStore
+    private Race _activeRace;
+
+    public Race ActiveRace
     {
-        private Race _activeRace;
-
-        public Race ActiveRace
+        get
         {
-            get
-            {
-                return _activeRace;
-            }
-            set
-            {
-                _activeRace = value;
-                StateChange?.Invoke();
-            }
+            return _activeRace;
         }
-
-        public bool HasActiveRace
+        set
         {
-            get
-            {
-                return ActiveRace != null;
-            }
+            _activeRace = value;
+            StateChange?.Invoke();
         }
-
-        public event Action StateChange;
     }
+
+    public bool HasActiveRace
+    {
+        get
+        {
+            return ActiveRace != null;
+        }
+    }
+
+    public event Action StateChange;
 }

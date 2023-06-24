@@ -1,33 +1,32 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Apocrypha.CommonObject.Models.Common;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+/// <summary>
+/// Displays the option to take a feat and criteria for feats selectable with this option.<br/>
+/// <inheritdoc cref="IFeatOption"/>
+/// </summary>
+public class RaceFeatOption : DatabaseObject, IFeatOption
 {
-    /// <summary>
-    /// Displays the option to take a feat and criteria for feats selectable with this option.<br/>
-    /// <inheritdoc cref="IFeatOption"/>
-    /// </summary>
-    public class RaceFeatOption : DatabaseObject, IFeatOption
+    public Race Race { get; set; }
+
+    /// <inheritdoc/>
+    public string IdList { get; set; }
+
+    [NotMapped]
+    public ICollection<int> FeatIds
     {
-        public Race Race { get; set; }
-        /// <inheritdoc/>
-        public string IdList { get; set; }
-        [NotMapped]
-        public ICollection<int> FeatIds
+        get
         {
-            get
-            {
-                return (IdList + "").Split(";")
-                    .Where(x => int.TryParse(x, out var _))
-                    .Select(x => int.Parse(x))
-                    .ToList();
-            }
-            set
-            {
-                IdList = string.Join(';', value);
-            }
+            return (IdList + "").Split(";")
+                .Where(x => int.TryParse(x, out var _))
+                .Select(x => int.Parse(x))
+                .ToList();
+        }
+        set
+        {
+            IdList = string.Join(';', value);
         }
     }
 }

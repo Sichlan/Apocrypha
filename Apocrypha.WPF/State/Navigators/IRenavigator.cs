@@ -1,7 +1,6 @@
-﻿namespace Apocrypha.WPF.State.Navigators
+﻿namespace Apocrypha.WPF.State.Navigators;
+
+public interface IRenavigator
 {
-    public interface IRenavigator
-    {
-        void Renavigate();
-    }
+    void Renavigate();
 }

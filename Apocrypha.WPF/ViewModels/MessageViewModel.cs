@@ -1,52 +1,51 @@
-﻿namespace Apocrypha.WPF.ViewModels
+﻿namespace Apocrypha.WPF.ViewModels;
+
+public enum MessageType
 {
-    public enum MessageType
+    Information,
+    Warning,
+    Error,
+    Success
+}
+
+public class MessageViewModel : BaseViewModel
+{
+    private string _message = string.Empty;
+
+    private MessageType _messageType;
+
+    public string Message
     {
-        Information,
-        Warning,
-        Error,
-        Success
+        get
+        {
+            return _message;
+        }
+        set
+        {
+            _message = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(HasMessage));
+        }
     }
 
-    public class MessageViewModel : BaseViewModel
+    public MessageType MessageType
     {
-        private string _message = string.Empty;
-
-        private MessageType _messageType;
-
-        public string Message
+        get
         {
-            get
-            {
-                return _message;
-            }
-            set
-            {
-                _message = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(HasMessage));
-            }
+            return _messageType;
         }
-
-        public MessageType MessageType
+        set
         {
-            get
-            {
-                return _messageType;
-            }
-            set
-            {
-                _messageType = value;
-                OnPropertyChanged();
-            }
+            _messageType = value;
+            OnPropertyChanged();
         }
+    }
 
-        public bool HasMessage
+    public bool HasMessage
+    {
+        get
         {
-            get
-            {
-                return !string.IsNullOrEmpty(Message);
-            }
+            return !string.IsNullOrEmpty(Message);
         }
     }
 }

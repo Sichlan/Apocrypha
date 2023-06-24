@@ -1,9 +1,8 @@
 ﻿using Apocrypha.CommonObject.Models.Common.Translation;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class SenseTranslation : Translation<SenseTranslation>
 {
-    public class SenseTranslation : Translation<SenseTranslation>
-    {
-        public Sense Sense { get; set; }
-    }
+    public Sense Sense { get; set; }
 }

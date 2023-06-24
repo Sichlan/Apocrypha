@@ -1,11 +1,10 @@
 using Apocrypha.CommonObject.Models.Common;
 
-namespace Apocrypha.CommonObject.Models
+namespace Apocrypha.CommonObject.Models;
+
+public class Item : DatabaseObject
 {
-    public class Item : DatabaseObject
-    {
-        public string Name { get; set; }
-        public int Price { get; set; }
-        public string Description { get; set; }
-    }
+    public string Name { get; set; }
+    public int Price { get; set; }
+    public string Description { get; set; }
 }

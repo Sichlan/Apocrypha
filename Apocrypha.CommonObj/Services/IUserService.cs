@@ -1,10 +1,9 @@
 using Apocrypha.CommonObject.Models;
 
-namespace Apocrypha.CommonObject.Services
+namespace Apocrypha.CommonObject.Services;
+
+public interface IUserService : IDataService<User>
 {
-    public interface IUserService : IDataService<User>
-    {
-        Task<User?> GetByUsername(string username);
-        Task<User> GetByEmail(string email);
-    }
+    Task<User> GetByUsername(string username);
+    Task<User> GetByEmail(string email);
 }

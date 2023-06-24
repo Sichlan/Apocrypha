@@ -117,7 +117,7 @@
                 </RadioButton>
 
                 <RadioButton
-                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:RaceEditorViewModel}, Mode=OneWay}"
+                    IsChecked="{Binding CurrentViewModel, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type viewModels:RaceListViewModel}, Mode=OneWay}"
                     Command="{Binding UpdateCurrentViewModelCommand}"
                     CommandParameter="{x:Static navigators:ViewType.RaceList}">
                     <StackPanel Orientation="Horizontal">

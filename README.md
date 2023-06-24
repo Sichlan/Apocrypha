@@ -13,3 +13,4 @@
     <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Sichlan/Apocrypha?color=0088ff" />
   </a>
 </p>
+<hr/>

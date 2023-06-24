@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
@@ -14,8 +16,8 @@ namespace Apocrypha.EntityFramework.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.17");
+                .HasAnnotation("ProductVersion", "6.0.18")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.ActionTimeIndicator", b =>
                 {
@@ -1861,9 +1863,9 @@ namespace Apocrypha.EntityFramework.Migrations
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellComponentType", b =>
                 {
-                    b.Navigation("SpellComponents");
-
                     b.Navigation("SpellComponentTypeTranslations");
+
+                    b.Navigation("SpellComponents");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Spells.SpellDescriptor", b =>

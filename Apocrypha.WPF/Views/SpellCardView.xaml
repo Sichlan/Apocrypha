@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Apocrypha.WPF.Views"
              xmlns:viewModels="clr-namespace:Apocrypha.WPF.ViewModels"
              xmlns:res="clr-namespace:Apocrypha.WPF.Resources.Localization"
              mc:Ignorable="d"
@@ -126,12 +125,12 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
 
-                            <ContentControl Grid.Column="0" Foreground="#FF000000" Template="{StaticResource IconSpellCastingTime}" Width="20" Height="20" />
-                            <ContentControl Grid.Column="1" Foreground="#FF000000" Template="{StaticResource IconSpellRange}" Width="20" Height="20" />
-                            <ContentControl Grid.Column="2" Foreground="#FF000000" Template="{StaticResource IconSpellDuration}" Width="20" Height="20" />
-                            <ContentControl Grid.Column="3" Foreground="#FF000000" Template="{StaticResource IconSpellTarget}" Width="20" Height="20" />
-                            <ContentControl Grid.Column="4" Foreground="#FF000000" Template="{StaticResource IconSpellArea}" Width="20" Height="20" />
-                            <ContentControl Grid.Column="5" Foreground="#FF000000" Template="{StaticResource IconSpellEffect}" Width="20" Height="20" />
+                            <ContentControl Grid.Row="0" Grid.Column="0" Foreground="#FF000000" Template="{StaticResource IconSpellCastingTime}" Width="20" Height="20" />
+                            <ContentControl Grid.Row="0" Grid.Column="1" Foreground="#FF000000" Template="{StaticResource IconSpellRange}" Width="20" Height="20" />
+                            <ContentControl Grid.Row="0" Grid.Column="2" Foreground="#FF000000" Template="{StaticResource IconSpellDuration}" Width="20" Height="20" />
+                            <ContentControl Grid.Row="0" Grid.Column="3" Foreground="#FF000000" Template="{StaticResource IconSpellTarget}" Width="20" Height="20" />
+                            <ContentControl Grid.Row="0" Grid.Column="4" Foreground="#FF000000" Template="{StaticResource IconSpellArea}" Width="20" Height="20" />
+                            <ContentControl Grid.Row="0" Grid.Column="5" Foreground="#FF000000" Template="{StaticResource IconSpellEffect}" Width="20" Height="20" />
 
                             <TextBlock Grid.Column="0" Grid.Row="1" Text="1 std. action" TextAlignment="Center" TextWrapping="Wrap"/>
                             <TextBlock Grid.Column="1" Grid.Row="1" Text="Close&#x0a;(25+5/2lvl)ft." TextAlignment="Center" TextWrapping="Wrap"/>
@@ -143,9 +142,7 @@
 
                         <Border Style="{StaticResource SpellCardCategorySeparatorBorderStyle}" Grid.Row="5"/>
 
-                        <StackPanel Orientation="Horizontal" Grid.Row="6">
-                            
-                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" />
                     </Grid>
                 </Grid>
             </Grid>

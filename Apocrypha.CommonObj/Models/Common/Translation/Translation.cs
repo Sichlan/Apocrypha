@@ -1,14 +1,43 @@
-﻿namespace Apocrypha.CommonObject.Models.Common.Translation
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
+
+namespace Apocrypha.CommonObject.Models.Common.Translation;
+
+/// <summary>
+/// Represents a translation entry for localizing database contents.
+/// <a href="https://stackoverflow.com/questions/25302393/best-practices-to-localize-entities-with-ef-code-first">Source</a>
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public abstract class Translation<T> : DatabaseObject where T : Translation<T>, new()
 {
-    /// <summary>
-    /// Represents a translation entry for localizing database contents.
-    /// <a href="https://stackoverflow.com/questions/25302393/best-practices-to-localize-entities-with-ef-code-first">Source</a>
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class Translation<T> : DatabaseObject where T : Translation<T>, new()
+    private string _cultureName;
+
+    public string CultureName
     {
-        public string CultureName { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        get
+        {
+            return _cultureName;
+        }
+        set
+        {
+            _cultureName = value;
+        }
+    }
+
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    [NotMapped]
+    public CultureInfo CultureInfo
+    {
+        get
+        {
+            return new CultureInfo(CultureName);
+        }
+        set
+        {
+            if (value != null)
+                CultureName = value.Name;
+        }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using Apocrypha.CommonObject.Models;
 
-namespace Apocrypha.WPF.State.Characters
+namespace Apocrypha.WPF.State.Characters;
+
+public interface ICharacterStore : IStateChanger
 {
-    public interface ICharacterStore : IStateChanger
-    {
-        Character CurrentCharacter { get; set; }
-        bool HasActiveCharacter { get; }
-    }
+    Character CurrentCharacter { get; set; }
+    bool HasActiveCharacter { get; }
 }

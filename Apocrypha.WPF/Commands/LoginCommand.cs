@@ -1,51 +1,48 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.WPF.State.Authenticators;
-using Apocrypha.WPF.State.Navigators;
 using Apocrypha.WPF.ViewModels;
+using Apocrypha.WPF.Views;
 
-namespace Apocrypha.WPF.Commands
+namespace Apocrypha.WPF.Commands;
+
+public class LoginCommand : AsyncCommandBase
 {
-    public class LoginCommand : AsyncCommandBase
+    private readonly IAuthenticator _authenticator;
+    private readonly LoginViewModel _loginViewModel;
+    private readonly INavigationService _navigationService;
+
+    public LoginCommand(IAuthenticator authenticator, INavigationService navigationService, LoginViewModel loginViewModel)
     {
-        private readonly IAuthenticator _authenticator;
-        private readonly LoginViewModel _loginViewModel;
-        private readonly IRenavigator _renavigator;
+        _authenticator = authenticator;
+        _navigationService = navigationService;
+        _loginViewModel = loginViewModel;
+    }
 
-        public LoginCommand(IAuthenticator authenticator, IRenavigator renavigator, LoginViewModel loginViewModel)
+    protected override async Task ExecuteAsync(object parameter)
+    {
+        try
         {
-            _authenticator = authenticator;
-            _renavigator = renavigator;
-            _loginViewModel = loginViewModel;
+            await _authenticator.Login(_loginViewModel.Username, _loginViewModel.Password);
+            _navigationService.Navigate(typeof(HomeView));
         }
+        catch (UserNotFoundException)
+        {
+            _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginUsernameDoesNotExist;
+        }
+        catch (InvalidPasswordException)
+        {
+            _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginIncorrectPassword;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+            _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginFailed;
+        }
+    }
 
-        public override async Task ExecuteAsync(object parameter)
-        {
-            try
-            {
-                await _authenticator.Login(_loginViewModel.Username, _loginViewModel.Password);
-                _renavigator.Renavigate();
-            }
-            catch (UserNotFoundException)
-            {
-                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginUsernameDoesNotExist;
-            }
-            catch (InvalidPasswordException)
-            {
-                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginIncorrectPassword;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                _loginViewModel.ErrorMessage = Resources.Localization.Localization.ErrorLoginFailed;
-            }
-        }
-
-        public override bool CanExecuteAsync(object parameter)
-        {
-            return true;
-        }
+    protected override bool CanExecuteAsync(object parameter)
+    {
+        return true;
     }
 }
