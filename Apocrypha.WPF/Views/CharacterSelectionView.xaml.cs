@@ -14,5 +14,11 @@ public partial class CharacterSelectionView : INavigableView<CharacterSelectionV
         InitializeComponent();
     }
 
+    [Obsolete("Only for design purposes! Do not use!")]
+    public CharacterSelectionView()
+    {
+        InitializeComponent();
+    }
+
     public CharacterSelectionViewModel ViewModel { get; }
 }

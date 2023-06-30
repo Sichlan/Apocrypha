@@ -166,16 +166,15 @@ public class DiceRollerService : IDiceRollerService
 
     private string EquateFunction(Match match, RollFunction rollFunction)
     {
-        double output = 0;
-
         var content = double.Parse(match.Groups[1].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
 
-        output = rollFunction switch
+        var output = rollFunction switch
         {
             RollFunction.Floor => Math.Floor(content),
             RollFunction.Ceiling => Math.Ceiling(content),
             RollFunction.Round => Math.Round(content, 0),
-            RollFunction.Absolute => Math.Abs(content)
+            RollFunction.Absolute => Math.Abs(content),
+            _ => throw new ArgumentOutOfRangeException(nameof(rollFunction), rollFunction, null)
         };
 
         return output.ToString(CultureInfo.InvariantCulture);
@@ -273,7 +272,7 @@ public class DiceRollerService : IDiceRollerService
 
         for (var i = 0; i < count; i++)
         {
-            int result = 0;
+            int result;
 
             if (reRollExplicit)
             {
@@ -326,17 +325,16 @@ public class DiceRollerService : IDiceRollerService
     /// <param name="match">The matching expression</param>
     /// <param name="rollOperator">The operator to calculate</param>
     /// <returns>The result as a string</returns>
-    private string EquateNonDoubleOperator(Match match, RollOperator rollOperator)
+    private static string EquateNonDoubleOperator(Match match, RollOperator rollOperator)
     {
-        double output = 0;
-
         var a = int.Parse(match.Groups[1].ToString());
         var b = int.Parse(match.Groups[2].ToString());
 
-        output = rollOperator switch
+        var output = rollOperator switch
         {
             RollOperator.Exponent => Math.Pow(a, b),
-            RollOperator.Modulo => a % b
+            RollOperator.Modulo => a % b,
+            _ => throw new ArgumentOutOfRangeException(nameof(rollOperator), rollOperator, null)
         };
 
         return output.ToString(CultureInfo.InvariantCulture);
@@ -349,23 +347,22 @@ public class DiceRollerService : IDiceRollerService
     /// <param name="rollOperator">The operator to calculate</param>
     /// <returns>The result as a string</returns>
     /// <exception cref="DivideByZeroException">Throwing if trying to divide by 0</exception>
-    private string EquateOperator(Match match, RollOperator rollOperator)
+    private static string EquateOperator(Match match, RollOperator rollOperator)
     {
-        double output = 0;
-
         var a = double.Parse(match.Groups[1].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
         var b = double.Parse(match.Groups[3].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
 
 
-        if (b == 0 && (rollOperator == RollOperator.Division || rollOperator == RollOperator.Modulo))
+        if (b == 0 && rollOperator is RollOperator.Division or RollOperator.Modulo)
             throw new DivideByZeroException();
 
-        output = rollOperator switch
+        var output = rollOperator switch
         {
             RollOperator.Division => a / b,
             RollOperator.Multiplication => a * b,
             RollOperator.Subtraction => a - b,
-            RollOperator.Addition => a + b
+            RollOperator.Addition => a + b,
+            _ => throw new ArgumentOutOfRangeException(nameof(rollOperator), rollOperator, null)
         };
 
         return output.ToString(CultureInfo.InvariantCulture);

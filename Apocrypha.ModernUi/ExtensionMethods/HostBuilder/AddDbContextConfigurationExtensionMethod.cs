@@ -1,5 +1,8 @@
 ﻿using System;
+using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Services;
 using Apocrypha.EntityFramework;
+using Apocrypha.EntityFramework.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +34,11 @@ public static class AddDbContextConfigurationExtensionMethod
             services.AddSingleton(_ => new ApocryphaDbContextFactory(ConfigureDbContext));
 
             // TODO: Add database services
+            services.AddSingleton<IDataService<Race>, RaceDataService>();
+            services.AddSingleton<IDataService<CreatureType>, CreatureTypeDataService>();
+            services.AddSingleton<IDataService<CreatureSubType>, CreatureSubTypeDataService>();
+            services.AddSingleton<IDataService<CreatureSizeCategory>, CreatureSizeCategoryDataService>();
+            services.AddSingleton<IDataService<RuleBook>, RuleBookDataService>();
         });
 
         return hostBuilder;

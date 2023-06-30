@@ -4,6 +4,8 @@ using System.Runtime.CompilerServices;
 
 namespace Apocrypha.ModernUi.ViewModels.Common;
 
+public delegate TViewModel CreateViewModel<out TViewModel>() where TViewModel : BaseViewModel;
+
 public class BaseViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;

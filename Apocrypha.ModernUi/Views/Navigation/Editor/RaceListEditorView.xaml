@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Apocrypha.ModernUi.Views.Navigation.Editor.RaceListEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Editor"
+             xmlns:editor="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance editor:RaceListEditorViewModel, IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <CollectionViewSource Source="{Binding RaceEditorViewModels}" x:Key="RacesCollectionViewSource">
+            <CollectionViewSource.GroupDescriptions>
+                <!-- <PropertyGroupDescription PropertyName="Race.RuleBook.Edition" /> -->
+                <PropertyGroupDescription PropertyName="Race.RuleBook.Name" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
+    <Grid Margin="5">
+        <ItemsControl ItemsSource="{Binding Source={StaticResource RacesCollectionViewSource}}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical" VirtualizationMode="Recycling"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ItemsControl.GroupStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type editor:RaceEditorViewModel}">
+                    <Button Margin="5" Padding="5"
+                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:RaceListEditorView}, Path=DataContext.NavigateToPageCommand}"
+                        CommandParameter="{Binding}"
+                        HorizontalContentAlignment="Stretch">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Race.Name}" FontSize="16" />
+                        </Grid></Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

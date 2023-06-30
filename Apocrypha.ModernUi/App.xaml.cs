@@ -13,7 +13,7 @@ namespace Apocrypha.ModernUi
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         private IHost _host;
 
@@ -22,11 +22,10 @@ namespace Apocrypha.ModernUi
         {
             return Host.CreateDefaultBuilder(args)
                 .AddConfiguration(args)
-                // .AddDbContextConfiguration()
+                .AddDbContextConfiguration()
                 .AddStaticValue()
-                // .AddApiConfiguration()
-                // .AddViews()
                 .AddViewModels()
+                .AddCommands()
                 .AddStateConfiguration();
         }
 
@@ -36,6 +35,7 @@ namespace Apocrypha.ModernUi
             _host.Start();
 
             // SetApplicationLanguage(_host.Services.GetRequiredService<IConfiguration>().GetSection("UserSettings:language").Value);
+            SetApplicationLanguage("en");
 
             Window window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();

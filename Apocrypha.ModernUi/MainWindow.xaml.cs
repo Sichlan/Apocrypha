@@ -50,12 +50,6 @@ namespace Apocrypha.ModernUi
             Debug.WriteLine(ThemeManager.GetActualTheme(this));
         }
 
-        private void ToggleTheme(object sender, RoutedEventArgs e)
-        {
-            ThemeManager.Current.ApplicationTheme =
-                ThemeManager.Current.ActualApplicationTheme == ApplicationTheme.Dark ? ApplicationTheme.Light : ApplicationTheme.Dark;
-        }
-
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
@@ -66,20 +60,6 @@ namespace Apocrypha.ModernUi
             else
             {
                 Navigate(args.InvokedItemContainer);
-            }
-        }
-
-        private void NavView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
-        {
-            Thickness currMargin = AppTitleBar.Margin;
-
-            if (sender.DisplayMode == NavigationViewDisplayMode.Minimal)
-            {
-                AppTitleBar.Margin = new Thickness((sender.CompactPaneLength * 2), currMargin.Top, currMargin.Right, currMargin.Bottom);
-            }
-            else
-            {
-                AppTitleBar.Margin = new Thickness(sender.CompactPaneLength, currMargin.Top, currMargin.Right, currMargin.Bottom);
             }
         }
 

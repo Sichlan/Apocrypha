@@ -15,6 +15,12 @@ public partial class LoginView : INavigableView<LoginViewModel>
         InitializeComponent();
     }
 
+    [Obsolete("Only for design purposes! Do not use!")]
+    public LoginView()
+    {
+        InitializeComponent();
+    }
+
     /// <inheritdoc/>
     public LoginViewModel ViewModel { get; }
 }

@@ -11,7 +11,7 @@ public class NavigateForwardsCommand : IRelayCommand
     public NavigateForwardsCommand(INavigationService navigationService)
     {
         _navigationService = navigationService;
-        _navigationService.PropertyChanged += (sender, args) =>
+        _navigationService.PropertyChanged += (_, args) =>
         {
             if (args.PropertyName != nameof(INavigationService.CanGoForward))
                 return;

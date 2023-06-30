@@ -24,7 +24,11 @@ public class MainViewModel : BaseViewModel
         }
     }
 
-    public MainViewModel(INavigationService navigationService, NavigableViewModel fallbackStartViewModel, IHost host)
+    public MainViewModel(NavigateBackwardsCommand navigateBackwardsCommand,
+        NavigateForwardsCommand navigateForwardsCommand,
+        NavigableViewModel fallbackStartViewModel,
+        INavigationService navigationService,
+        IHost host)
     {
         _navigationService = navigationService;
         _host = host;
@@ -32,11 +36,14 @@ public class MainViewModel : BaseViewModel
         if (_navigationService.ActiveViewModel == null)
             _navigationService.Navigate(fallbackStartViewModel);
 
-        _navigationService.PropertyChanged += (_, _) => OnPropertyChanged(nameof(ActiveViewModel));
+        _navigationService.PropertyChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(ActiveViewModel));
+        };
 
         // Commands
-        NavigateBackwardsCommand = new NavigateBackwardsCommand(navigationService);
-        NavigateForwardsCommand = new NavigateForwardsCommand(navigationService);
+        NavigateBackwardsCommand = navigateBackwardsCommand;
+        NavigateForwardsCommand = navigateForwardsCommand;
     }
 
     public void NavigateToPage(Type pageType)

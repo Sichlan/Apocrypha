@@ -1,16 +1,14 @@
-﻿using System.Windows.Input;
-using Apocrypha.ModernUi.Helpers.Commands.Navigation;
-using Apocrypha.ModernUi.Services.State;
-using Microsoft.Extensions.Hosting;
+﻿using Apocrypha.ModernUi.Helpers.Commands.Navigation;
+using Apocrypha.ModernUi.Resources.Localization;
 
 namespace Apocrypha.ModernUi.ViewModels.Navigation;
 
 public class HomeViewModel : NavigableViewModel
 {
-    public ICommand NavigateToPageCommand { get; }
+    public override string ViewModelTitle { get; } = Localization.HomeViewModelTitle;
 
-    public HomeViewModel(INavigationService navigationService, IHost host)
+    public HomeViewModel(NavigateToPageCommand navigateToPageCommand)
+        : base(navigateToPageCommand)
     {
-        NavigateToPageCommand = new NavigateToPageCommand(navigationService, host);
     }
 }

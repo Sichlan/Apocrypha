@@ -6,8 +6,6 @@ namespace Apocrypha.ModernUi.Services.State;
 
 public interface INavigationService : INotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-
     public NavigableViewModel ActiveViewModel { get; }
     public bool CanGoBack { get; }
     public bool CanGoForward { get; }

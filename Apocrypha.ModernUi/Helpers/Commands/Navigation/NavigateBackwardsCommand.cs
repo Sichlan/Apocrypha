@@ -11,7 +11,7 @@ public class NavigateBackwardsCommand : IRelayCommand
     public NavigateBackwardsCommand(INavigationService navigationService)
     {
         _navigationService = navigationService;
-        _navigationService.PropertyChanged += (sender, args) =>
+        _navigationService.PropertyChanged += (_, args) =>
         {
             if (args.PropertyName != nameof(INavigationService.CanGoBack))
                 return;

@@ -20,14 +20,17 @@ public class NavigateToPageCommand : ICommand
     public bool CanExecute(object parameter)
     {
         return _navigationService != null
-               && parameter is Type t
-               && _host.Services.GetService(t) is NavigableViewModel;
+               && ((parameter is Type t
+                    && _host.Services.GetService(t) is NavigableViewModel)
+                   || parameter is NavigableViewModel);
     }
 
     public void Execute(object parameter)
     {
         if (parameter is Type t && _host.Services.GetService(t) is NavigableViewModel vm)
             _navigationService.Navigate(vm);
+        else if (parameter is NavigableViewModel viewModel)
+            _navigationService.Navigate(viewModel);
     }
 
     public event EventHandler CanExecuteChanged;

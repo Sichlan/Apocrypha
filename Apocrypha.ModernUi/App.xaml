@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:navigationViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
-             xmlns:navigationViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation">
+             xmlns:navigationViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation"
+             xmlns:editorViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
+             xmlns:editorViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Editor"
+             DispatcherUnhandledException="OnDispatcherUnhandledException">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -35,6 +38,18 @@
             <DataTemplate DataType="{x:Type navigationViewModels:TestViewModel}">
                 <navigationViews:TestView/>
             </DataTemplate>
+            
+            <!--#region Editor-->
+            <DataTemplate DataType="{x:Type editorViewModels:EditorHomeViewModel}">
+                <editorViews:EditorHomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type editorViewModels:RaceListEditorViewModel}">
+                <editorViews:RaceListEditorView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type editorViewModels:RaceEditorViewModel}">
+                <editorViews:RaceEditorView/>
+            </DataTemplate>
+            <!--#endregion-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

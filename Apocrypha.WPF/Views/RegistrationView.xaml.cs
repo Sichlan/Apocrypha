@@ -15,6 +15,12 @@ public partial class RegistrationView : INavigableView<RegistrationViewModel>
         InitializeComponent();
     }
 
+    [Obsolete("Only for design purposes! Do not use!")]
+    public RegistrationView()
+    {
+        InitializeComponent();
+    }
+
     /// <inheritdoc/>
     public RegistrationViewModel ViewModel { get; }
 }
