@@ -1,8 +1,12 @@
 ﻿using System;
 using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.EntityFramework;
 using Apocrypha.EntityFramework.Services;
+using Apocrypha.EntityFramework.Services.Poisons;
+using Apocrypha.ModernUi.Services.ViewModelConverter;
+using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,14 +35,26 @@ public static class AddDbContextConfigurationExtensionMethod
             services.AddDbContext<ApocryphaDbContext>(ConfigureDbContext);
 
             // Configure DB service for runtime
-            services.AddSingleton(_ => new ApocryphaDbContextFactory(ConfigureDbContext));
+            services.AddScoped(_ => new ApocryphaDbContextFactory(ConfigureDbContext));
 
             // TODO: Add database services
-            services.AddSingleton<IDataService<Race>, RaceDataService>();
-            services.AddSingleton<IDataService<CreatureType>, CreatureTypeDataService>();
-            services.AddSingleton<IDataService<CreatureSubType>, CreatureSubTypeDataService>();
-            services.AddSingleton<IDataService<CreatureSizeCategory>, CreatureSizeCategoryDataService>();
-            services.AddSingleton<IDataService<RuleBook>, RuleBookDataService>();
+            services.AddScoped<IDataService<Condition>, ConditionDataService>();
+            services.AddScoped<IDataService<Race>, RaceDataService>();
+            services.AddScoped<IDataService<RaceTranslation>, RaceTranslationDataService>();
+            services.AddScoped<IDataService<CreatureType>, CreatureTypeDataService>();
+            services.AddScoped<IDataService<CreatureSubType>, CreatureSubTypeDataService>();
+            services.AddScoped<IDataService<CreatureSizeCategory>, CreatureSizeCategoryDataService>();
+            services.AddScoped<IDataService<RuleBook>, RuleBookDataService>();
+            services.AddScoped<IDataService<Poison>, PoisonDataService>();
+            services.AddScoped<IDataService<PoisonDeliveryMethod>, PoisonDeliveryMethodDataService>();
+            services.AddScoped<IDataService<PoisonDuration>, PoisonDurationDataService>();
+            services.AddScoped<IDataService<PoisonDamageTarget>, PoisonDamageTargetDataService>();
+            services.AddScoped<IDataService<PoisonSpecialEffect>, PoisonSpecialEffectDataService>();
+
+            // TODO: Add model converter
+            services.AddScoped<IViewModelConverter<PoisonCrafterViewModel, Poison>, PoisonCrafterViewModelConverter>();
+            services.AddScoped<IViewModelConverter<PoisonPhaseViewModel, PoisonPhase>, PoisonPhaseViewModelConverter>();
+            services.AddScoped<IViewModelConverter<PoisonPhaseElementViewModel, PoisonPhaseElement>, PoisonPhaseElementViewModelConverter>();
         });
 
         return hostBuilder;

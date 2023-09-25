@@ -27,15 +27,10 @@ public class Race : DatabaseObject
     public ICollection<RaceSpecialAbility> SpecialAbilities { get; set; }
     public int? LevelAdjustment { get; set; }
     public int ChallengeRating { get; set; }
-    public TranslationCollection<RaceTranslation> Translations { get; set; }
+    public TranslationCollection<RaceTranslation> Translations { get; set; } = new();
 
 
     #region Translation
-
-    public Race()
-    {
-        Translations = new TranslationCollection<RaceTranslation>();
-    }
 
     public string FallbackName { get; set; }
 

@@ -18,10 +18,6 @@ public class RaceEditorViewModel : NavigableViewModel
     #region Services
 
     private readonly IDataService<Race> _raceDataService;
-    private readonly IDataService<CreatureType> _creatureTypeDataService;
-    private readonly IDataService<CreatureSubType> _creatureSubTypeDataService;
-    private readonly IDataService<CreatureSizeCategory> _creatureSizeCategoryDataService;
-    private readonly IDataService<RuleBook> _ruleBookDataService;
 
     #endregion
 
@@ -152,22 +148,21 @@ public class RaceEditorViewModel : NavigableViewModel
 
     public RaceEditorViewModel(Race race, NavigateToPageCommand navigateToPageCommand, IDataService<Race> raceDataService,
         IDataService<CreatureType> creatureTypeDataService, IDataService<CreatureSubType> creatureSubTypeDataService,
-        IDataService<CreatureSizeCategory> creatureSizeCategoryDataService, IDataService<RuleBook> ruleBookDataService)
+        IDataService<CreatureSizeCategory> creatureSizeCategoryDataService, IDataService<RuleBook> ruleBookDataService,
+        IEnumerable<CultureInfo> cultureInfos, IDataService<RaceTranslation> raceTranslationDataService)
         : base(navigateToPageCommand)
     {
         Race = race;
         _raceDataService = raceDataService;
-        _creatureTypeDataService = creatureTypeDataService;
-        _creatureSubTypeDataService = creatureSubTypeDataService;
-        _creatureSizeCategoryDataService = creatureSizeCategoryDataService;
-        _ruleBookDataService = ruleBookDataService;
+        _cultureInfos = cultureInfos;
+        _raceTranslationDataService = raceTranslationDataService;
 
         Task.Run(async () =>
         {
-            CreatureTypes = new ObservableCollection<CreatureType>(await _creatureTypeDataService.GetAll());
-            CreatureSubTypes = new ObservableCollection<CreatureSubType>(await _creatureSubTypeDataService.GetAll());
-            CreatureSizeCategories = new ObservableCollection<CreatureSizeCategory>(await _creatureSizeCategoryDataService.GetAll());
-            RuleBooks = new ObservableCollection<RuleBook>(await _ruleBookDataService.GetAll());
+            CreatureTypes = new ObservableCollection<CreatureType>(await creatureTypeDataService.GetAll());
+            CreatureSubTypes = new ObservableCollection<CreatureSubType>(await creatureSubTypeDataService.GetAll());
+            CreatureSizeCategories = new ObservableCollection<CreatureSizeCategory>(await creatureSizeCategoryDataService.GetAll());
+            RuleBooks = new ObservableCollection<RuleBook>(await ruleBookDataService.GetAll());
         });
     }
 }

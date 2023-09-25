@@ -17,7 +17,7 @@ public class CreatureSizeCategory : DatabaseObject
     public double Space { get; set; }
     public int NaturalReachTall { get; set; }
     public int NaturalReachLong { get; set; }
-    public TranslationCollection<CreatureSizeCategoryTranslation> CreatureSizeCategoryTranslations { get; set; }
+    public TranslationCollection<CreatureSizeCategoryTranslation> CreatureSizeCategoryTranslations { get; set; } = new();
     public ICollection<Race> Races { get; set; }
 
     #region Translation

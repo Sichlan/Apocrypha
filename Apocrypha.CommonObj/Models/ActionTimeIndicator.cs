@@ -8,7 +8,7 @@ namespace Apocrypha.CommonObject.Models;
 
 public class ActionTimeIndicator : DatabaseObject
 {
-    public TranslationCollection<ActionTimeIndicatorTranslation> ActionTimeIndicatorTranslations { get; set; }
+    public TranslationCollection<ActionTimeIndicatorTranslation> ActionTimeIndicatorTranslations { get; set; } = new();
     public ICollection<SpellVariant> SpellVariants { get; set; }
 
 

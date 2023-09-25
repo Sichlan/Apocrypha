@@ -8,7 +8,7 @@ namespace Apocrypha.CommonObject.Models;
 public class MovementMode : DatabaseObject
 {
     public ICollection<RaceMovementMode> RaceMovementModes { get; set; }
-    public TranslationCollection<MovementModeTranslation> MovementModeTranslations { get; set; }
+    public TranslationCollection<MovementModeTranslation> MovementModeTranslations { get; set; } = new();
 
     #region Translation
 

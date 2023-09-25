@@ -20,7 +20,7 @@ namespace Apocrypha.CommonObject.Models.Spells;
 public class SpellComponentType : DatabaseObject
 {
     public ICollection<SpellComponent> SpellComponents { get; set; }
-    public TranslationCollection<SpellComponentTypeTranslation> SpellComponentTypeTranslations { get; set; }
+    public TranslationCollection<SpellComponentTypeTranslation> SpellComponentTypeTranslations { get; set; } = new();
 
     public string NameFallback { get; set; }
 

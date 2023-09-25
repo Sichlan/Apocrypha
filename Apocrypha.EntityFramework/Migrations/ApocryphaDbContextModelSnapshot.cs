@@ -214,6 +214,54 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.ToTable("CharacterItems");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Condition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("PoisonCraftModifier")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("WithoutDuration")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Conditions");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.ConditionTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ConditionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConditionId");
+
+                    b.ToTable("ConditionTranslations");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.CreatureSizeCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -536,6 +584,298 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.HasIndex("MovementModeId");
 
                     b.ToTable("MovementModeTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.Poison", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DeliveryMethodId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Toxicity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeliveryMethodId");
+
+                    b.ToTable("Poisons");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDamageTarget", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CraftModifier")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PoisonDamageTargets");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDamageTargetTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("PoisonDamageTargetId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PoisonDamageTargetId");
+
+                    b.ToTable("PoisonDamageTargetTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CraftDifficultyClassModifier")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PoisonDeliveryMethods");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethodTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AllignmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("PoisonDeliveryMethodId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AllignmentId");
+
+                    b.HasIndex("PoisonDeliveryMethodId");
+
+                    b.ToTable("PoisonDeliveryMethodTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CraftModifier")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MaxDurationDiceCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MaxDurationDiceSize")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MaxDurationIndicatorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinDurationDiceCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinDurationDiceSize")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinDurationIndicatorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaxDurationIndicatorId");
+
+                    b.HasIndex("MinDurationIndicatorId");
+
+                    b.ToTable("PoisonDurations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonPhase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("PhaseNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PoisonId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PoisonPhaseDurationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PoisonId");
+
+                    b.HasIndex("PoisonPhaseDurationId");
+
+                    b.ToTable("PoisonPhases");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonPhaseElement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ConditionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DamageDiceCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DamageDiceSize")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PoisonDamageTargetId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PoisonDurationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PoisonPhaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PoisonSpecialEffectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConditionId");
+
+                    b.HasIndex("PoisonDamageTargetId");
+
+                    b.HasIndex("PoisonDurationId");
+
+                    b.HasIndex("PoisonPhaseId");
+
+                    b.HasIndex("PoisonSpecialEffectId");
+
+                    b.ToTable("PoisonPhaseElements");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonSpecialEffect", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CraftModifier")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DescriptionFallback")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NameFallback")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PoisonSpecialEffects");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonSpecialEffectTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("PoisonSpecialEffectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PoisonSpecialEffectId");
+
+                    b.ToTable("PoisonSpecialEffectTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CultureName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("PoisonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PoisonId");
+
+                    b.ToTable("PoisonTranslations");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Race", b =>
@@ -1376,6 +1716,15 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.ConditionTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Condition", "Condition")
+                        .WithMany("ConditionTranslations")
+                        .HasForeignKey("ConditionId");
+
+                    b.Navigation("Condition");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.CreatureSizeCategoryTranslation", b =>
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.CreatureSizeCategory", "CreatureSizeCategory")
@@ -1437,6 +1786,118 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasForeignKey("MovementModeId");
 
                     b.Navigation("MovementMode");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.Poison", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethod", "DeliveryMethod")
+                        .WithMany("Poisons")
+                        .HasForeignKey("DeliveryMethodId");
+
+                    b.Navigation("DeliveryMethod");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDamageTargetTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDamageTarget", "PoisonDamageTarget")
+                        .WithMany("PoisonDamageTargetTranslations")
+                        .HasForeignKey("PoisonDamageTargetId");
+
+                    b.Navigation("PoisonDamageTarget");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethodTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Allignment", "Allignment")
+                        .WithMany()
+                        .HasForeignKey("AllignmentId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethod", null)
+                        .WithMany("PoisonDeliveryMethodTranslations")
+                        .HasForeignKey("PoisonDeliveryMethodId");
+
+                    b.Navigation("Allignment");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.ActionTimeIndicator", "MaxDurationIndicator")
+                        .WithMany()
+                        .HasForeignKey("MaxDurationIndicatorId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.ActionTimeIndicator", "MinDurationIndicator")
+                        .WithMany()
+                        .HasForeignKey("MinDurationIndicatorId");
+
+                    b.Navigation("MaxDurationIndicator");
+
+                    b.Navigation("MinDurationIndicator");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonPhase", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.Poison", "Poison")
+                        .WithMany("Phases")
+                        .HasForeignKey("PoisonId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", "PoisonPhaseDuration")
+                        .WithMany()
+                        .HasForeignKey("PoisonPhaseDurationId");
+
+                    b.Navigation("Poison");
+
+                    b.Navigation("PoisonPhaseDuration");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonPhaseElement", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Condition", "Condition")
+                        .WithMany("PoisonPhaseElements")
+                        .HasForeignKey("ConditionId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDamageTarget", "PoisonDamageTarget")
+                        .WithMany("PoisonPhaseElements")
+                        .HasForeignKey("PoisonDamageTargetId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", "PoisonDuration")
+                        .WithMany("PoisonPhaseElements")
+                        .HasForeignKey("PoisonDurationId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonPhase", "PoisonPhase")
+                        .WithMany("PoisonPhaseElements")
+                        .HasForeignKey("PoisonPhaseId");
+
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonSpecialEffect", "PoisonSpecialEffect")
+                        .WithMany("PoisonPhaseElements")
+                        .HasForeignKey("PoisonSpecialEffectId");
+
+                    b.Navigation("Condition");
+
+                    b.Navigation("PoisonDamageTarget");
+
+                    b.Navigation("PoisonDuration");
+
+                    b.Navigation("PoisonPhase");
+
+                    b.Navigation("PoisonSpecialEffect");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonSpecialEffectTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonSpecialEffect", "PoisonSpecialEffect")
+                        .WithMany("PoisonSpecialEffectTranslations")
+                        .HasForeignKey("PoisonSpecialEffectId");
+
+                    b.Navigation("PoisonSpecialEffect");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonTranslation", b =>
+                {
+                    b.HasOne("Apocrypha.CommonObject.Models.Poisons.Poison", "Poison")
+                        .WithMany("PoisonTranslations")
+                        .HasForeignKey("PoisonId");
+
+                    b.Navigation("Poison");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Race", b =>
@@ -1773,6 +2234,13 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Navigation("InventoryItems");
                 });
 
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Condition", b =>
+                {
+                    b.Navigation("ConditionTranslations");
+
+                    b.Navigation("PoisonPhaseElements");
+                });
+
             modelBuilder.Entity("Apocrypha.CommonObject.Models.CreatureSizeCategory", b =>
                 {
                     b.Navigation("CreatureSizeCategoryTranslations");
@@ -1816,6 +2284,44 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Navigation("MovementModeTranslations");
 
                     b.Navigation("RaceMovementModes");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.Poison", b =>
+                {
+                    b.Navigation("Phases");
+
+                    b.Navigation("PoisonTranslations");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDamageTarget", b =>
+                {
+                    b.Navigation("PoisonDamageTargetTranslations");
+
+                    b.Navigation("PoisonPhaseElements");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethod", b =>
+                {
+                    b.Navigation("PoisonDeliveryMethodTranslations");
+
+                    b.Navigation("Poisons");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", b =>
+                {
+                    b.Navigation("PoisonPhaseElements");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonPhase", b =>
+                {
+                    b.Navigation("PoisonPhaseElements");
+                });
+
+            modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonSpecialEffect", b =>
+                {
+                    b.Navigation("PoisonPhaseElements");
+
+                    b.Navigation("PoisonSpecialEffectTranslations");
                 });
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Race", b =>

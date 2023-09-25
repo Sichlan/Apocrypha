@@ -1,4 +1,5 @@
 ﻿using Apocrypha.CommonObject.Models;
+using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Models.Spells;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +33,8 @@ public class ApocryphaDbContext : DbContext
     public DbSet<AlphabetTranslation> AlphabetTranslations { get; set; }
     public DbSet<Character> Characters { get; set; }
     public DbSet<CharacterItem> CharacterItems { get; set; }
+    public DbSet<Condition> Conditions { get; set; }
+    public DbSet<ConditionTranslation> ConditionTranslations { get; set; }
     public DbSet<CreatureSizeCategory> CreatureSizeCategories { get; set; }
     public DbSet<CreatureSizeCategoryTranslation> CreatureSizeCategoryTranslations { get; set; }
     public DbSet<CreatureSubType> CreatureSubTypes { get; set; }
@@ -86,6 +89,22 @@ public class ApocryphaDbContext : DbContext
     public DbSet<SpellRangeTypeTranslation> SpellRangeTypeTranslations { get; set; }
 
     #endregion Spells
+
+    #region Poisons
+
+    public DbSet<Poison> Poisons { get; set; }
+    public DbSet<PoisonTranslation> PoisonTranslations { get; set; }
+    public DbSet<PoisonDamageTarget> PoisonDamageTargets { get; set; }
+    public DbSet<PoisonDamageTargetTranslation> PoisonDamageTargetTranslations { get; set; }
+    public DbSet<PoisonDeliveryMethod> PoisonDeliveryMethods { get; set; }
+    public DbSet<PoisonDeliveryMethodTranslation> PoisonDeliveryMethodTranslations { get; set; }
+    public DbSet<PoisonDuration> PoisonDurations { get; set; }
+    public DbSet<PoisonPhase> PoisonPhases { get; set; }
+    public DbSet<PoisonPhaseElement> PoisonPhaseElements { get; set; }
+    public DbSet<PoisonSpecialEffect> PoisonSpecialEffects { get; set; }
+    public DbSet<PoisonSpecialEffectTranslation> PoisonSpecialEffectTranslations { get; set; }
+
+    #endregion
 
     #endregion
 }

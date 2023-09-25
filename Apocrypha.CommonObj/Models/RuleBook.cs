@@ -44,5 +44,5 @@ public class RuleBook : DatabaseObject
     }
 
     public ICollection<SpellVariant> SpellVariants { get; set; }
-    public TranslationCollection<RuleBookTranslation> RuleBookTranslations { get; set; }
+    public TranslationCollection<RuleBookTranslation> RuleBookTranslations { get; set; } = new();
 }

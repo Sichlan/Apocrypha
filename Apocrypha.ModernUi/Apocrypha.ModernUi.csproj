@@ -6,6 +6,7 @@
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <NeutralLanguage>en</NeutralLanguage>
+        <ApplicationIcon>Resources\Icons\apocrypha-logo.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -72,9 +73,13 @@
 
     <ItemGroup>
         <None Remove="Resources\Images\races.jpg"/>
+        <Resource Include="Resources\Icons\apocrypha-logo.ico">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
         <Resource Include="Resources\Images\races.jpg">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
     </ItemGroup>
+
 
 </Project>

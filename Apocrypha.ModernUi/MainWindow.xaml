@@ -10,6 +10,7 @@
         xmlns:navigationViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
         xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
         xmlns:editor="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
+        xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:TitleBar.ExtendViewIntoTitleBar="True"
         ui:TitleBar.IsBackButtonVisible="False"
@@ -39,6 +40,9 @@
             <Setter Property="IsActive" Value="{Binding IsActive, ElementName=Window}" />
         </Style>
     </Window.Resources>
+    <!-- <Window.InputBindings> -->
+    <!--     <MouseBinding  Command="{Binding NavigateBackwardsCommand}"/> -->
+    <!-- </Window.InputBindings> -->
     
     <Grid>
         <Grid.RowDefinitions>
@@ -124,7 +128,13 @@
                 <ui:NavigationViewItemHeader Content="Controls" />
                 
                 <ui:NavigationViewItem Icon="Home" Content="Home" Tag="{x:Type navigationViewModels:HomeViewModel}"/>
-                <ui:NavigationViewItem Icon="Edit" Content="Editor" Tag="{x:Type editor:EditorHomeViewModel}"/>
+                
+                <ui:NavigationViewItemHeader Content="Editor"/>
+                <ui:NavigationViewItem Icon="Edit" Content="Home" Tag="{x:Type editor:EditorHomeViewModel}"/>
+                <ui:NavigationViewItem Icon="Contact" Content="Races" Tag="{x:Type editor:RaceEditorListViewModel}"/>
+                
+                <ui:NavigationViewItemHeader Content="Tools"/>
+                <ui:NavigationViewItem Icon="Repair" Content="Poison Crafter" Tag="{x:Type tools:PoisonCrafterListViewModel}"/>
 
                 <!-- <ui:NavigationViewItem Content="Overview" Tag="{x:Type controlPages:ControlsPage}"> -->
                 <!--     <ui:NavigationViewItem.Icon> -->

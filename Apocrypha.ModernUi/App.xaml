@@ -6,6 +6,8 @@
              xmlns:navigationViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation"
              xmlns:editorViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
              xmlns:editorViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Editor"
+             xmlns:toolsViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
+             xmlns:toolsViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
              DispatcherUnhandledException="OnDispatcherUnhandledException">
     <Application.Resources>
         <ResourceDictionary>
@@ -43,11 +45,20 @@
             <DataTemplate DataType="{x:Type editorViewModels:EditorHomeViewModel}">
                 <editorViews:EditorHomeView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type editorViewModels:RaceListEditorViewModel}">
-                <editorViews:RaceListEditorView/>
+            <DataTemplate DataType="{x:Type editorViewModels:RaceEditorListViewModel}">
+                <editorViews:RaceEditorListView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type editorViewModels:RaceEditorViewModel}">
                 <editorViews:RaceEditorView/>
+            </DataTemplate>
+            <!--#endregion-->
+            
+            <!--#region Tools-->
+            <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterListViewModel}">
+                <toolsViews:PoisonCrafterListView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterViewModel}">
+                <toolsViews:PoisonCrafterView/>
             </DataTemplate>
             <!--#endregion-->
         </ResourceDictionary>

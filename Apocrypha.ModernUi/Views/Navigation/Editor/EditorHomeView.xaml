@@ -8,7 +8,7 @@
              d:DataContext="{d:DesignInstance editor:EditorHomeViewModel, IsDesignTimeCreatable=True}">
     <WrapPanel Orientation="Horizontal">
         <Button Margin="5" Command="{Binding NavigateToPageCommand}" 
-                CommandParameter="{x:Type editor:RaceListEditorViewModel}"
+                CommandParameter="{x:Type editor:RaceEditorListViewModel}"
                 Width="450" Height="300">
             <Button.Background>
                 <ImageBrush ImageSource="../../../resources/images/races.jpg"/>

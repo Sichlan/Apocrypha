@@ -8,7 +8,7 @@ namespace Apocrypha.CommonObject.Models;
 public class Allignment : DatabaseObject
 {
     public string Abbreviation { get; set; }
-    public TranslationCollection<AllignmentTranslation> AllignmentTranslations { get; set; }
+    public TranslationCollection<AllignmentTranslation> AllignmentTranslations { get; set; } = new();
 
     public string NameFallback { get; set; }
 

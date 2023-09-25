@@ -8,7 +8,7 @@ namespace Apocrypha.CommonObject.Models;
 public class Sense : DatabaseObject
 {
     public ICollection<RaceSense> RaceSense { get; set; }
-    public TranslationCollection<SenseTranslation> SenseTranslations { get; set; }
+    public TranslationCollection<SenseTranslation> SenseTranslations { get; set; } = new();
 
     #region Translation
 

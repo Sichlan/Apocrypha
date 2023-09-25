@@ -8,7 +8,7 @@ namespace Apocrypha.CommonObject.Models;
 public class CreatureSubType : DatabaseObject
 {
     public ICollection<Race> Races { get; set; }
-    public TranslationCollection<CreatureSubTypeTranslation> CreatureSubTypeTranslations { get; set; }
+    public TranslationCollection<CreatureSubTypeTranslation> CreatureSubTypeTranslations { get; set; } = new();
 
     #region Translation
 

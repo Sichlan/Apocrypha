@@ -7,7 +7,7 @@ using Apocrypha.ModernUi.Resources.Localization;
 
 namespace Apocrypha.ModernUi.ViewModels.Navigation.Editor;
 
-public class RaceListEditorViewModel : NavigableViewModel
+public class RaceEditorListViewModel : NavigableViewModel
 {
     public override string ViewModelTitle { get; } = Localization.RaceListViewModel;
 
@@ -16,7 +16,8 @@ public class RaceListEditorViewModel : NavigableViewModel
     private readonly IDataService<Race> _raceDataService;
     private readonly CreateRaceEditorViewModel _raceEditorViewModelBuilder;
 
-    public RaceListEditorViewModel(IDataService<Race> raceDataService, NavigateToPageCommand navigateToPageCommand,
+    public RaceEditorListViewModel(IDataService<Race> raceDataService,
+        NavigateToPageCommand navigateToPageCommand,
         CreateRaceEditorViewModel raceEditorViewModelBuilder)
         : base(navigateToPageCommand)
     {

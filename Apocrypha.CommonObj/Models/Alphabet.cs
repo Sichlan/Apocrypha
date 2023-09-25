@@ -8,7 +8,7 @@ namespace Apocrypha.CommonObject.Models;
 public class Alphabet : DatabaseObject
 {
     public ICollection<Language> Languages { get; set; }
-    public TranslationCollection<AlphabetTranslation> AlphabetTranslations { get; set; }
+    public TranslationCollection<AlphabetTranslation> AlphabetTranslations { get; set; } = new();
 
     #region Translation
 

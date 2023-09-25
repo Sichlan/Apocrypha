@@ -8,7 +8,7 @@ namespace Apocrypha.CommonObject.Models;
 public class RaceSpecialAbility : DatabaseObject
 {
     public Race Race { get; set; }
-    public TranslationCollection<RaceSpecialAbilityTranslation> RaceSpecialAbilityTranslations { get; set; }
+    public TranslationCollection<RaceSpecialAbilityTranslation> RaceSpecialAbilityTranslations { get; set; } = new();
 
     #region Translation
 

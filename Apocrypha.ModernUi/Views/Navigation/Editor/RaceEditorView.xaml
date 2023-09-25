@@ -18,8 +18,8 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -28,27 +28,27 @@
         </Grid.RowDefinitions>
         
         <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Command="{Binding SaveEditRaceCommand}" Margin="5" Content="{x:Static res:Localization.ButtonLabelSave}"/>
-                <Button Command="{Binding CancelEditRaceCommand}" Margin="5" Content="{x:Static res:Localization.ButtonLabelCancel}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Command="{Binding SaveEditRaceCommand}" Margin="5" Content="{x:Static res:Localization.ButtonLabelSave}" Width="100"/>
+                <Button Command="{Binding CancelEditRaceCommand}" Margin="5" Content="{x:Static res:Localization.ButtonLabelCancel}" Width="100"/>
             </StackPanel>
         </Border>
         
-        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        <Border Grid.Row="1" Grid.Column="0">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
                 
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
                     <TextBlock Text="{x:Static res:Localization.InputLabelRaceName}" Margin="5" FontSize="18" FontWeight="Medium"/>
                     <TextBox Text="{Binding Race.Name}" Margin="5" FontSize="18" FontWeight="Medium" Width="150"/>
                     <!-- <Button Command="{Binding TranslateRaceCommand}" Content="{x:Static res:Localization.ButtonLabelTranslate}" Margin="5" /> -->
                 </StackPanel>
                 
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
                     <TextBlock Text="{x:Static res:Localization.InputLabelRaceType}" Margin="5"/>
                     <ComboBox ItemsSource="{Binding CreatureTypes}" SelectedItem="{Binding SelectedCreatureType}" DisplayMemberPath="Name" Margin="5" Width="100"/>
                     <TextBlock Text="{x:Static res:Localization.InputLabelRaceSubType}" Margin="5"/>
@@ -57,11 +57,11 @@
                     <ComboBox ItemsSource="{Binding CreatureSizeCategories}" SelectedItem="{Binding SelectedCreatureSizeCategory}" DisplayMemberPath="Name" Margin="5" Width="100"/>
                 </StackPanel>
                 
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Left">
                     <TextBlock Text="{x:Static res:Localization.InputLabelRuleBook}" Margin="5"/>
                     <ComboBox ItemsSource="{Binding RuleBooks}" 
                               SelectedItem="{Binding SelectedRuleBook}" 
-                              Margin="5" Width="200" Grid.IsSharedSizeScope="True">
+                              Margin="5" Width="100" Grid.IsSharedSizeScope="True">
                         <ComboBox.ToolTip>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Race.RuleBook.Name}" Margin="2,0"/>
@@ -83,30 +83,12 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <TextBlock Text="{x:Static res:Localization.InputLabelRuleBookPage}" Margin="5"/>
-                    <TextBox Text="{Binding Race.RuleBookPage}" Width="50" Margin="5"/>
+                    <TextBox Text="{Binding Race.RuleBookPage}" Margin="5"/>
                 </StackPanel>
             </Grid>
         </Border>
         
-        <Border Grid.Row="2" Grid.Column="0">
-            <Grid VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
-                <TextBlock Grid.Row="0" Text="{x:Static res:Localization.InputLabelDescription}" Margin="5" FontWeight="Medium"/>
-                <TextBox Grid.Row="1" Text="{Binding Race.Description}" 
-                         VerticalAlignment="Stretch" 
-                         AcceptsReturn="True" 
-                         TextWrapping="WrapWithOverflow" 
-                         VerticalScrollBarVisibility="Visible" 
-                         Margin="5" MaxHeight="185" 
-                         VerticalContentAlignment="Top"/>
-            </Grid>
-        </Border>
-        
-        <Border Grid.Row="2" Grid.Column="1">
+        <Border Grid.Row="1" Grid.Column="1">
             <Grid VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -134,6 +116,24 @@
                 <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Race.IntelligenceBonus}" Margin="5" Width="30" TextAlignment="Right"/>
                 <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Race.WisdomBonus}" Margin="5" Width="30" TextAlignment="Right"/>
                 <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Race.CharismaBonus}" Margin="5" Width="30" TextAlignment="Right"/>
+            </Grid>
+        </Border>
+        
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0" Text="{x:Static res:Localization.InputLabelDescription}" Margin="5" FontWeight="Medium"/>
+                <TextBox Grid.Row="1" Text="{Binding Race.Description}" 
+                         VerticalAlignment="Stretch" 
+                         AcceptsReturn="True" 
+                         TextWrapping="WrapWithOverflow" 
+                         VerticalScrollBarVisibility="Visible" 
+                         Margin="5" MaxHeight="185" 
+                         VerticalContentAlignment="Top"/>
             </Grid>
         </Border>
     </Grid>

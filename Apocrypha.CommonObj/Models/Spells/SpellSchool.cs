@@ -8,7 +8,7 @@ namespace Apocrypha.CommonObject.Models.Spells;
 public class SpellSchool : DatabaseObject
 {
     public ICollection<SpellVariant> SpellVariants { get; set; }
-    public TranslationCollection<SpellSchoolTranslation> SpellSchoolTranslations { get; set; }
+    public TranslationCollection<SpellSchoolTranslation> SpellSchoolTranslations { get; set; } = new();
 
     public string NameFallback { get; set; }
 
