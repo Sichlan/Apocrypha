@@ -1,9 +1,13 @@
-﻿using Apocrypha.CommonObject.Models.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using Apocrypha.CommonObject.Models.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.CommonObject.Models.Poisons;
 
 public class PoisonPhaseElement : DatabaseObject
 {
+    [Required]
+    [DeleteBehavior(DeleteBehavior.Cascade)]
     public PoisonPhase PoisonPhase { get; set; }
 
     // Dice DC is calculated by (MAX DMG - MIN DMG) / 2 V

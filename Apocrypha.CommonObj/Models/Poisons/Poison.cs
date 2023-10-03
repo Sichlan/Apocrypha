@@ -2,6 +2,7 @@
 using System.Globalization;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Models.Common.Translation;
+using Microsoft.EntityFrameworkCore;
 
 namespace Apocrypha.CommonObject.Models.Poisons;
 
@@ -40,7 +41,12 @@ public class Poison : DatabaseObject
         }
     }
 
+    [DeleteBehavior(DeleteBehavior.SetNull)]
     public PoisonDeliveryMethod DeliveryMethod { get; set; }
+
     public int Toxicity { get; set; } = 10;
     public ICollection<PoisonPhase> Phases { get; set; }
+
+    [DeleteBehavior(DeleteBehavior.SetNull)]
+    public User Creator { get; set; }
 }

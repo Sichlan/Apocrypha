@@ -30,7 +30,7 @@ public class SaveDataCommand<TViewModel, TModel> : IRelayCommand
         if (parameter is not TViewModel viewModel)
             throw new ArgumentException();
 
-        var databaseObject = _viewModelConverter.ToModel(viewModel);
+        var databaseObject = await _viewModelConverter.ToModel(viewModel);
 
         if (databaseObject.Id == 0)
             await _dataService.Create(databaseObject);

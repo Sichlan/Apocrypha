@@ -78,4 +78,55 @@
     <data name="InputLabelCharismaShortCapitalized" xml:space="preserve">
         <value>CH</value>
     </data>
+    <data name="PoisonCrafterViewModelTitle" xml:space="preserve">
+        <value>Giftmischer</value>
+    </data>
+    <data name="InputLabelPoisonName" xml:space="preserve">
+        <value>Giftname</value>
+    </data>
+    <data name="InputLabelPoisonDeliveryMethod" xml:space="preserve">
+        <value>Verabreichung</value>
+    </data>
+    <data name="InputLabelPoisonToxicity" xml:space="preserve">
+        <value>Toxizität</value>
+    </data>
+    <data name="HeaderLabelPoisonPhases" xml:space="preserve">
+        <value>Phasen</value>
+    </data>
+    <data name="HeaderLabelPoisonPhase" xml:space="preserve">
+        <value>Phase</value>
+    </data>
+    <data name="HeaderLabelDifficultyClassShort" xml:space="preserve">
+        <value>SK</value>
+    </data>
+    <data name="LabelFortitudeSave" xml:space="preserve">
+        <value>Zähigkeit</value>
+    </data>
+    <data name="HeaderLabelPoisonSummary" xml:space="preserve">
+        <value>Giftzusammenfassung</value>
+    </data>
+    <data name="ButtonLabelAddPoisonPhase" xml:space="preserve">
+        <value>Neue Giftphase</value>
+    </data>
+    <data name="ButtonLabelAddPoisonPhaseElement" xml:space="preserve">
+        <value>Neues Giftphasenelement</value>
+    </data>
+    <data name="ButtonLabelReset" xml:space="preserve">
+        <value>Zurücksetzen</value>
+    </data>
+    <data name="InputLabelPhaseDuration" xml:space="preserve">
+        <value>Phasendauer</value>
+    </data>
+    <data name="HeaderLabelPhaseElements" xml:space="preserve">
+        <value>Phasenelemente</value>
+    </data>
+    <data name="InputLabelPoisonDamage" xml:space="preserve">
+        <value>Schaden</value>
+    </data>
+    <data name="InputLabelPoisonCondition" xml:space="preserve">
+        <value>Zustand</value>
+    </data>
+    <data name="InputLabelPoisonSpecialEffect" xml:space="preserve">
+        <value>Besondere Eigenschaft</value>
+    </data>
 </root>

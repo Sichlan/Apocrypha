@@ -16,14 +16,17 @@ public class PoisonPhaseViewModelConverter : IViewModelConverter<PoisonPhaseView
     private List<PoisonDuration> _poisonDurations;
     private List<PoisonDamageTarget> _poisonDamageTargets;
     private List<PoisonSpecialEffect> _poisonSpecialEffects;
+    private readonly IDataService<PoisonPhase> _poisonPhaseDataService;
 
     public PoisonPhaseViewModelConverter(IViewModelConverter<PoisonPhaseElementViewModel, PoisonPhaseElement> phaseElementConverter,
         IDataService<Condition> conditionDataService,
         IDataService<PoisonDuration> durationDataService,
         IDataService<PoisonDamageTarget> damageTargetDataService,
-        IDataService<PoisonSpecialEffect> specialEffectDataService)
+        IDataService<PoisonSpecialEffect> specialEffectDataService,
+        IDataService<PoisonPhase> poisonPhaseDataService)
     {
         _phaseElementConverter = phaseElementConverter;
+        _poisonPhaseDataService = poisonPhaseDataService;
 
         Task.WaitAll(Task.Run(async () => _conditions = (await conditionDataService.GetAll()).ToList()),
             Task.Run(async () => _poisonDurations = (await durationDataService.GetAll()).ToList()),
@@ -31,14 +34,15 @@ public class PoisonPhaseViewModelConverter : IViewModelConverter<PoisonPhaseView
             Task.Run(async () => _poisonSpecialEffects = (await specialEffectDataService.GetAll()).ToList()));
     }
 
-    public PoisonPhaseViewModel ToViewModel(PoisonPhase model)
+    public async Task<PoisonPhaseViewModel> ToViewModel(PoisonPhase model)
     {
         var viewModel = new PoisonPhaseViewModel(_conditions, _poisonDurations, _poisonDamageTargets, _poisonSpecialEffects)
         {
             Id = model.Id,
             PhaseNumber = model.PhaseNumber,
             PhaseElements =
-                new ObservableCollection<PoisonPhaseElementViewModel>(model.PoisonPhaseElements.Select(x => _phaseElementConverter.ToViewModel(x))),
+                new ObservableCollection<PoisonPhaseElementViewModel>(
+                    await Task.WhenAll(model.PoisonPhaseElements.Select(async x => await _phaseElementConverter.ToViewModel(x)))),
             SelectedPoisonDuration = model.PoisonPhaseDuration
         };
         viewModel.SetupPhaseElementUpdateEventHandler();
@@ -46,14 +50,15 @@ public class PoisonPhaseViewModelConverter : IViewModelConverter<PoisonPhaseView
         return viewModel;
     }
 
-    public PoisonPhase ToModel(PoisonPhaseViewModel viewModel)
+    public async Task<PoisonPhase> ToModel(PoisonPhaseViewModel viewModel)
     {
-        return new PoisonPhase()
-        {
-            Id = viewModel.Id,
-            PhaseNumber = viewModel.PhaseNumber,
-            PoisonPhaseElements = viewModel.PhaseElements.Select(x => _phaseElementConverter.ToModel(x)).ToList(),
-            PoisonPhaseDuration = viewModel.SelectedPoisonDuration
-        };
+        var model = await _poisonPhaseDataService.GetById(viewModel.Id) ?? new PoisonPhase();
+
+        model.Id = viewModel.Id;
+        model.PhaseNumber = viewModel.PhaseNumber;
+        model.PoisonPhaseElements = (await Task.WhenAll(viewModel.PhaseElements.Select(async x => await _phaseElementConverter.ToModel(x)))).ToList();
+        model.PoisonPhaseDuration = _poisonDurations.FirstOrDefault(x => x.Id == viewModel.SelectedPoisonDuration?.Id);
+
+        return model;
     }
 }

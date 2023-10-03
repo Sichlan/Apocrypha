@@ -46,6 +46,8 @@ public static class AddDbContextConfigurationExtensionMethod
             services.AddScoped<IDataService<CreatureSizeCategory>, CreatureSizeCategoryDataService>();
             services.AddScoped<IDataService<RuleBook>, RuleBookDataService>();
             services.AddScoped<IDataService<Poison>, PoisonDataService>();
+            services.AddScoped<IDataService<PoisonPhase>, PoisonPhaseDataService>();
+            services.AddScoped<IDataService<PoisonPhaseElement>, PoisonPhaseElementDataService>();
             services.AddScoped<IDataService<PoisonDeliveryMethod>, PoisonDeliveryMethodDataService>();
             services.AddScoped<IDataService<PoisonDuration>, PoisonDurationDataService>();
             services.AddScoped<IDataService<PoisonDamageTarget>, PoisonDamageTargetDataService>();

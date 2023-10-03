@@ -1,5 +1,5 @@
 ﻿using System;
-using Apocrypha.ModernUi.Services.State;
+using Apocrypha.ModernUi.Services.State.Navigation;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Apocrypha.ModernUi.Helpers.Commands.Navigation;

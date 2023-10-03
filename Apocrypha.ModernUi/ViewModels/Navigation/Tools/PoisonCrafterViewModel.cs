@@ -11,6 +11,7 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
+using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using CommunityToolkit.Mvvm.Input;
 
@@ -159,6 +160,8 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     #endregion
 
+    public override string ViewModelTitle => Localization.PoisonCrafterViewModelTitle;
+
     public PoisonDeliveryMethod SelectedDeliveryMethod
     {
         get
@@ -258,7 +261,8 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         AddPoisonPhaseCommand = new RelayCommand(ExecuteAddPoisonPhaseCommand, CanExecuteAddPoisonPhaseCommand);
         DeletePoisonPhaseCommand = new RelayCommand<PoisonPhaseViewModel>(ExecuteDeletePoisonPhaseCommand, CanExecuteDeletePoisonPhaseCommand);
 
-        PoisonPhases = new ObservableCollection<PoisonPhaseViewModel>();
+        PoisonPhases ??= new ObservableCollection<PoisonPhaseViewModel>();
+        PoisonTranslations ??= new TranslationCollection<PoisonTranslation>();
 
         Task.Run(async () =>
         {
@@ -277,6 +281,9 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
                     poisonPhase.PropertyChanged -= PoisonPhaseOnPropertyChanged;
                     poisonPhase.PropertyChanged += PoisonPhaseOnPropertyChanged;
                 }
+
+                OnPropertyChanged(nameof(CraftDc));
+                OnPropertyChanged(nameof(Summary));
             };
         });
     }

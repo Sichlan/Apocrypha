@@ -105,7 +105,7 @@
                     FontSize="13"
                     Width="NaN"
                     Padding="16,0"
-                    Content="User Name" />
+                    Content="TEMP USER NAME" />
                 <Rectangle
                     Fill="{Binding ElementName=AppTitleBar, Path=(TextElement.Foreground)}"
                     Width="1"

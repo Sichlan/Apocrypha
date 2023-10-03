@@ -1,4 +1,4 @@
-﻿using Apocrypha.ModernUi.Services.State;
+﻿using Apocrypha.ModernUi.Services.State.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

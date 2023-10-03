@@ -16,7 +16,7 @@ public class NonQueryDataService<T> where T : DatabaseObject
     {
         using var context = DbContextFactory.CreateDbContext();
 
-        var createdEntity = context.Set<T>().Add(entity);
+        var createdEntity = context.Set<T>().Attach(entity);
         _ = await context.SaveChangesAsync();
 
         return createdEntity.Entity;
@@ -40,8 +40,8 @@ public class NonQueryDataService<T> where T : DatabaseObject
 
         entity.Id = id;
 
-        // context.DetachLocal(entity, id);
-        context.Set<T>().Update(entity);
+        var dbEntity = context.Set<T>().Update(entity);
+
         await context.SaveChangesAsync();
 
         return entity;

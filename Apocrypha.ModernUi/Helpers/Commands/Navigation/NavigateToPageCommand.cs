@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using Apocrypha.ModernUi.Services.State;
+using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using Microsoft.Extensions.Hosting;
 

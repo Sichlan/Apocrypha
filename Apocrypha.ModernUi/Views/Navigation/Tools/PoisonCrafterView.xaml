@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
              xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
              xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=tools:PoisonCrafterViewModel}"
              Loaded="PoisonCrafterView_OnLoaded">
@@ -21,7 +22,7 @@
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button Margin="5" Content="SAVE TEMP" MinWidth="100"
+            <Button Margin="5" Content="{x:Static res:Localization.ButtonLabelSave}" MinWidth="100"
                     Command="{Binding SavePoisonCommand}" 
                     CommandParameter="{Binding}"/>
         </StackPanel>
@@ -43,12 +44,12 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="DC" Margin="5" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Static res:Localization.HeaderLabelDifficultyClassShort}" Margin="5" />
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="TEMP POISON NAME" VerticalAlignment="Center" Margin="5" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:Localization.InputLabelPoisonName}" VerticalAlignment="Center" Margin="5" />
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}" Margin="5" MinWidth="200" />
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="TEMP DELIVERY METHOD" VerticalAlignment="Center"
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static res:Localization.InputLabelPoisonDeliveryMethod}" VerticalAlignment="Center"
                            Margin="5" />
                 <ComboBox Grid.Row="2" Grid.Column="1" SelectedItem="{Binding SelectedDeliveryMethod, Mode=TwoWay}"
                           ItemsSource="{Binding PoisonDeliveryMethods}" Margin="5" DisplayMemberPath="Name" />
@@ -56,15 +57,15 @@
                            Text="{Binding SelectedDeliveryMethod.CraftDifficultyClassModifier, StringFormat=+0;-#}"
                            VerticalAlignment="Center" Margin="5" />
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="TEMP TOXICITY" VerticalAlignment="Center" Margin="5" />
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static res:Localization.InputLabelPoisonToxicity}" VerticalAlignment="Center" Margin="5" />
                 <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                     <TextBox Text="{Binding Toxicity, UpdateSourceTrigger=PropertyChanged}" Margin="5" />
-                    <TextBlock Text="TEMP FORTITUDE SAVE" VerticalAlignment="Center" Margin="5" />
+                    <TextBlock Text="{x:Static res:Localization.LabelFortitudeSave}" VerticalAlignment="Center" Margin="5" />
                 </StackPanel>
                 <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding ToxicityDifficultyClass, StringFormat=+0;-#}"
                            VerticalAlignment="Center" Margin="5" />
 
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="TEMP PHASES" VerticalAlignment="Center" Margin="5" />
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static res:Localization.HeaderLabelPoisonPhases}" VerticalAlignment="Center" Margin="5" />
 
                 <ItemsControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding PoisonPhases}"
                               Grid.IsSharedSizeScope="True">
@@ -80,12 +81,14 @@
                                         </Grid.ColumnDefinitions>
 
                                         <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="5">
-                                            <Run Text="TEMP PHASE " />
+                                            <Run Text="{x:Static res:Localization.HeaderLabelPoisonPhase}" />
+                                            <Run Text=" " />
                                             <Run Text="{Binding PhaseNumber}" />
                                         </TextBlock>
 
                                         <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5">
-                                            <Run Text="TEMP DC "/>
+                                            <Run Text="{x:Static res:Localization.HeaderLabelDifficultyClassShort}"/>
+                                            <Run Text=" "/>
                                             <Run Text="{Binding CraftModifier, Mode=OneWay}"/>
                                         </TextBlock>
                                         
@@ -106,7 +109,7 @@
                                     </Grid.RowDefinitions>
                                     
                                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                        <TextBlock VerticalAlignment="Center" Margin="5" Text="TEMP PHASE DURATION"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5" Text="{x:Static res:Localization.InputLabelPhaseDuration}"/>
                                         <ComboBox Margin="5" ItemsSource="{Binding PoisonDurations}" SelectedItem="{Binding SelectedPoisonDuration}" DisplayMemberPath="AsString">
                                             <ComboBox.Style>
                                                 <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
@@ -120,8 +123,8 @@
                                         </ComboBox>
                                     </StackPanel>
 
-                                    <TextBlock Grid.Row="1" Text="TEMP PHASE ELEMENTS" Margin="5" />
-                                    <TextBlock Grid.Row="1" HorizontalAlignment="Right" Text="DC" Margin="5,5,15,5"/>
+                                    <TextBlock Grid.Row="1" Text="{x:Static res:Localization.HeaderLabelPhaseElements}" Margin="5" />
+                                    <TextBlock Grid.Row="1" HorizontalAlignment="Right" Text="{x:Static res:Localization.HeaderLabelDifficultyClassShort}" Margin="5,5,15,5"/>
                                     
                                     <ItemsControl Grid.Row="2" ItemsSource="{Binding PhaseElements}" Margin="5">
                                         <ItemsControl.ItemTemplate>
@@ -144,17 +147,17 @@
                                                         </Grid.ColumnDefinitions>
 
                                                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                                                   VerticalAlignment="Center" Text="TEMP POISON DAMAGE" />
+                                                                   VerticalAlignment="Center" Text="{x:Static res:Localization.InputLabelPoisonDamage}" />
                                                         <TextBlock Grid.Row="2" Grid.Column="0"
                                                                    VerticalAlignment="Center"
-                                                                   Text="TEMP POISON CONDITION" />
+                                                                   Text="{x:Static res:Localization.InputLabelPoisonCondition}" />
                                                         <TextBlock Grid.Row="3" Grid.Column="0"
                                                                    VerticalAlignment="Center"
-                                                                   Text="TEMP POISON SPECIAL EFFECT" />
+                                                                   Text="{x:Static res:Localization.InputLabelPoisonSpecialEffect}" />
                                                         
-                                                        <Button Grid.Row="1" Grid.Column="1" Content="Reset" Command="{Binding ResetDamageCommand}" Margin="5" Padding="2"/>
-                                                        <Button Grid.Row="2" Grid.Column="1" Content="Reset" Command="{Binding ResetConditionCommand}" Margin="5" Padding="2"/>
-                                                        <Button Grid.Row="3" Grid.Column="1" Content="Reset" Command="{Binding ResetEffectCommand}" Margin="5" Padding="2"/>
+                                                        <Button Grid.Row="1" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetDamageCommand}" Margin="5" Padding="2"/>
+                                                        <Button Grid.Row="2" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetConditionCommand}" Margin="5" Padding="2"/>
+                                                        <Button Grid.Row="3" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetEffectCommand}" Margin="5" Padding="2"/>
 
                                                         <Grid Grid.Row="1" Grid.Column="2">
                                                             <Grid.ColumnDefinitions>
@@ -219,7 +222,7 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
-                                    <Button Grid.Row="3" Margin="5" Content="TEMP ADD PHASE ELEMENT"
+                                    <Button Grid.Row="3" Margin="5" Content="{x:Static res:Localization.ButtonLabelAddPoisonPhaseElement}"
                                             Command="{Binding AddPoisonPhaseElement}" CommandParameter="{Binding}" />
                                 </Grid>
                             </Expander>
@@ -227,12 +230,12 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Content="TEMP ADD POISON PHASE"
+                <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Content="{x:Static res:Localization.ButtonLabelAddPoisonPhase}"
                         Command="{Binding AddPoisonPhaseCommand}" />
             </Grid>
         </ScrollViewer>
         
-        <GroupBox Grid.Row="1" Grid.Column="1" Margin="5" Header="TEMP POISON SUMMARY">
+        <GroupBox Grid.Row="1" Grid.Column="1" Margin="5" Header="{x:Static res:Localization.HeaderLabelPoisonSummary}">
             <TextBlock Margin="5" Text="{Binding Summary}"/>
         </GroupBox>
     </Grid>

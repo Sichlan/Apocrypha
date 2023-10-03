@@ -69,11 +69,38 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add poison phase.
+        /// </summary>
+        public static string ButtonLabelAddPoisonPhase {
+            get {
+                return ResourceManager.GetString("ButtonLabelAddPoisonPhase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add phase element.
+        /// </summary>
+        public static string ButtonLabelAddPoisonPhaseElement {
+            get {
+                return ResourceManager.GetString("ButtonLabelAddPoisonPhaseElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string ButtonLabelCancel {
             get {
                 return ResourceManager.GetString("ButtonLabelCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string ButtonLabelReset {
+            get {
+                return ResourceManager.GetString("ButtonLabelReset", resourceCulture);
             }
         }
         
@@ -92,6 +119,51 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string EditorHomeViewModelTitle {
             get {
                 return ResourceManager.GetString("EditorHomeViewModelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DC.
+        /// </summary>
+        public static string HeaderLabelDifficultyClassShort {
+            get {
+                return ResourceManager.GetString("HeaderLabelDifficultyClassShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phase elemente.
+        /// </summary>
+        public static string HeaderLabelPhaseElements {
+            get {
+                return ResourceManager.GetString("HeaderLabelPhaseElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phase.
+        /// </summary>
+        public static string HeaderLabelPoisonPhase {
+            get {
+                return ResourceManager.GetString("HeaderLabelPoisonPhase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phases.
+        /// </summary>
+        public static string HeaderLabelPoisonPhases {
+            get {
+                return ResourceManager.GetString("HeaderLabelPoisonPhases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poison Summary.
+        /// </summary>
+        public static string HeaderLabelPoisonSummary {
+            get {
+                return ResourceManager.GetString("HeaderLabelPoisonSummary", resourceCulture);
             }
         }
         
@@ -146,6 +218,69 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string InputLabelIntelligenceShortCapitalized {
             get {
                 return ResourceManager.GetString("InputLabelIntelligenceShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phase duration.
+        /// </summary>
+        public static string InputLabelPhaseDuration {
+            get {
+                return ResourceManager.GetString("InputLabelPhaseDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Condition.
+        /// </summary>
+        public static string InputLabelPoisonCondition {
+            get {
+                return ResourceManager.GetString("InputLabelPoisonCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Damage.
+        /// </summary>
+        public static string InputLabelPoisonDamage {
+            get {
+                return ResourceManager.GetString("InputLabelPoisonDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Method.
+        /// </summary>
+        public static string InputLabelPoisonDeliveryMethod {
+            get {
+                return ResourceManager.GetString("InputLabelPoisonDeliveryMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poison name.
+        /// </summary>
+        public static string InputLabelPoisonName {
+            get {
+                return ResourceManager.GetString("InputLabelPoisonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special effect.
+        /// </summary>
+        public static string InputLabelPoisonSpecialEffect {
+            get {
+                return ResourceManager.GetString("InputLabelPoisonSpecialEffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toxicity.
+        /// </summary>
+        public static string InputLabelPoisonToxicity {
+            get {
+                return ResourceManager.GetString("InputLabelPoisonToxicity", resourceCulture);
             }
         }
         
@@ -218,6 +353,24 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string InputLabelWisdomShortCapitalized {
             get {
                 return ResourceManager.GetString("InputLabelWisdomShortCapitalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fortitude save.
+        /// </summary>
+        public static string LabelFortitudeSave {
+            get {
+                return ResourceManager.GetString("LabelFortitudeSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poison crafter.
+        /// </summary>
+        public static string PoisonCrafterViewModelTitle {
+            get {
+                return ResourceManager.GetString("PoisonCrafterViewModelTitle", resourceCulture);
             }
         }
         

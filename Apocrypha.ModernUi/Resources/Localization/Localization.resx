@@ -86,4 +86,55 @@
     <data name="InputLabelCharismaShortCapitalized" xml:space="preserve">
         <value>CHA</value>
     </data>
+    <data name="PoisonCrafterViewModelTitle" xml:space="preserve">
+        <value>Poison crafter</value>
+    </data>
+    <data name="InputLabelPoisonName" xml:space="preserve">
+        <value>Poison name</value>
+    </data>
+    <data name="InputLabelPoisonDeliveryMethod" xml:space="preserve">
+        <value>Delivery Method</value>
+    </data>
+    <data name="InputLabelPoisonToxicity" xml:space="preserve">
+        <value>Toxicity</value>
+    </data>
+    <data name="HeaderLabelPoisonPhases" xml:space="preserve">
+        <value>Phases</value>
+    </data>
+    <data name="HeaderLabelPoisonPhase" xml:space="preserve">
+        <value>Phase</value>
+    </data>
+    <data name="HeaderLabelDifficultyClassShort" xml:space="preserve">
+        <value>DC</value>
+    </data>
+    <data name="LabelFortitudeSave" xml:space="preserve">
+        <value>Fortitude save</value>
+    </data>
+    <data name="HeaderLabelPoisonSummary" xml:space="preserve">
+        <value>Poison Summary</value>
+    </data>
+    <data name="ButtonLabelAddPoisonPhase" xml:space="preserve">
+        <value>Add poison phase</value>
+    </data>
+    <data name="ButtonLabelAddPoisonPhaseElement" xml:space="preserve">
+        <value>Add phase element</value>
+    </data>
+    <data name="ButtonLabelReset" xml:space="preserve">
+        <value>Reset</value>
+    </data>
+    <data name="InputLabelPhaseDuration" xml:space="preserve">
+        <value>Phase duration</value>
+    </data>
+    <data name="HeaderLabelPhaseElements" xml:space="preserve">
+        <value>Phase elemente</value>
+    </data>
+    <data name="InputLabelPoisonDamage" xml:space="preserve">
+        <value>Damage</value>
+    </data>
+    <data name="InputLabelPoisonCondition" xml:space="preserve">
+        <value>Condition</value>
+    </data>
+    <data name="InputLabelPoisonSpecialEffect" xml:space="preserve">
+        <value>Special effect</value>
+    </data>
 </root>

@@ -14,19 +14,23 @@ public class PoisonPhaseElementViewModelConverter : IViewModelConverter<PoisonPh
     private List<PoisonDuration> _poisonDurations;
     private List<PoisonDamageTarget> _poisonDamageTargets;
     private List<PoisonSpecialEffect> _poisonSpecialEffects;
+    private IDataService<PoisonPhaseElement> _poisonPhaseElementDataService;
 
     public PoisonPhaseElementViewModelConverter(IDataService<Condition> conditionDataService,
         IDataService<PoisonDuration> durationDataService,
         IDataService<PoisonDamageTarget> damageTargetDataService,
-        IDataService<PoisonSpecialEffect> specialEffectDataService)
+        IDataService<PoisonSpecialEffect> specialEffectDataService,
+        IDataService<PoisonPhaseElement> poisonPhaseElementDataService)
     {
+        _poisonPhaseElementDataService = poisonPhaseElementDataService;
+
         Task.WaitAll(Task.Run(async () => _conditions = (await conditionDataService.GetAll()).ToList()),
             Task.Run(async () => _poisonDurations = (await durationDataService.GetAll()).ToList()),
             Task.Run(async () => _poisonDamageTargets = (await damageTargetDataService.GetAll()).ToList()),
             Task.Run(async () => _poisonSpecialEffects = (await specialEffectDataService.GetAll()).ToList()));
     }
 
-    public PoisonPhaseElementViewModel ToViewModel(PoisonPhaseElement model)
+    public async Task<PoisonPhaseElementViewModel> ToViewModel(PoisonPhaseElement model)
     {
         return new PoisonPhaseElementViewModel(_conditions, _poisonDurations, _poisonDamageTargets, _poisonSpecialEffects)
         {
@@ -40,17 +44,18 @@ public class PoisonPhaseElementViewModelConverter : IViewModelConverter<PoisonPh
         };
     }
 
-    public PoisonPhaseElement ToModel(PoisonPhaseElementViewModel viewModel)
+    public async Task<PoisonPhaseElement> ToModel(PoisonPhaseElementViewModel viewModel)
     {
-        return new PoisonPhaseElement()
-        {
-            Id = viewModel.Id,
-            DamageDiceSize = viewModel.DamageDiceSize,
-            DamageDiceCount = viewModel.DamageDiceCount,
-            Condition = viewModel.Condition,
-            PoisonDuration = viewModel.PoisonDuration,
-            PoisonDamageTarget = viewModel.PoisonDamageTarget,
-            PoisonSpecialEffect = viewModel.PoisonSpecialEffect
-        };
+        var model = await _poisonPhaseElementDataService.GetById(viewModel.Id) ?? new PoisonPhaseElement();
+
+        model.Id = viewModel.Id;
+        model.DamageDiceSize = viewModel.DamageDiceSize;
+        model.DamageDiceCount = viewModel.DamageDiceCount;
+        model.Condition = _conditions.FirstOrDefault(x => x.Id == viewModel.Condition?.Id);
+        model.PoisonDuration = _poisonDurations.FirstOrDefault(x => x.Id == viewModel.PoisonDuration?.Id);
+        model.PoisonDamageTarget = _poisonDamageTargets.FirstOrDefault(x => x.Id == viewModel.PoisonDamageTarget?.Id);
+        model.PoisonSpecialEffect = _poisonSpecialEffects.FirstOrDefault(x => x.Id == viewModel.PoisonSpecialEffect?.Id);
+
+        return model;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
@@ -38,7 +39,7 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
         _specialEffectDataService = specialEffectDataService;
     }
 
-    public PoisonCrafterViewModel ToViewModel(Poison model)
+    public async Task<PoisonCrafterViewModel> ToViewModel(Poison model)
     {
         if (model == null)
             return new PoisonCrafterViewModel(_navigateToPageCommand, _poisonDataService, this, _poisonDeliveryMethodDataService, _conditionDataService,
@@ -53,21 +54,23 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
             Description = model.Description,
             DeliveryMethod = model.DeliveryMethod,
             Toxicity = model.Toxicity,
-            PoisonPhases = new ObservableCollection<PoisonPhaseViewModel>(model.Phases.Select(x => _poisonPhaseViewModelConverter.ToViewModel(x)))
+            PoisonPhases = new ObservableCollection<PoisonPhaseViewModel>(
+                await Task.WhenAll(model.Phases.Select(async x => await _poisonPhaseViewModelConverter.ToViewModel(x))))
         };
     }
 
-    public Poison ToModel(PoisonCrafterViewModel viewModel)
+    public async Task<Poison> ToModel(PoisonCrafterViewModel viewModel)
     {
-        return new Poison()
-        {
-            Id = viewModel.Id,
-            PoisonTranslations = viewModel.PoisonTranslations,
-            Name = viewModel.Name,
-            Description = viewModel.Description,
-            DeliveryMethod = viewModel.DeliveryMethod,
-            Toxicity = viewModel.Toxicity,
-            Phases = viewModel.PoisonPhases.Select(x => _poisonPhaseViewModelConverter.ToModel(x)).ToList()
-        };
+        var model = await _poisonDataService.GetById(viewModel.Id) ?? new Poison();
+
+        model.Id = viewModel.Id;
+        model.PoisonTranslations = viewModel.PoisonTranslations;
+        model.Name = viewModel.Name;
+        model.Description = viewModel.Description;
+        model.DeliveryMethod = await _poisonDeliveryMethodDataService.GetById(viewModel.DeliveryMethod.Id);
+        model.Toxicity = viewModel.Toxicity;
+        model.Phases = (await Task.WhenAll(viewModel.PoisonPhases.Select(async x => await _poisonPhaseViewModelConverter.ToModel(x)))).ToList();
+
+        return model;
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
-using Apocrypha.ModernUi.Services.State;
+using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels;
 using Apocrypha.ModernUi.ViewModels.Navigation;
@@ -67,6 +68,11 @@ public static class AddViewModelsExtensionMethod
 
     private static PoisonCrafterViewModel CreatePoisonCrafterViewModel(IServiceProvider serviceProvider, Poison poison)
     {
-        return serviceProvider.GetRequiredService<IViewModelConverter<PoisonCrafterViewModel, Poison>>().ToViewModel(poison);
+        PoisonCrafterViewModel viewModel = null;
+
+        Task.WaitAll(Task.Run(async () =>
+            viewModel = await serviceProvider.GetRequiredService<IViewModelConverter<PoisonCrafterViewModel, Poison>>().ToViewModel(poison)));
+
+        return viewModel;
     }
 }

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 
-namespace Apocrypha.ModernUi.Services.State;
+namespace Apocrypha.ModernUi.Services.State.Navigation;
 
 public class NavigationService : INavigationService
 {

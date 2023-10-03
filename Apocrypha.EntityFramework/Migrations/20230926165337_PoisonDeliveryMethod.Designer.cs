@@ -3,6 +3,7 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,13 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230926165337_PoisonDeliveryMethod")]
+    partial class PoisonDeliveryMethod
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "6.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.ActionTimeIndicator", b =>
@@ -592,9 +594,6 @@ namespace Apocrypha.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CreatorId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("DeliveryMethodId")
                         .HasColumnType("int");
 
@@ -608,8 +607,6 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
 
                     b.HasIndex("DeliveryMethodId");
 
@@ -651,7 +648,7 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PoisonDamageTargetId")
+                    b.Property<int?>("PoisonDamageTargetId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -696,7 +693,7 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PoisonDeliveryMethodId")
+                    b.Property<int?>("PoisonDeliveryMethodId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -751,10 +748,10 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<int>("PhaseNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("PoisonId")
+                    b.Property<int?>("PoisonId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PoisonPhaseDurationId")
+                    b.Property<int?>("PoisonPhaseDurationId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -787,7 +784,7 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<int?>("PoisonDurationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PoisonPhaseId")
+                    b.Property<int?>("PoisonPhaseId")
                         .HasColumnType("int");
 
                     b.Property<int?>("PoisonSpecialEffectId")
@@ -843,7 +840,7 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PoisonSpecialEffectId")
+                    b.Property<int?>("PoisonSpecialEffectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -868,7 +865,7 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PoisonId")
+                    b.Property<int?>("PoisonId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -1790,17 +1787,9 @@ namespace Apocrypha.EntityFramework.Migrations
 
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.Poison", b =>
                 {
-                    b.HasOne("Apocrypha.CommonObject.Models.User", "Creator")
-                        .WithMany("Poisons")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethod", "DeliveryMethod")
                         .WithMany("Poisons")
-                        .HasForeignKey("DeliveryMethodId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Creator");
+                        .HasForeignKey("DeliveryMethodId");
 
                     b.Navigation("DeliveryMethod");
                 });
@@ -1809,9 +1798,7 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDamageTarget", "PoisonDamageTarget")
                         .WithMany("PoisonDamageTargetTranslations")
-                        .HasForeignKey("PoisonDamageTargetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoisonDamageTargetId");
 
                     b.Navigation("PoisonDamageTarget");
                 });
@@ -1820,9 +1807,7 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethod", "PoisonDeliveryMethod")
                         .WithMany("PoisonDeliveryMethodTranslations")
-                        .HasForeignKey("PoisonDeliveryMethodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoisonDeliveryMethodId");
 
                     b.Navigation("PoisonDeliveryMethod");
                 });
@@ -1846,15 +1831,11 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.Poison", "Poison")
                         .WithMany("Phases")
-                        .HasForeignKey("PoisonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoisonId");
 
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", "PoisonPhaseDuration")
                         .WithMany()
-                        .HasForeignKey("PoisonPhaseDurationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoisonPhaseDurationId");
 
                     b.Navigation("Poison");
 
@@ -1877,9 +1858,7 @@ namespace Apocrypha.EntityFramework.Migrations
 
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonPhase", "PoisonPhase")
                         .WithMany("PoisonPhaseElements")
-                        .HasForeignKey("PoisonPhaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoisonPhaseId");
 
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonSpecialEffect", "PoisonSpecialEffect")
                         .WithMany("PoisonPhaseElements")
@@ -1900,9 +1879,7 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonSpecialEffect", "PoisonSpecialEffect")
                         .WithMany("PoisonSpecialEffectTranslations")
-                        .HasForeignKey("PoisonSpecialEffectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoisonSpecialEffectId");
 
                     b.Navigation("PoisonSpecialEffect");
                 });
@@ -1911,9 +1888,7 @@ namespace Apocrypha.EntityFramework.Migrations
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.Poison", "Poison")
                         .WithMany("PoisonTranslations")
-                        .HasForeignKey("PoisonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoisonId");
 
                     b.Navigation("Poison");
                 });
@@ -2424,8 +2399,6 @@ namespace Apocrypha.EntityFramework.Migrations
             modelBuilder.Entity("Apocrypha.CommonObject.Models.User", b =>
                 {
                     b.Navigation("Characters");
-
-                    b.Navigation("Poisons");
                 });
 #pragma warning restore 612, 618
         }
