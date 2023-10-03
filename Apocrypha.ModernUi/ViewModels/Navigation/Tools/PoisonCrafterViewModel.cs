@@ -9,10 +9,12 @@ using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Common.Translation;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
-using Apocrypha.ModernUi.Helpers.Commands;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
+using Apocrypha.ModernUi.Helpers.Commands.SaveData;
 using Apocrypha.ModernUi.Resources.Localization;
+using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
+using Apocrypha.ModernUi.ViewModels.Display.Tools;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Apocrypha.ModernUi.ViewModels.Navigation.Tools;
@@ -22,9 +24,10 @@ public delegate PoisonCrafterViewModel CreatePoisonCrafterViewModel(Poison poiso
 public class PoisonCrafterViewModel : NavigableViewModel
 {
     private ObservableCollection<PoisonDeliveryMethod> _poisonDeliveryMethods;
+    private readonly IDataService<PoisonPhase> _poisonPhaseDataService;
 
 
-    private List<Tuple<int?, int?, int>> _marketPriceMultipliers = new()
+    private readonly List<Tuple<int?, int?, int>> _marketPriceMultipliers = new()
     {
         new(null, 11, 1),
         new(11, 13, 3),
@@ -46,7 +49,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
     private int _id;
     private string _name;
     private string _description;
-    private PoisonDeliveryMethod _selectedDeliveryMethod;
+    private int? _selectedDeliveryMethodId;
     private int _toxicity;
     private ObservableCollection<PoisonPhaseViewModel> _poisonPhases;
 
@@ -54,6 +57,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
     private ICollection<PoisonDuration> _poisonDurations;
     private ICollection<PoisonDamageTarget> _poisonDamageTargets;
     private ICollection<PoisonSpecialEffect> _poisonSpecialEffects;
+    private int? _creatorId;
 
     public int Id
     {
@@ -105,18 +109,34 @@ public class PoisonCrafterViewModel : NavigableViewModel
         }
     }
 
-    public PoisonDeliveryMethod DeliveryMethod
+    public int? DeliveryMethodId
     {
         get
         {
-            return _selectedDeliveryMethod;
+            return _selectedDeliveryMethodId;
         }
         set
         {
-            if (Equals(value, _selectedDeliveryMethod))
+            if (Equals(value, _selectedDeliveryMethodId))
                 return;
 
-            _selectedDeliveryMethod = value;
+            _selectedDeliveryMethodId = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public int? CreatorId
+    {
+        get
+        {
+            return _creatorId;
+        }
+        set
+        {
+            if (value == _creatorId)
+                return;
+
+            _creatorId = value;
             OnPropertyChanged();
         }
     }
@@ -156,7 +176,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
         }
     }
 
-    public TranslationCollection<PoisonTranslation> PoisonTranslations { get; init; }
+    public TranslationCollection<PoisonTranslation> PoisonTranslations { get; set; }
 
     #endregion
 
@@ -166,11 +186,11 @@ public class PoisonCrafterViewModel : NavigableViewModel
     {
         get
         {
-            return PoisonDeliveryMethods?.FirstOrDefault(x => x.Id == DeliveryMethod?.Id);
+            return PoisonDeliveryMethods?.FirstOrDefault(x => x.Id == DeliveryMethodId);
         }
         set
         {
-            DeliveryMethod = value;
+            DeliveryMethodId = value.Id;
             OnPropertyChanged();
             OnPropertyChanged(nameof(CraftDc));
             OnPropertyChanged(nameof(Summary));
@@ -199,7 +219,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
         }
     }
 
-    public IRelayCommand SavePoisonCommand { get; set; }
+    public ISaveDataCommand<PoisonCrafterViewModel, Poison> SavePoisonCommand { get; set; }
     public ICommand AddPoisonPhaseCommand { get; }
     public ICommand DeletePoisonPhaseCommand { get; }
 
@@ -254,15 +274,20 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         IDataService<Condition> conditionDataService,
         IDataService<PoisonDuration> durationDataService,
         IDataService<PoisonDamageTarget> damageTargetDataService,
-        IDataService<PoisonSpecialEffect> specialEffectDataService)
+        IDataService<PoisonSpecialEffect> specialEffectDataService,
+        IDataService<PoisonPhase> poisonPhaseDataService,
+        INavigationService navigationService)
         : base(navigateToPageCommand)
     {
+        _poisonPhaseDataService = poisonPhaseDataService;
         SavePoisonCommand = new SaveDataCommand<PoisonCrafterViewModel, Poison>(poisonDataService, viewModelConverter);
         AddPoisonPhaseCommand = new RelayCommand(ExecuteAddPoisonPhaseCommand, CanExecuteAddPoisonPhaseCommand);
         DeletePoisonPhaseCommand = new RelayCommand<PoisonPhaseViewModel>(ExecuteDeletePoisonPhaseCommand, CanExecuteDeletePoisonPhaseCommand);
 
         PoisonPhases ??= new ObservableCollection<PoisonPhaseViewModel>();
         PoisonTranslations ??= new TranslationCollection<PoisonTranslation>();
+
+        SavePoisonCommand.StagePostExecutionAction(() => navigationService.TryGoBack());
 
         Task.Run(async () =>
         {
@@ -303,7 +328,13 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
     {
         if (parameter is PoisonPhaseViewModel phase
             && PoisonPhases.Contains(phase))
+        {
+            if (phase.Id > 0
+                && _poisonPhaseDataService.GetById(phase.Id) != null)
+                SavePoisonCommand.StagePreExecutionAction(() => _poisonPhaseDataService.Delete(phase.Id));
+
             PoisonPhases.Remove(phase);
+        }
     }
 
     private bool CanExecuteAddPoisonPhaseCommand()

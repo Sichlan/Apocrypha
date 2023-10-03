@@ -7,7 +7,7 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.ModernUi.ViewModels.Common;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Apocrypha.ModernUi.ViewModels.Navigation.Tools;
+namespace Apocrypha.ModernUi.ViewModels.Display.Tools;
 
 public class PoisonPhaseElementViewModel : BaseViewModel
 {
@@ -20,12 +20,12 @@ public class PoisonPhaseElementViewModel : BaseViewModel
 
     private int? _damageDiceSize;
     private int? _damageDiceCount;
-    private Condition _condition;
-    private PoisonDuration _poisonDuration;
-    private PoisonDamageTarget _poisonDamageTarget;
-    private PoisonSpecialEffect _poisonSpecialEffect;
+    private int? _conditionId;
+    private int? _poisonDurationId;
+    private int? _poisonDamageTargetId;
+    private int? _poisonSpecialEffectId;
 
-    public int Id { get; set; }
+    public int Id { get; init; }
 
     public int? DamageDiceSize
     {
@@ -63,66 +63,66 @@ public class PoisonPhaseElementViewModel : BaseViewModel
         }
     }
 
-    public Condition Condition
+    public int? ConditionId
     {
         get
         {
-            return _condition;
+            return _conditionId;
         }
         set
         {
-            if (Equals(value, _condition))
+            if (Equals(value, _conditionId))
                 return;
 
-            _condition = value;
+            _conditionId = value;
             OnPropertyChanged();
         }
     }
 
-    public PoisonDuration PoisonDuration
+    public int? PoisonDurationId
     {
         get
         {
-            return _poisonDuration;
+            return _poisonDurationId;
         }
         set
         {
-            if (Equals(value, _poisonDuration))
+            if (Equals(value, _poisonDurationId))
                 return;
 
-            _poisonDuration = value;
+            _poisonDurationId = value;
             OnPropertyChanged();
         }
     }
 
-    public PoisonDamageTarget PoisonDamageTarget
+    public int? PoisonDamageTargetId
     {
         get
         {
-            return _poisonDamageTarget;
+            return _poisonDamageTargetId;
         }
         set
         {
-            if (Equals(value, _poisonDamageTarget))
+            if (Equals(value, _poisonDamageTargetId))
                 return;
 
-            _poisonDamageTarget = value;
+            _poisonDamageTargetId = value;
             OnPropertyChanged();
         }
     }
 
-    public PoisonSpecialEffect PoisonSpecialEffect
+    public int? PoisonSpecialEffectId
     {
         get
         {
-            return _poisonSpecialEffect;
+            return _poisonSpecialEffectId;
         }
         set
         {
-            if (Equals(value, _poisonSpecialEffect))
+            if (Equals(value, _poisonSpecialEffectId))
                 return;
 
-            _poisonSpecialEffect = value;
+            _poisonSpecialEffectId = value;
             OnPropertyChanged();
         }
     }
@@ -164,11 +164,11 @@ public class PoisonPhaseElementViewModel : BaseViewModel
     {
         get
         {
-            return Conditions?.FirstOrDefault(x => x?.Id == Condition?.Id);
+            return Conditions?.FirstOrDefault(x => x?.Id == ConditionId);
         }
         set
         {
-            Condition = value;
+            ConditionId = value.Id;
             OnPropertyChanged();
             OnPropertyChanged(nameof(ConditionCraftDcModifier));
             OnPropertyChanged(nameof(CombinedCraftModifier));
@@ -179,11 +179,11 @@ public class PoisonPhaseElementViewModel : BaseViewModel
     {
         get
         {
-            return PoisonDurations?.FirstOrDefault(x => x?.Id == PoisonDuration?.Id);
+            return PoisonDurations?.FirstOrDefault(x => x?.Id == PoisonDurationId);
         }
         set
         {
-            PoisonDuration = value;
+            PoisonDurationId = value.Id;
             OnPropertyChanged();
             OnPropertyChanged(nameof(ConditionCraftDcModifier));
             OnPropertyChanged(nameof(CombinedCraftModifier));
@@ -194,11 +194,11 @@ public class PoisonPhaseElementViewModel : BaseViewModel
     {
         get
         {
-            return PoisonDamageTargets?.FirstOrDefault(x => x?.Id == PoisonDamageTarget?.Id);
+            return PoisonDamageTargets?.FirstOrDefault(x => x?.Id == PoisonDamageTargetId);
         }
         set
         {
-            PoisonDamageTarget = value;
+            PoisonDamageTargetId = value.Id;
             OnPropertyChanged();
             OnPropertyChanged(nameof(DamageCraftDcModifier));
             OnPropertyChanged(nameof(CombinedCraftModifier));
@@ -210,11 +210,11 @@ public class PoisonPhaseElementViewModel : BaseViewModel
     {
         get
         {
-            return PoisonSpecialEffects?.FirstOrDefault(x => x?.Id == PoisonSpecialEffect?.Id);
+            return PoisonSpecialEffects?.FirstOrDefault(x => x?.Id == PoisonSpecialEffectId);
         }
         set
         {
-            PoisonSpecialEffect = value;
+            PoisonSpecialEffectId = value.Id;
             OnPropertyChanged();
             OnPropertyChanged(nameof(CombinedCraftModifier));
         }

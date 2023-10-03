@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Apocrypha.ModernUi.Views.Display.Tools.PoisonPhaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
+             xmlns:tools="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:tools1="clr-namespace:Apocrypha.ModernUi.ViewModels.Display.Tools"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance tools1:PoisonPhaseViewModel}">
+    <Grid>
+        <Expander Margin="5">
+            <Expander.Header>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Description" />
+                        <ColumnDefinition MinWidth="200" Width="*" SharedSizeGroup="Value" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="DC" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="5">
+                        <Run Text="{x:Static res:Localization.HeaderLabelPoisonPhase}" />
+                        <Run Text=" " />
+                        <Run Text="{Binding PhaseNumber}" />
+                    </TextBlock>
+
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5">
+                        <Run Text="{x:Static res:Localization.HeaderLabelDifficultyClassShort}"/>
+                        <Run Text=" "/>
+                        <Run Text="{Binding CraftModifier, Mode=OneWay}"/>
+                    </TextBlock>
+                    
+                    <Button Grid.Column="2"
+                            Command="{Binding DataContext.DeletePoisonPhaseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=tools:PoisonCrafterView}}"
+                            CommandParameter="{Binding}" Margin="0">
+                        <ui:SymbolIcon Symbol="Delete" Margin="-2" />
+                    </Button>
+                </Grid>
+            </Expander.Header>
+
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" Text="{x:Static res:Localization.InputLabelPhaseDuration}"/>
+                    <ComboBox Margin="5" ItemsSource="{Binding PoisonDurations}" SelectedItem="{Binding SelectedPoisonDuration}" DisplayMemberPath="AsString">
+                        <ComboBox.Style>
+                            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PhaseNumber}" Value="1">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Style>
+                    </ComboBox>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" Text="{x:Static res:Localization.HeaderLabelPhaseElements}" Margin="5" />
+                <TextBlock Grid.Row="1" HorizontalAlignment="Right" Text="{x:Static res:Localization.HeaderLabelDifficultyClassShort}" Margin="5,5,15,5"/>
+                
+                <ItemsControl Grid.Row="2" ItemsSource="{Binding PhaseElements}" Margin="5"/>
+                
+                <Button Grid.Row="3" Margin="5" Content="{x:Static res:Localization.ButtonLabelAddPoisonPhaseElement}"
+                        Command="{Binding AddPoisonPhaseElement}" CommandParameter="{Binding}" />
+            </Grid>
+        </Expander>
+    </Grid>
+</UserControl>

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
-using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
+using Apocrypha.ModernUi.ViewModels.Display.Tools;
 
 namespace Apocrypha.ModernUi.Services.ViewModelConverter;
 
@@ -14,7 +14,7 @@ public class PoisonPhaseElementViewModelConverter : IViewModelConverter<PoisonPh
     private List<PoisonDuration> _poisonDurations;
     private List<PoisonDamageTarget> _poisonDamageTargets;
     private List<PoisonSpecialEffect> _poisonSpecialEffects;
-    private IDataService<PoisonPhaseElement> _poisonPhaseElementDataService;
+    private readonly IDataService<PoisonPhaseElement> _poisonPhaseElementDataService;
 
     public PoisonPhaseElementViewModelConverter(IDataService<Condition> conditionDataService,
         IDataService<PoisonDuration> durationDataService,
@@ -37,10 +37,10 @@ public class PoisonPhaseElementViewModelConverter : IViewModelConverter<PoisonPh
             Id = model.Id,
             DamageDiceSize = model.DamageDiceSize,
             DamageDiceCount = model.DamageDiceCount,
-            Condition = model.Condition,
-            PoisonDuration = model.PoisonDuration,
-            PoisonDamageTarget = model.PoisonDamageTarget,
-            PoisonSpecialEffect = model.PoisonSpecialEffect
+            ConditionId = model.ConditionId,
+            PoisonDurationId = model.PoisonDurationId,
+            PoisonDamageTargetId = model.PoisonDamageTargetId,
+            PoisonSpecialEffectId = model.PoisonSpecialEffectId
         };
     }
 
@@ -51,10 +51,10 @@ public class PoisonPhaseElementViewModelConverter : IViewModelConverter<PoisonPh
         model.Id = viewModel.Id;
         model.DamageDiceSize = viewModel.DamageDiceSize;
         model.DamageDiceCount = viewModel.DamageDiceCount;
-        model.Condition = _conditions.FirstOrDefault(x => x.Id == viewModel.Condition?.Id);
-        model.PoisonDuration = _poisonDurations.FirstOrDefault(x => x.Id == viewModel.PoisonDuration?.Id);
-        model.PoisonDamageTarget = _poisonDamageTargets.FirstOrDefault(x => x.Id == viewModel.PoisonDamageTarget?.Id);
-        model.PoisonSpecialEffect = _poisonSpecialEffects.FirstOrDefault(x => x.Id == viewModel.PoisonSpecialEffect?.Id);
+        model.ConditionId = viewModel.ConditionId;
+        model.PoisonDurationId = viewModel.PoisonDurationId;
+        model.PoisonDamageTargetId = viewModel.PoisonDamageTargetId;
+        model.PoisonSpecialEffectId = viewModel.PoisonSpecialEffectId;
 
         return model;
     }

@@ -9,7 +9,7 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.ModernUi.ViewModels.Common;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Apocrypha.ModernUi.ViewModels.Navigation.Tools;
+namespace Apocrypha.ModernUi.ViewModels.Display.Tools;
 
 public class PoisonPhaseViewModel : BaseViewModel
 {
@@ -17,8 +17,8 @@ public class PoisonPhaseViewModel : BaseViewModel
 
     private int _id;
     private int _phaseNumber;
+    private int? _poisonDurationId;
     private ObservableCollection<PoisonPhaseElementViewModel> _phaseElements;
-    private PoisonDuration _poisonDuration;
 
     public int Id
     {
@@ -73,28 +73,28 @@ public class PoisonPhaseViewModel : BaseViewModel
     {
         get
         {
-            return PoisonDurations?.FirstOrDefault(x => x?.Id == PoisonDuration?.Id);
+            return PoisonDurations?.FirstOrDefault(x => x?.Id == PoisonDurationId);
         }
         set
         {
-            PoisonDuration = value;
+            PoisonDurationId = value.Id;
             OnPropertyChanged();
             OnPropertyChanged(nameof(CraftModifier));
         }
     }
 
-    public PoisonDuration PoisonDuration
+    public int? PoisonDurationId
     {
         get
         {
-            return _poisonDuration;
+            return _poisonDurationId;
         }
         set
         {
-            if (Equals(value, _poisonDuration))
+            if (Equals(value, _poisonDurationId))
                 return;
 
-            _poisonDuration = value;
+            _poisonDurationId = value;
             OnPropertyChanged();
         }
     }

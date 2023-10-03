@@ -5,14 +5,21 @@ namespace Apocrypha.CommonObject.Models.Poisons;
 
 public class PoisonDuration : DatabaseObject
 {
-    public ICollection<PoisonPhaseElement> PoisonPhaseElements { get; set; }
     public int? MinDurationDiceCount { get; set; }
     public int? MinDurationDiceSize { get; set; }
     public int? MaxDurationDiceCount { get; set; }
     public int? MaxDurationDiceSize { get; set; }
+    public int CraftModifier { get; set; }
+
+    [ForeignKey(nameof(MinDurationIndicator))]
+    public int? MinDurationIndicatorId { get; set; }
+
+    [ForeignKey(nameof(MaxDurationIndicator))]
+    public int? MaxDurationIndicatorId { get; set; }
+
+    public ICollection<PoisonPhaseElement> PoisonPhaseElements { get; set; }
     public ActionTimeIndicator MinDurationIndicator { get; set; }
     public ActionTimeIndicator MaxDurationIndicator { get; set; }
-    public int CraftModifier { get; set; }
 
     [NotMapped]
     public string AsString

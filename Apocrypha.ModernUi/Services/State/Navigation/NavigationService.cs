@@ -45,7 +45,11 @@ public class NavigationService : INavigationService
             else
                 _backHistory.Push(ActiveViewModel);
 
+        ActiveViewModel?.OnNavigateFrom();
+
         ActiveViewModel = target;
+
+        ActiveViewModel?.OnNavigateTo();
 
         OnPropertyChanged(nameof(CanGoBack));
         OnPropertyChanged(nameof(CanGoForward));

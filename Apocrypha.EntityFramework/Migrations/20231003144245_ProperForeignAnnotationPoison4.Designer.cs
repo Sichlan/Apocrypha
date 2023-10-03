@@ -3,6 +3,7 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231003144245_ProperForeignAnnotationPoison4")]
+    partial class ProperForeignAnnotationPoison4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -755,6 +758,7 @@ namespace Apocrypha.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("PoisonPhaseDurationId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -1852,7 +1856,9 @@ namespace Apocrypha.EntityFramework.Migrations
 
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", "PoisonPhaseDuration")
                         .WithMany()
-                        .HasForeignKey("PoisonPhaseDurationId");
+                        .HasForeignKey("PoisonPhaseDurationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Poison");
 

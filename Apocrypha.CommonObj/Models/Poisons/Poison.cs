@@ -8,10 +8,22 @@ namespace Apocrypha.CommonObject.Models.Poisons;
 
 public class Poison : DatabaseObject
 {
-    // View model stuff: CraftDC, Potency, MarketPrice
+    public string NameFallback { get; set; }
+    public string DescriptionFallback { get; set; }
+    public int Toxicity { get; set; } = 10;
+
+    [ForeignKey(nameof(DeliveryMethod))] public int? DeliveryMethodId { get; set; }
+    [ForeignKey(nameof(CreatorId))] public int? CreatorId { get; set; }
+
+    [DeleteBehavior(DeleteBehavior.SetNull)]
+    public PoisonDeliveryMethod DeliveryMethod { get; set; }
+
+    [DeleteBehavior(DeleteBehavior.SetNull)]
+    public User Creator { get; set; }
+
+    public ICollection<PoisonPhase> Phases { get; set; }
     public TranslationCollection<PoisonTranslation> PoisonTranslations { get; set; } = new();
 
-    public string NameFallback { get; set; }
 
     [NotMapped]
     public string Name
@@ -26,8 +38,6 @@ public class Poison : DatabaseObject
         }
     }
 
-    public string DescriptionFallback { get; set; }
-
     [NotMapped]
     public string Description
     {
@@ -40,13 +50,4 @@ public class Poison : DatabaseObject
             PoisonTranslations[CultureInfo.CurrentCulture].Description = value;
         }
     }
-
-    [DeleteBehavior(DeleteBehavior.SetNull)]
-    public PoisonDeliveryMethod DeliveryMethod { get; set; }
-
-    public int Toxicity { get; set; } = 10;
-    public ICollection<PoisonPhase> Phases { get; set; }
-
-    [DeleteBehavior(DeleteBehavior.SetNull)]
-    public User Creator { get; set; }
 }

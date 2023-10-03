@@ -26,7 +26,7 @@
         d:DesignHeight="450" d:DesignWidth="800">
     <Window.Resources>
         <DataTemplate x:Key="NavigationViewHeaderTemplate">
-            <TextBlock Text="{Binding}" Margin="12,32,0,0" />
+            <TextBlock Text="{Binding Converter={StaticResource StringToUpperConverter}}" Margin="12,32,0,0" FontWeight="DemiBold"/>
         </DataTemplate>
         <converters:PixelsToGridLengthConverter x:Key="PixelsToGridLength" />
 
@@ -117,8 +117,8 @@
             Grid.Row="1" 
             x:Name="NavView"
             AlwaysShowHeader="True"
-            Header="{Binding ActiveViewModel.ViewModelTitle, FallbackValue=---}"
             HeaderTemplate="{StaticResource NavigationViewHeaderTemplate}"
+            Header="{Binding ActiveViewModel.ViewModelTitle, FallbackValue=NOT LOCALIZED}"
             IsTitleBarAutoPaddingEnabled="True"
             IsBackButtonVisible="Collapsed"
             IsPaneOpen="True"

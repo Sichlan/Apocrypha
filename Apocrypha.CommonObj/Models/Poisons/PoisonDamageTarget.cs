@@ -7,10 +7,13 @@ namespace Apocrypha.CommonObject.Models.Poisons;
 
 public class PoisonDamageTarget : DatabaseObject
 {
+    public string NameFallback { get; set; }
+    public string DescriptionFallback { get; set; }
+    public int CraftModifier { get; set; }
+
     public ICollection<PoisonPhaseElement> PoisonPhaseElements { get; set; }
     public TranslationCollection<PoisonDamageTargetTranslation> PoisonDamageTargetTranslations { get; set; } = new();
 
-    public string NameFallback { get; set; }
 
     [NotMapped]
     public string Name
@@ -25,8 +28,6 @@ public class PoisonDamageTarget : DatabaseObject
         }
     }
 
-    public string DescriptionFallback { get; set; }
-
     [NotMapped]
     public string Description
     {
@@ -39,6 +40,4 @@ public class PoisonDamageTarget : DatabaseObject
             PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Description = value;
         }
     }
-
-    public int CraftModifier { get; set; }
 }

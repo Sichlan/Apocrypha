@@ -13,4 +13,7 @@ public abstract class NavigableViewModel : BaseViewModel
     {
         NavigateToPageCommand = navigateToPageCommand;
     }
+
+    public virtual void OnNavigateTo() { }
+    public virtual void OnNavigateFrom() { }
 }

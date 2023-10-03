@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
              xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
+             xmlns:customControls="clr-namespace:Apocrypha.ModernUi.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance Type=tools:PoisonCrafterListViewModel}">
@@ -22,33 +23,34 @@
             <Button Margin="5" Content="TEMP UPDATE" Command="{Binding UpdateListCommand}"/>
             <!-- <Button Margin="5" Content="LOAD TEMP" Command="{Binding NavigateToPageCommand}" CommandParameter="{Binding ElementName=PoisonGrid, Path=Ite}"/> -->
         </StackPanel>
-        
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Source={StaticResource PoisonsCollectionViewSource}}" Margin="5">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical" VirtualizationMode="Recycling"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type tools:PoisonCrafterViewModel}">
-                    <Button Margin="5" Padding="5"
-                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PoisonCrafterListView}, Path=DataContext.NavigateToPageCommand}"
-                            CommandParameter="{Binding}"
-                            HorizontalContentAlignment="Stretch">
+
+        <customControls:BusyIndicator Grid.Row="1" IsBusy="{Binding IsLoading}">
+            <ItemsControl ItemsSource="{Binding Source={StaticResource PoisonsCollectionViewSource}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical" VirtualizationMode="Recycling" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type tools:PoisonCrafterViewModel}">                        
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Name}" FontSize="16" />
-                        </Grid></Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                            <Button Grid.Column="0" Margin="5" Padding="5"
+                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PoisonCrafterListView}, Path=DataContext.NavigateToPageCommand}"
+                                    CommandParameter="{Binding}"
+                                    HorizontalContentAlignment="Stretch">
+                                <TextBlock Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
+                            </Button>
+                            
+                            <Button Grid.Column="1" Content="✕" Margin="5" Padding="5"
+                                    Command="{Binding DataContext.DeletePoisonCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:PoisonCrafterListView}}"
+                                    CommandParameter="{Binding}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl></customControls:BusyIndicator>
     </Grid>
 </UserControl>

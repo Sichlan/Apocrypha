@@ -6,6 +6,7 @@ using Apocrypha.EntityFramework;
 using Apocrypha.EntityFramework.Services;
 using Apocrypha.EntityFramework.Services.Poisons;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
+using Apocrypha.ModernUi.ViewModels.Display.Tools;
 using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

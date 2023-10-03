@@ -79,6 +79,8 @@
         <Resource Include="Resources\Images\races.jpg">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
+
+
     </ItemGroup>
 
 

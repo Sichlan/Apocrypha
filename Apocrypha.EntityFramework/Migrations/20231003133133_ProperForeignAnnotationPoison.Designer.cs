@@ -3,6 +3,7 @@ using System;
 using Apocrypha.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Apocrypha.EntityFramework.Migrations
 {
     [DbContext(typeof(ApocryphaDbContext))]
-    partial class ApocryphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231003133133_ProperForeignAnnotationPoison")]
+    partial class ProperForeignAnnotationPoison
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -592,10 +595,10 @@ namespace Apocrypha.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CreatorId")
+                    b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DeliveryMethodId")
+                    b.Property<int>("DeliveryMethodId")
                         .HasColumnType("int");
 
                     b.Property<string>("DescriptionFallback")
@@ -754,7 +757,7 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.Property<int>("PoisonId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PoisonPhaseDurationId")
+                    b.Property<int>("PoisonPhaseDurationId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -1793,12 +1796,14 @@ namespace Apocrypha.EntityFramework.Migrations
                     b.HasOne("Apocrypha.CommonObject.Models.User", "Creator")
                         .WithMany("Poisons")
                         .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
 
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDeliveryMethod", "DeliveryMethod")
                         .WithMany("Poisons")
                         .HasForeignKey("DeliveryMethodId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
 
                     b.Navigation("Creator");
 
@@ -1830,11 +1835,11 @@ namespace Apocrypha.EntityFramework.Migrations
             modelBuilder.Entity("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", b =>
                 {
                     b.HasOne("Apocrypha.CommonObject.Models.ActionTimeIndicator", "MaxDurationIndicator")
-                        .WithMany("MaxPoisonDurations")
+                        .WithMany()
                         .HasForeignKey("MaxDurationIndicatorId");
 
                     b.HasOne("Apocrypha.CommonObject.Models.ActionTimeIndicator", "MinDurationIndicator")
-                        .WithMany("MinPoisonDurations")
+                        .WithMany()
                         .HasForeignKey("MinDurationIndicatorId");
 
                     b.Navigation("MaxDurationIndicator");
@@ -1852,7 +1857,9 @@ namespace Apocrypha.EntityFramework.Migrations
 
                     b.HasOne("Apocrypha.CommonObject.Models.Poisons.PoisonDuration", "PoisonPhaseDuration")
                         .WithMany()
-                        .HasForeignKey("PoisonPhaseDurationId");
+                        .HasForeignKey("PoisonPhaseDurationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Poison");
 
@@ -2229,10 +2236,6 @@ namespace Apocrypha.EntityFramework.Migrations
             modelBuilder.Entity("Apocrypha.CommonObject.Models.ActionTimeIndicator", b =>
                 {
                     b.Navigation("ActionTimeIndicatorTranslations");
-
-                    b.Navigation("MaxPoisonDurations");
-
-                    b.Navigation("MinPoisonDurations");
 
                     b.Navigation("SpellVariants");
                 });

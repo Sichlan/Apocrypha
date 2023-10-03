@@ -71,7 +71,8 @@ public static class AddViewModelsExtensionMethod
         PoisonCrafterViewModel viewModel = null;
 
         Task.WaitAll(Task.Run(async () =>
-            viewModel = await serviceProvider.GetRequiredService<IViewModelConverter<PoisonCrafterViewModel, Poison>>().ToViewModel(poison)));
+            viewModel = await serviceProvider.GetRequiredService<IViewModelConverter<PoisonCrafterViewModel, Poison>>()
+                .ToViewModel(poison)));
 
         return viewModel;
     }

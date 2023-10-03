@@ -8,6 +8,8 @@
              xmlns:editorViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Editor"
              xmlns:toolsViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
              xmlns:toolsViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
+             xmlns:toolsDisplayViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Display.Tools"
+             xmlns:toolsDisplayViews="clr-namespace:Apocrypha.ModernUi.Views.Display.Tools"
              DispatcherUnhandledException="OnDispatcherUnhandledException">
     <Application.Resources>
         <ResourceDictionary>
@@ -31,7 +33,10 @@
                 <ui:XamlControlsResources />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/ModernWpf;component/Styles/window.xaml" />
+                
+                <ResourceDictionary Source="Themes/Converters.xaml"/>
                 <ResourceDictionary Source="Themes/TextStyles.xaml"/>
+                <ResourceDictionary Source="Themes/CustomControls/BusyIndicatorStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate DataType="{x:Type navigationViewModels:HomeViewModel}">
@@ -59,6 +64,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterViewModel}">
                 <toolsViews:PoisonCrafterView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type toolsDisplayViewModels:PoisonPhaseViewModel}">
+                <toolsDisplayViews:PoisonPhaseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type toolsDisplayViewModels:PoisonPhaseElementViewModel}">
+                <toolsDisplayViews:PoisonPhaseElementView/>
             </DataTemplate>
             <!--#endregion-->
         </ResourceDictionary>

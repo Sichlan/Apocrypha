@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
-using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
+using Apocrypha.ModernUi.ViewModels.Display.Tools;
 
 namespace Apocrypha.ModernUi.Services.ViewModelConverter;
 
@@ -43,7 +43,7 @@ public class PoisonPhaseViewModelConverter : IViewModelConverter<PoisonPhaseView
             PhaseElements =
                 new ObservableCollection<PoisonPhaseElementViewModel>(
                     await Task.WhenAll(model.PoisonPhaseElements.Select(async x => await _phaseElementConverter.ToViewModel(x)))),
-            SelectedPoisonDuration = model.PoisonPhaseDuration
+            PoisonDurationId = model.PoisonPhaseDurationId
         };
         viewModel.SetupPhaseElementUpdateEventHandler();
 
@@ -57,7 +57,7 @@ public class PoisonPhaseViewModelConverter : IViewModelConverter<PoisonPhaseView
         model.Id = viewModel.Id;
         model.PhaseNumber = viewModel.PhaseNumber;
         model.PoisonPhaseElements = (await Task.WhenAll(viewModel.PhaseElements.Select(async x => await _phaseElementConverter.ToModel(x)))).ToList();
-        model.PoisonPhaseDuration = _poisonDurations.FirstOrDefault(x => x.Id == viewModel.SelectedPoisonDuration?.Id);
+        model.PoisonPhaseDurationId = viewModel.PoisonDurationId;
 
         return model;
     }

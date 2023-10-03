@@ -40,8 +40,7 @@ public class NonQueryDataService<T> where T : DatabaseObject
 
         entity.Id = id;
 
-        var dbEntity = context.Set<T>().Update(entity);
-
+        context.Set<T>().Update(entity);
         await context.SaveChangesAsync();
 
         return entity;
