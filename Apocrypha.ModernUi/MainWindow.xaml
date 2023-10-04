@@ -11,6 +11,7 @@
         xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
         xmlns:editor="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
         xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
+        xmlns:users="clr-namespace:Apocrypha.ModernUi.Views.Display.Users"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:TitleBar.ExtendViewIntoTitleBar="True"
         ui:TitleBar.IsBackButtonVisible="False"
@@ -23,7 +24,8 @@
         x:Name="Window"
         Title="{x:Static res:Localization.ApplicationTitle}"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}"
-        d:DesignHeight="450" d:DesignWidth="800">
+        d:DesignHeight="450" d:DesignWidth="800"
+        Loaded="OnLoaded">
     <Window.Resources>
         <DataTemplate x:Key="NavigationViewHeaderTemplate">
             <TextBlock Text="{Binding Converter={StaticResource StringToUpperConverter}}" Margin="12,32,0,0" FontWeight="DemiBold"/>
@@ -105,7 +107,15 @@
                     FontSize="13"
                     Width="NaN"
                     Padding="16,0"
-                    Content="TEMP USER NAME" />
+                    Content="{Binding CurrentUserName}"
+                    Command="{Binding ToggleUserPopupCommand}">
+                    <ui:FlyoutService.Flyout>
+                        <ui:Flyout x:Name="UserFlyout" Placement="Bottom">
+                            <!-- Content is set in code behind 'cause fuck you -->
+                            <users:UserPopupView x:Name="FlyoutContent" Margin="-10" LoginSuccessful="UserPopupView_OnLoginSuccessful"/>
+                        </ui:Flyout>
+                    </ui:FlyoutService.Flyout>
+                </ui:TitleBarButton>
                 <Rectangle
                     Fill="{Binding ElementName=AppTitleBar, Path=(TextElement.Foreground)}"
                     Width="1"
@@ -135,24 +145,6 @@
                 
                 <ui:NavigationViewItemHeader Content="Tools"/>
                 <ui:NavigationViewItem Icon="Repair" Content="Poison Crafter" Tag="{x:Type tools:PoisonCrafterListViewModel}"/>
-
-                <!-- <ui:NavigationViewItem Content="Overview" Tag="{x:Type controlPages:ControlsPage}"> -->
-                <!--     <ui:NavigationViewItem.Icon> -->
-                <!--         <ui:FontIcon Glyph="&#xE71D;" /> -->
-                <!--     </ui:NavigationViewItem.Icon> -->
-                <!-- </ui:NavigationViewItem> -->
-                <!-- -->
-                <!-- <ui:NavigationViewItem Content="Theme" Tag="{x:Type controlPages:ThemePage}"> -->
-                <!--     <ui:NavigationViewItem.Icon> -->
-                <!--         <ui:FontIcon Glyph="&#xE790;" /> -->
-                <!--     </ui:NavigationViewItem.Icon> -->
-                <!-- </ui:NavigationViewItem> -->
-                <!-- -->
-                <!-- <ui:NavigationViewItem Content="FlipView" Tag="{x:Type controlPages:FlipViewPage}"> -->
-                <!--     <ui:NavigationViewItem.Icon> -->
-                <!--         <ui:BitmapIcon UriSource="Assets/FlipView.png" ShowAsMonochrome="False" /> -->
-                <!--     </ui:NavigationViewItem.Icon> -->
-                <!-- </ui:NavigationViewItem> -->
             </ui:NavigationView.MenuItems>
 
             <ContentControl x:Name="ContentFrame" Content="{Binding ActiveViewModel}"/>

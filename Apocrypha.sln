@@ -20,6 +20,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apocrypha.CommonObject", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apocrypha.ModernUi", "Apocrypha.ModernUi\Apocrypha.ModernUi.csproj", "{D6566897-30D6-45FC-9426-F80218CC34C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3F963CF2-7A25-4509-8709-EAB38B2E69B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernWpfSampleApp", "ModernWpfSampleApp\ModernWpfSampleApp.csproj", "{C4F9CB84-F51D-4E2D-942B-0BDF783E77F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplesCommon", "SamplesCommon\SamplesCommon.csproj", "{401F214B-48AB-40DB-83A8-7B7AC3D7F3D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +52,14 @@ Global
 		{D6566897-30D6-45FC-9426-F80218CC34C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6566897-30D6-45FC-9426-F80218CC34C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6566897-30D6-45FC-9426-F80218CC34C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F9CB84-F51D-4E2D-942B-0BDF783E77F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F9CB84-F51D-4E2D-942B-0BDF783E77F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F9CB84-F51D-4E2D-942B-0BDF783E77F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F9CB84-F51D-4E2D-942B-0BDF783E77F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401F214B-48AB-40DB-83A8-7B7AC3D7F3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401F214B-48AB-40DB-83A8-7B7AC3D7F3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401F214B-48AB-40DB-83A8-7B7AC3D7F3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401F214B-48AB-40DB-83A8-7B7AC3D7F3D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,5 +68,7 @@ Global
 		SolutionGuid = {153E0D3E-7B9B-4C07-B569-8214BFAF06D4}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{C4F9CB84-F51D-4E2D-942B-0BDF783E77F5} = {3F963CF2-7A25-4509-8709-EAB38B2E69B1}
+		{401F214B-48AB-40DB-83A8-7B7AC3D7F3D2} = {3F963CF2-7A25-4509-8709-EAB38B2E69B1}
 	EndGlobalSection
 EndGlobal

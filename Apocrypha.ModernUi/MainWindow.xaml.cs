@@ -36,7 +36,17 @@ namespace Apocrypha.ModernUi
                     UpdateSelectedNavItem();
 
                     break;
+
+                case nameof(MainViewModel.UserPopupViewModel):
+                    UpdateUserPopupFlyout();
+
+                    break;
             }
+        }
+
+        private void UpdateUserPopupFlyout()
+        {
+            FlyoutContent.DataContext = _mainViewModel.UserPopupViewModel;
         }
 
         private void UpdateSelectedNavItem()
@@ -83,6 +93,16 @@ namespace Apocrypha.ModernUi
         private Type GetPageType(NavigationViewItem item)
         {
             return item.Tag as Type;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            UpdateUserPopupFlyout();
+        }
+
+        private void UserPopupView_OnLoginSuccessful(object sender, EventArgs e)
+        {
+            UserFlyout.Hide();
         }
     }
 }

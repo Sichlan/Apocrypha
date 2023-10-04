@@ -1,0 +1,77 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="http://schemas.modernwpf.com/2019"
+                    xmlns:navigationViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
+                    xmlns:navigation="clr-namespace:Apocrypha.ModernUi.Views.Navigation"
+                    xmlns:userViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Display.Users"
+                    xmlns:users="clr-namespace:Apocrypha.ModernUi.Views.Display.Users"
+                    xmlns:editorViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
+                    xmlns:editor="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Editor"
+                    xmlns:toolsViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
+                    xmlns:tools="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
+                    xmlns:toolsDisplayViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Display.Tools"
+                    xmlns:tools1="clr-namespace:Apocrypha.ModernUi.Views.Display.Tools">
+    <ResourceDictionary.MergedDictionaries>
+        <ui:ThemeResources>
+            <ui:ThemeResources.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ui:ThemeResources.ThemeDictionaries>
+        </ui:ThemeResources>
+        
+        <ui:ThemeResources />
+        <ui:XamlControlsResources />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/ModernWpf;component/Styles/window.xaml" />
+        
+        <ResourceDictionary Source="Converters.xaml"/>
+        <ResourceDictionary Source="TextStyles.xaml"/>
+        <ResourceDictionary Source="CustomControls/BusyIndicatorStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <DataTemplate DataType="{x:Type navigationViewModels:HomeViewModel}">
+        <navigation:HomeView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type navigationViewModels:TestViewModel}">
+        <navigation:TestView/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type userViewModels:UserPopupViewModel}">
+        <users:UserPopupView/>
+    </DataTemplate>
+    
+    <!--#region Editor-->
+    <DataTemplate DataType="{x:Type editorViewModels:EditorHomeViewModel}">
+        <editor:EditorHomeView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type editorViewModels:RaceEditorListViewModel}">
+        <editor:RaceEditorListView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type editorViewModels:RaceEditorViewModel}">
+        <editor:RaceEditorView/>
+    </DataTemplate>
+    <!--#endregion-->
+    
+    <!--#region Tools-->
+    <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterListViewModel}">
+        <tools:PoisonCrafterListView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterViewModel}">
+        <tools:PoisonCrafterView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type toolsDisplayViewModels:PoisonPhaseViewModel}">
+        <tools1:PoisonPhaseView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type toolsDisplayViewModels:PoisonPhaseElementViewModel}">
+        <tools1:PoisonPhaseElementView/>
+    </DataTemplate>
+    <!--#endregion-->
+</ResourceDictionary>

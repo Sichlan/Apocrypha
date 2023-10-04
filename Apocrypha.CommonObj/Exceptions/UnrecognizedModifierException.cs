@@ -7,15 +7,5 @@ public class UnrecognizedModifierException : Exception
         Modifier = modifier;
     }
 
-    public UnrecognizedModifierException(string modifier, string message) : base(message)
-    {
-        Modifier = modifier;
-    }
-
-    public UnrecognizedModifierException(string modifier, string message, Exception innerException) : base(message, innerException)
-    {
-        Modifier = modifier;
-    }
-
     public string Modifier { get; set; }
 }

@@ -4,7 +4,10 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     mc:Ignorable="d"
                     xmlns:customControls="clr-namespace:Apocrypha.ModernUi.CustomControls"
-                    xmlns:controls="http://schemas.modernwpf.com/2019">
+                    xmlns:controls="http://schemas.modernwpf.com/2019"
+                    xmlns:converters="clr-namespace:Apocrypha.ModernUi.Helpers.Converters">
+    <converters:BooleanInverterConverter x:Key="BooleanInverterConverter"/>
+    
     <ControlTemplate TargetType="{x:Type customControls:BusyIndicator}" x:Key="BusyIndicatorDefaultTemplate">
         <Grid>
             <ContentPresenter Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" IsEnabled="{TemplateBinding IsBusy, Converter={StaticResource BooleanInverterConverter}}"/>

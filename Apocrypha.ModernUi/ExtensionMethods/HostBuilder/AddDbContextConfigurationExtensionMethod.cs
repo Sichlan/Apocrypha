@@ -53,6 +53,7 @@ public static class AddDbContextConfigurationExtensionMethod
             services.AddScoped<IDataService<PoisonDuration>, PoisonDurationDataService>();
             services.AddScoped<IDataService<PoisonDamageTarget>, PoisonDamageTargetDataService>();
             services.AddScoped<IDataService<PoisonSpecialEffect>, PoisonSpecialEffectDataService>();
+            services.AddScoped<IUserService, UserDataService>();
 
             // TODO: Add model converter
             services.AddScoped<IViewModelConverter<PoisonCrafterViewModel, Poison>, PoisonCrafterViewModelConverter>();

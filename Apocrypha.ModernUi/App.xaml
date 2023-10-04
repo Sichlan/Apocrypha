@@ -1,77 +1,12 @@
 ﻿<Application x:Class="Apocrypha.ModernUi.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:navigationViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
-             xmlns:navigationViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation"
-             xmlns:editorViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
-             xmlns:editorViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Editor"
-             xmlns:toolsViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
-             xmlns:toolsViews="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
-             xmlns:toolsDisplayViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Display.Tools"
-             xmlns:toolsDisplayViews="clr-namespace:Apocrypha.ModernUi.Views.Display.Tools"
              DispatcherUnhandledException="OnDispatcherUnhandledException">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ui:ThemeResources>
-                    <ui:ThemeResources.ThemeDictionaries>
-                        <ResourceDictionary x:Key="Light">
-                            <ResourceDictionary.MergedDictionaries>
-                                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
-                            </ResourceDictionary.MergedDictionaries>
-                        </ResourceDictionary>
-                        <ResourceDictionary x:Key="Dark">
-                            <ResourceDictionary.MergedDictionaries>
-                                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
-                            </ResourceDictionary.MergedDictionaries>
-                        </ResourceDictionary>
-                    </ui:ThemeResources.ThemeDictionaries>
-                </ui:ThemeResources>
-                
-                <ui:ThemeResources />
-                <ui:XamlControlsResources />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/ModernWpf;component/Styles/window.xaml" />
-                
-                <ResourceDictionary Source="Themes/Converters.xaml"/>
-                <ResourceDictionary Source="Themes/TextStyles.xaml"/>
-                <ResourceDictionary Source="Themes/CustomControls/BusyIndicatorStyle.xaml"/>
+                <ResourceDictionary Source="Themes/Default.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
-            <DataTemplate DataType="{x:Type navigationViewModels:HomeViewModel}">
-                <navigationViews:HomeView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type navigationViewModels:TestViewModel}">
-                <navigationViews:TestView/>
-            </DataTemplate>
-            
-            <!--#region Editor-->
-            <DataTemplate DataType="{x:Type editorViewModels:EditorHomeViewModel}">
-                <editorViews:EditorHomeView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type editorViewModels:RaceEditorListViewModel}">
-                <editorViews:RaceEditorListView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type editorViewModels:RaceEditorViewModel}">
-                <editorViews:RaceEditorView/>
-            </DataTemplate>
-            <!--#endregion-->
-            
-            <!--#region Tools-->
-            <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterListViewModel}">
-                <toolsViews:PoisonCrafterListView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterViewModel}">
-                <toolsViews:PoisonCrafterView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type toolsDisplayViewModels:PoisonPhaseViewModel}">
-                <toolsDisplayViews:PoisonPhaseView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type toolsDisplayViewModels:PoisonPhaseElementViewModel}">
-                <toolsDisplayViews:PoisonPhaseElementView/>
-            </DataTemplate>
-            <!--#endregion-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

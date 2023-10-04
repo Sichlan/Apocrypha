@@ -9,6 +9,7 @@ using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels;
+using Apocrypha.ModernUi.ViewModels.Display.Users;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using Apocrypha.ModernUi.ViewModels.Navigation.Editor;
 using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
@@ -27,6 +28,9 @@ public static class AddViewModelsExtensionMethod
             services.AddScoped<HomeViewModel>();
             services.AddScoped<TestViewModel>();
 
+            // Popups
+            services.AddScoped<UserPopupViewModel>();
+
             // Editor
             services.AddScoped<EditorHomeViewModel>();
             services.AddScoped<RaceEditorListViewModel>();
@@ -40,7 +44,8 @@ public static class AddViewModelsExtensionMethod
                 s.GetRequiredService<NavigateForwardsCommand>(),
                 s.GetRequiredService<HomeViewModel>(),
                 s.GetRequiredService<INavigationService>(),
-                s.GetRequiredService<IHost>()));
+                s.GetRequiredService<IHost>(),
+                s.GetRequiredService<UserPopupViewModel>()));
 
             // Creator Delegates
             services.AddSingleton<CreateRaceEditorViewModel>(s => race => CreateRaceEditorViewModel(s, race));
