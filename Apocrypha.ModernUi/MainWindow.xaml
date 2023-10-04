@@ -110,7 +110,7 @@
                     Content="{Binding CurrentUserName}"
                     Command="{Binding ToggleUserPopupCommand}">
                     <ui:FlyoutService.Flyout>
-                        <ui:Flyout x:Name="UserFlyout" Placement="Bottom">
+                        <ui:Flyout x:Name="UserFlyout" Placement="Bottom" Opened="UserFlyout_OnOpened">
                             <!-- Content is set in code behind 'cause fuck you -->
                             <users:UserPopupView x:Name="FlyoutContent" Margin="-10" LoginSuccessful="UserPopupView_OnLoginSuccessful"/>
                         </ui:Flyout>

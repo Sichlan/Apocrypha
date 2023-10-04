@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using Apocrypha.ModernUi.ViewModels;
 using ModernWpf;
 using ModernWpf.Controls;
@@ -46,7 +47,10 @@ namespace Apocrypha.ModernUi
 
         private void UpdateUserPopupFlyout()
         {
-            FlyoutContent.DataContext = _mainViewModel.UserPopupViewModel;
+            Dispatcher.Invoke(() =>
+            {
+                FlyoutContent.DataContext = _mainViewModel.UserPopupViewModel;
+            });
         }
 
         private void UpdateSelectedNavItem()
@@ -102,7 +106,24 @@ namespace Apocrypha.ModernUi
 
         private void UserPopupView_OnLoginSuccessful(object sender, EventArgs e)
         {
-            UserFlyout.Hide();
+            Dispatcher.Invoke(() =>
+            {
+                UserFlyout.Hide();
+            });
+        }
+
+        private void UserFlyout_OnOpened(object sender, object e)
+        {
+            if (_mainViewModel.UserPopupViewModel.HasActiveUser)
+            {
+                //TODO: Focus first control for active user
+            }
+            else
+            {
+                // TODO: Fix this :)
+                FlyoutContent.LoginTextBox.Focus();
+                Keyboard.Focus(FlyoutContent.LoginTextBox);
+            }
         }
     }
 }

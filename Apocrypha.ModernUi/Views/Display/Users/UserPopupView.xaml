@@ -25,7 +25,7 @@
             <TabControl Style="{StaticResource CredentialsTabControlStyle}" MinWidth="100" x:Name="LoginTabControl">
                 <TabItem Header="TEMP LOG IN">
                     <StackPanel Orientation="Vertical">
-                        <TextBox Text="{Binding LoginUserName, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="TEMP USERNAME" Margin="5"/>
+                        <TextBox x:Name="LoginTextBox" Text="{Binding LoginUserName, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="TEMP USERNAME" Margin="5"/>
                         <PasswordBox ui:ControlHelper.PlaceholderText="TEMP PASSWORD" Margin="5" PasswordChanged="Login_OnPasswordChanged"/>
                         <Separator/>
                         <Button Margin="5" Content="TEMP LOGIN" Command="{Binding LoginCommand}"/>
