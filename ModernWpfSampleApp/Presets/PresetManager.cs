@@ -1,7 +1,7 @@
 ﻿using System;
 using SamplesCommon;
 
-namespace ModernWpf.SampleApp.Presets
+namespace ModernWpfSampleApp.Presets
 {
     public class PresetManager : BindableBase
     {

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace SamplesCommon
+namespace SamplesCommon.Converters
 {
     public class EnumValuesConverter : IValueConverter
     {

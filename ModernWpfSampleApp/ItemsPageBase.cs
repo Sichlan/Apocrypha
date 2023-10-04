@@ -13,8 +13,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ModernWpf.Controls;
+using ModernWpfSampleApp.Navigation;
 
-namespace ModernWpf.SampleApp
+namespace ModernWpfSampleApp
 {
     public abstract class ItemsPageBase : Page, INotifyPropertyChanged
     {

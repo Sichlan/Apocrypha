@@ -30,15 +30,19 @@ public class PoisonDuration : DatabaseObject
 
             if (MinDurationDiceCount == null
                 && MinDurationDiceSize == null)
-                output += "None ";
+                output += "<=";
             else
                 output += $"{MinDurationDiceCount}{(MinDurationDiceSize == 1 ? "" : $"d{MinDurationDiceSize}")} {MinDurationIndicator?.Name} ";
 
-            output += "-";
+            if (MinDurationDiceCount != null
+                && MinDurationDiceSize != null
+                && MaxDurationDiceCount != null
+                && MaxDurationDiceSize != null)
+                output += "-";
 
             if (MaxDurationDiceCount == null
                 && MaxDurationDiceSize == null)
-                output += " Indefinite";
+                output = ">= " + output;
             else
                 output += $" {MaxDurationDiceCount}{(MaxDurationDiceSize == 1 ? "" : $"d{MaxDurationDiceSize}")} {MaxDurationIndicator?.Name}";
 

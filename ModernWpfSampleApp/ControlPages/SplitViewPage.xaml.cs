@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ModernWpf.Controls;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public sealed partial class SplitViewPage
     {

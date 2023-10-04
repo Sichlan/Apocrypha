@@ -1,4 +1,4 @@
-﻿namespace ModernWpf.SampleApp.ControlPages
+﻿namespace ModernWpfSampleApp.ControlPages
 {
     /// <summary>
     /// Interaction logic for GroupBoxPage.xaml

@@ -13,14 +13,16 @@ public class SaveDataCommand<TViewModel, TModel> : ISaveDataCommand<TViewModel, 
 {
     private readonly IDataService<TModel> _dataService;
     private readonly IViewModelConverter<TViewModel, TModel> _viewModelConverter;
+    private readonly Func<bool> _canExecute;
 
     private readonly IList<Action> _stagedActionsPreExecution;
     private readonly IList<Action> _stagedActionsPostExecution;
 
-    public SaveDataCommand(IDataService<TModel> dataService, IViewModelConverter<TViewModel, TModel> viewModelConverter)
+    public SaveDataCommand(IDataService<TModel> dataService, IViewModelConverter<TViewModel, TModel> viewModelConverter, Func<bool> canExecute = null)
     {
         _dataService = dataService;
         _viewModelConverter = viewModelConverter;
+        _canExecute = canExecute;
 
         _stagedActionsPreExecution = new List<Action>();
         _stagedActionsPostExecution = new List<Action>();
@@ -28,7 +30,8 @@ public class SaveDataCommand<TViewModel, TModel> : ISaveDataCommand<TViewModel, 
 
     public bool CanExecute(object parameter)
     {
-        return parameter is TViewModel;
+        return parameter is TViewModel
+               && (_canExecute == null || _canExecute());
     }
 
     public async void Execute(object parameter)

@@ -1,13 +1,13 @@
 ﻿<ui:Page
-    x:Class="ModernWpf.SampleApp.ControlPages.ItemsRepeaterPage"
+    x:Class="ModernWpfSampleApp.ControlPages.ItemsRepeaterPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:sc="clr-namespace:SamplesCommon;assembly=SamplesCommon"
-    xmlns:common="clr-namespace:ModernWpf.SampleApp.Common"
-    xmlns:l="clr-namespace:ModernWpf.SampleApp.ControlPages"
+    xmlns:common="clr-namespace:ModernWpfSampleApp.Common"
+    xmlns:controlPages="clr-namespace:ModernWpfSampleApp.ControlPages"
     mc:Ignorable="d"
     SnapsToDevicePixels="True"
     Loaded="OnLoaded">
@@ -154,12 +154,12 @@
             MinRowSpacing="12"
             MinColumnSpacing="12" />
 
-        <l:MyDataTemplateSelector
+        <controlPages:MyDataTemplateSelector
             x:Key="MyDataTemplateSelector"
             Normal="{StaticResource NormalItemTemplate}"
             Accent="{StaticResource AccentItemTemplate}" />
 
-        <l:StringOrIntTemplateSelector
+        <controlPages:StringOrIntTemplateSelector
             x:Key="StringOrIntTemplateSelector"
             StringTemplate="{StaticResource StringDataTemplate}"
             IntTemplate="{StaticResource IntDataTemplate}" />
@@ -341,7 +341,7 @@
                 Style="{StaticResource ControlExampleFullStyle}">
                 <sc:ControlExample.Resources>
                     <ui:StackLayout x:Key="stackLayout" />
-                    <l:SpacingConverter x:Key="SpacingConverter" />
+                    <controlPages:SpacingConverter x:Key="SpacingConverter" />
                 </sc:ControlExample.Resources>
 
                 <ui:ItemsRepeaterScrollHost>

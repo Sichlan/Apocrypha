@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     // Sample data object used to populate the collection page.
     public class CustomDataObject

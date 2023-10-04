@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class ListViewPage
     {

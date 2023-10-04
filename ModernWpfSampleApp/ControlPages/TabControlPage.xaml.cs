@@ -5,7 +5,7 @@ using ModernWpf.Controls.Primitives;
 using SamplesCommon.SamplePages;
 using Frame = ModernWpf.Controls.Frame;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class TabControlPage
     {

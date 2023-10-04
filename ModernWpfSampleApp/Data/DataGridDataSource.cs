@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ModernWpf.SampleApp.Data
+namespace ModernWpfSampleApp.Data
 {
     public class DataGridDataSource
     {

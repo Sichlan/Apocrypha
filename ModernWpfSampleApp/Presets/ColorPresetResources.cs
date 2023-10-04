@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows;
+using ModernWpf;
 
-namespace ModernWpf.SampleApp.Presets
+namespace ModernWpfSampleApp.Presets
 {
     public class ColorPresetResources : ResourceDictionary
     {

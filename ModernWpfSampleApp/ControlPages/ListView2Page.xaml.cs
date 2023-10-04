@@ -18,7 +18,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Navigation;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public sealed partial class ListView2Page : ItemsPageBase
     {

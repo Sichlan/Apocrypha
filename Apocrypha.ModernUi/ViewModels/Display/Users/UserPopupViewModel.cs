@@ -164,6 +164,7 @@ public class UserPopupViewModel : BaseViewModel
 
     public IRelayCommand LoginCommand { get; }
     public IRelayCommand RegisterCommand { get; }
+    public IRelayCommand LogoutCommand { get; }
 
     public UserPopupViewModel(IUserStore userStore, IAuthenticator authenticator, IUserInformationMessageService userInformationMessageService)
     {
@@ -173,12 +174,35 @@ public class UserPopupViewModel : BaseViewModel
 
         LoginCommand = new RelayCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         RegisterCommand = new RelayCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
+        LogoutCommand = new RelayCommand(ExecuteLogoutCommand, CanExecuteLogoutCommand);
 
         _userStore.StateChange += () =>
         {
             OnPropertyChanged(nameof(CurrentUser));
             OnPropertyChanged(nameof(HasActiveUser));
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                LogoutCommand.NotifyCanExecuteChanged();
+            });
         };
+    }
+
+    private bool CanExecuteLogoutCommand()
+    {
+        return CurrentUser != null;
+    }
+
+    private void ExecuteLogoutCommand()
+    {
+        Task.Run(async () =>
+        {
+            IsBusy = true;
+
+            await _authenticator.Logout();
+
+            IsBusy = false;
+        });
     }
 
     private bool CanExecuteRegisterCommand()

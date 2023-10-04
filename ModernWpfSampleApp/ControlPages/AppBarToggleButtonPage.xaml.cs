@@ -1,8 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using ModernWpf.Controls;
+using ModernWpfSampleApp.Navigation;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class AppBarToggleButtonPage
     {

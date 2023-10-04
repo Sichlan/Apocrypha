@@ -1,13 +1,13 @@
 ﻿<ui:Page
-    x:Class="ModernWpf.SampleApp.ControlPages.ThemeResourcesPage"
+    x:Class="ModernWpfSampleApp.ControlPages.ThemeResourcesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.modernwpf.com/2019"
-    xmlns:common="clr-namespace:ModernWpf.SampleApp.Common"
-    xmlns:local="clr-namespace:ModernWpf.SampleApp.ControlPages"
     xmlns:sc="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    xmlns:common="clr-namespace:ModernWpfSampleApp.Common"
+    xmlns:controlPages="clr-namespace:ModernWpfSampleApp.ControlPages"
     mc:Ignorable="d"
     SnapsToDevicePixels="True">
 
@@ -16,7 +16,7 @@
 
         <CollectionViewSource x:Key="ColorsCvs">
             <CollectionViewSource.Source>
-                <local:ColorResources />
+                <controlPages:ColorResources />
             </CollectionViewSource.Source>
             <CollectionViewSource.GroupDescriptions>
                 <PropertyGroupDescription PropertyName="GroupName" />
@@ -27,8 +27,8 @@
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
 
-        <local:BrushResources x:Key="BrushResources" />
-        <local:TextStyles x:Key="TextStyles" />
+        <controlPages:BrushResources x:Key="BrushResources" />
+        <controlPages:TextStyles x:Key="TextStyles" />
 
         <ContextMenu x:Key="ResourceContextMenu">
             <MenuItem
@@ -52,7 +52,7 @@
                         x:Name="Border"
                         BorderBrush="{DynamicResource SystemControlForegroundBaseHighBrush}"
                         BorderThickness="2"
-                        local:ColorResourceHelper.BackgroundColorKey="{Binding Key}" />
+                        controlPages:ColorResourceHelper.BackgroundColorKey="{Binding Key}" />
                 </Grid>
                 <TextBlock
                     Text="{Binding SimpleName}"

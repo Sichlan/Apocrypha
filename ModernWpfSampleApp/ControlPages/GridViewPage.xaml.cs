@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using ModernWpf.Controls;
 using GridView = ModernWpf.Controls.GridView;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public sealed partial class GridViewPage : ItemsPageBase
     {

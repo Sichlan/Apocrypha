@@ -5,11 +5,12 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
 using ModernWpf.Controls;
-using ModernWpf.SampleApp.Helpers;
 using ModernWpf.SampleApp.Properties;
+using ModernWpfSampleApp.Common;
+using ModernWpfSampleApp.Navigation;
 using SamplesCommon;
 
-namespace ModernWpf.SampleApp
+namespace ModernWpfSampleApp
 {
     public partial class MainWindow
     {

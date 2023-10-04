@@ -4,8 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using ModernWpf.Controls;
+using ModernWpfSampleApp.Navigation;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     /// <summary>
     /// Interaction logic for AutoSuggestBoxPage.xaml

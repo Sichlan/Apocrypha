@@ -18,32 +18,46 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type StackPanel}" x:Key="UserQuickInfoStackPanel">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasActiveUser}" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <customControls:BusyIndicator IsBusy="{Binding IsBusy}">
-            <!-- Not logged in -->
-            <TabControl Style="{StaticResource CredentialsTabControlStyle}" MinWidth="100" x:Name="LoginTabControl">
-                <TabItem Header="TEMP LOG IN">
-                    <StackPanel Orientation="Vertical">
-                        <TextBox x:Name="LoginTextBox" Text="{Binding LoginUserName, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="TEMP USERNAME" Margin="5"/>
-                        <PasswordBox ui:ControlHelper.PlaceholderText="TEMP PASSWORD" Margin="5" PasswordChanged="Login_OnPasswordChanged"/>
-                        <Separator/>
-                        <Button Margin="5" Content="TEMP LOGIN" Command="{Binding LoginCommand}"/>
-                    </StackPanel>
-                </TabItem>
-                <TabItem Header="TEMP SIGN UP">
-                    <StackPanel Orientation="Vertical">
-                        <TextBox Text="{Binding RegisterEmail, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="TEMP EMAIL" Margin="5"/>
-                        <TextBox Text="{Binding RegisterUserName, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="TEMP USERNAME" Margin="5"/>
-                        <PasswordBox ui:ControlHelper.PlaceholderText="TEMP PASSWORD" Margin="5" PasswordChanged="Register_OnPasswordChanged"/>
-                        <PasswordBox ui:ControlHelper.PlaceholderText="TEMP CONFIRM PASSWORD" Margin="5" PasswordChanged="RegisterConfirm_OnPasswordChanged"/>
-                        <Separator/>
-                        <Button Margin="5" Content="TEMP REGISTER" Command="{Binding RegisterCommand}"/>
-                    </StackPanel>
-                </TabItem>
-            </TabControl>
-            <!--Logged in-->
-            <!--TODO-->
+            <Grid>
+                <!-- Not logged in -->
+                <TabControl Style="{StaticResource CredentialsTabControlStyle}" MinWidth="100" x:Name="LoginTabControl">
+                    <TabItem Header="TEMP LOG IN">
+                        <StackPanel Orientation="Vertical">
+                            <TextBox x:Name="LoginTextBox" Text="{Binding LoginUserName, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="TEMP USERNAME" Margin="5"/>
+                            <PasswordBox ui:ControlHelper.PlaceholderText="TEMP PASSWORD" Margin="5" PasswordChanged="Login_OnPasswordChanged"/>
+                            <Separator/>
+                            <Button Margin="5" HorizontalAlignment="Stretch" Content="TEMP LOGIN" Command="{Binding LoginCommand}"/>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="TEMP SIGN UP">
+                        <StackPanel Orientation="Vertical">
+                            <TextBox Text="{Binding RegisterEmail, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="TEMP EMAIL" Margin="5"/>
+                            <TextBox Text="{Binding RegisterUserName, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="TEMP USERNAME" Margin="5"/>
+                            <PasswordBox ui:ControlHelper.PlaceholderText="TEMP PASSWORD" Margin="5" PasswordChanged="Register_OnPasswordChanged"/>
+                            <PasswordBox ui:ControlHelper.PlaceholderText="TEMP CONFIRM PASSWORD" Margin="5" PasswordChanged="RegisterConfirm_OnPasswordChanged"/>
+                            <Separator/>
+                            <Button Margin="5" HorizontalAlignment="Stretch" Content="TEMP REGISTER" Command="{Binding RegisterCommand}"/>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+                <!--Logged in-->
+                <StackPanel Orientation="Vertical" Style="{StaticResource UserQuickInfoStackPanel}">
+                    <TextBlock Text="{Binding CurrentUser.Username}" FontWeight="SemiBold" FontSize="16" Margin="5,5,5,0"/>
+                    <TextBlock Text="{Binding CurrentUser.Email}" Margin="5,0,5,5"/>
+                    <Separator/>
+                    <Button Margin="5" HorizontalAlignment="Stretch" Content="TEMP LOG OUT" Command="{Binding LogoutCommand}"/>
+                </StackPanel>    
+            </Grid>
         </customControls:BusyIndicator>
     </Grid>
 </UserControl>

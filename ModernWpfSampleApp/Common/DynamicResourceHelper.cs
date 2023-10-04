@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ModernWpf.SampleApp.Common
+namespace ModernWpfSampleApp.Common
 {
     public static class DynamicResourceHelper
     {

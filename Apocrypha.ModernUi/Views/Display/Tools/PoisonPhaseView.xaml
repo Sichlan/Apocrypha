@@ -68,7 +68,8 @@
                 <ItemsControl Grid.Row="2" ItemsSource="{Binding PhaseElements}" Margin="5"/>
                 
                 <Button Grid.Row="3" Margin="5" Content="{x:Static res:Localization.ButtonLabelAddPoisonPhaseElement}"
-                        Command="{Binding AddPoisonPhaseElement}" CommandParameter="{Binding}" />
+                        Command="{Binding AddPoisonPhaseElement}" CommandParameter="{Binding}" 
+                        HorizontalAlignment="Stretch"/>
             </Grid>
         </Expander>
     </Grid>

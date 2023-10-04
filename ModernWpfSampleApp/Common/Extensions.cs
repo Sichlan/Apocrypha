@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using ModernWpf;
 
-namespace ModernWpf.SampleApp
+namespace ModernWpfSampleApp.Common
 {
     public static class Extensions
     {

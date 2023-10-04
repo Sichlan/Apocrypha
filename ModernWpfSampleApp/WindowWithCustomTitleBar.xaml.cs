@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ModernWpf.SampleApp
+namespace ModernWpfSampleApp
 {
     /// <summary>
     /// Interaction logic for WindowWithCustomTitleBar.xaml

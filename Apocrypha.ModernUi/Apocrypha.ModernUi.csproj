@@ -46,10 +46,26 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj"/>
+        <ProjectReference Include="..\SamplesCommon\SamplesCommon.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <Page Update="Views\Navigation\HomeView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Themes\Presets\Default\Dark.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Themes\Presets\Default\Light.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Themes\Presets\Default\HighContrast.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>

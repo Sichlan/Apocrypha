@@ -5,7 +5,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using ModernWpf.Controls;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class ButtonsPage
     {

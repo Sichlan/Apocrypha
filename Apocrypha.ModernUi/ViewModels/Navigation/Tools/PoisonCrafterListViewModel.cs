@@ -1,10 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
+using Apocrypha.ModernUi.Services.Randomizer;
+using Apocrypha.ModernUi.Services.State.Users;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Apocrypha.ModernUi.ViewModels.Navigation.Tools;
@@ -12,6 +15,9 @@ namespace Apocrypha.ModernUi.ViewModels.Navigation.Tools;
 public class PoisonCrafterListViewModel : NavigableViewModel
 {
     private readonly IDataService<Poison> _poisonDataService;
+    private readonly IUserStore _userStore;
+    private readonly IPoisonRandomizerService _poisonRandomizerService;
+
     private readonly CreatePoisonCrafterViewModel _poisonCrafterViewModelBuilder;
     private ObservableCollection<PoisonCrafterViewModel> _poisonCrafterViewModels;
     private bool _isLoading;
@@ -49,23 +55,55 @@ public class PoisonCrafterListViewModel : NavigableViewModel
     }
 
     public ICommand UpdateListCommand { get; }
-    public ICommand DeletePoisonCommand { get; }
+    public IRelayCommand DeletePoisonCommand { get; }
+    public ICommand GenerateRandomPoisonCommand { get; }
 
     public PoisonCrafterListViewModel(IDataService<Poison> poisonDataService,
         CreatePoisonCrafterViewModel poisonCrafterViewModelBuilder,
-        NavigateToPageCommand navigateToPageCommand)
+        NavigateToPageCommand navigateToPageCommand, IUserStore userStore,
+        IPoisonRandomizerService poisonRandomizerService)
         : base(navigateToPageCommand)
     {
         _poisonDataService = poisonDataService;
         _poisonCrafterViewModelBuilder = poisonCrafterViewModelBuilder;
+        _userStore = userStore;
+        _poisonRandomizerService = poisonRandomizerService;
 
         UpdateListCommand = new RelayCommand(ExecuteUpdateListCommand, CanExecuteUpdateListCommand);
         DeletePoisonCommand = new RelayCommand<PoisonCrafterViewModel>(ExecuteDeletePoisonCommand, CanExecuteDeletePoisonCommand);
+        GenerateRandomPoisonCommand = new RelayCommand(ExecuteGenerateRandomPoisonCommand, CanExecuteGenerateRandomPoisonCommand);
+
+        _userStore.StateChange += () =>
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                DeletePoisonCommand.NotifyCanExecuteChanged();
+            });
+        };
+    }
+
+    private bool CanExecuteGenerateRandomPoisonCommand()
+    {
+        return true;
+    }
+
+    private void ExecuteGenerateRandomPoisonCommand()
+    {
+        Task.Run(async () =>
+        {
+            IsLoading = true;
+
+            var poison = await _poisonRandomizerService.GenerateRandomPoison();
+            var viewModel = _poisonCrafterViewModelBuilder(poison);
+            NavigateToPageCommand.Execute(viewModel);
+
+            IsLoading = false;
+        });
     }
 
     private bool CanExecuteDeletePoisonCommand(PoisonCrafterViewModel obj)
     {
-        return true;
+        return obj.CreatorId == null || (_userStore.CurrentUser != null && _userStore.CurrentUser.Id == obj.CreatorId);
     }
 
     private void ExecuteDeletePoisonCommand(PoisonCrafterViewModel obj)

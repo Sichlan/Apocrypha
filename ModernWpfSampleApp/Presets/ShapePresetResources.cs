@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace ModernWpf.SampleApp.Presets
+namespace ModernWpfSampleApp.Presets
 {
     public class ShapePresetResources : ResourceDictionary
     {

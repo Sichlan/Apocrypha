@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using ModernWpf.Controls;
 using ModernWpf.Controls.Primitives;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class CommandBarFlyoutPage
     {

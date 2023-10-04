@@ -1,4 +1,4 @@
-﻿namespace ModernWpf.SampleApp
+﻿namespace ModernWpfSampleApp
 {
     public partial class App
     {

@@ -1,9 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using ModernWpf;
 using ModernWpf.Controls;
+using ModernWpfSampleApp.Common;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class ContentDialogTestContent : UserControl
     {

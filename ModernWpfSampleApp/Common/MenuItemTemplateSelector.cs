@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Markup;
 
-namespace ModernWpf.SampleApp.Common
+namespace ModernWpfSampleApp.Common
 {
     [ContentProperty("ItemTemplate")]
     class MenuItemTemplateSelector : DataTemplateSelector

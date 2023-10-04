@@ -3,7 +3,7 @@ using System.Windows;
 using ModernWpf.Controls;
 using SamplesCommon;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class ContentDialogTestWindow : Window
     {

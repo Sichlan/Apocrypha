@@ -15,16 +15,19 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Margin="5" Content="NEW TEMP" Command="{Binding NavigateToPageCommand}" CommandParameter="{x:Type tools:PoisonCrafterViewModel}"/>
-            <Button Margin="5" Content="TEMP UPDATE" Command="{Binding UpdateListCommand}"/>
-            <!-- <Button Margin="5" Content="LOAD TEMP" Command="{Binding NavigateToPageCommand}" CommandParameter="{Binding ElementName=PoisonGrid, Path=Ite}"/> -->
+            <Button Margin="5" MinWidth="100" Content="NEW TEMP" Command="{Binding NavigateToPageCommand}" CommandParameter="{x:Type tools:PoisonCrafterViewModel}"/>
+            <Button Margin="5" MinWidth="100" Content="TEMP UPDATE" Command="{Binding UpdateListCommand}"/>
+            <Button Margin="5" MinWidth="100" Content="TEMP RANDOM" Command="{Binding GenerateRandomPoisonCommand}"/>
         </StackPanel>
+        
+        <Separator Grid.Row="1" Margin="5"/>
 
-        <customControls:BusyIndicator Grid.Row="1" IsBusy="{Binding IsLoading}">
+        <customControls:BusyIndicator Grid.Row="2" IsBusy="{Binding IsLoading}">
             <ItemsControl ItemsSource="{Binding Source={StaticResource PoisonsCollectionViewSource}}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -41,6 +44,7 @@
                             <Button Grid.Column="0" Margin="5" Padding="5"
                                     Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PoisonCrafterListView}, Path=DataContext.NavigateToPageCommand}"
                                     CommandParameter="{Binding}"
+                                    HorizontalAlignment="Stretch"
                                     HorizontalContentAlignment="Stretch">
                                 <TextBlock Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
                             </Button>

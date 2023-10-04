@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ModernWpf.SampleApp.Common
+namespace ModernWpfSampleApp.Common
 {
     public class CornerRadiusToDoubleConverter : IValueConverter
     {

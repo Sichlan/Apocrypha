@@ -10,27 +10,40 @@
                     xmlns:toolsViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
                     xmlns:tools="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
                     xmlns:toolsDisplayViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Display.Tools"
-                    xmlns:tools1="clr-namespace:Apocrypha.ModernUi.Views.Display.Tools">
+                    xmlns:tools1="clr-namespace:Apocrypha.ModernUi.Views.Display.Tools"
+                    xmlns:presets="clr-namespace:Apocrypha.ModernUi.Themes.Presets">
     <ResourceDictionary.MergedDictionaries>
-        <ui:ThemeResources>
+        <ui:ThemeResources CanBeAccessedAcrossThreads="True">
             <ui:ThemeResources.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light">
+                <ResourceDictionary x:Key="Light" ui:ThemeDictionary.Key="Light">
                     <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+                        <presets:ColorPresetResources TargetTheme="Light" />
+                        <presets:ShapePresetResources />
                     </ResourceDictionary.MergedDictionaries>
+                    <SolidColorBrush x:Key="AppBackgroundBrush" Color="#FFF1F1F1" />
+                    <SolidColorBrush x:Key="AppContentBackgroundBrush" Color="{StaticResource SystemAltHighColor}" />
+                    <SolidColorBrush x:Key="CustomThemeBrush" Color="Red" />
                 </ResourceDictionary>
-                <ResourceDictionary x:Key="Dark">
+
+                <ResourceDictionary x:Key="Dark" ui:ThemeDictionary.Key="Dark">
                     <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
+                        <presets:ColorPresetResources TargetTheme="Dark" />
+                        <presets:ShapePresetResources />
+                    </ResourceDictionary.MergedDictionaries>
+                    <SolidColorBrush x:Key="AppBackgroundBrush" Color="#FF232323" />
+                    <SolidColorBrush x:Key="AppContentBackgroundBrush" Color="#FF282828" />
+                    <SolidColorBrush x:Key="CustomThemeBrush" Color="Yellow" />
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="HighContrast" ui:ThemeDictionary.Key="HighContrast">
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="Presets/Default/HighContrast.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </ui:ThemeResources.ThemeDictionaries>
         </ui:ThemeResources>
         
-        <ui:ThemeResources />
         <ui:XamlControlsResources />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/ModernWpf;component/Styles/window.xaml" />
         
         <ResourceDictionary Source="Converters.xaml"/>
         <ResourceDictionary Source="TextStyles.xaml"/>

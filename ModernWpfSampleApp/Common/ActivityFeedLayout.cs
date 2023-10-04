@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using ModernWpf.Controls;
 
-namespace ModernWpf.SampleApp.Common
+namespace ModernWpfSampleApp.Common
 {
     class ActivityFeedLayout : VirtualizingLayout
     {

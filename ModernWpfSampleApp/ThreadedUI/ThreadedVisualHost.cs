@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows;
+using ModernWpf;
 
-namespace ModernWpf.SampleApp.ThreadedUI
+namespace ModernWpfSampleApp.ThreadedUI
 {
     public class ThreadedVisualHost : ThreadedVisualHostBase
     {

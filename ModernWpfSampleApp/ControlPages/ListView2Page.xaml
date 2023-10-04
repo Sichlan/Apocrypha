@@ -9,18 +9,18 @@
     //
     //*********************************************************
 -->
-<local:ItemsPageBase
-    x:Class="ModernWpf.SampleApp.ControlPages.ListView2Page"
+<modernWpfSampleApp:ItemsPageBase
+    x:Class="ModernWpfSampleApp.ControlPages.ListView2Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:sc="clr-namespace:SamplesCommon;assembly=SamplesCommon"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    xmlns:local="clr-namespace:ModernWpf.SampleApp"
-    xmlns:local1="clr-namespace:ModernWpf.SampleApp.ControlPages"
-    xmlns:cm="clr-namespace:System.ComponentModel;assembly=WindowsBase">
+    xmlns:cm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    xmlns:modernWpfSampleApp="clr-namespace:ModernWpfSampleApp"
+    xmlns:controlPages="clr-namespace:ModernWpfSampleApp.ControlPages">
     <Page.Resources>
-        <local1:ContactGroupKeyConverter x:Key="ContactGroupKeyConverter" />
+        <controlPages:ContactGroupKeyConverter x:Key="ContactGroupKeyConverter" />
 
         <!--
             Use a collection view source for content that presents itself as a list of items that can be grouped or sorted.  Otherwise, you can use x:Bind
@@ -101,7 +101,7 @@
                     <RichTextBox
                         Style="{StaticResource RichTextBlockStyle}"
                         Margin="0,0,0,15">
-                        <local1:NoPaddingFlowDocument>
+                        <controlPages:NoPaddingFlowDocument>
                             <Paragraph>You can enable four different selection modes on the right.</Paragraph>
                             <Paragraph>
                                 <Bold>None</Bold>
@@ -115,7 +115,7 @@
                             <Paragraph>
                                 <Bold>Extended</Bold>
                                 allows the user to select multiple items by using Ctrl+Click to select the indvidual items they want, or Shift+Click to select a range of contiguous items.</Paragraph>
-                        </local1:NoPaddingFlowDocument>
+                        </controlPages:NoPaddingFlowDocument>
                     </RichTextBox>
                     <ui:ListView
                         x:Name="Control2"
@@ -285,4 +285,4 @@
             </sc:ControlExample>
         </ui:SimpleStackPanel>
     </ScrollViewer>
-</local:ItemsPageBase>
+</modernWpfSampleApp:ItemsPageBase>

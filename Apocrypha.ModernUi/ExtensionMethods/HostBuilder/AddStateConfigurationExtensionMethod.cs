@@ -1,5 +1,7 @@
-﻿using Apocrypha.CommonObject.Services.AuthenticationServices;
+﻿using System;
+using Apocrypha.CommonObject.Services.AuthenticationServices;
 using Apocrypha.ModernUi.Services;
+using Apocrypha.ModernUi.Services.Randomizer;
 using Apocrypha.ModernUi.Services.State.Authenticators;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.State.Users;
@@ -22,6 +24,9 @@ public static class AddStateConfigurationExtensionMethod
             services.AddSingleton<IUserInformationMessageService, DebugUserInformationMessageService>();
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IAuthenticator, Authenticator>();
+
+            services.AddSingleton<Random>();
+            services.AddSingleton<IPoisonRandomizerService, PoisonRandomizerService>();
         });
 
         return hostBuilder;

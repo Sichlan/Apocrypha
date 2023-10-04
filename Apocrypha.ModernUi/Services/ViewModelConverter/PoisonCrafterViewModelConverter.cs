@@ -7,6 +7,7 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
+using Apocrypha.ModernUi.Services.State.Users;
 using Apocrypha.ModernUi.ViewModels.Display.Tools;
 using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
 
@@ -24,6 +25,8 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
     private readonly IDataService<PoisonSpecialEffect> _specialEffectDataService;
     private readonly IDataService<PoisonPhase> _poisonPhaseDataService;
     private readonly INavigationService _navigationService;
+    private readonly IUserStore _userStore;
+    private readonly NavigateBackwardsCommand _navigateBackwardsCommand;
 
     public PoisonCrafterViewModelConverter(NavigateToPageCommand navigateToPageCommand,
         IDataService<Poison> poisonDataService,
@@ -34,7 +37,9 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
         IDataService<PoisonDamageTarget> damageTargetDataService,
         IDataService<PoisonSpecialEffect> specialEffectDataService,
         IDataService<PoisonPhase> poisonPhaseDataService,
-        INavigationService navigationService)
+        INavigationService navigationService,
+        IUserStore userStore,
+        NavigateBackwardsCommand navigateBackwardsCommand)
     {
         _navigateToPageCommand = navigateToPageCommand;
         _poisonDataService = poisonDataService;
@@ -46,6 +51,8 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
         _specialEffectDataService = specialEffectDataService;
         _poisonPhaseDataService = poisonPhaseDataService;
         _navigationService = navigationService;
+        _userStore = userStore;
+        _navigateBackwardsCommand = navigateBackwardsCommand;
     }
 
     public async Task<PoisonCrafterViewModel> ToViewModel(Poison model)
@@ -59,7 +66,9 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
             _damageTargetDataService,
             _specialEffectDataService,
             _poisonPhaseDataService,
-            _navigationService);
+            _navigationService,
+            _userStore,
+            _navigateBackwardsCommand);
 
         if (model != null)
         {

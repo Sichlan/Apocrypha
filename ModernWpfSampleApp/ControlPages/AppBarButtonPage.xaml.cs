@@ -3,8 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using ModernWpf.Controls;
+using ModernWpfSampleApp.Navigation;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class AppBarButtonPage
     {

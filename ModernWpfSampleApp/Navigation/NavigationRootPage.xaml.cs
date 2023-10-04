@@ -7,13 +7,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using ModernWpf;
 using ModernWpf.Controls;
-using ModernWpf.SampleApp.ControlPages;
-using ModernWpf.SampleApp.Presets;
+using ModernWpfSampleApp.Common;
+using ModernWpfSampleApp.ControlPages;
+using ModernWpfSampleApp.Presets;
 using SamplesCommon;
 using Frame = ModernWpf.Controls.Frame;
 
-namespace ModernWpf.SampleApp
+namespace ModernWpfSampleApp.Navigation
 {
     public partial class NavigationRootPage
     {

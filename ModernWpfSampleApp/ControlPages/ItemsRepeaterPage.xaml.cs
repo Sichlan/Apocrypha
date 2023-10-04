@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using ModernWpf.Controls;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class ItemsRepeaterPage
     {

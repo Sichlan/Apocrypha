@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Media;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class ListBoxPage
     {

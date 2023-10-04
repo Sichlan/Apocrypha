@@ -2,7 +2,7 @@
 using ModernWpf.Media.Animation;
 using SamplesCommon.SamplePages;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class CompactSizingPage
     {

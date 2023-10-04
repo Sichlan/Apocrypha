@@ -1,13 +1,13 @@
 ﻿<UserControl
-    x:Class="ModernWpf.SampleApp.NavigationRootPage"
+    x:Class="ModernWpfSampleApp.Navigation.NavigationRootPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.modernwpf.com/2019"
-    xmlns:common="clr-namespace:ModernWpf.SampleApp.Common"
-    xmlns:local="clr-namespace:ModernWpf.SampleApp"
     xmlns:sc="clr-namespace:SamplesCommon;assembly=SamplesCommon"
+    xmlns:common="clr-namespace:ModernWpfSampleApp.Common"
+    xmlns:navigation="clr-namespace:ModernWpfSampleApp.Navigation"
     mc:Ignorable="d"
     d:DesignWidth="1200"
     d:DesignHeight="900"
@@ -173,7 +173,7 @@
                 SelectedIndex="0"
                 SelectionChanged="PagesList_SelectionChanged">
                 <ui:ListView.ItemsSource>
-                    <local:ControlPagesData />
+                    <navigation:ControlPagesData />
                 </ui:ListView.ItemsSource>
             </ui:ListView>
         </DockPanel>

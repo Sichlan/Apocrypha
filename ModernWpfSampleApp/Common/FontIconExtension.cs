@@ -2,7 +2,7 @@
 using System.Windows.Markup;
 using ModernWpf.Controls;
 
-namespace ModernWpf.SampleApp.Common
+namespace ModernWpfSampleApp.Common
 {
     [MarkupExtensionReturnType(typeof(FontIcon))]
     public class FontIconExtension : MarkupExtension

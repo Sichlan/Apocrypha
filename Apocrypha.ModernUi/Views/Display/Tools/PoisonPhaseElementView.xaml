@@ -84,7 +84,7 @@
             <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"
                       ItemsSource="{Binding PoisonSpecialEffects}"
                       SelectedItem="{Binding SelectedPoisonSpecialEffect}"
-                      Margin="5" DisplayMemberPath="Name"/>
+                      Margin="5" DisplayMemberPath="Name" HorizontalAlignment="Stretch"/>
 
             <TextBlock Grid.Row="1" Grid.Column="4"
                        Text="{Binding DamageCraftDcModifier}" 

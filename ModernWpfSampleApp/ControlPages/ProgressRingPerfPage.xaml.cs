@@ -1,6 +1,6 @@
 ﻿using ModernWpf.Controls;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     /// <summary>
     /// Interaction logic for ProgressRingPerfPage.xaml

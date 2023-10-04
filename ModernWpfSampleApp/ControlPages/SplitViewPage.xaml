@@ -1,5 +1,5 @@
 ﻿<ui:Page
-    x:Class="ModernWpf.SampleApp.ControlPages.SplitViewPage"
+    x:Class="ModernWpfSampleApp.ControlPages.SplitViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ui="http://schemas.modernwpf.com/2019"

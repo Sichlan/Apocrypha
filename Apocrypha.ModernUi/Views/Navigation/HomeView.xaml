@@ -8,6 +8,10 @@
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance navigation:HomeViewModel, IsDesignTimeCreatable=True}">
     <Grid>
-        <Button Command="{Binding NavigateToPageCommand}" CommandParameter="{x:Type navigation:TestViewModel}" Content="Test Page" Margin="5"/>
+        <Button  Content="Test Page" Margin="5"
+                 Command="{Binding NavigateToPageCommand}" 
+                 CommandParameter="{x:Type navigation:TestViewModel}"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"/>
     </Grid>
 </UserControl>

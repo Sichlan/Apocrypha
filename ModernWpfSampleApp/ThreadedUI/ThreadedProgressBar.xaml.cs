@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace ModernWpf.SampleApp.ThreadedUI
+namespace ModernWpfSampleApp.ThreadedUI
 {
     public partial class ThreadedProgressBar : UserControl
     {

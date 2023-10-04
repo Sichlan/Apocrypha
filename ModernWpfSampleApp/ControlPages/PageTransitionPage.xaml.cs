@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using ModernWpf.Media.Animation;
 using Page = ModernWpf.Controls.Page;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public sealed partial class PageTransitionPage : Page
     {

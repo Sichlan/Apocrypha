@@ -6,12 +6,12 @@ using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
 using ModernWpf.Controls;
-using ModernWpf.SampleApp.Common;
+using ModernWpfSampleApp.Common;
 using SamplesCommon.SamplePages;
-using Separator = ModernWpf.SampleApp.Common.Separator;
+using Separator = ModernWpfSampleApp.Common.Separator;
 using VirtualKey = System.Windows.Input.Key;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public sealed partial class NavigationViewPage
     {

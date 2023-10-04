@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using ModernWpf;
 
-namespace SamplesCommon
+namespace SamplesCommon.Converters
 {
     public class InverseAppThemeConverter : IValueConverter
     {

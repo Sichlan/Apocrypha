@@ -3,12 +3,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local1="clr-namespace:ModernWpf.SampleApp.ControlPages"
-    xmlns:converters="clr-namespace:ModernWpf.SampleApp.Common"
     xmlns:muxc="http://schemas.modernwpf.com/2019"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:sc="clr-namespace:SamplesCommon;assembly=SamplesCommon"
-    x:Class="ModernWpf.SampleApp.ControlPages.NavigationViewPage"
+    xmlns:common="clr-namespace:ModernWpfSampleApp.Common"
+    xmlns:controlPages="clr-namespace:ModernWpfSampleApp.ControlPages"
+    x:Class="ModernWpfSampleApp.ControlPages.NavigationViewPage"
     mc:Ignorable="d">
 
     <Page.Template>
@@ -20,8 +20,8 @@
     </Page.Template>
     
     <Page.Resources>
-        <converters:MenuItemTemplateSelector x:Key="selector" >
-            <converters:MenuItemTemplateSelector.ItemTemplate>
+        <common:MenuItemTemplateSelector x:Key="selector" >
+            <common:MenuItemTemplateSelector.ItemTemplate>
                 <DataTemplate>
                     <muxc:NavigationViewItem 
                                 Content="{Binding Name, Mode=OneTime}"
@@ -31,8 +31,8 @@
                         </muxc:NavigationViewItem.Icon>
                     </muxc:NavigationViewItem>
                 </DataTemplate>
-            </converters:MenuItemTemplateSelector.ItemTemplate>
-        </converters:MenuItemTemplateSelector>
+            </common:MenuItemTemplateSelector.ItemTemplate>
+        </common:MenuItemTemplateSelector>
     </Page.Resources>
 
     <StackPanel ui:ThemeManager.HasThemeResources="True">
@@ -243,7 +243,7 @@
                            Margin="0,0,0,12"
                            Grid.Row="0"/>
                 <RichTextBox Style="{StaticResource RichTextBlockStyle}" Margin="0,0,0,15">
-                    <local1:NoPaddingFlowDocument>
+                    <controlPages:NoPaddingFlowDocument>
                         <Paragraph>NavigationView supports hierarchy in Left, LeftCompact, and Top display modes.
                             <LineBreak/>
                         </Paragraph>
@@ -258,7 +258,7 @@
                         <Paragraph>
                             Switch between the three pane display modes on the right.
                         </Paragraph>
-                    </local1:NoPaddingFlowDocument>
+                    </controlPages:NoPaddingFlowDocument>
                 </RichTextBox>
                 <muxc:NavigationView x:Name="nvSample8" Grid.Row="1" Height="460"
                                         PaneDisplayMode="Left" 

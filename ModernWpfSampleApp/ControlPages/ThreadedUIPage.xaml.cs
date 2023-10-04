@@ -3,10 +3,10 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using ModernWpf.SampleApp.ThreadedUI;
+using ModernWpfSampleApp.ThreadedUI;
 using SamplesCommon;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class ThreadedUIPage
     {

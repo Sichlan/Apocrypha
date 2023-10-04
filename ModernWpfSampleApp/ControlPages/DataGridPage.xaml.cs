@@ -5,9 +5,10 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
-using ModernWpf.SampleApp.Data;
+using ModernWpfSampleApp.Common;
+using ModernWpfSampleApp.Data;
 
-namespace ModernWpf.SampleApp.ControlPages
+namespace ModernWpfSampleApp.ControlPages
 {
     public partial class DataGridPage
     {

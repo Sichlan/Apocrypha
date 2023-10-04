@@ -1,6 +1,6 @@
 ﻿using ModernWpf.Controls;
 
-namespace ModernWpf.SampleApp.Common
+namespace ModernWpfSampleApp.Common
 {
     public class CategoryBase
     {

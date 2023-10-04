@@ -4,18 +4,20 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
-using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Common.Translation;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Helpers.Commands.SaveData;
-using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.State.Navigation;
+using Apocrypha.ModernUi.Services.State.Users;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels.Display.Tools;
 using CommunityToolkit.Mvvm.Input;
+using Condition = Apocrypha.CommonObject.Models.Condition;
+using Localization = Apocrypha.ModernUi.Resources.Localization.Localization;
 
 namespace Apocrypha.ModernUi.ViewModels.Navigation.Tools;
 
@@ -25,6 +27,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 {
     private ObservableCollection<PoisonDeliveryMethod> _poisonDeliveryMethods;
     private readonly IDataService<PoisonPhase> _poisonPhaseDataService;
+    private readonly IUserStore _userStore;
 
 
     private readonly List<Tuple<int?, int?, int>> _marketPriceMultipliers = new()
@@ -220,6 +223,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
     }
 
     public ISaveDataCommand<PoisonCrafterViewModel, Poison> SavePoisonCommand { get; set; }
+    public ICommand CancelPoisonCommand { get; }
     public ICommand AddPoisonPhaseCommand { get; }
     public ICommand DeletePoisonPhaseCommand { get; }
 
@@ -267,6 +271,14 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         }
     }
 
+    public bool CanUserEditPoison
+    {
+        get
+        {
+            return CreatorId == null || (_userStore.CurrentUser?.Id == CreatorId);
+        }
+    }
+
     public PoisonCrafterViewModel(NavigateToPageCommand navigateToPageCommand,
         IDataService<Poison> poisonDataService,
         IViewModelConverter<PoisonCrafterViewModel, Poison> viewModelConverter,
@@ -276,16 +288,37 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         IDataService<PoisonDamageTarget> damageTargetDataService,
         IDataService<PoisonSpecialEffect> specialEffectDataService,
         IDataService<PoisonPhase> poisonPhaseDataService,
-        INavigationService navigationService)
+        INavigationService navigationService,
+        IUserStore userStore,
+        NavigateBackwardsCommand navigateBackwardsCommand)
         : base(navigateToPageCommand)
     {
         _poisonPhaseDataService = poisonPhaseDataService;
-        SavePoisonCommand = new SaveDataCommand<PoisonCrafterViewModel, Poison>(poisonDataService, viewModelConverter);
+        _userStore = userStore;
+
+        SavePoisonCommand = new SaveDataCommand<PoisonCrafterViewModel, Poison>(poisonDataService, viewModelConverter, CanExecuteSavePoisonCommand);
+        CancelPoisonCommand = navigateBackwardsCommand;
         AddPoisonPhaseCommand = new RelayCommand(ExecuteAddPoisonPhaseCommand, CanExecuteAddPoisonPhaseCommand);
         DeletePoisonPhaseCommand = new RelayCommand<PoisonPhaseViewModel>(ExecuteDeletePoisonPhaseCommand, CanExecuteDeletePoisonPhaseCommand);
 
         PoisonPhases ??= new ObservableCollection<PoisonPhaseViewModel>();
         PoisonTranslations ??= new TranslationCollection<PoisonTranslation>();
+
+        _userStore.StateChange += () =>
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                OnPropertyChanged(nameof(CanUserEditPoison));
+                SavePoisonCommand.NotifyCanExecuteChanged();
+            });
+        };
+
+        if (Id == 0)
+            SavePoisonCommand.StagePreExecutionAction(() =>
+            {
+                if (_userStore.CurrentUser != null)
+                    CreatorId = _userStore.CurrentUser.Id;
+            });
 
         SavePoisonCommand.StagePostExecutionAction(() => navigationService.TryGoBack());
 
@@ -311,6 +344,13 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
                 OnPropertyChanged(nameof(Summary));
             };
         });
+    }
+
+    private bool CanExecuteSavePoisonCommand()
+    {
+        return CreatorId == null
+               || Id == 0
+               || _userStore.CurrentUser?.Id == CreatorId;
     }
 
     private void PoisonPhaseOnPropertyChanged(object sender, PropertyChangedEventArgs e)
