@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
+using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.ViewModels.Common;
 using Apocrypha.ModernUi.ViewModels.Display.Users;
@@ -21,20 +22,12 @@ public class MainViewModel : BaseViewModel
     public ICommand NavigateForwardsCommand { get; }
     public ICommand ToggleUserPopupCommand { get; }
 
-    public NavigableViewModel ActiveViewModel
-    {
-        get
-        {
-            return _navigationService.ActiveViewModel;
-        }
-    }
+    public NavigableViewModel ActiveViewModel =>
+        _navigationService.ActiveViewModel;
 
     public bool ShowUserPopup
     {
-        get
-        {
-            return _showUserPopup;
-        }
+        get => _showUserPopup;
         set
         {
             if (value == _showUserPopup)
@@ -47,10 +40,7 @@ public class MainViewModel : BaseViewModel
 
     public UserPopupViewModel UserPopupViewModel
     {
-        get
-        {
-            return _userPopupViewModel;
-        }
+        get => _userPopupViewModel;
         set
         {
             if (Equals(value, _userPopupViewModel))
@@ -62,14 +52,10 @@ public class MainViewModel : BaseViewModel
         }
     }
 
-    public string CurrentUserName
-    {
-        get
-        {
-            return UserPopupViewModel?.CurrentUser?.Username ?? "TEMP NOT LOGGED IN";
-        }
-    }
+    public string CurrentUserName =>
+        UserPopupViewModel?.CurrentUser?.Username ?? Localization.ButtonLabelNotLoggedIn;
 
+    // ReSharper disable SuggestBaseTypeForParameterInConstructor
     public MainViewModel(NavigateBackwardsCommand navigateBackwardsCommand,
         NavigateForwardsCommand navigateForwardsCommand,
         NavigableViewModel fallbackStartViewModel,

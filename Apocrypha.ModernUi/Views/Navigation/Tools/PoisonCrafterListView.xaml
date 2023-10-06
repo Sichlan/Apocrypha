@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
              xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
              xmlns:customControls="clr-namespace:Apocrypha.ModernUi.CustomControls"
+             xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance Type=tools:PoisonCrafterListViewModel}">
@@ -20,9 +21,9 @@
         </Grid.RowDefinitions>
         
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Margin="5" MinWidth="100" Content="NEW TEMP" Command="{Binding NavigateToPageCommand}" CommandParameter="{x:Type tools:PoisonCrafterViewModel}"/>
-            <Button Margin="5" MinWidth="100" Content="TEMP UPDATE" Command="{Binding UpdateListCommand}"/>
-            <Button Margin="5" MinWidth="100" Content="TEMP RANDOM" Command="{Binding GenerateRandomPoisonCommand}"/>
+            <Button Margin="5" MinWidth="100" Content="{x:Static res:Localization.ButtonLabelNewPoison}" Command="{Binding NavigateToPageCommand}" CommandParameter="{x:Type tools:PoisonCrafterViewModel}"/>
+            <Button Margin="5" MinWidth="100" Content="{x:Static res:Localization.ButtonLabelReload}" Command="{Binding UpdateListCommand}"/>
+            <!-- <Button Margin="5" MinWidth="100" Content="TEMP RANDOM" Command="{Binding GenerateRandomPoisonCommand}"/> -->
         </StackPanel>
         
         <Separator Grid.Row="1" Margin="5"/>

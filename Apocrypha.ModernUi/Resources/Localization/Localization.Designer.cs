@@ -96,6 +96,60 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string ButtonLabelLogin {
+            get {
+                return ResourceManager.GetString("ButtonLabelLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string ButtonLabelLogout {
+            get {
+                return ResourceManager.GetString("ButtonLabelLogout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New poison.
+        /// </summary>
+        public static string ButtonLabelNewPoison {
+            get {
+                return ResourceManager.GetString("ButtonLabelNewPoison", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not logged in.
+        /// </summary>
+        public static string ButtonLabelNotLoggedIn {
+            get {
+                return ResourceManager.GetString("ButtonLabelNotLoggedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string ButtonLabelRegister {
+            get {
+                return ResourceManager.GetString("ButtonLabelRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reload.
+        /// </summary>
+        public static string ButtonLabelReload {
+            get {
+                return ResourceManager.GetString("ButtonLabelReload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         public static string ButtonLabelReset {
@@ -173,6 +227,42 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string HomeViewModelTitle {
             get {
                 return ResourceManager.GetString("HomeViewModelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm password.
+        /// </summary>
+        public static string InputHintConfirmPassword {
+            get {
+                return ResourceManager.GetString("InputHintConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string InputHintEmail {
+            get {
+                return ResourceManager.GetString("InputHintEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string InputHintPassword {
+            get {
+                return ResourceManager.GetString("InputHintPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string InputHintUsername {
+            get {
+                return ResourceManager.GetString("InputHintUsername", resourceCulture);
             }
         }
         
@@ -366,6 +456,15 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Poison List.
+        /// </summary>
+        public static string PoisonCrafterListViewModelTitle {
+            get {
+                return ResourceManager.GetString("PoisonCrafterListViewModelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Poison crafter.
         /// </summary>
         public static string PoisonCrafterViewModelTitle {
@@ -389,6 +488,24 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string RaceListViewModel {
             get {
                 return ResourceManager.GetString("RaceListViewModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string TabLabelLogin {
+            get {
+                return ResourceManager.GetString("TabLabelLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string TabLabelRegister {
+            get {
+                return ResourceManager.GetString("TabLabelRegister", resourceCulture);
             }
         }
         

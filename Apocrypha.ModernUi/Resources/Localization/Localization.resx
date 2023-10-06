@@ -137,4 +137,43 @@
     <data name="InputLabelPoisonSpecialEffect" xml:space="preserve">
         <value>Special effect</value>
     </data>
+    <data name="PoisonCrafterListViewModelTitle" xml:space="preserve">
+        <value>Poison List</value>
+    </data>
+    <data name="ButtonLabelNewPoison" xml:space="preserve">
+        <value>New poison</value>
+    </data>
+    <data name="ButtonLabelReload" xml:space="preserve">
+        <value>Reload</value>
+    </data>
+    <data name="InputHintUsername" xml:space="preserve">
+        <value>Username</value>
+    </data>
+    <data name="InputHintEmail" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="InputHintPassword" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="InputHintConfirmPassword" xml:space="preserve">
+        <value>Confirm password</value>
+    </data>
+    <data name="TabLabelLogin" xml:space="preserve">
+        <value>Login</value>
+    </data>
+    <data name="TabLabelRegister" xml:space="preserve">
+        <value>Register</value>
+    </data>
+    <data name="ButtonLabelLogin" xml:space="preserve">
+        <value>Login</value>
+    </data>
+    <data name="ButtonLabelRegister" xml:space="preserve">
+        <value>Register</value>
+    </data>
+    <data name="ButtonLabelLogout" xml:space="preserve">
+        <value>Logout</value>
+    </data>
+    <data name="ButtonLabelNotLoggedIn" xml:space="preserve">
+        <value>Not logged in</value>
+    </data>
 </root>

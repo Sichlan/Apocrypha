@@ -64,10 +64,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public int Id
     {
-        get
-        {
-            return _id;
-        }
+        get => _id;
         set
         {
             if (value == _id)
@@ -80,10 +77,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public string Name
     {
-        get
-        {
-            return _name;
-        }
+        get => _name;
         set
         {
             if (value == _name)
@@ -98,10 +92,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public string Description
     {
-        get
-        {
-            return _description;
-        }
+        get => _description;
         set
         {
             if (value == _description)
@@ -114,10 +105,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public int? DeliveryMethodId
     {
-        get
-        {
-            return _selectedDeliveryMethodId;
-        }
+        get => _selectedDeliveryMethodId;
         set
         {
             if (Equals(value, _selectedDeliveryMethodId))
@@ -130,10 +118,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public int? CreatorId
     {
-        get
-        {
-            return _creatorId;
-        }
+        get => _creatorId;
         set
         {
             if (value == _creatorId)
@@ -146,10 +131,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public int Toxicity
     {
-        get
-        {
-            return _toxicity;
-        }
+        get => _toxicity;
         set
         {
             if (value == _toxicity)
@@ -165,10 +147,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public ObservableCollection<PoisonPhaseViewModel> PoisonPhases
     {
-        get
-        {
-            return _poisonPhases;
-        }
+        get => _poisonPhases;
         set
         {
             if (Equals(value, _poisonPhases))
@@ -202,10 +181,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public ObservableCollection<PoisonDeliveryMethod> PoisonDeliveryMethods
     {
-        get
-        {
-            return _poisonDeliveryMethods;
-        }
+        get => _poisonDeliveryMethods;
         private set
         {
             _poisonDeliveryMethods = value;
@@ -214,13 +190,8 @@ public class PoisonCrafterViewModel : NavigableViewModel
         }
     }
 
-    public int? ToxicityDifficultyClass
-    {
-        get
-        {
-            return Toxicity - 10;
-        }
-    }
+    public int? ToxicityDifficultyClass =>
+        Toxicity - 10;
 
     public ISaveDataCommand<PoisonCrafterViewModel, Poison> SavePoisonCommand { get; set; }
     public ICommand CancelPoisonCommand { get; }
@@ -263,21 +234,11 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         }
     }
 
-    public double CraftingCost
-    {
-        get
-        {
-            return MarketPrice * 0.75;
-        }
-    }
+    public double CraftingCost =>
+        MarketPrice * 0.75;
 
-    public bool CanUserEditPoison
-    {
-        get
-        {
-            return CreatorId == null || (_userStore.CurrentUser?.Id == CreatorId);
-        }
-    }
+    public bool CanUserEditPoison =>
+        CreatorId == null || (_userStore.CurrentUser?.Id == CreatorId);
 
     public PoisonCrafterViewModel(NavigateToPageCommand navigateToPageCommand,
         IDataService<Poison> poisonDataService,

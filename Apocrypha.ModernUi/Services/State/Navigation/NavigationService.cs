@@ -15,10 +15,7 @@ public class NavigationService : INavigationService
 
     public NavigableViewModel ActiveViewModel
     {
-        get
-        {
-            return _activeViewModel;
-        }
+        get => _activeViewModel;
         private set
         {
             _activeViewModel = value;

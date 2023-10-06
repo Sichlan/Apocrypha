@@ -9,6 +9,7 @@ using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.Randomizer;
 using Apocrypha.ModernUi.Services.State.Users;
 using CommunityToolkit.Mvvm.Input;
+using Localization = Apocrypha.ModernUi.Resources.Localization.Localization;
 
 namespace Apocrypha.ModernUi.ViewModels.Navigation.Tools;
 
@@ -22,12 +23,11 @@ public class PoisonCrafterListViewModel : NavigableViewModel
     private ObservableCollection<PoisonCrafterViewModel> _poisonCrafterViewModels;
     private bool _isLoading;
 
+    public override string ViewModelTitle => Localization.PoisonCrafterListViewModelTitle;
+
     public ObservableCollection<PoisonCrafterViewModel> PoisonCrafterViewModels
     {
-        get
-        {
-            return _poisonCrafterViewModels;
-        }
+        get => _poisonCrafterViewModels;
         set
         {
             if (Equals(value, _poisonCrafterViewModels))
@@ -40,10 +40,7 @@ public class PoisonCrafterListViewModel : NavigableViewModel
 
     public bool IsLoading
     {
-        get
-        {
-            return _isLoading;
-        }
+        get => _isLoading;
         set
         {
             if (value == _isLoading)
@@ -87,18 +84,11 @@ public class PoisonCrafterListViewModel : NavigableViewModel
         return true;
     }
 
-    private void ExecuteGenerateRandomPoisonCommand()
+    private async void ExecuteGenerateRandomPoisonCommand()
     {
-        Task.Run(async () =>
-        {
-            IsLoading = true;
-
-            var poison = await _poisonRandomizerService.GenerateRandomPoison();
-            var viewModel = _poisonCrafterViewModelBuilder(poison);
-            NavigateToPageCommand.Execute(viewModel);
-
-            IsLoading = false;
-        });
+        var poison = await _poisonRandomizerService.GenerateRandomPoison();
+        var viewModel = _poisonCrafterViewModelBuilder(poison);
+        NavigateToPageCommand.Execute(viewModel);
     }
 
     private bool CanExecuteDeletePoisonCommand(PoisonCrafterViewModel obj)

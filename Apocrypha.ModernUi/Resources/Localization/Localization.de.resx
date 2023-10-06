@@ -129,4 +129,43 @@
     <data name="InputLabelPoisonSpecialEffect" xml:space="preserve">
         <value>Besondere Eigenschaft</value>
     </data>
+    <data name="PoisonCrafterListViewModelTitle" xml:space="preserve">
+        <value>Giftliste</value>
+    </data>
+    <data name="ButtonLabelNewPoison" xml:space="preserve">
+        <value>Neues Gift</value>
+    </data>
+    <data name="ButtonLabelReload" xml:space="preserve">
+        <value>Neu laden</value>
+    </data>
+    <data name="InputHintUsername" xml:space="preserve">
+        <value>Benutzername</value>
+    </data>
+    <data name="InputHintEmail" xml:space="preserve">
+        <value>E-Mail</value>
+    </data>
+    <data name="InputHintPassword" xml:space="preserve">
+        <value>Passwort</value>
+    </data>
+    <data name="InputHintConfirmPassword" xml:space="preserve">
+        <value>Passwort bestätigen</value>
+    </data>
+    <data name="TabLabelLogin" xml:space="preserve">
+        <value>Anmelden</value>
+    </data>
+    <data name="TabLabelRegister" xml:space="preserve">
+        <value>Registrieren</value>
+    </data>
+    <data name="ButtonLabelLogin" xml:space="preserve">
+        <value>Anmelden</value>
+    </data>
+    <data name="ButtonLabelRegister" xml:space="preserve">
+        <value>Registrieren</value>
+    </data>
+    <data name="ButtonLabelLogout" xml:space="preserve">
+        <value>Abmelden</value>
+    </data>
+    <data name="ButtonLabelNotLoggedIn" xml:space="preserve">
+        <value>Nicht angemeldet</value>
+    </data>
 </root>

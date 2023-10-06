@@ -21,6 +21,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
@@ -32,7 +33,7 @@
                     CommandParameter="{Binding}"/>
         </StackPanel>
         
-        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"/>
+        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"/>
 
         <ScrollViewer Grid.Row="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <Grid IsEnabled="{Binding CanUserEditPoison}">
@@ -73,7 +74,7 @@
                 <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding ToxicityDifficultyClass, StringFormat=+0;-#}"
                            VerticalAlignment="Center" Margin="5" />
 
-                <GroupBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Header="{x:Static res:Localization.HeaderLabelPoisonPhases}">
+                <GroupBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Header="{x:Static res:Localization.HeaderLabelPoisonPhases}" Margin="5">
                     <StackPanel Orientation="Vertical">
                         <ItemsControl ItemsSource="{Binding PoisonPhases}"
                                       Grid.IsSharedSizeScope="True"/>
@@ -89,7 +90,7 @@
         <Separator Grid.Row="2" Grid.Column="1" Margin="5" Style="{StaticResource VerticalSeparatorStyle}"/>
         
         <GroupBox Grid.Row="2" Grid.Column="2" Margin="5" Header="{x:Static res:Localization.HeaderLabelPoisonSummary}">
-            <TextBox Margin="5" Text="{Binding Summary, Mode=OneWay}" IsReadOnly="True"/>
+            <TextBox Text="{Binding Summary, Mode=OneWay}" IsReadOnly="True"/>
         </GroupBox>
     </Grid>
 </UserControl>
