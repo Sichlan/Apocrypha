@@ -1,10 +1,10 @@
 ﻿using System;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
-using Apocrypha.ModernUi.Services;
 using Apocrypha.ModernUi.Services.Randomizer;
 using Apocrypha.ModernUi.Services.State.Authenticators;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.State.Users;
+using Apocrypha.ModernUi.Services.UserInformationService;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

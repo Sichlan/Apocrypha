@@ -9,9 +9,9 @@
         xmlns:viewModels="clr-namespace:Apocrypha.ModernUi.ViewModels"
         xmlns:navigationViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
         xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
-        xmlns:editor="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
-        xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
-        xmlns:users="clr-namespace:Apocrypha.ModernUi.Views.Display.Users"
+        xmlns:users="clr-namespace:Apocrypha.ModernUi.Views.Users"
+        xmlns:editor="clr-namespace:Apocrypha.ModernUi.ViewModels.Editor"
+        xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:TitleBar.ExtendViewIntoTitleBar="True"
         ui:TitleBar.IsBackButtonVisible="False"
@@ -38,6 +38,7 @@
         <Style x:Key="AppTitleBarButtonStyle" TargetType="ui:TitleBarButton">
             <Setter Property="IsActive" Value="{Binding IsActive, ElementName=Window}" />
         </Style>
+        <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
         <Style x:Key="AppTitleBarBackButtonStyle" TargetType="ui:TitleBarButton" BasedOn="{StaticResource TitleBarBackButtonStyle}">
             <Setter Property="IsActive" Value="{Binding IsActive, ElementName=Window}" />
         </Style>

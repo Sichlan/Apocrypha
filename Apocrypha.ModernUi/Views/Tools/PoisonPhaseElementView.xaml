@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="Apocrypha.ModernUi.Views.Tools.PoisonPhaseElementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
+             xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance tools:PoisonPhaseElementViewModel}">
+    <Border BorderThickness="0,2"
+            BorderBrush="{DynamicResource SystemControlForegroundBaseHighBrush}">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Center" Text="{x:Static res:Localization.InputLabelPoisonDamage}" />
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Text="{x:Static res:Localization.InputLabelPoisonCondition}" />
+            <TextBlock Grid.Row="3" Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Text="{x:Static res:Localization.InputLabelPoisonSpecialEffect}" />
+            
+            <Button Grid.Row="1" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetDamageCommand}" Margin="5" Padding="2"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetConditionCommand}" Margin="5" Padding="2"/>
+            <Button Grid.Row="3" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetEffectCommand}" Margin="5" Padding="2"/>
+
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" MinWidth="25" 
+                         Text="{Binding DamageDiceCount}"
+                         Margin="5" />
+                <TextBlock Grid.Column="1" Text="d" 
+                           VerticalAlignment="Center" 
+                           Margin="5" />
+                <TextBox Grid.Column="2" MinWidth="25" 
+                         Text="{Binding DamageDiceSize}"
+                         Margin="5" />
+            </Grid>
+            <ComboBox Grid.Row="1" Grid.Column="3" 
+                      ItemsSource="{Binding PoisonDamageTargets}"
+                      SelectedItem="{Binding SelectedPoisonDamageTarget}"
+                      Margin="5" DisplayMemberPath="Name" />
+
+            <ComboBox Grid.Row="2" Grid.Column="2"
+                      ItemsSource="{Binding Conditions}"
+                      SelectedItem="{Binding SelectedCondition}"
+                      Margin="5" DisplayMemberPath="Name" 
+                      />
+            <ComboBox Grid.Row="2" Grid.Column="3" 
+                      ItemsSource="{Binding PoisonDurations}"
+                      SelectedItem="{Binding SelectedPoisonDuration}"
+                      Margin="5" DisplayMemberPath="AsString">
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                Binding="{Binding SelectedCondition.WithoutDuration}"
+                                Value="True">
+                                <Setter Property="IsEnabled"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+            
+            <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"
+                      ItemsSource="{Binding PoisonSpecialEffects}"
+                      SelectedItem="{Binding SelectedPoisonSpecialEffect}"
+                      Margin="5" DisplayMemberPath="Name" HorizontalAlignment="Stretch"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="4"
+                       Text="{Binding DamageCraftDcModifier}" 
+                       Margin="5" />
+            <TextBlock Grid.Row="2" Grid.Column="4"
+                       Text="{Binding ConditionCraftDcModifier}" 
+                       Margin="5" />
+            <TextBlock Grid.Row="3" Grid.Column="4"
+                       Text="{Binding SelectedPoisonSpecialEffect.CraftModifier, FallbackValue=0}" 
+                       Margin="5" />
+        </Grid>
+    </Border>
+</UserControl>

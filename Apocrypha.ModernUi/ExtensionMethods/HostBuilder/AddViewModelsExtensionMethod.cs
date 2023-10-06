@@ -9,10 +9,10 @@ using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels;
-using Apocrypha.ModernUi.ViewModels.Display.Users;
+using Apocrypha.ModernUi.ViewModels.Editor;
 using Apocrypha.ModernUi.ViewModels.Navigation;
-using Apocrypha.ModernUi.ViewModels.Navigation.Editor;
-using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
+using Apocrypha.ModernUi.ViewModels.Tools;
+using Apocrypha.ModernUi.ViewModels.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -34,11 +34,11 @@ public static class AddViewModelsExtensionMethod
             // Editor
             services.AddScoped<EditorHomeViewModel>();
             services.AddScoped<RaceEditorListViewModel>();
-            services.AddTransient<RaceEditorViewModel>(s => CreateRaceEditorViewModel(s, null));
+            services.AddTransient(s => CreateRaceEditorViewModel(s, null));
 
             // Tools
             services.AddScoped<PoisonCrafterListViewModel>();
-            services.AddTransient<PoisonCrafterViewModel>(s => CreatePoisonCrafterViewModel(s, null));
+            services.AddTransient(s => CreatePoisonCrafterViewModel(s, null));
 
             services.AddScoped(s => new MainViewModel(s.GetRequiredService<NavigateBackwardsCommand>(),
                 s.GetRequiredService<NavigateForwardsCommand>(),

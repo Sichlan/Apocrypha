@@ -7,7 +7,7 @@ using Apocrypha.ModernUi.ViewModels.Common;
 
 namespace Apocrypha.ModernUi.Helpers.Commands.SaveData;
 
-public class SaveDataCommand<TViewModel, TModel> : ISaveDataCommand<TViewModel, TModel>
+public class SaveDataCommand<TViewModel, TModel> : ISaveDataCommand
     where TViewModel : BaseViewModel
     where TModel : DatabaseObject, new()
 {

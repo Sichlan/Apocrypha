@@ -4,8 +4,8 @@ using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.ViewModels.Common;
-using Apocrypha.ModernUi.ViewModels.Display.Users;
 using Apocrypha.ModernUi.ViewModels.Navigation;
+using Apocrypha.ModernUi.ViewModels.Users;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Hosting;
 
@@ -75,7 +75,7 @@ public class MainViewModel : BaseViewModel
         };
 
         UserPopupViewModel = userPopupViewModel;
-        UserPopupViewModel.PropertyChanged += (sender, args) =>
+        UserPopupViewModel.PropertyChanged += (_, args) =>
         {
             if (args.PropertyName == nameof(UserPopupViewModel.CurrentUser))
             {

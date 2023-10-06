@@ -8,8 +8,7 @@ using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.State.Users;
-using Apocrypha.ModernUi.ViewModels.Display.Tools;
-using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
+using Apocrypha.ModernUi.ViewModels.Tools;
 
 namespace Apocrypha.ModernUi.Services.ViewModelConverter;
 

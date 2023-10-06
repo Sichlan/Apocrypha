@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
-using Apocrypha.ModernUi.ViewModels.Display.Tools;
+using Apocrypha.ModernUi.ViewModels.Tools;
 
 namespace Apocrypha.ModernUi.Services.ViewModelConverter;
 
@@ -32,6 +32,8 @@ public class PoisonPhaseElementViewModelConverter : IViewModelConverter<PoisonPh
 
     public async Task<PoisonPhaseElementViewModel> ToViewModel(PoisonPhaseElement model)
     {
+        await Task.CompletedTask;
+
         return new PoisonPhaseElementViewModel(_conditions, _poisonDurations, _poisonDamageTargets, _poisonSpecialEffects)
         {
             Id = model.Id,
