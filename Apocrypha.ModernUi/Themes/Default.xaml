@@ -3,15 +3,13 @@
                     xmlns:ui="http://schemas.modernwpf.com/2019"
                     xmlns:navigationViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
                     xmlns:navigation="clr-namespace:Apocrypha.ModernUi.Views.Navigation"
-                    xmlns:userViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Display.Users"
-                    xmlns:users="clr-namespace:Apocrypha.ModernUi.Views.Display.Users"
-                    xmlns:editorViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Editor"
-                    xmlns:editor="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Editor"
-                    xmlns:toolsViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation.Tools"
-                    xmlns:tools="clr-namespace:Apocrypha.ModernUi.Views.Navigation.Tools"
-                    xmlns:toolsDisplayViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Display.Tools"
-                    xmlns:tools1="clr-namespace:Apocrypha.ModernUi.Views.Display.Tools"
-                    xmlns:presets="clr-namespace:Apocrypha.ModernUi.Themes.Presets">
+                    xmlns:presets="clr-namespace:Apocrypha.ModernUi.Themes.Presets"
+                    xmlns:userViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Users"
+                    xmlns:users="clr-namespace:Apocrypha.ModernUi.Views.Users"
+                    xmlns:editorViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Editor"
+                    xmlns:editor="clr-namespace:Apocrypha.ModernUi.Views.Editor"
+                    xmlns:toolsViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools"
+                    xmlns:tools="clr-namespace:Apocrypha.ModernUi.Views.Tools">
     <ResourceDictionary.MergedDictionaries>
         <ui:ThemeResources CanBeAccessedAcrossThreads="True">
             <ui:ThemeResources.ThemeDictionaries>
@@ -34,12 +32,6 @@
                     <SolidColorBrush x:Key="AppContentBackgroundBrush" Color="#FF282828" />
                     <SolidColorBrush x:Key="CustomThemeBrush" Color="Yellow" />
                 </ResourceDictionary>
-
-                <ResourceDictionary x:Key="HighContrast" ui:ThemeDictionary.Key="HighContrast">
-                    <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="Presets/Default/HighContrast.xaml" />
-                    </ResourceDictionary.MergedDictionaries>
-                </ResourceDictionary>
             </ui:ThemeResources.ThemeDictionaries>
         </ui:ThemeResources>
         
@@ -56,10 +48,18 @@
     <DataTemplate DataType="{x:Type navigationViewModels:TestViewModel}">
         <navigation:TestView/>
     </DataTemplate>
-    
+
+    <!--#region User Interaction-->
     <DataTemplate DataType="{x:Type userViewModels:UserPopupViewModel}">
-        <users:UserPopupView/>
+        <users:UserPopupView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type userViewModels:UserMessageViewModel}">
+        <users:UserMessageView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type userViewModels:SettingsViewModel}">
+        <users:SettingsView />
+    </DataTemplate>
+    <!--#endregion-->
     
     <!--#region Editor-->
     <DataTemplate DataType="{x:Type editorViewModels:EditorHomeViewModel}">
@@ -80,11 +80,11 @@
     <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterViewModel}">
         <tools:PoisonCrafterView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type toolsDisplayViewModels:PoisonPhaseViewModel}">
-        <tools1:PoisonPhaseView/>
+    <DataTemplate DataType="{x:Type toolsViewModels:PoisonPhaseViewModel}">
+        <tools:PoisonPhaseView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type toolsDisplayViewModels:PoisonPhaseElementViewModel}">
-        <tools1:PoisonPhaseElementView/>
+    <DataTemplate DataType="{x:Type toolsViewModels:PoisonPhaseElementViewModel}">
+        <tools:PoisonPhaseElementView/>
     </DataTemplate>
     <!--#endregion-->
 </ResourceDictionary>

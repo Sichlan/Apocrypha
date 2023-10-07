@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Apocrypha.ModernUi.ViewModels;
+using Apocrypha.ModernUi.ViewModels.Users;
 using ModernWpf;
 using ModernWpf.Controls;
 
@@ -68,8 +69,7 @@ namespace Apocrypha.ModernUi
         {
             if (args.IsSettingsInvoked)
             {
-                //TODO: Fix this
-                // Navigate(typeof(SettingsPage));
+                Navigate(typeof(SettingsViewModel));
             }
             else
             {

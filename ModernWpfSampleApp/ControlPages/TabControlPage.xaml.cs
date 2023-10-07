@@ -39,7 +39,7 @@ namespace ModernWpfSampleApp.ControlPages
             // The content of the tab is often a frame that contains a page, though it could be any UIElement.
             Frame frame = new Frame();
 
-            frame.Navigated += (s, e) =>
+            frame.Navigated += (_, _) =>
             {
                 ((FrameworkElement)frame.Content).Margin = new Thickness(-18, 0, -18, 0);
             };

@@ -39,6 +39,7 @@ public class PoisonRandomizerService : IPoisonRandomizerService
             {
                 var element = new PoisonPhaseElement()
                 {
+                    //todo
                 };
 
                 phaseElements.Add(element);

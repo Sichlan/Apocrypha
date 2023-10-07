@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:navigation="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance navigation:TestViewModel, IsDesignTimeCreatable=True}">
-    <Grid Background="DeepPink" MinWidth="300" MinHeight="300" />
+    <WrapPanel MinWidth="300" MinHeight="300" Orientation="Horizontal">
+        <Button Content="TEST MESSAGE" Command="{Binding SendUserTestMessageCommand}" Margin="5"/>
+    </WrapPanel>
 </UserControl>

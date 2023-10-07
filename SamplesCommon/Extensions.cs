@@ -26,7 +26,7 @@ namespace SamplesCommon
         {
             var command = new RoutedCommand {InputGestures = {keyGesture}};
             button.Command = command;
-            button.CommandBindings.Add(new CommandBinding(command, null, (s, e) => e.CanExecute = true));
+            button.CommandBindings.Add(new CommandBinding(command, null, (_, e) => e.CanExecute = true));
         }
 
         public static void SealValues(this ResourceDictionary rd)

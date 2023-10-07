@@ -21,6 +21,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1"/>
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
         <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5"/>
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0"/>
@@ -46,11 +47,43 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj"/>
-        <ProjectReference Include="..\SamplesCommon\SamplesCommon.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <Page Update="Views\Navigation\HomeView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <!--        <Page Include="Themes\DesignTimeResources.xaml">-->
+        <!--            <SubType>Designer</SubType>-->
+        <!--            <Generator>MSBuild:Compile</Generator>-->
+        <!--            <ContainsDesignTimeResources>true</ContainsDesignTimeResources>-->
+        <!--        </Page>-->
+        <Page Update="Views\Tools\PoisonPhaseView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Views\Tools\PoisonPhaseElementView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Views\Users\UserPopupView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Views\Editor\EditorHomeView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Views\Editor\RaceEditorListView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Views\Editor\RaceEditorView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="Views\Tools\PoisonCrafterListView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Tools\PoisonCrafterView.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
@@ -65,7 +98,32 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
-        <Page Update="Themes\Presets\Default\HighContrast.xaml">
+        <Page Update="Themes\Presets\Forest\Dark.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Themes\Presets\Forest\Light.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Themes\Presets\Lavender\Dark.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Themes\Presets\Lavender\Light.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Themes\Presets\Nighttime\Dark.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Themes\Presets\Nighttime\Light.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
@@ -96,8 +154,13 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
 
-
     </ItemGroup>
 
+
+    <ItemGroup>
+        <Reference Include="Microsoft.Xaml.Behaviors">
+            <HintPath>C:\Users\Vox\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.19\lib\netcoreapp3.0\Microsoft.Xaml.Behaviors.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 
 </Project>

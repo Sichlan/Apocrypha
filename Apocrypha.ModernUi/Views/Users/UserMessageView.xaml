@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="Apocrypha.ModernUi.Views.Users.UserMessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:users="clr-namespace:Apocrypha.ModernUi.ViewModels.Users"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:userInformationService="clr-namespace:Apocrypha.ModernUi.Services.UserInformationService"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:behaviours="clr-namespace:Apocrypha.ModernUi.Helpers.Behaviours"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance users:UserMessageViewModel}"
+             Background="Transparent">
+    <UserControl.Resources>
+        <!--#region Colours-->
+        <Color x:Key="SuccessBackground">#d4edda</Color>
+        <Color x:Key="SuccessForeground">#155724</Color>
+
+        <Color x:Key="InformationBackground">#d1ecf1</Color>
+        <Color x:Key="InformationForeground">#0c5460</Color>
+
+        <Color x:Key="WarningBackground">#fff3cd</Color>
+        <Color x:Key="WarningForeground">#856404</Color>
+
+        <Color x:Key="ErrorBackground">#f8d7da</Color>
+        <Color x:Key="ErrorForeground">#721c24</Color>
+        <!--#endregion-->
+
+        <!--#region Brushes-->
+        <SolidColorBrush x:Key="SuccessBackgroundBrush" Color="{StaticResource SuccessBackground}" />
+        <SolidColorBrush x:Key="SuccessForegroundBrush" Color="{StaticResource SuccessForeground}" />
+
+        <SolidColorBrush x:Key="InformationBackgroundBrush" Color="{StaticResource InformationBackground}" />
+        <SolidColorBrush x:Key="InformationForegroundBrush" Color="{StaticResource InformationForeground}" />
+
+        <SolidColorBrush x:Key="WarningBackgroundBrush" Color="{StaticResource WarningBackground}" />
+        <SolidColorBrush x:Key="WarningForegroundBrush" Color="{StaticResource WarningForeground}" />
+
+        <SolidColorBrush x:Key="ErrorBackgroundBrush" Color="{StaticResource ErrorBackground}" />
+        <SolidColorBrush x:Key="ErrorForegroundBrush" Color="{StaticResource ErrorForeground}" />
+        <!--#endregion-->
+        
+        <Style TargetType="{x:Type ProgressBar}" x:Key="UserMessageProgressBarStyle" BasedOn="{StaticResource {x:Type ProgressBar}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DeleteAfter}" Value="0">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Error}">
+                    <Setter Property="Foreground" Value="{StaticResource ErrorForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ErrorBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Warning}">
+                    <Setter Property="Foreground" Value="{StaticResource WarningForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource WarningBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Success}">
+                    <Setter Property="Foreground" Value="{StaticResource SuccessForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource SuccessBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Information}">
+                    <Setter Property="Foreground" Value="{StaticResource InformationForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource InformationBackgroundBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Error}">
+                    <Setter Property="Foreground" Value="{StaticResource ErrorForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ErrorBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Warning}">
+                    <Setter Property="Foreground" Value="{StaticResource WarningForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource WarningBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Success}">
+                    <Setter Property="Foreground" Value="{StaticResource SuccessForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource SuccessBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Information}">
+                    <Setter Property="Foreground" Value="{StaticResource InformationForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource InformationBackgroundBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="{x:Type Button}" x:Key="ButtonStyle" BasedOn="{StaticResource {x:Type Button}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Error}">
+                    <Setter Property="Foreground" Value="{StaticResource ErrorForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ErrorBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Warning}">
+                    <Setter Property="Foreground" Value="{StaticResource WarningForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource WarningBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Success}">
+                    <Setter Property="Foreground" Value="{StaticResource SuccessForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource SuccessBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Information}">
+                    <Setter Property="Foreground" Value="{StaticResource InformationForegroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource InformationBackgroundBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="{x:Type Border}" x:Key="BorderStyle">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Error}">
+                    <Setter Property="Background" Value="{StaticResource ErrorBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Warning}">
+                    <Setter Property="Background" Value="{StaticResource WarningBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Success}">
+                    <Setter Property="Background" Value="{StaticResource SuccessBackgroundBrush}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding InformationType}" Value="{x:Static userInformationService:InformationType.Information}">
+                    <Setter Property="Background" Value="{StaticResource InformationBackgroundBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border BorderThickness="0" CornerRadius="2" Style="{StaticResource BorderStyle}">
+        <Grid Margin="2" Width="300">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding MessageHeader}" Margin="2" VerticalAlignment="Center" 
+                           Style="{StaticResource TextBlockStyle}" FontWeight="SemiBold"/>
+                <Button Grid.Column="1" Command="{Binding RemoveMessageCommand}" fa:Awesome.Content="Close"
+                        FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" Margin="2"
+                        FontSize="12"
+                        VerticalAlignment="Center" Style="{StaticResource ButtonStyle}"/>
+            </Grid>
+            
+            <StackPanel Grid.Row="1">
+                <StackPanel.Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding MessageContent}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                
+                <TextBlock x:Name="TextMessageDetails" Text="{Binding MessageContent}" 
+                           Visibility="Collapsed" Margin="2,2,2,0" Style="{StaticResource TextBlockStyle}"/>
+                <Button Content="TEMP SHOW DETAILS" Margin="2,0" FontSize="10" Padding="2" Click="ButtonDetailsOnClick" 
+                        Style="{StaticResource ButtonStyle}"/>
+            </StackPanel>
+            
+            <ProgressBar Grid.Row="2" Minimum="0" Style="{StaticResource UserMessageProgressBarStyle}"
+                         Maximum="{Binding DeleteAfter}"
+                         Value="{Binding TimeRemaining, Mode=OneWay}"
+                         FlowDirection="RightToLeft">
+                <b:Interaction.Behaviors>
+                    <behaviours:ProgressBarAnimationBehaviour AnimationDuration="90"/>
+                </b:Interaction.Behaviors>
+            </ProgressBar>
+        </Grid></Border>
+</UserControl>

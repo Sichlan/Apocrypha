@@ -7,12 +7,13 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
+using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels;
-using Apocrypha.ModernUi.ViewModels.Display.Users;
+using Apocrypha.ModernUi.ViewModels.Editor;
 using Apocrypha.ModernUi.ViewModels.Navigation;
-using Apocrypha.ModernUi.ViewModels.Navigation.Editor;
-using Apocrypha.ModernUi.ViewModels.Navigation.Tools;
+using Apocrypha.ModernUi.ViewModels.Tools;
+using Apocrypha.ModernUi.ViewModels.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -31,25 +32,31 @@ public static class AddViewModelsExtensionMethod
             // Popups
             services.AddScoped<UserPopupViewModel>();
 
+            // Settings
+            services.AddScoped<SettingsViewModel>();
+
             // Editor
             services.AddScoped<EditorHomeViewModel>();
             services.AddScoped<RaceEditorListViewModel>();
-            services.AddTransient<RaceEditorViewModel>(s => CreateRaceEditorViewModel(s, null));
+            services.AddTransient(s => CreateRaceEditorViewModel(s, null));
 
             // Tools
             services.AddScoped<PoisonCrafterListViewModel>();
-            services.AddTransient<PoisonCrafterViewModel>(s => CreatePoisonCrafterViewModel(s, null));
+            services.AddTransient(s => CreatePoisonCrafterViewModel(s, null));
 
             services.AddScoped(s => new MainViewModel(s.GetRequiredService<NavigateBackwardsCommand>(),
                 s.GetRequiredService<NavigateForwardsCommand>(),
                 s.GetRequiredService<HomeViewModel>(),
                 s.GetRequiredService<INavigationService>(),
                 s.GetRequiredService<IHost>(),
-                s.GetRequiredService<UserPopupViewModel>()));
+                s.GetRequiredService<UserPopupViewModel>(),
+                s.GetRequiredService<IUserInformationMessageService>()));
 
             // Creator Delegates
             services.AddSingleton<CreateRaceEditorViewModel>(s => race => CreateRaceEditorViewModel(s, race));
             services.AddSingleton<CreatePoisonCrafterViewModel>(s => poison => CreatePoisonCrafterViewModel(s, poison));
+            services.AddSingleton<CreateUserMessageViewModel>(s =>
+                (message, type, after, details) => CreateUserMessageViewModel(s, message, type, after, details));
 
             // Add main window so it can be resolved in App.xaml.cs
             services.AddScoped<MainWindow>();
@@ -80,5 +87,11 @@ public static class AddViewModelsExtensionMethod
                 .ToViewModel(poison)));
 
         return viewModel;
+    }
+
+    private static UserMessageViewModel CreateUserMessageViewModel(IServiceProvider s, string message, InformationType type, int? after, string details)
+    {
+        return new UserMessageViewModel(message, type, after, details,
+            s.GetRequiredService<IUserInformationMessageService>());
     }
 }
