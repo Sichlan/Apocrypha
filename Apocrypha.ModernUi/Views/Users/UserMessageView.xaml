@@ -9,7 +9,6 @@
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:behaviours="clr-namespace:Apocrypha.ModernUi.Helpers.Behaviours"
              mc:Ignorable="d"
-             d:DesignHeight="50" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance users:UserMessageViewModel}"
              Background="Transparent">
     <UserControl.Resources>
@@ -128,9 +127,11 @@
     <Border BorderThickness="0" CornerRadius="2" Style="{StaticResource BorderStyle}">
         <Grid Margin="2" Width="300">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -141,9 +142,28 @@
                            Style="{StaticResource TextBlockStyle}" FontWeight="SemiBold"/>
                 <Button Grid.Column="1" Command="{Binding RemoveMessageCommand}" fa:Awesome.Content="Close"
                         FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" Margin="2"
+                        FontSize="12"
                         VerticalAlignment="Center" Style="{StaticResource ButtonStyle}"/>
             </Grid>
-            <ProgressBar Grid.Row="1" Minimum="0" Style="{StaticResource UserMessageProgressBarStyle}"
+            
+            <StackPanel Grid.Row="1">
+                <StackPanel.Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding MessageContent}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                
+                <TextBlock x:Name="TextMessageDetails" Text="{Binding MessageContent}" 
+                           Visibility="Collapsed" Margin="2,2,2,0" Style="{StaticResource TextBlockStyle}"/>
+                <Button Content="TEMP SHOW DETAILS" Margin="2,0" FontSize="10" Padding="2" Click="ButtonDetailsOnClick" 
+                        Style="{StaticResource ButtonStyle}"/>
+            </StackPanel>
+            
+            <ProgressBar Grid.Row="2" Minimum="0" Style="{StaticResource UserMessageProgressBarStyle}"
                          Maximum="{Binding DeleteAfter}"
                          Value="{Binding TimeRemaining, Mode=OneWay}"
                          FlowDirection="RightToLeft">
