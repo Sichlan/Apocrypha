@@ -39,6 +39,7 @@
         
         <ResourceDictionary Source="Converters.xaml"/>
         <ResourceDictionary Source="TextStyles.xaml"/>
+        <ResourceDictionary Source="AvalonTextEditStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/BusyIndicatorStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
@@ -85,6 +86,9 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type toolsViewModels:PoisonPhaseElementViewModel}">
         <tools:PoisonPhaseElementView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type toolsViewModels:DiceRollerViewModel}">
+        <tools:DiceRollerView/>
     </DataTemplate>
     <!--#endregion-->
 </ResourceDictionary>

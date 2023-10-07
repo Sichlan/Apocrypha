@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AvalonEdit" Version="6.3.0.90"/>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="FluentWPF" Version="0.10.2"/>
         <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9"/>
@@ -42,6 +43,9 @@
         </None>
         <None Update="Resources\Images\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\DiceRoll.xshd">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 

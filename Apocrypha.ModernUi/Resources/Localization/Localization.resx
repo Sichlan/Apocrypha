@@ -206,4 +206,16 @@
     <data name="RadioButtonLabelPresetNighttime" xml:space="preserve">
         <value>Nighttime</value>
     </data>
+    <data name="MenuGroupLabelTools" xml:space="preserve">
+        <value>Tools</value>
+    </data>
+    <data name="MenuLabelPoisonCrafter" xml:space="preserve">
+        <value>Poison Crafter</value>
+    </data>
+    <data name="MenuLabelDiceRoller" xml:space="preserve">
+        <value>Dice Roller</value>
+    </data>
+    <data name="DiceRollerViewModelTitle" xml:space="preserve">
+        <value>Dice roller</value>
+    </data>
 </root>

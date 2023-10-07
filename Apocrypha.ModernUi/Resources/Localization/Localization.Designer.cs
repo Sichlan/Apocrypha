@@ -168,6 +168,15 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dice roller.
+        /// </summary>
+        public static string DiceRollerViewModelTitle {
+            get {
+                return ResourceManager.GetString("DiceRollerViewModelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editor - Home.
         /// </summary>
         public static string EditorHomeViewModelTitle {
@@ -470,6 +479,33 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string LabelFortitudeSave {
             get {
                 return ResourceManager.GetString("LabelFortitudeSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        public static string MenuGroupLabelTools {
+            get {
+                return ResourceManager.GetString("MenuGroupLabelTools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dice Roller.
+        /// </summary>
+        public static string MenuLabelDiceRoller {
+            get {
+                return ResourceManager.GetString("MenuLabelDiceRoller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poison Crafter.
+        /// </summary>
+        public static string MenuLabelPoisonCrafter {
+            get {
+                return ResourceManager.GetString("MenuLabelPoisonCrafter", resourceCulture);
             }
         }
         

@@ -41,6 +41,7 @@ public static class AddViewModelsExtensionMethod
             services.AddTransient(s => CreateRaceEditorViewModel(s, null));
 
             // Tools
+            services.AddScoped<DiceRollerViewModel>();
             services.AddScoped<PoisonCrafterListViewModel>();
             services.AddTransient(s => CreatePoisonCrafterViewModel(s, null));
 

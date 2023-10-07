@@ -1,5 +1,6 @@
 ﻿using System;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
+using Apocrypha.CommonObject.Services.DiceRollerServices;
 using Apocrypha.ModernUi.Services.Randomizer;
 using Apocrypha.ModernUi.Services.State.Authenticators;
 using Apocrypha.ModernUi.Services.State.Navigation;
@@ -27,6 +28,7 @@ public static class AddStateConfigurationExtensionMethod
             services.AddSingleton<IAuthenticator, Authenticator>();
 
             services.AddSingleton<Random>();
+            services.AddSingleton<IDiceRollerService, DiceRollerService>();
             services.AddSingleton<IPoisonRandomizerService, PoisonRandomizerService>();
         });
 

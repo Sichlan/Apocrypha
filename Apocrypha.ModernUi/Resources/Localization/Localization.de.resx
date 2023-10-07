@@ -198,4 +198,16 @@
     <data name="RadioButtonLabelPresetNighttime" xml:space="preserve">
         <value>Nachtzeit</value>
     </data>
+    <data name="MenuGroupLabelTools" xml:space="preserve">
+        <value>Werkzeuge</value>
+    </data>
+    <data name="MenuLabelPoisonCrafter" xml:space="preserve">
+        <value>Giftmischer</value>
+    </data>
+    <data name="MenuLabelDiceRoller" xml:space="preserve">
+        <value>Würfelwerkzeug</value>
+    </data>
+    <data name="DiceRollerViewModelTitle" xml:space="preserve">
+        <value>Würfelwerkzeug</value>
+    </data>
 </root>

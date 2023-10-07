@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
+using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Themes.Presets;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using CommunityToolkit.Mvvm.Input;
@@ -10,6 +11,7 @@ namespace Apocrypha.ModernUi.ViewModels.Users;
 
 public class SettingsViewModel : NavigableViewModel
 {
+    public override string ViewModelTitle => Localization.SettingsViewModelTitle;
     public ICommand SwitchThemeCommand { get; }
     public ICommand SwitchPresetCommand { get; }
 

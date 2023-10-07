@@ -151,10 +151,15 @@
                 <ui:NavigationViewItem Icon="Edit" Content="TEMP Home" Tag="{x:Type editor:EditorHomeViewModel}"/>
                 <ui:NavigationViewItem Icon="Contact" Content="TEMP Races" Tag="{x:Type editor:RaceEditorListViewModel}"/>
                 
-                <ui:NavigationViewItemHeader Content="TEMP Tools"/>
-                <ui:NavigationViewItem Content="TEMP Poison Crafter" Tag="{x:Type tools:PoisonCrafterListViewModel}">
+                <ui:NavigationViewItemHeader Content="{x:Static res:Localization.MenuGroupLabelTools}"/>
+                <ui:NavigationViewItem Content="{x:Static res:Localization.MenuLabelPoisonCrafter}" Tag="{x:Type tools:PoisonCrafterListViewModel}">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" Glyph="&#xf0c3;" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="{x:Static res:Localization.MenuLabelDiceRoller}" Tag="{x:Type tools:DiceRollerViewModel}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" Glyph="&#xf2b0;" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
