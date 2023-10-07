@@ -23,6 +23,7 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include="Apocrypha.Setup.wax"/>
+        <Content Include="LicenseAgreement.rtf"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Apocrypha.ModernUi\Apocrypha.ModernUi.csproj">

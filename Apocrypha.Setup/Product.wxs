@@ -8,7 +8,7 @@
 		<MediaTemplate EmbedCab="yes"/>
 
 		<UIRef Id="WixUI_Mondo"/>
-		<WixVariable Id="WixUILicenseRtf" Value="TestLicenseAgreement.rtf"/>
+		<WixVariable Id="WixUILicenseRtf" Value="LicenseAgreement.rtf"/>
 
 		<Feature Id="ProductFeature" Title="Apocrypha" Level="1">
 			<ComponentGroupRef Id="ProductComponents"/>
