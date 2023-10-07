@@ -23,6 +23,8 @@ public static class AddDbContextConfigurationExtensionMethod
             var connectionStringName = "ApocryphaDb";
             var connectionString = context.Configuration.GetConnectionString(connectionStringName);
 
+            connectionString += ";Uid=apocrypha_client;Pwd=lAt:-rTF&]jL97YY{s^z";
+
             if (string.IsNullOrEmpty(connectionString))
                 throw new ArgumentNullException($"Could not resolve a connection string for '{connectionStringName}' from appsettings!");
 
