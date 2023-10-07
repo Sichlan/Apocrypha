@@ -69,7 +69,6 @@ namespace Apocrypha.ModernUi
         {
             if (args.IsSettingsInvoked)
             {
-                //TODO: Fix this
                 Navigate(typeof(SettingsViewModel));
             }
             else
