@@ -1,16 +1,16 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
+using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
+using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.Randomizer;
 using Apocrypha.ModernUi.Services.State.Users;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using CommunityToolkit.Mvvm.Input;
-using Localization = Apocrypha.ModernUi.Resources.Localization.Localization;
 
 namespace Apocrypha.ModernUi.ViewModels.Tools;
 
@@ -73,7 +73,7 @@ public class PoisonCrafterListViewModel : NavigableViewModel
 
         _userStore.StateChange += () =>
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            DispatcherHelper.RunOnMainThread(() =>
             {
                 DeletePoisonCommand.NotifyCanExecuteChanged();
             });

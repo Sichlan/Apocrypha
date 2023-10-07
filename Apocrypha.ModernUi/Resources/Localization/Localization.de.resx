@@ -168,4 +168,34 @@
     <data name="ButtonLabelNotLoggedIn" xml:space="preserve">
         <value>Nicht angemeldet</value>
     </data>
+    <data name="SettingsViewModelTitle" xml:space="preserve">
+        <value>Einstellungen</value>
+    </data>
+    <data name="TabLabelDesign" xml:space="preserve">
+        <value>Darstellung</value>
+    </data>
+    <data name="HeaderLabelTheme" xml:space="preserve">
+        <value>Theme</value>
+    </data>
+    <data name="HeaderLabelPreset" xml:space="preserve">
+        <value>Voreinstellungen</value>
+    </data>
+    <data name="RadioButtonLabelDefault" xml:space="preserve">
+        <value>Standard</value>
+    </data>
+    <data name="RadioButtonLabelThemeLight" xml:space="preserve">
+        <value>Hell</value>
+    </data>
+    <data name="RadioButtonLabelThemeDark" xml:space="preserve">
+        <value>Dunkel</value>
+    </data>
+    <data name="RadioButtonLabelPresetForest" xml:space="preserve">
+        <value>Wald</value>
+    </data>
+    <data name="RadioButtonLabelPresetLavender" xml:space="preserve">
+        <value>Lavendel</value>
+    </data>
+    <data name="RadioButtonLabelPresetNighttime" xml:space="preserve">
+        <value>Nachtzeit</value>
+    </data>
 </root>

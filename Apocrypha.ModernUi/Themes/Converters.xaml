@@ -3,4 +3,5 @@
                     xmlns:converters="clr-namespace:Apocrypha.ModernUi.Helpers.Converters">
     <converters:BooleanInverterConverter x:Key="BooleanInverterConverter"/>
     <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
+    <converters:IsParameterEqualConverter x:Key="IsParameterEqualConverter"/>
 </ResourceDictionary>

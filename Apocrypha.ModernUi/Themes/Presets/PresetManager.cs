@@ -1,9 +1,11 @@
 ﻿using System;
-using SamplesCommon;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Apocrypha.ModernUi.Themes.Presets;
 
-public class PresetManager : BindableBase
+public class PresetManager : INotifyPropertyChanged
 {
     internal const string DefaultPreset = "Default";
 
@@ -24,7 +26,7 @@ public class PresetManager : BindableBase
             if (_colorPreset != value)
             {
                 _colorPreset = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 ColorPresetChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -38,7 +40,7 @@ public class PresetManager : BindableBase
             if (_shapePreset != value)
             {
                 _shapePreset = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 ShapePresetChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -46,4 +48,21 @@ public class PresetManager : BindableBase
 
     public event EventHandler ColorPresetChanged;
     public event EventHandler ShapePresetChanged;
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+    {
+        if (EqualityComparer<T>.Default.Equals(field, value))
+            return false;
+
+        field = value;
+        OnPropertyChanged(propertyName);
+
+        return true;
+    }
 }

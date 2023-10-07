@@ -32,6 +32,9 @@ public static class AddViewModelsExtensionMethod
             // Popups
             services.AddScoped<UserPopupViewModel>();
 
+            // Settings
+            services.AddScoped<SettingsViewModel>();
+
             // Editor
             services.AddScoped<EditorHomeViewModel>();
             services.AddScoped<RaceEditorListViewModel>();

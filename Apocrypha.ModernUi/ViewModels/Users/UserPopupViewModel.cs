@@ -4,6 +4,7 @@ using System.Windows;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
+using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.Services.State.Authenticators;
 using Apocrypha.ModernUi.Services.State.Users;
 using Apocrypha.ModernUi.Services.UserInformationService;
@@ -181,7 +182,7 @@ public class UserPopupViewModel : BaseViewModel
             OnPropertyChanged(nameof(CurrentUser));
             OnPropertyChanged(nameof(HasActiveUser));
 
-            Application.Current.Dispatcher.Invoke(() =>
+            DispatcherHelper.RunOnMainThread(() =>
             {
                 LogoutCommand.NotifyCanExecuteChanged();
             });

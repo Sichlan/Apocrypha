@@ -14,17 +14,17 @@
              Background="Transparent">
     <UserControl.Resources>
         <!--#region Colours-->
-        <Color x:Key="SuccessBackground">#defce6</Color>
-        <Color x:Key="SuccessForeground">#25a149</Color>
+        <Color x:Key="SuccessBackground">#d4edda</Color>
+        <Color x:Key="SuccessForeground">#155724</Color>
 
-        <Color x:Key="InformationBackground">#edf5fe</Color>
-        <Color x:Key="InformationForeground">#0140cd</Color>
+        <Color x:Key="InformationBackground">#d1ecf1</Color>
+        <Color x:Key="InformationForeground">#0c5460</Color>
 
-        <Color x:Key="WarningBackground">#fff8e1</Color>
-        <Color x:Key="WarningForeground">#f2c219</Color>
+        <Color x:Key="WarningBackground">#fff3cd</Color>
+        <Color x:Key="WarningForeground">#856404</Color>
 
-        <Color x:Key="ErrorBackground">#fff1f1</Color>
-        <Color x:Key="ErrorForeground">#da1e28</Color>
+        <Color x:Key="ErrorBackground">#f8d7da</Color>
+        <Color x:Key="ErrorForeground">#721c24</Color>
         <!--#endregion-->
 
         <!--#region Brushes-->
@@ -138,7 +138,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="{Binding MessageHeader}" Margin="2" VerticalAlignment="Center" 
-                           Style="{StaticResource TextBlockStyle}"/>
+                           Style="{StaticResource TextBlockStyle}" FontWeight="SemiBold"/>
                 <Button Grid.Column="1" Command="{Binding RemoveMessageCommand}" fa:Awesome.Content="Close"
                         FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" Margin="2"
                         VerticalAlignment="Center" Style="{StaticResource ButtonStyle}"/>

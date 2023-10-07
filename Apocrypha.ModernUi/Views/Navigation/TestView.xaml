@@ -7,6 +7,6 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance navigation:TestViewModel, IsDesignTimeCreatable=True}">
     <WrapPanel MinWidth="300" MinHeight="300" Orientation="Horizontal">
-        <Button Content="TEMP SEND TEST USER MESSAGE" Command="{Binding SendUserTestMessageCommand}"/>
+        <Button Content="TEST MESSAGE" Command="{Binding SendUserTestMessageCommand}" Margin="5"/>
     </WrapPanel>
 </UserControl>

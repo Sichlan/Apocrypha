@@ -222,6 +222,24 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preset.
+        /// </summary>
+        public static string HeaderLabelPreset {
+            get {
+                return ResourceManager.GetString("HeaderLabelPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string HeaderLabelTheme {
+            get {
+                return ResourceManager.GetString("HeaderLabelTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string HomeViewModelTitle {
@@ -488,6 +506,78 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string RaceListViewModel {
             get {
                 return ResourceManager.GetString("RaceListViewModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string RadioButtonLabelDefault {
+            get {
+                return ResourceManager.GetString("RadioButtonLabelDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest.
+        /// </summary>
+        public static string RadioButtonLabelPresetForest {
+            get {
+                return ResourceManager.GetString("RadioButtonLabelPresetForest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lavender.
+        /// </summary>
+        public static string RadioButtonLabelPresetLavender {
+            get {
+                return ResourceManager.GetString("RadioButtonLabelPresetLavender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nighttime.
+        /// </summary>
+        public static string RadioButtonLabelPresetNighttime {
+            get {
+                return ResourceManager.GetString("RadioButtonLabelPresetNighttime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string RadioButtonLabelThemeDark {
+            get {
+                return ResourceManager.GetString("RadioButtonLabelThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        public static string RadioButtonLabelThemeLight {
+            get {
+                return ResourceManager.GetString("RadioButtonLabelThemeLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsViewModelTitle {
+            get {
+                return ResourceManager.GetString("SettingsViewModelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design.
+        /// </summary>
+        public static string TabLabelDesign {
+            get {
+                return ResourceManager.GetString("TabLabelDesign", resourceCulture);
             }
         }
         

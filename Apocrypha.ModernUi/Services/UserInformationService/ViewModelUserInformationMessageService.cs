@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
+using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.ViewModels.Users;
 
 namespace Apocrypha.ModernUi.Services.UserInformationService;
@@ -63,7 +63,7 @@ public class ViewModelUserInformationMessageService : IUserInformationMessageSer
                 $"{(deleteAfter > 0 ? $"({deleteAfter} sec.)" : "")}" +
                 $"{(!string.IsNullOrEmpty(messageDetails) ? $"\n - {messageDetails}" : "")}");
 
-            Application.Current.Dispatcher.Invoke(() => UserMessageViewModels.Add(_createUserMessageViewModel(message, type, deleteAfter, messageDetails)));
+            DispatcherHelper.RunOnMainThread(() => UserMessageViewModels.Add(_createUserMessageViewModel(message, type, deleteAfter, messageDetails)));
         }));
     }
 
@@ -78,7 +78,7 @@ public class ViewModelUserInformationMessageService : IUserInformationMessageSer
     {
         QueueTask(() => Task.Run(() =>
         {
-            Application.Current.Dispatcher.Invoke(() => UserMessageViewModels.Remove(message));
+            DispatcherHelper.RunOnMainThread(() => UserMessageViewModels.Remove(message));
         }));
     }
 }
