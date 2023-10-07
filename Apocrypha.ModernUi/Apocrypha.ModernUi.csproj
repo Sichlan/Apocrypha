@@ -21,6 +21,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1"/>
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39"/>
         <PackageReference Include="ModernWpfUI" Version="0.9.6"/>
         <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5"/>
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0"/>
@@ -70,6 +71,11 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
+        <!--        <Page Include="Themes\DesignTimeResources.xaml">-->
+        <!--            <SubType>Designer</SubType>-->
+        <!--            <Generator>MSBuild:Compile</Generator>-->
+        <!--            <ContainsDesignTimeResources>true</ContainsDesignTimeResources>-->
+        <!--        </Page>-->
         <Page Update="Views\Tools\PoisonPhaseView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -126,5 +132,11 @@
 
     </ItemGroup>
 
+
+    <ItemGroup>
+        <Reference Include="Microsoft.Xaml.Behaviors">
+            <HintPath>C:\Users\Vox\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.19\lib\netcoreapp3.0\Microsoft.Xaml.Behaviors.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 
 </Project>

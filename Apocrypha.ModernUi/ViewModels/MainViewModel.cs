@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.State.Navigation;
+using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.ViewModels.Common;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using Apocrypha.ModernUi.ViewModels.Users;
@@ -15,6 +17,7 @@ public class MainViewModel : BaseViewModel
 {
     private readonly INavigationService _navigationService;
     private readonly IHost _host;
+    private readonly IUserInformationMessageService _userInformationMessageService;
     private bool _showUserPopup;
     private UserPopupViewModel _userPopupViewModel;
 
@@ -55,16 +58,21 @@ public class MainViewModel : BaseViewModel
     public string CurrentUserName =>
         UserPopupViewModel?.CurrentUser?.Username ?? Localization.ButtonLabelNotLoggedIn;
 
+    public ObservableCollection<UserMessageViewModel> UserMessageViewModels =>
+        _userInformationMessageService.UserMessageViewModels;
+
     // ReSharper disable SuggestBaseTypeForParameterInConstructor
     public MainViewModel(NavigateBackwardsCommand navigateBackwardsCommand,
         NavigateForwardsCommand navigateForwardsCommand,
         NavigableViewModel fallbackStartViewModel,
         INavigationService navigationService,
         IHost host,
-        UserPopupViewModel userPopupViewModel)
+        UserPopupViewModel userPopupViewModel,
+        IUserInformationMessageService userInformationMessageService)
     {
         _navigationService = navigationService;
         _host = host;
+        _userInformationMessageService = userInformationMessageService;
 
         if (_navigationService.ActiveViewModel == null)
             _navigationService.Navigate(fallbackStartViewModel);

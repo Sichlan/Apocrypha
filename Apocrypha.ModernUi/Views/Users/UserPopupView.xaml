@@ -12,7 +12,7 @@
              ui:ThemeManager.IsThemeAware="True"
              Loaded="UserPopupView_OnLoaded">
     <UserControl.Resources>
-        <Style TargetType="{x:Type TabControl}" x:Key="CredentialsTabControlStyle" BasedOn="{StaticResource {x:Type TabControl}}">
+        <Style TargetType="{x:Type TabControl}" x:Key="CredentialsTabControlStyle" BasedOn="{StaticResource TabControlPivotStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding HasActiveUser}" Value="True">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -31,7 +31,8 @@
         <customControls:BusyIndicator IsBusy="{Binding IsBusy}">
             <Grid>
                 <!-- Not logged in -->
-                <TabControl Style="{StaticResource CredentialsTabControlStyle}" MinWidth="100" x:Name="LoginTabControl" Padding="0">
+                <TabControl Style="{StaticResource CredentialsTabControlStyle}" MinWidth="100" 
+                            x:Name="LoginTabControl" Padding="0">
                     <TabItem Header="{x:Static res:Localization.TabLabelLogin}">
                         <StackPanel Orientation="Vertical">
                             <TextBox x:Name="LoginTextBox" Text="{Binding LoginUserName, UpdateSourceTrigger=PropertyChanged}" ui:ControlHelper.PlaceholderText="{x:Static res:Localization.InputHintUsername}" Margin="5"/>

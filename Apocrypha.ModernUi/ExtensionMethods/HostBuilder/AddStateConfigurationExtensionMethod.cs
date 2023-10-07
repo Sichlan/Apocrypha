@@ -21,7 +21,8 @@ public static class AddStateConfigurationExtensionMethod
             services.AddSingleton<IUserStore, UserStore>();
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
-            services.AddSingleton<IUserInformationMessageService, DebugUserInformationMessageService>();
+            // services.AddSingleton<IUserInformationMessageService, DebugUserInformationMessageService>();
+            services.AddSingleton<IUserInformationMessageService, ViewModelUserInformationMessageService>();
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IAuthenticator, Authenticator>();
 

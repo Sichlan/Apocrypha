@@ -23,6 +23,10 @@ public class TestViewModel : NavigableViewModel
 
     private void ExecuteSendUserTestMessageCommand()
     {
-        _userInformationMessageService.AddDisplayMessage("TEST MESSAGE", InformationType.Error, -1, "TEST CONTENT");
+        _userInformationMessageService.AddDisplayMessage("TEST MESSAGE TIMER", InformationType.Error, 10000, "TEST CONTENT");
+        _userInformationMessageService.AddDisplayMessage("TEST MESSAGE TIMER", InformationType.Warning, 10000, "TEST CONTENT");
+        _userInformationMessageService.AddDisplayMessage("TEST MESSAGE TIMER", InformationType.Success, 10000, "TEST CONTENT");
+        _userInformationMessageService.AddDisplayMessage("TEST MESSAGE TIMER", InformationType.Information, 10000, "TEST CONTENT");
+        // _userInformationMessageService.AddDisplayMessage("TEST MESSAGE NO TIMER", InformationType.Error, null, "TEST CONTENT");
     }
 }

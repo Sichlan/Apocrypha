@@ -7,6 +7,7 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
+using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels;
 using Apocrypha.ModernUi.ViewModels.Editor;
@@ -45,11 +46,14 @@ public static class AddViewModelsExtensionMethod
                 s.GetRequiredService<HomeViewModel>(),
                 s.GetRequiredService<INavigationService>(),
                 s.GetRequiredService<IHost>(),
-                s.GetRequiredService<UserPopupViewModel>()));
+                s.GetRequiredService<UserPopupViewModel>(),
+                s.GetRequiredService<IUserInformationMessageService>()));
 
             // Creator Delegates
             services.AddSingleton<CreateRaceEditorViewModel>(s => race => CreateRaceEditorViewModel(s, race));
             services.AddSingleton<CreatePoisonCrafterViewModel>(s => poison => CreatePoisonCrafterViewModel(s, poison));
+            services.AddSingleton<CreateUserMessageViewModel>(s =>
+                (message, type, after, details) => CreateUserMessageViewModel(s, message, type, after, details));
 
             // Add main window so it can be resolved in App.xaml.cs
             services.AddScoped<MainWindow>();
@@ -80,5 +84,11 @@ public static class AddViewModelsExtensionMethod
                 .ToViewModel(poison)));
 
         return viewModel;
+    }
+
+    private static UserMessageViewModel CreateUserMessageViewModel(IServiceProvider s, string message, InformationType type, int? after, string details)
+    {
+        return new UserMessageViewModel(message, type, after, details,
+            s.GetRequiredService<IUserInformationMessageService>());
     }
 }

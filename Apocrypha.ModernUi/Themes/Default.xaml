@@ -54,10 +54,15 @@
     <DataTemplate DataType="{x:Type navigationViewModels:TestViewModel}">
         <navigation:TestView/>
     </DataTemplate>
-    
+
+    <!--#region User Interaction-->
     <DataTemplate DataType="{x:Type userViewModels:UserPopupViewModel}">
-        <users:UserPopupView/>
+        <users:UserPopupView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type userViewModels:UserMessageViewModel}">
+        <users:UserMessageView />
+    </DataTemplate>
+    <!--#endregion-->
     
     <!--#region Editor-->
     <DataTemplate DataType="{x:Type editorViewModels:EditorHomeViewModel}">
