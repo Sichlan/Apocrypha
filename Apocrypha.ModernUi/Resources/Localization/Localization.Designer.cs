@@ -60,7 +60,7 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to D&amp;D 3.5 Character Editor.
+        ///   Looks up a localized string similar to Apocrypha.
         /// </summary>
         public static string ApplicationTitle {
             get {

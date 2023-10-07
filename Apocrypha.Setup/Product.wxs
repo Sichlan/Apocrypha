@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Apocrypha.ModernUi_TargetDir=$(var.Apocrypha.ModernUi.TargetDir)?>
+	<Product Id="*" Name="Apocrypha" Language="1033" Version="1.0.0.0" Manufacturer="Vox"
+			 UpgradeCode="a74de0ad-28d2-40b8-9a2c-71bc0dee272c">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."/>
+		<MediaTemplate EmbedCab="yes"/>
+
+		<UIRef Id="WixUI_Mondo"/>
+		<WixVariable Id="WixUILicenseRtf" Value="LicenseAgreement.rtf"/>
+
+		<Feature Id="ProductFeature" Title="Apocrypha" Level="1">
+			<ComponentGroupRef Id="ProductComponents"/>
+			<ComponentGroupRef Id="de_files"/>
+			<ComponentGroupRef Id="resources"/>
+			<ComponentRef Id="ApplicationShortcutDesktop"/>
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Icon Id="AppIcon" SourceFile="..\Apocrypha.ModernUI\Resources\Icons\apocrypha-logo.ico"/>
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="DesktopFolder">
+			<Component Id="ApplicationShortcutDesktop">
+				<Shortcut Id="ApplicationDesktopShortcut"
+						  Name="Apocrypha"
+						  Description="Apocrypha"
+						  Target="[INSTALLFOLDER]Apocrypha.ModernUI.exe"
+						  WorkingDirectory="INSTALLFOLDER"
+						  Icon="AppIcon"/>
+				<RegistryValue Root="HKCU" Key="Software\Vox\Apocrypha" Name="installed" Type="integer" Value="1"
+							   KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="Apocrypha">
+					<Directory Id="de" Name="de"/>
+					<Directory Id="Resources" Name="Resources"/>
+				</Directory>
+			</Directory>
+			<Directory Id="DesktopFolder" Name="Desktop"/>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="ProductComponent">
+				<File Source="$(var.Apocrypha.ModernUi_TargetDir)Apocrypha.ModernUI.exe"/>
+			</Component>
+			<Component Id="Appsettings" Guid="e13406b6-cb58-4875-a8dc-97c6b29119bf">
+				<File Source="$(var.Apocrypha.ModernUi_TargetDir)appsettings.json"/>
+				<File Source="$(var.Apocrypha.ModernUi_TargetDir)appsettings.Production.json"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.FileProviders.Abstractions.dll"
+					   Guid="e13406b6-cb58-4875-a8dc-97c6b29119be">
+				<File Id="Microsoft.Extensions.FileProviders.Abstractions.dll"
+					  Name="Microsoft.Extensions.FileProviders.Abstractions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.FileProviders.Abstractions.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Primitives.dll" Guid="4b83d583-9acf-4fe0-92c5-452ddcd624c8">
+				<File Id="Microsoft.Extensions.Primitives.dll" Name="Microsoft.Extensions.Primitives.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Primitives.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Logging.Abstractions.dll" Guid="f02a6aad-6fda-4383-890f-9a0d460754a7">
+				<File Id="Microsoft.Extensions.Logging.Abstractions.dll"
+					  Name="Microsoft.Extensions.Logging.Abstractions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Logging.Abstractions.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Caching.Abstractions.dll" Guid="fa9025be-f267-46b4-8da6-7a0df4cf5a37">
+				<File Id="Microsoft.Extensions.Caching.Abstractions.dll"
+					  Name="Microsoft.Extensions.Caching.Abstractions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Caching.Abstractions.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.DependencyInjection.dll" Guid="22ffb5bc-592b-417c-95fa-57caa8e671e8">
+				<File Id="Microsoft.Extensions.DependencyInjection.dll"
+					  Name="Microsoft.Extensions.DependencyInjection.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.DependencyInjection.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Logging.dll" Guid="e0a6ea8f-75bb-4046-bc57-bb330140fce9">
+				<File Id="Microsoft.Extensions.Logging.dll" Name="Microsoft.Extensions.Logging.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Logging.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Options.dll" Guid="9552d8c4-149b-430c-a086-06dcab1674c2">
+				<File Id="Microsoft.Extensions.Options.dll" Name="Microsoft.Extensions.Options.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Options.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Caching.Memory.dll" Guid="3875a2af-8b1c-4d7c-939f-2801481b015b">
+				<File Id="Microsoft.Extensions.Caching.Memory.dll" Name="Microsoft.Extensions.Caching.Memory.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Caching.Memory.dll"/>
+			</Component>
+			<Component Id="Microsoft.EntityFrameworkCore.Relational.dll" Guid="972ff21a-db5a-497b-a463-48d9838264bf">
+				<File Id="Microsoft.EntityFrameworkCore.Relational.dll"
+					  Name="Microsoft.EntityFrameworkCore.Relational.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.EntityFrameworkCore.Relational.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Configuration.dll" Guid="72d0db76-33c1-4927-80d6-60b5f4db3a2f">
+				<File Id="Microsoft.Extensions.Configuration.dll" Name="Microsoft.Extensions.Configuration.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Configuration.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.FileProviders.Physical.dll" Guid="7c4286fd-3ec3-4ca0-b789-b9c93ef2d0a4">
+				<File Id="Microsoft.Extensions.FileProviders.Physical.dll"
+					  Name="Microsoft.Extensions.FileProviders.Physical.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.FileProviders.Physical.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.FileSystemGlobbing.dll" Guid="026a9339-b81d-4820-916d-6809c637860b">
+				<File Id="Microsoft.Extensions.FileSystemGlobbing.dll"
+					  Name="Microsoft.Extensions.FileSystemGlobbing.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.FileSystemGlobbing.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Configuration.FileExtensions.dll"
+					   Guid="42721be3-ee82-43ed-ac66-edfd1b816977">
+				<File Id="Microsoft.Extensions.Configuration.FileExtensions.dll"
+					  Name="Microsoft.Extensions.Configuration.FileExtensions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Configuration.FileExtensions.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Configuration.UserSecrets.dll"
+					   Guid="85a75802-889b-4189-9a5a-6b72e2388f4e">
+				<File Id="Microsoft.Extensions.Configuration.UserSecrets.dll"
+					  Name="Microsoft.Extensions.Configuration.UserSecrets.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Configuration.UserSecrets.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Configuration.Binder.dll" Guid="033002f4-40b1-4ff1-8ed9-e2191a1fa2b8">
+				<File Id="Microsoft.Extensions.Configuration.Binder.dll"
+					  Name="Microsoft.Extensions.Configuration.Binder.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Configuration.Binder.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Logging.EventLog.dll" Guid="b3a8ce4a-1dcc-4fb6-b573-2ef5427fa66c">
+				<File Id="Microsoft.Extensions.Logging.EventLog.dll" Name="Microsoft.Extensions.Logging.EventLog.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Logging.EventLog.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Logging.Configuration.dll" Guid="bd5c4d34-1e43-4c6f-b9e9-d2086efb5ea4">
+				<File Id="Microsoft.Extensions.Logging.Configuration.dll"
+					  Name="Microsoft.Extensions.Logging.Configuration.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Logging.Configuration.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Options.ConfigurationExtensions.dll"
+					   Guid="c9cb101b-94c0-4ac4-968b-7ab41e8a0bc7">
+				<File Id="Microsoft.Extensions.Options.ConfigurationExtensions.dll"
+					  Name="Microsoft.Extensions.Options.ConfigurationExtensions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Options.ConfigurationExtensions.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Logging.Console.dll" Guid="3a7b32d0-2f4f-414d-b236-5ae4e9fa726e">
+				<File Id="Microsoft.Extensions.Logging.Console.dll" Name="Microsoft.Extensions.Logging.Console.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Logging.Console.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Logging.Debug.dll" Guid="c301d083-93de-466a-8cf2-d90342d014a7">
+				<File Id="Microsoft.Extensions.Logging.Debug.dll" Name="Microsoft.Extensions.Logging.Debug.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Logging.Debug.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Logging.EventSource.dll" Guid="cc04a225-7e24-4e96-923e-02b8654c7292">
+				<File Id="Microsoft.Extensions.Logging.EventSource.dll"
+					  Name="Microsoft.Extensions.Logging.EventSource.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Logging.EventSource.dll"/>
+			</Component>
+			<Component Id="Microsoft.EntityFrameworkCore.Abstractions.dll" Guid="e9378104-c0d1-4938-8ecc-1e23817658bb">
+				<File Id="Microsoft.EntityFrameworkCore.Abstractions.dll"
+					  Name="Microsoft.EntityFrameworkCore.Abstractions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.EntityFrameworkCore.Abstractions.dll"/>
+			</Component>
+			<Component Id="MySqlConnector.dll" Guid="0a48cd1d-5b33-4aec-b872-f95ef72529a2">
+				<File Id="MySqlConnector.dll" Name="MySqlConnector.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)MySqlConnector.dll"/>
+			</Component>
+			<Component Id="ControlzEx.dll" Guid="66b4b67e-c3dd-4f7b-ab1d-c8a619880d5f">
+				<File Id="ControlzEx.dll" Name="ControlzEx.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)ControlzEx.dll"/>
+			</Component>
+			<Component Id="Microsoft.AspNet.Identity.Core.dll" Guid="fdb2ee61-1261-469b-b93c-b8e811e40a3a">
+				<File Id="Microsoft.AspNet.Identity.Core.dll" Name="Microsoft.AspNet.Identity.Core.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.AspNet.Identity.Core.dll"/>
+			</Component>
+			<Component Id="Apocrypha.ModernUi.runtimeconfig.json" Guid="bc2730da-40e7-40fa-a099-a40e18542c63">
+				<File Id="Apocrypha.ModernUi.runtimeconfig.json" Name="Apocrypha.ModernUi.runtimeconfig.json"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Apocrypha.ModernUi.runtimeconfig.json"/>
+			</Component>
+			<Component Id="Apocrypha.ModernUi.dll" Guid="6f31a139-d380-4a84-8dcd-fa4a4303ece7">
+				<File Id="Apocrypha.ModernUi.dll" Name="Apocrypha.ModernUi.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Apocrypha.ModernUi.dll"/>
+			</Component>
+			<Component Id="FontAwesome.WPF.dll" Guid="17c9e144-9285-438b-bba9-ff66dd8464ab">
+				<File Id="FontAwesome.WPF.dll" Name="FontAwesome.WPF.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)FontAwesome.WPF.dll"/>
+			</Component>
+			<Component Id="Microsoft.Xaml.Behaviors.dll" Guid="ca66004c-a928-4d65-8f50-3bce48eff952">
+				<File Id="Microsoft.Xaml.Behaviors.dll" Name="Microsoft.Xaml.Behaviors.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Xaml.Behaviors.dll"/>
+			</Component>
+			<Component Id="ModernWpf.dll" Guid="571ab7a4-9409-4637-b40e-a86c3651a288">
+				<File Id="ModernWpf.dll" Name="ModernWpf.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)ModernWpf.dll"/>
+			</Component>
+			<Component Id="ModernWpf.Controls.dll" Guid="96ac01fa-7d2d-4b20-b9e6-72d5dbf0f7c5">
+				<File Id="ModernWpf.Controls.dll" Name="ModernWpf.Controls.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)ModernWpf.Controls.dll"/>
+			</Component>
+			<Component Id="ModernWpf.MahApps.dll" Guid="dd7b8462-d177-4b20-9f5e-315af11889e2">
+				<File Id="ModernWpf.MahApps.dll" Name="ModernWpf.MahApps.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)ModernWpf.MahApps.dll"/>
+			</Component>
+			<Component Id="Apocrypha.CommonObject.dll" Guid="31ea5108-05fe-42c7-b968-96b765a1d330">
+				<File Id="Apocrypha.CommonObject.dll" Name="Apocrypha.CommonObject.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Apocrypha.CommonObject.dll"/>
+			</Component>
+			<Component Id="ICSharpCode.AvalonEdit.dll" Guid="c40a8343-3291-4429-8c0a-579a094825ba">
+				<File Id="ICSharpCode.AvalonEdit.dll" Name="ICSharpCode.AvalonEdit.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)ICSharpCode.AvalonEdit.dll"/>
+			</Component>
+			<Component Id="FluentWPF.dll" Guid="1a1fd353-7db0-47d1-b9a8-2ca5c3d7413f">
+				<File Id="FluentWPF.dll" Name="FluentWPF.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)FluentWPF.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Hosting.Abstractions.dll" Guid="9b0dfd7a-9dbe-49de-b571-6990325cb2de">
+				<File Id="Microsoft.Extensions.Hosting.Abstractions.dll"
+					  Name="Microsoft.Extensions.Hosting.Abstractions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Hosting.Abstractions.dll"/>
+			</Component>
+			<Component Id="CommunityToolkit.Mvvm.dll" Guid="6865cd8a-8cd3-4ffa-b6c3-b0c116cb27ad">
+				<File Id="CommunityToolkit.Mvvm.dll" Name="CommunityToolkit.Mvvm.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)CommunityToolkit.Mvvm.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+					   Guid="e64901d3-0be1-490a-8b98-45818a4f70df">
+				<File Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+					  Name="Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Configuration.Abstractions.dll"
+					   Guid="c9e22ab5-39b3-44aa-ab86-5d39daaf0df6">
+				<File Id="Microsoft.Extensions.Configuration.Abstractions.dll"
+					  Name="Microsoft.Extensions.Configuration.Abstractions.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Configuration.Abstractions.dll"/>
+			</Component>
+			<Component Id="Microsoft.EntityFrameworkCore.dll" Guid="02e1f5a2-3618-4341-a09e-65b6da5de064">
+				<File Id="Microsoft.EntityFrameworkCore.dll" Name="Microsoft.EntityFrameworkCore.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.EntityFrameworkCore.dll"/>
+			</Component>
+			<Component Id="Apocrypha.EntityFramework.dll" Guid="23f8205f-0f4a-413f-a197-de9783eaf8c7">
+				<File Id="Apocrypha.EntityFramework.dll" Name="Apocrypha.EntityFramework.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Apocrypha.EntityFramework.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Hosting.dll" Guid="75dbb296-cfa9-41b8-bd28-27b9905e94b1">
+				<File Id="Microsoft.Extensions.Hosting.dll" Name="Microsoft.Extensions.Hosting.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Hosting.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Configuration.Json.dll" Guid="aff568f4-8384-4816-9ff5-c2bac2478297">
+				<File Id="Microsoft.Extensions.Configuration.Json.dll"
+					  Name="Microsoft.Extensions.Configuration.Json.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Configuration.Json.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Configuration.EnvironmentVariables.dll"
+					   Guid="6d2f42d5-c82c-4bb0-a0a9-1d6945c25ac8">
+				<File Id="Microsoft.Extensions.Configuration.EnvironmentVariables.dll"
+					  Name="Microsoft.Extensions.Configuration.EnvironmentVariables.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Configuration.EnvironmentVariables.dll"/>
+			</Component>
+			<Component Id="Microsoft.Extensions.Configuration.CommandLine.dll"
+					   Guid="43953700-b9a1-42b4-82f5-1d1723ff0491">
+				<File Id="Microsoft.Extensions.Configuration.CommandLine.dll"
+					  Name="Microsoft.Extensions.Configuration.CommandLine.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Microsoft.Extensions.Configuration.CommandLine.dll"/>
+			</Component>
+			<Component Id="Pomelo.EntityFrameworkCore.MySql.dll" Guid="416be786-adf1-4590-853e-98757b888446">
+				<File Id="Pomelo.EntityFrameworkCore.MySql.dll" Name="Pomelo.EntityFrameworkCore.MySql.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)Pomelo.EntityFrameworkCore.MySql.dll"/>
+			</Component>
+			<Component Id="MahApps.Metro.dll" Guid="fff6ee66-28cf-4545-abff-dbf496c6b4de">
+				<File Id="MahApps.Metro.dll" Name="MahApps.Metro.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)MahApps.Metro.dll"/>
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+	<Fragment>
+		<ComponentGroup Id="de_files" Directory="de">
+			<Component Id="de_Apocrypha.ModernUi.resources.dll" Guid="64198567-9899-4a99-b1e3-8391e6d03c49">
+				<File Id="de_Apocrypha.ModernUi.resources.dll" Name="Apocrypha.ModernUi.resources.dll"
+					  Source="$(var.Apocrypha.ModernUi_TargetDir)de\Apocrypha.ModernUi.resources.dll"/>
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+	<Fragment>
+		<ComponentGroup Id="resources" Directory="Resources">
+			<Component Id="Res" Guid="64198567-9899-4a99-b1e3-8391e6d03c40">
+				<File Source="$(var.Apocrypha.ModernUi_TargetDir)Resources\DiceRoll.xshd"/>
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
