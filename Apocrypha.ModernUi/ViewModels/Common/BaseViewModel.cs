@@ -8,34 +8,52 @@ using System.Runtime.CompilerServices;
 
 namespace Apocrypha.ModernUi.ViewModels.Common;
 
+/// <summary>
+/// Generic delegate to register CreateViewModel functions to be used via dependency injection.
+/// </summary>
+/// <typeparam name="TViewModel"></typeparam>
 public delegate TViewModel CreateViewModel<out TViewModel>() where TViewModel : BaseViewModel;
 
-public class BaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
+/// <summary>
+/// The baseline of all view models in this project. Implements interfaces needed in all view models. Every other view model must inherit from this.
+/// </summary>
+public abstract class BaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
 {
+    /// <summary>
+    /// The base constructor.
+    /// </summary>
     protected BaseViewModel()
     {
-        ValidateAll();
+        if (ValidationEnabled)
+            ValidateAll();
     }
 
     #region INotifyPropertyChanged
 
+    /// <inheritdoc />
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    /// <summary>
+    /// A method to trigger the <see cref="PropertyChanged"/> event. Most of the time called in property setters.
+    /// </summary>
+    /// <param name="propertyName">
+    /// Triggers the <see cref="PropertyChanged"/> event for the given property.
+    /// If null and called from a property, automatically takes the calling property's name as parameter.
+    /// </param>
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     #endregion
 
-
     #region INotifyDataErrorInfo
 
-    private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
+    private readonly Dictionary<string, List<string>> _propertyErrors = new();
     private bool _validationEnabled = true;
 
     /// <summary>
-    /// if set to true, validates all properties immediately
+    /// If set to true, validates all properties immediately.
     /// </summary>
     protected bool ValidationEnabled
     {
@@ -50,6 +68,9 @@ public class BaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
         }
     }
 
+    /// <summary>
+    /// Triggers validation for all properties marked for evaluation.
+    /// </summary>
     protected void ValidateAll()
     {
         foreach (var errors in _propertyErrors.Values)
@@ -74,6 +95,11 @@ public class BaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
         OnErrorsChanged();
     }
 
+    /// <summary>
+    /// Triggers validation fo a specific property based on the value given.
+    /// </summary>
+    /// <param name="propertyValue">The value of the property that will be validated.</param>
+    /// <param name="propertyName">The name of the property that will be validated.</param>
     protected void Validate(object propertyValue, [CallerMemberName] string propertyName = "")
     {
         if (_propertyErrors.TryGetValue(propertyName, out var error))
@@ -103,6 +129,7 @@ public class BaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
         propertyNames.ForEach(OnErrorsChanged);
     }
 
+    /// <inheritdoc />
     public IEnumerable GetErrors(string propertyName = null)
     {
         if (propertyName != null)
@@ -111,26 +138,28 @@ public class BaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
         return _propertyErrors.SelectMany(e => e.Value).ToList();
     }
 
-    public List<string> GetAllErrors()
+    /// <summary>
+    /// Returns all errors as a list.
+    /// </summary>
+    /// <returns>A list of strings.</returns>
+    protected List<string> GetAllErrors()
     {
         return _propertyErrors.SelectMany(x => x.Value).ToList();
     }
 
-    protected void AddError(string errorMessage, [CallerMemberName] string propertyName = "")
-    {
-        if (!_propertyErrors.ContainsKey(propertyName))
-            _propertyErrors.Add(propertyName, new List<string>());
-
-        _propertyErrors[propertyName].Add(errorMessage);
-        OnErrorsChanged(propertyName);
-    }
-
+    /// <summary>
+    /// Invokes the <see cref="ErrorsChanged"/> event.
+    /// </summary>
+    /// <param name="propertyName"></param>
     protected void OnErrorsChanged(string propertyName = null)
     {
         ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
     }
 
+    /// <inheritdoc />
     public bool HasErrors => _propertyErrors.Values.Any(l => l.Count > 0);
+
+    /// <inheritdoc />
     public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
     #endregion
