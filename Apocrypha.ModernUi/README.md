@@ -4,7 +4,7 @@ TODO: Description
 
 ## Update Database
 
-> For mor information on the dotnet ef tool, [refer to this](https://learn.microsoft.com/en-us/ef/core/cli/dotnet)
+> For more information on the dotnet ef tool, [refer to this](https://learn.microsoft.com/en-us/ef/core/cli/dotnet)
 
 To add a migration to the entity model, use
 

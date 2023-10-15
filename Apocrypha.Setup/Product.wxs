@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Apocrypha.ModernUi_TargetDir=$(var.Apocrypha.ModernUi.TargetDir)?>
-	<Product Id="*" Name="Apocrypha" Language="1033" Version="1.0.0.0" Manufacturer="Vox"
+	<Product Id="*" Name="Apocrypha" Language="1033" Version="0.0.1.0" Manufacturer="Vox"
 			 UpgradeCode="a74de0ad-28d2-40b8-9a2c-71bc0dee272c">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
 
@@ -14,7 +14,13 @@
 			<ComponentGroupRef Id="ProductComponents"/>
 			<ComponentGroupRef Id="de_files"/>
 			<ComponentGroupRef Id="resources"/>
-			<ComponentRef Id="ApplicationShortcutDesktop"/>
+
+			<Feature Id="DesktopShortcutFeature" Title="Desktop Shortcut" Level="1">
+				<ComponentRef Id="ApplicationShortcutDesktop"/>
+			</Feature>
+			<Feature Id="StartMenuShortcutFeature" Title="Start Menu Shortcut" Level="1">
+				<ComponentRef Id="ApplicationShortcut"/>
+			</Feature>
 		</Feature>
 	</Product>
 
@@ -38,6 +44,22 @@
 	</Fragment>
 
 	<Fragment>
+		<DirectoryRef Id="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortcut" Guid="e13406b6-cb58-4875-a8dc-97c6b29119bd">
+				<Shortcut Id="ApplicationStartShortcut"
+						  Name="Apocrypha"
+						  Description="Apocrypha"
+						  Target="[INSTALLFOLDER]Apocrypha.ModernUI.exe"
+						  WorkingDirectory="INSTALLFOLDER"
+						  Icon="AppIcon"/>
+				<RegistryValue Root="HKCU" Key="Software\Vox\Apocrypha" Name="installed" Type="integer" Value="1"
+							   KeyPath="yes"/>
+				<RemoveFolder Id="CleanUpShortCut" Directory="ApplicationProgramsFolder" On="uninstall"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+
+	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
 				<Directory Id="INSTALLFOLDER" Name="Apocrypha">
@@ -46,6 +68,9 @@
 				</Directory>
 			</Directory>
 			<Directory Id="DesktopFolder" Name="Desktop"/>
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="Apocrypha"/>
+			</Directory>
 		</Directory>
 	</Fragment>
 
@@ -57,6 +82,8 @@
 			<Component Id="Appsettings" Guid="e13406b6-cb58-4875-a8dc-97c6b29119bf">
 				<File Source="$(var.Apocrypha.ModernUi_TargetDir)appsettings.json"/>
 				<File Source="$(var.Apocrypha.ModernUi_TargetDir)appsettings.Production.json"/>
+				<File Source="$(var.Apocrypha.ModernUi_TargetDir)appsettings.Staging.json"/>
+				<File Source="$(var.Apocrypha.ModernUi_TargetDir)appsettings.Development.json"/>
 			</Component>
 			<Component Id="Microsoft.Extensions.FileProviders.Abstractions.dll"
 					   Guid="e13406b6-cb58-4875-a8dc-97c6b29119be">

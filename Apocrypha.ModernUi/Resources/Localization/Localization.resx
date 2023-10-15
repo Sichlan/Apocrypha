@@ -218,4 +218,28 @@
     <data name="DiceRollerViewModelTitle" xml:space="preserve">
         <value>Dice roller</value>
     </data>
+    <data name="ButtonLabelShowDetails" xml:space="preserve">
+        <value>Show details</value>
+    </data>
+    <data name="UserMessageSaveSuccessful" xml:space="preserve">
+        <value>Save successful</value>
+    </data>
+    <data name="UserMessageExecutionCancelled" xml:space="preserve">
+        <value>Execution cancelled</value>
+    </data>
+    <data name="ValidationValueMustBeGraterThanOrEqual" xml:space="preserve">
+        <value>{0} must be greater than or equal to {1}!</value>
+    </data>
+    <data name="ValidationValueMustBeGraterThan" xml:space="preserve">
+        <value>{0} must be greater than {1}!</value>
+    </data>
+    <data name="ValidationMessageListMustContainMinimumNumberOfElements" xml:space="preserve">
+        <value>{0} must contain at least {1} entries!</value>
+    </data>
+    <data name="ExceptionMessageUnsolvableEquation" xml:space="preserve">
+        <value>Equation unsolvable</value>
+    </data>
+    <data name="ExceptionMessageUnsolvableEquationDetails" xml:space="preserve">
+        <value>Equation "{0}" could not be solved.</value>
+    </data>
 </root>

@@ -210,4 +210,28 @@
     <data name="DiceRollerViewModelTitle" xml:space="preserve">
         <value>Würfelwerkzeug</value>
     </data>
+    <data name="ButtonLabelShowDetails" xml:space="preserve">
+        <value>Details einblenden</value>
+    </data>
+    <data name="UserMessageSaveSuccessful" xml:space="preserve">
+        <value>Erfolgreich gespeichert</value>
+    </data>
+    <data name="UserMessageExecutionCancelled" xml:space="preserve">
+        <value>Ausführung abgebrochen</value>
+    </data>
+    <data name="ValidationValueMustBeGraterThanOrEqual" xml:space="preserve">
+        <value>{0} muss mindestens {1} betragen!</value>
+    </data>
+    <data name="ValidationValueMustBeGraterThan" xml:space="preserve">
+        <value>{0} muss mehr als {1} sein!</value>
+    </data>
+    <data name="ValidationMessageListMustContainMinimumNumberOfElements" xml:space="preserve">
+        <value>{0} muss mindestens {1} Eintrag haben!</value>
+    </data>
+    <data name="ExceptionMessageUnsolvableEquation" xml:space="preserve">
+        <value>Gleichung nicht auflösbar</value>
+    </data>
+    <data name="ExceptionMessageUnsolvableEquationDetails" xml:space="preserve">
+        <value>Gleichung "{0}" konnte nicht berechnet werden.</value>
+    </data>
 </root>

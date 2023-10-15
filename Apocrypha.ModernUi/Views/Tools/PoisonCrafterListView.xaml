@@ -23,7 +23,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Button Margin="5" MinWidth="100" Content="{x:Static res:Localization.ButtonLabelNewPoison}" Command="{Binding NavigateToPageCommand}" CommandParameter="{x:Type tools:PoisonCrafterViewModel}"/>
             <Button Margin="5" MinWidth="100" Content="{x:Static res:Localization.ButtonLabelReload}" Command="{Binding UpdateListCommand}"/>
-            <!-- <Button Margin="5" MinWidth="100" Content="TEMP RANDOM" Command="{Binding GenerateRandomPoisonCommand}"/> -->
+            <!-- <Button Margin="5" MinWidth="100" Content="TODO RANDOM" Command="{Binding GenerateRandomPoisonCommand}"/> -->
         </StackPanel>
         
         <Separator Grid.Row="1" Margin="5"/>

@@ -29,14 +29,30 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget
 
+      - name: Set path for candle and light
+        run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
+        shell: bash
+
       - name: Restore dependencies
-        run: dotnet restore
+        # Exclude Apocrypha.Setup
+        run: |
+          dotnet restore ./Apocrypha.CommonObject/Apocrypha.CommonObject.csproj
+          dotnet restore ./Apocrypha.CommonObject.Tests/Apocrypha.CommonObject.Tests.csproj
+          dotnet restore ./Apocrypha.EntityFramework/Apocrypha.EntityFramework.csproj
+          dotnet restore ./Apocrypha.ModernUi/Apocrypha.ModernUi.csproj
+          dotnet restore ./Apocrypha.WPF/Apocrypha.WPF.csproj
 
       - name: Build Solution
-        run: dotnet build --configuration Release --no-restore
-              
+        # Exclude Apocrypha.Setup
+        run: |
+          dotnet build ./Apocrypha.CommonObject/Apocrypha.CommonObject.csproj --configuration Release --no-restore
+          dotnet build ./Apocrypha.CommonObject.Tests/Apocrypha.CommonObject.Tests.csproj --configuration Release --no-restore
+          dotnet build ./Apocrypha.EntityFramework/Apocrypha.EntityFramework.csproj --configuration Release --no-restore
+          dotnet build ./Apocrypha.ModernUi/Apocrypha.ModernUi.csproj --configuration Release --no-restore
+          dotnet build ./Apocrypha.WPF/Apocrypha.WPF.csproj --configuration Release --no-restore
+
       - name: Test
-        run: dotnet test --configuration Release --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+        run: dotnet test ./Apocrypha.CommonObject.Tests/Apocrypha.CommonObject.Tests.csproj --configuration Release --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
 
       - name: Upload dotnet test results
         uses: actions/upload-artifact@v3

@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
              xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:local="clr-namespace:Apocrypha.ModernUi.Views.Tools"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance tools:PoisonPhaseElementViewModel}">
     <Border BorderThickness="0,2"
@@ -24,20 +26,20 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="1" Grid.Column="0"
+            <TextBlock Grid.Row="0" Grid.Column="0"
                        VerticalAlignment="Center" Text="{x:Static res:Localization.InputLabelPoisonDamage}" />
-            <TextBlock Grid.Row="2" Grid.Column="0"
+            <TextBlock Grid.Row="1" Grid.Column="0"
                        VerticalAlignment="Center"
                        Text="{x:Static res:Localization.InputLabelPoisonCondition}" />
-            <TextBlock Grid.Row="3" Grid.Column="0"
+            <TextBlock Grid.Row="2" Grid.Column="0"
                        VerticalAlignment="Center"
                        Text="{x:Static res:Localization.InputLabelPoisonSpecialEffect}" />
             
-            <Button Grid.Row="1" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetDamageCommand}" Margin="5" Padding="2"/>
-            <Button Grid.Row="2" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetConditionCommand}" Margin="5" Padding="2"/>
-            <Button Grid.Row="3" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetEffectCommand}" Margin="5" Padding="2"/>
+            <Button Grid.Row="0" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetDamageCommand}" Margin="5" Padding="2"/>
+            <Button Grid.Row="1" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetConditionCommand}" Margin="5" Padding="2"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="{x:Static res:Localization.ButtonLabelReset}" Command="{Binding ResetEffectCommand}" Margin="5" Padding="2"/>
 
-            <Grid Grid.Row="1" Grid.Column="2">
+            <Grid Grid.Row="0" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -53,17 +55,17 @@
                          Text="{Binding DamageDiceSize}"
                          Margin="5" />
             </Grid>
-            <ComboBox Grid.Row="1" Grid.Column="3" 
+            <ComboBox Grid.Row="0" Grid.Column="3" 
                       ItemsSource="{Binding PoisonDamageTargets}"
                       SelectedItem="{Binding SelectedPoisonDamageTarget}"
                       Margin="5" DisplayMemberPath="Name" />
 
-            <ComboBox Grid.Row="2" Grid.Column="2"
+            <ComboBox Grid.Row="1" Grid.Column="2"
                       ItemsSource="{Binding Conditions}"
                       SelectedItem="{Binding SelectedCondition}"
                       Margin="5" DisplayMemberPath="Name" 
                       />
-            <ComboBox Grid.Row="2" Grid.Column="3" 
+            <ComboBox Grid.Row="1" Grid.Column="3" 
                       ItemsSource="{Binding PoisonDurations}"
                       SelectedItem="{Binding SelectedPoisonDuration}"
                       Margin="5" DisplayMemberPath="AsString">
@@ -81,20 +83,24 @@
                 </ComboBox.Style>
             </ComboBox>
             
-            <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"
+            <ComboBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
                       ItemsSource="{Binding PoisonSpecialEffects}"
                       SelectedItem="{Binding SelectedPoisonSpecialEffect}"
                       Margin="5" DisplayMemberPath="Name" HorizontalAlignment="Stretch"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="4"
+            <TextBlock Grid.Row="0" Grid.Column="4"
                        Text="{Binding DamageCraftDcModifier}" 
                        Margin="5" />
-            <TextBlock Grid.Row="2" Grid.Column="4"
+            <TextBlock Grid.Row="1" Grid.Column="4"
                        Text="{Binding ConditionCraftDcModifier}" 
                        Margin="5" />
-            <TextBlock Grid.Row="3" Grid.Column="4"
+            <TextBlock Grid.Row="2" Grid.Column="4"
                        Text="{Binding SelectedPoisonSpecialEffect.CraftModifier, FallbackValue=0}" 
                        Margin="5" />
+            
+            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" Margin="5" 
+                    fa:Awesome.Content="Trash" CommandParameter="{Binding}" 
+                    Command="{Binding DataContext.DeletePhaseElementCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:PoisonPhaseView}}"/>
         </Grid>
     </Border>
 </UserControl>

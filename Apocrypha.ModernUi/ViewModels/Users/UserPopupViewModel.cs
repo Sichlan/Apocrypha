@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Windows;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
@@ -231,26 +230,26 @@ public class UserPopupViewModel : BaseViewModel
 
                         break;
                     case RegistrationResult.PasswordsDoNotMatch:
-                        _userInformationMessageService.AddDisplayMessage("TEMP PASSWORDS DO NOT MATCH", InformationType.Error);
+                        _userInformationMessageService.AddDisplayMessage("TODO PASSWORDS DO NOT MATCH", InformationType.Error);
 
                         break;
                     case RegistrationResult.EmailAlreadyExists:
-                        _userInformationMessageService.AddDisplayMessage("TEMP EMAIL ALREADY IN USE", InformationType.Error);
+                        _userInformationMessageService.AddDisplayMessage("TODO EMAIL ALREADY IN USE", InformationType.Error);
 
                         break;
                     case RegistrationResult.UsernameAlreadyExists:
-                        _userInformationMessageService.AddDisplayMessage("TEMP USERNAME ALREADY EXISTS", InformationType.Error);
+                        _userInformationMessageService.AddDisplayMessage("TODO USERNAME ALREADY EXISTS", InformationType.Error);
 
                         break;
                     case RegistrationResult.Failure:
-                        _userInformationMessageService.AddDisplayMessage("TEMP REGISTRATION FAILED", InformationType.Error);
+                        _userInformationMessageService.AddDisplayMessage("TODO REGISTRATION FAILED", InformationType.Error);
 
                         break;
                 }
             }
             catch (Exception)
             {
-                _userInformationMessageService.AddDisplayMessage("TEMP REGISTRATION FAILED", InformationType.Error);
+                _userInformationMessageService.AddDisplayMessage("TODO REGISTRATION FAILED", InformationType.Error);
 
                 throw;
             }
@@ -278,15 +277,15 @@ public class UserPopupViewModel : BaseViewModel
             }
             catch (UserNotFoundException)
             {
-                _userInformationMessageService.AddDisplayMessage("TEMP USER NOT FOUND", InformationType.Error);
+                _userInformationMessageService.AddDisplayMessage("TODO USER NOT FOUND", InformationType.Error);
             }
             catch (InvalidPasswordException)
             {
-                _userInformationMessageService.AddDisplayMessage("TEMP INVALID PASSWORD", InformationType.Error);
+                _userInformationMessageService.AddDisplayMessage("TODO INVALID PASSWORD", InformationType.Error);
             }
             catch (Exception ex)
             {
-                _userInformationMessageService.AddDisplayMessage("TEMP LOGIN FAILED", InformationType.Error);
+                _userInformationMessageService.AddDisplayMessage("TODO LOGIN FAILED", InformationType.Error);
 #if DEBUG
                 MessageBox.Show(ex.ToString());
 #endif

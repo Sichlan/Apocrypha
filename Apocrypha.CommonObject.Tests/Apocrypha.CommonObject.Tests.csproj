@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj"/>
+        <ProjectReference Include="..\Apocrypha.CommonObject\Apocrypha.CommonObject.csproj"/>
     </ItemGroup>
 
 </Project>

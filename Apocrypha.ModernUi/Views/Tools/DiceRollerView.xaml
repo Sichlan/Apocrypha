@@ -13,6 +13,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,8 +25,9 @@
                                FontFamily="Consolas" SyntaxHighlighting="DiceRoll" FontSize="20pt"
                                HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
         
-        <Button Grid.Row="0" Grid.Column="1" Command="{Binding RollEquationCommand}" Margin="5" fa:Awesome.Content="FirstOrder"/>
+        <Button Grid.Row="0" Grid.Column="1" Command="{Binding RollEquationCommand}" Margin="5" fa:Awesome.Content="FirstOrder" VerticalAlignment="Stretch"/>
+        <Button Grid.Row="0" Grid.Column="2" Command="{Binding OpenHelpCommand}" Margin="5" fa:Awesome.Content="Question" VerticalAlignment="Stretch"/>
         
-        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Output}" Margin="5" IsReadOnly="True"/>
+        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Output}" Margin="5" IsReadOnly="True"/>
     </Grid>
 </UserControl>

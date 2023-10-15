@@ -9,6 +9,14 @@
         <ApplicationIcon>Resources\Icons\apocrypha-logo.ico</ApplicationIcon>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DocumentationFile>bin\Debug\Apocrypha.ModernUi.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DocumentationFile>bin\Release\Apocrypha.ModernUi.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="AvalonEdit" Version="6.3.0.90"/>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
@@ -132,6 +140,11 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
+        <Page Update="Themes\CustomControls\TextStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
     </ItemGroup>
 
     <ItemGroup>
@@ -166,5 +179,6 @@
             <HintPath>C:\Users\Vox\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.19\lib\netcoreapp3.0\Microsoft.Xaml.Behaviors.dll</HintPath>
         </Reference>
     </ItemGroup>
+
 
 </Project>
