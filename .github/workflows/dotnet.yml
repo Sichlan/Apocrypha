@@ -37,8 +37,7 @@ jobs:
         run: echo $GITHUB_PATH
 
       - name: Test2
-        run: cd "C:"
-          ls
+        run: DIR "C:\Program Files (x86)\WiX Toolset v3.11\bin"
 
       - name: Restore dependencies
         run: dotnet restore
