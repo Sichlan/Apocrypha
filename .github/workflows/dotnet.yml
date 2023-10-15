@@ -33,6 +33,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget
 
+      - name: Test
+        run: echo $GITHUB_PATH
+
       - name: Restore dependencies
         run: dotnet restore
 
