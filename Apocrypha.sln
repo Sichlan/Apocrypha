@@ -22,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apocrypha.ModernUi", "Apocr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3F963CF2-7A25-4509-8709-EAB38B2E69B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModernWpfSampleApp", "ModernWpfSampleApp\ModernWpfSampleApp.csproj", "{C4F9CB84-F51D-4E2D-942B-0BDF783E77F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModernWpfSampleApp", "Test\ModernWpfSampleApp\ModernWpfSampleApp.csproj", "{C4F9CB84-F51D-4E2D-942B-0BDF783E77F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamplesCommon", "SamplesCommon\SamplesCommon.csproj", "{401F214B-48AB-40DB-83A8-7B7AC3D7F3D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamplesCommon", "Test\SamplesCommon\SamplesCommon.csproj", "{401F214B-48AB-40DB-83A8-7B7AC3D7F3D2}"
 EndProject
 Project("{B7DD6F7E-DEF8-4E67-B5B7-07EF123DB6F0}") = "Apocrypha.Setup", "Apocrypha.Setup\Apocrypha.Setup.wixproj", "{67C9A0EA-BF92-4A54-8579-810C251304CC}"
 EndProject
