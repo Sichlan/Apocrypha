@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -34,6 +35,7 @@ namespace Apocrypha.ModernUi
                 .AddStateConfiguration();
         }
 
+        /// <inheritdoc />
         protected override void OnStartup(StartupEventArgs e)
         {
             _host = CreateHostBuilder(e.Args).Build();
@@ -54,7 +56,7 @@ namespace Apocrypha.ModernUi
             base.OnStartup(e);
         }
 
-        private void SetApplicationLanguage(string language)
+        private static void SetApplicationLanguage(string language)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
@@ -62,6 +64,7 @@ namespace Apocrypha.ModernUi
                 new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(new CultureInfo(language).IetfLanguageTag)));
         }
 
+        /// <inheritdoc />
         protected override async void OnExit(ExitEventArgs e)
         {
             await _host.StopAsync();
@@ -76,12 +79,12 @@ namespace Apocrypha.ModernUi
         ///         Source
         ///     </a>
         /// </summary>
-        private void LoadAvalonHighlighting()
+        private static void LoadAvalonHighlighting()
         {
             LoadSyntaxFromFile("Resources/DiceRoll.xshd", "DiceRoll");
         }
 
-        private void LoadSyntaxFromFile(string path, string name)
+        private static void LoadSyntaxFromFile(string path, string name)
         {
             var contents = File.ReadAllBytes(path);
 

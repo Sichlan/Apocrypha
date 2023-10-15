@@ -4,8 +4,10 @@ using ModernWpf;
 
 namespace Apocrypha.ModernUi.Services.Configuration;
 
+/// <inheritdoc />
 public class ConfigurationService : IConfigurationService
 {
+    /// <inheritdoc />
     public IApocryphaConfiguration ApocryphaConfiguration { get; set; }
 
     public ConfigurationService(IApocryphaConfiguration apocryphaConfiguration)
@@ -13,6 +15,7 @@ public class ConfigurationService : IConfigurationService
         ApocryphaConfiguration = apocryphaConfiguration;
     }
 
+    /// <inheritdoc />
     public void InitializeConfiguration()
     {
         InitializeDesign(ApocryphaConfiguration.DesignConfiguration);
