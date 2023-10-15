@@ -63,7 +63,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Apocrypha.CommonObj\Apocrypha.CommonObject.csproj" />
+        <ProjectReference Include="..\Apocrypha.CommonObject\Apocrypha.CommonObject.csproj"/>
         <ProjectReference Include="..\Apocrypha.EntityFramework\Apocrypha.EntityFramework.csproj" />
     </ItemGroup>
 
