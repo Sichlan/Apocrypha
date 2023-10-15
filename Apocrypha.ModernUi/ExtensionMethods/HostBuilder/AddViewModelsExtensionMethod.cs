@@ -7,9 +7,11 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
+using Apocrypha.ModernUi.Services.State.Users;
 using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels;
+using Apocrypha.ModernUi.ViewModels.Common;
 using Apocrypha.ModernUi.ViewModels.Editor;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using Apocrypha.ModernUi.ViewModels.Tools;
@@ -54,6 +56,8 @@ public static class AddViewModelsExtensionMethod
                 s.GetRequiredService<IUserInformationMessageService>()));
 
             // Creator Delegates
+            services.AddSingleton<CreateViewModel<PoisonCrafterViewModel>>(s => () => CreatePoisonCrafterViewModel(s));
+
             services.AddSingleton<CreateRaceEditorViewModel>(s => race => CreateRaceEditorViewModel(s, race));
             services.AddSingleton<CreatePoisonCrafterViewModel>(s => poison => CreatePoisonCrafterViewModel(s, poison));
             services.AddSingleton<CreateUserMessageViewModel>(s =>
@@ -64,6 +68,24 @@ public static class AddViewModelsExtensionMethod
         });
 
         return hostBuilder;
+    }
+
+    private static PoisonCrafterViewModel CreatePoisonCrafterViewModel(IServiceProvider serviceProvider)
+    {
+        return new PoisonCrafterViewModel(serviceProvider.GetRequiredService<NavigateToPageCommand>(),
+            serviceProvider.GetRequiredService<IDataService<Poison>>(),
+            serviceProvider.GetRequiredService<IViewModelConverter<PoisonCrafterViewModel, Poison>>(),
+            serviceProvider.GetRequiredService<IDataService<PoisonDeliveryMethod>>(),
+            serviceProvider.GetRequiredService<IDataService<Condition>>(),
+            serviceProvider.GetRequiredService<IDataService<PoisonDuration>>(),
+            serviceProvider.GetRequiredService<IDataService<PoisonDamageTarget>>(),
+            serviceProvider.GetRequiredService<IDataService<PoisonSpecialEffect>>(),
+            serviceProvider.GetRequiredService<IDataService<PoisonPhase>>(),
+            serviceProvider.GetRequiredService<INavigationService>(),
+            serviceProvider.GetRequiredService<IUserStore>(),
+            serviceProvider.GetRequiredService<NavigateBackwardsCommand>(),
+            serviceProvider.GetRequiredService<IUserInformationMessageService>(),
+            serviceProvider.GetRequiredService<IDataService<PoisonPhaseElement>>());
     }
 
     private static RaceEditorViewModel CreateRaceEditorViewModel(IServiceProvider serviceProvider, Race race)

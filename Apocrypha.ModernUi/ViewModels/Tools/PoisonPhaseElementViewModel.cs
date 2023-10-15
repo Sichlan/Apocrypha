@@ -9,11 +9,29 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Apocrypha.ModernUi.ViewModels.Tools;
 
+/// <summary>
+/// A view model that represents a <see cref="PoisonPhaseElement"/>.
+/// </summary>
 public class PoisonPhaseElementViewModel : BaseViewModel
 {
+    /// <summary>
+    /// A cached list of all conditions that can be caused by a poison phase element.
+    /// </summary>
     public List<Condition> Conditions { get; set; }
+
+    /// <summary>
+    /// A cached list of all poison durations.
+    /// </summary>
     public List<PoisonDuration> PoisonDurations { get; set; }
+
+    /// <summary>
+    /// A cached list of all poison damage targets.
+    /// </summary>
     public List<PoisonDamageTarget> PoisonDamageTargets { get; set; }
+
+    /// <summary>
+    /// A cached list of all poison special effects.
+    /// </summary>
     public List<PoisonSpecialEffect> PoisonSpecialEffects { get; set; }
 
     #region Model Properties

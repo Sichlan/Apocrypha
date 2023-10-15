@@ -267,7 +267,8 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         INavigationService navigationService,
         IUserStore userStore,
         NavigateBackwardsCommand navigateBackwardsCommand,
-        IUserInformationMessageService userInformationMessageService, IDataService<PoisonPhaseElement> poisonPhaseElementDataService)
+        IUserInformationMessageService userInformationMessageService,
+        IDataService<PoisonPhaseElement> poisonPhaseElementDataService)
         : base(navigateToPageCommand)
     {
         _poisonPhaseDataService = poisonPhaseDataService;

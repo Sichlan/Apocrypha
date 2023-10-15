@@ -27,6 +27,7 @@ public class PoisonCrafterListViewModel : NavigableViewModel
     private ObservableCollection<PoisonCrafterViewModel> _poisonCrafterViewModels;
     private bool _isLoading;
 
+    /// <inheritdoc />
     public override string ViewModelTitle => Localization.PoisonCrafterListViewModelTitle;
 
     public ObservableCollection<PoisonCrafterViewModel> PoisonCrafterViewModels
@@ -158,6 +159,7 @@ public class PoisonCrafterListViewModel : NavigableViewModel
         });
     }
 
+    /// <inheritdoc />
     public override void OnNavigateTo()
     {
         InitPoisons();

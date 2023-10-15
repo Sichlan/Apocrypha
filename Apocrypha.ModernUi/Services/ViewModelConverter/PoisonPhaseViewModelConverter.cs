@@ -34,6 +34,7 @@ public class PoisonPhaseViewModelConverter : IViewModelConverter<PoisonPhaseView
             Task.Run(async () => _poisonSpecialEffects = (await specialEffectDataService.GetAll()).ToList()));
     }
 
+    /// <inheritdoc />
     public async Task<PoisonPhaseViewModel> ToViewModel(PoisonPhase model)
     {
         var viewModel = new PoisonPhaseViewModel(_conditions, _poisonDurations, _poisonDamageTargets, _poisonSpecialEffects)
