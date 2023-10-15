@@ -52,7 +52,7 @@ jobs:
           dotnet build ./Apocrypha.WPF/Apocrypha.WPF.csproj --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test --configuration Release --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+        run: dotnet test ./Apocrypha.CommonObject.Tests/Apocrypha.CommonObject.Tests.csproj --configuration Release --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
 
       - name: Upload dotnet test results
         uses: actions/upload-artifact@v3
