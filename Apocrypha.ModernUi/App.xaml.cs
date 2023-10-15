@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -8,6 +7,7 @@ using System.Windows.Markup;
 using System.Windows.Threading;
 using System.Xml;
 using Apocrypha.ModernUi.ExtensionMethods.HostBuilder;
+using Apocrypha.ModernUi.Services.Configuration;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +42,11 @@ namespace Apocrypha.ModernUi
             LoadAvalonHighlighting();
             // SetApplicationLanguage(_host.Services.GetRequiredService<IConfiguration>().GetSection("UserSettings:language").Value);
             SetApplicationLanguage("en");
+
+            // Load initialization
+            var configService = _host.Services.GetRequiredService<IConfigurationService>();
+            // configService.ApocryphaConfiguration.DesignConfiguration.ColorPreset = "LAVENDER";
+            configService.InitializeConfiguration();
 
             Window window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();

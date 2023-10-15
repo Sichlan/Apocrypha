@@ -2,6 +2,7 @@
 using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Resources.Localization;
+using Apocrypha.ModernUi.Services.Configuration;
 using Apocrypha.ModernUi.Themes.Presets;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using CommunityToolkit.Mvvm.Input;
@@ -11,13 +12,16 @@ namespace Apocrypha.ModernUi.ViewModels.Users;
 
 public class SettingsViewModel : NavigableViewModel
 {
+    private readonly IConfigurationService _configurationService;
+
     public override string ViewModelTitle => Localization.SettingsViewModelTitle;
     public ICommand SwitchThemeCommand { get; }
     public ICommand SwitchPresetCommand { get; }
 
-    public SettingsViewModel(NavigateToPageCommand navigateToPageCommand)
+    public SettingsViewModel(NavigateToPageCommand navigateToPageCommand, IConfigurationService configurationService)
         : base(navigateToPageCommand)
     {
+        _configurationService = configurationService;
         SwitchThemeCommand = new RelayCommand<ApplicationTheme?>(ExecuteSwitchThemeCommand, CanExecuteSwitchThemeCommand);
         SwitchPresetCommand = new RelayCommand<string>(ExecuteSwitchPresetCommand, CanExecuteSwitchPresetCommand);
     }
@@ -29,7 +33,7 @@ public class SettingsViewModel : NavigableViewModel
 
     private void ExecuteSwitchPresetCommand(string obj)
     {
-        PresetManager.Current.ColorPreset = obj;
+        _configurationService.ApocryphaConfiguration.DesignConfiguration.ColorPreset = PresetManager.Current.ColorPreset = obj;
     }
 
     private bool CanExecuteSwitchThemeCommand(ApplicationTheme? theme)
@@ -41,7 +45,7 @@ public class SettingsViewModel : NavigableViewModel
     {
         DispatcherHelper.RunOnMainThread(() =>
         {
-            ThemeManager.Current.ApplicationTheme = theme;
+            _configurationService.ApocryphaConfiguration.DesignConfiguration.ApplicationTheme = ThemeManager.Current.ApplicationTheme = theme;
         });
     }
 }
