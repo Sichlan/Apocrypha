@@ -8,6 +8,7 @@ using System.Windows.Markup;
 using System.Windows.Threading;
 using System.Xml;
 using Apocrypha.ModernUi.ExtensionMethods.HostBuilder;
+using Apocrypha.ModernUi.Services.Configuration;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +35,7 @@ namespace Apocrypha.ModernUi
                 .AddStateConfiguration();
         }
 
+        /// <inheritdoc />
         protected override void OnStartup(StartupEventArgs e)
         {
             _host = CreateHostBuilder(e.Args).Build();
@@ -43,13 +45,18 @@ namespace Apocrypha.ModernUi
             // SetApplicationLanguage(_host.Services.GetRequiredService<IConfiguration>().GetSection("UserSettings:language").Value);
             SetApplicationLanguage("en");
 
+            // Load initialization
+            var configService = _host.Services.GetRequiredService<IConfigurationService>();
+            // configService.ApocryphaConfiguration.DesignConfiguration.ColorPreset = "LAVENDER";
+            configService.InitializeConfiguration();
+
             Window window = _host.Services.GetRequiredService<MainWindow>();
             window.Show();
 
             base.OnStartup(e);
         }
 
-        private void SetApplicationLanguage(string language)
+        private static void SetApplicationLanguage(string language)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
@@ -57,6 +64,7 @@ namespace Apocrypha.ModernUi
                 new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(new CultureInfo(language).IetfLanguageTag)));
         }
 
+        /// <inheritdoc />
         protected override async void OnExit(ExitEventArgs e)
         {
             await _host.StopAsync();
@@ -71,12 +79,12 @@ namespace Apocrypha.ModernUi
         ///         Source
         ///     </a>
         /// </summary>
-        private void LoadAvalonHighlighting()
+        private static void LoadAvalonHighlighting()
         {
             LoadSyntaxFromFile("Resources/DiceRoll.xshd", "DiceRoll");
         }
 
-        private void LoadSyntaxFromFile(string path, string name)
+        private static void LoadSyntaxFromFile(string path, string name)
         {
             var contents = File.ReadAllBytes(path);
 

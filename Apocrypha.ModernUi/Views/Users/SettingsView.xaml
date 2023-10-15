@@ -9,7 +9,6 @@
              xmlns:presets="clr-namespace:Apocrypha.ModernUi.Themes.Presets"
              xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance users:SettingsViewModel}">
     <Grid>
         <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
