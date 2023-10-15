@@ -36,6 +36,10 @@ jobs:
       - name: Test
         run: echo $GITHUB_PATH
 
+      - name: Test2
+        run: cd "C:"
+          ls
+
       - name: Restore dependencies
         run: dotnet restore
 
