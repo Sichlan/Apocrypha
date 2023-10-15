@@ -168,6 +168,15 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show details.
+        /// </summary>
+        public static string ButtonLabelShowDetails {
+            get {
+                return ResourceManager.GetString("ButtonLabelShowDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dice roller.
         /// </summary>
         public static string DiceRollerViewModelTitle {
@@ -182,6 +191,24 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string EditorHomeViewModelTitle {
             get {
                 return ResourceManager.GetString("EditorHomeViewModelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Equation unsolvable.
+        /// </summary>
+        public static string ExceptionMessageUnsolvableEquation {
+            get {
+                return ResourceManager.GetString("ExceptionMessageUnsolvableEquation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Equation &quot;{0}&quot; could not be solved..
+        /// </summary>
+        public static string ExceptionMessageUnsolvableEquationDetails {
+            get {
+                return ResourceManager.GetString("ExceptionMessageUnsolvableEquationDetails", resourceCulture);
             }
         }
         
@@ -641,6 +668,51 @@ namespace Apocrypha.ModernUi.Resources.Localization {
         public static string TestViewModelTitle {
             get {
                 return ResourceManager.GetString("TestViewModelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Execution cancelled.
+        /// </summary>
+        public static string UserMessageExecutionCancelled {
+            get {
+                return ResourceManager.GetString("UserMessageExecutionCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save successful.
+        /// </summary>
+        public static string UserMessageSaveSuccessful {
+            get {
+                return ResourceManager.GetString("UserMessageSaveSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must contain at least {1} entries!.
+        /// </summary>
+        public static string ValidationMessageListMustContainMinimumNumberOfElements {
+            get {
+                return ResourceManager.GetString("ValidationMessageListMustContainMinimumNumberOfElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be greater than {1}!.
+        /// </summary>
+        public static string ValidationValueMustBeGraterThan {
+            get {
+                return ResourceManager.GetString("ValidationValueMustBeGraterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be greater than or equal to {1}!.
+        /// </summary>
+        public static string ValidationValueMustBeGraterThanOrEqual {
+            get {
+                return ResourceManager.GetString("ValidationValueMustBeGraterThanOrEqual", resourceCulture);
             }
         }
     }

@@ -15,6 +15,8 @@ public class UserMessageViewModel : BaseViewModel
     private InformationType _informationType;
     private DateTime _createdAt;
     private int? _deleteAfter;
+    private bool _pauseTimer;
+    private double _pausedAtMilliseconds;
 
     private readonly IUserInformationMessageService _userInformationMessageService;
 
@@ -29,6 +31,38 @@ public class UserMessageViewModel : BaseViewModel
         _userInformationMessageService = userInformationMessageService;
 
         RemoveMessageCommand = new RelayCommand(ExecuteRemoveMessageCommand, CanExecuteRemoveMessageCommand);
+        PauseTimerCommand = new RelayCommand(ExecutePauseTimerCommand, CanExecutePauseTimerCommand);
+        UnpauseTimerCommand = new RelayCommand(ExecuteUnpauseTimerCommand, CanExecuteUnpauseTimerCommand);
+    }
+
+    public void AdvanceTimeIfNotPaused()
+    {
+        if (_pauseTimer)
+            return;
+
+        OnPropertyChanged(nameof(TimeRemaining));
+    }
+
+    private bool CanExecuteUnpauseTimerCommand()
+    {
+        return true;
+    }
+
+    private void ExecuteUnpauseTimerCommand()
+    {
+        CreatedAt = DateTime.Now.AddMilliseconds(-DeleteAfter + _pausedAtMilliseconds);
+        _pauseTimer = false;
+    }
+
+    private bool CanExecutePauseTimerCommand()
+    {
+        return true;
+    }
+
+    private void ExecutePauseTimerCommand()
+    {
+        _pausedAtMilliseconds = TimeRemaining;
+        _pauseTimer = true;
     }
 
     private bool CanExecuteRemoveMessageCommand()
@@ -118,5 +152,15 @@ public class UserMessageViewModel : BaseViewModel
         }
     }
 
+    public bool IsPaused
+    {
+        get
+        {
+            return _pauseTimer;
+        }
+    }
+
     public ICommand RemoveMessageCommand { get; }
+    public ICommand PauseTimerCommand { get; }
+    public ICommand UnpauseTimerCommand { get; }
 }

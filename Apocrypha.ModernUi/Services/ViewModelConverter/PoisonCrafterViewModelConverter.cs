@@ -8,6 +8,7 @@ using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.State.Users;
+using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.ViewModels.Tools;
 
 namespace Apocrypha.ModernUi.Services.ViewModelConverter;
@@ -26,6 +27,8 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
     private readonly INavigationService _navigationService;
     private readonly IUserStore _userStore;
     private readonly NavigateBackwardsCommand _navigateBackwardsCommand;
+    private readonly IUserInformationMessageService _userInformationMessageService;
+    private readonly IDataService<PoisonPhaseElement> _poisonPhaseElementDataService;
 
     public PoisonCrafterViewModelConverter(NavigateToPageCommand navigateToPageCommand,
         IDataService<Poison> poisonDataService,
@@ -38,7 +41,9 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
         IDataService<PoisonPhase> poisonPhaseDataService,
         INavigationService navigationService,
         IUserStore userStore,
-        NavigateBackwardsCommand navigateBackwardsCommand)
+        NavigateBackwardsCommand navigateBackwardsCommand,
+        IUserInformationMessageService userInformationMessageService,
+        IDataService<PoisonPhaseElement> poisonPhaseElementDataService)
     {
         _navigateToPageCommand = navigateToPageCommand;
         _poisonDataService = poisonDataService;
@@ -52,6 +57,8 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
         _navigationService = navigationService;
         _userStore = userStore;
         _navigateBackwardsCommand = navigateBackwardsCommand;
+        _userInformationMessageService = userInformationMessageService;
+        _poisonPhaseElementDataService = poisonPhaseElementDataService;
     }
 
     public async Task<PoisonCrafterViewModel> ToViewModel(Poison model)
@@ -67,7 +74,9 @@ public class PoisonCrafterViewModelConverter : IViewModelConverter<PoisonCrafter
             _poisonPhaseDataService,
             _navigationService,
             _userStore,
-            _navigateBackwardsCommand);
+            _navigateBackwardsCommand,
+            _userInformationMessageService,
+            _poisonPhaseElementDataService);
 
         if (model != null)
         {

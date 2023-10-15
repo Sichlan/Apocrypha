@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,9 +13,11 @@ using Apocrypha.CommonObject.Services;
 using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Helpers.Commands.SaveData;
+using Apocrypha.ModernUi.Helpers.Validation;
 using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.State.Users;
+using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using CommunityToolkit.Mvvm.Input;
@@ -75,6 +78,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
         }
     }
 
+    [Required]
     public string Name
     {
         get => _name;
@@ -84,6 +88,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
                 return;
 
             _name = value;
+            Validate(value);
             OnPropertyChanged();
             OnPropertyChanged(nameof(CraftDc));
             OnPropertyChanged(nameof(Summary));
@@ -112,6 +117,8 @@ public class PoisonCrafterViewModel : NavigableViewModel
                 return;
 
             _selectedDeliveryMethodId = value;
+
+            Validate(value);
             OnPropertyChanged();
         }
     }
@@ -129,6 +136,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
         }
     }
 
+    [GreaterThan(0)]
     public int Toxicity
     {
         get => _toxicity;
@@ -138,6 +146,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
                 return;
 
             _toxicity = value;
+            Validate(value);
             OnPropertyChanged();
             OnPropertyChanged(nameof(ToxicityDifficultyClass));
             OnPropertyChanged(nameof(CraftDc));
@@ -145,6 +154,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
         }
     }
 
+    [RequireElements]
     public ObservableCollection<PoisonPhaseViewModel> PoisonPhases
     {
         get => _poisonPhases;
@@ -154,6 +164,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
                 return;
 
             _poisonPhases = value;
+            Validate(value);
             OnPropertyChanged();
         }
     }
@@ -164,6 +175,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
 
     public override string ViewModelTitle => Localization.PoisonCrafterViewModelTitle;
 
+    [Required]
     public PoisonDeliveryMethod SelectedDeliveryMethod
     {
         get
@@ -173,6 +185,7 @@ public class PoisonCrafterViewModel : NavigableViewModel
         set
         {
             DeliveryMethodId = value.Id;
+            Validate(value);
             OnPropertyChanged();
             OnPropertyChanged(nameof(CraftDc));
             OnPropertyChanged(nameof(Summary));
@@ -193,9 +206,11 @@ public class PoisonCrafterViewModel : NavigableViewModel
     public int? ToxicityDifficultyClass =>
         Toxicity - 10;
 
-    public ISaveDataCommand SavePoisonCommand { get; set; }
+    public ISaveDataCommand SavePoisonCommand { get; }
     public ICommand CancelPoisonCommand { get; }
     public ICommand AddPoisonPhaseCommand { get; }
+
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public ICommand DeletePoisonPhaseCommand { get; }
 
     public string Summary
@@ -222,7 +237,7 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         }
     }
 
-    public int MarketPrice
+    private int MarketPrice
     {
         get
         {
@@ -234,7 +249,7 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         }
     }
 
-    public double CraftingCost =>
+    private double CraftingCost =>
         MarketPrice * 0.75;
 
     public bool CanUserEditPoison =>
@@ -251,19 +266,24 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         IDataService<PoisonPhase> poisonPhaseDataService,
         INavigationService navigationService,
         IUserStore userStore,
-        NavigateBackwardsCommand navigateBackwardsCommand)
+        NavigateBackwardsCommand navigateBackwardsCommand,
+        IUserInformationMessageService userInformationMessageService, IDataService<PoisonPhaseElement> poisonPhaseElementDataService)
         : base(navigateToPageCommand)
     {
         _poisonPhaseDataService = poisonPhaseDataService;
         _userStore = userStore;
 
-        SavePoisonCommand = new SaveDataCommand<PoisonCrafterViewModel, Poison>(poisonDataService, viewModelConverter, CanExecuteSavePoisonCommand);
+        SavePoisonCommand = new SaveDataCommand<PoisonCrafterViewModel, Poison>(poisonDataService, viewModelConverter, userInformationMessageService,
+            CanExecuteSavePoisonCommand);
         CancelPoisonCommand = navigateBackwardsCommand;
         AddPoisonPhaseCommand = new RelayCommand(ExecuteAddPoisonPhaseCommand, CanExecuteAddPoisonPhaseCommand);
         DeletePoisonPhaseCommand = new RelayCommand<PoisonPhaseViewModel>(ExecuteDeletePoisonPhaseCommand, CanExecuteDeletePoisonPhaseCommand);
 
         PoisonPhases ??= new ObservableCollection<PoisonPhaseViewModel>();
         PoisonTranslations ??= new TranslationCollection<PoisonTranslation>();
+
+        // This will be set to true in OnNavigateTo()
+        ValidationEnabled = false;
 
         _userStore.StateChange += () =>
         {
@@ -277,6 +297,11 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         if (Id == 0)
             SavePoisonCommand.StagePreExecutionAction(() =>
             {
+                ValidateAll();
+
+                if (HasErrors)
+                    SavePoisonCommand.CancelExecution(false, string.Join("\n", GetAllErrors().Select(x => $"-{x}")));
+
                 if (_userStore.CurrentUser != null)
                     CreatorId = _userStore.CurrentUser.Id;
             });
@@ -286,6 +311,8 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
         Task.Run(async () =>
         {
             PoisonDeliveryMethods = new ObservableCollection<PoisonDeliveryMethod>(await poisonDeliveryMethodDataService.GetAll());
+
+            Validate(SelectedDeliveryMethod, nameof(SelectedDeliveryMethod));
 
             _conditions = (await conditionDataService.GetAll()).ToList();
             _poisonDurations = (await durationDataService.GetAll()).ToList();
@@ -299,19 +326,42 @@ Market Price: {MarketPrice:N2} GP ({CraftingCost:N2} GP to craft)";
                     poisonPhase.PhaseNumber = PoisonPhases.IndexOf(poisonPhase) + 1;
                     poisonPhase.PropertyChanged -= PoisonPhaseOnPropertyChanged;
                     poisonPhase.PropertyChanged += PoisonPhaseOnPropertyChanged;
+                    poisonPhase.PhaseElementRemoved += list =>
+                    {
+                        SavePoisonCommand.StagePreExecutionAction(() =>
+                        {
+                            foreach (var poisonPhaseElementViewModel in list.Where(x => x.Id > 0))
+                            {
+                                poisonPhaseElementDataService.Delete(poisonPhaseElementViewModel.Id);
+                            }
+                        });
+                    };
                 }
 
                 OnPropertyChanged(nameof(CraftDc));
                 OnPropertyChanged(nameof(Summary));
+                Validate(PoisonPhases, nameof(PoisonPhases));
             };
         });
     }
 
+    public override void OnNavigateTo()
+    {
+        base.OnNavigateTo();
+        ValidationEnabled = true;
+    }
+
+    public override void OnNavigateFrom()
+    {
+        base.OnNavigateFrom();
+        ValidationEnabled = false;
+    }
+
     private bool CanExecuteSavePoisonCommand()
     {
-        return CreatorId == null
-               || Id == 0
-               || _userStore.CurrentUser?.Id == CreatorId;
+        return (CreatorId == null
+                || Id == 0
+                || _userStore.CurrentUser?.Id == CreatorId);
     }
 
     private void PoisonPhaseOnPropertyChanged(object sender, PropertyChangedEventArgs e)

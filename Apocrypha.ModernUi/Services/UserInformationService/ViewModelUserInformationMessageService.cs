@@ -33,10 +33,10 @@ public class ViewModelUserInformationMessageService : IUserInformationMessageSer
 
         foreach (var userMessageViewModel in UserMessageViewModels)
         {
-            if (userMessageViewModel.TimeRemaining <= 0)
+            if (userMessageViewModel.TimeRemaining <= 0 && !userMessageViewModel.IsPaused)
                 RemoveDisplayMessage(userMessageViewModel);
             else
-                userMessageViewModel.OnPropertyChanged(nameof(userMessageViewModel.TimeRemaining));
+                userMessageViewModel.AdvanceTimeIfNotPaused();
         }
 
         if (!_cancellationTokenSource.IsCancellationRequested)

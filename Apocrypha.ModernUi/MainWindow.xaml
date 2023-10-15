@@ -10,7 +10,6 @@
         xmlns:navigationViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
         xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
         xmlns:users="clr-namespace:Apocrypha.ModernUi.Views.Users"
-        xmlns:editor="clr-namespace:Apocrypha.ModernUi.ViewModels.Editor"
         xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         ui:WindowHelper.UseModernWindowStyle="True"
@@ -143,13 +142,14 @@
             ItemInvoked="NavView_ItemInvoked">
 
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItemHeader Content="TEMP Controls" />
+                <ui:NavigationViewItemHeader Content="TODO Controls" />
                 
-                <ui:NavigationViewItem Icon="Home" Content="TEMP Home" Tag="{x:Type navigationViewModels:HomeViewModel}"/>
-                
-                <ui:NavigationViewItemHeader Content="TEMP Editor"/>
-                <ui:NavigationViewItem Icon="Edit" Content="TEMP Home" Tag="{x:Type editor:EditorHomeViewModel}"/>
-                <ui:NavigationViewItem Icon="Contact" Content="TEMP Races" Tag="{x:Type editor:RaceEditorListViewModel}"/>
+                <ui:NavigationViewItem Icon="Home" Content="TODO Home" Tag="{x:Type navigationViewModels:HomeViewModel}"/>
+
+                <!-- <ui:NavigationViewItemHeader Content="TODO Editor" /> -->
+                <!-- <ui:NavigationViewItem Icon="Edit" Content="TODO Home" Tag="{x:Type editor:EditorHomeViewModel}" /> -->
+                <!-- <ui:NavigationViewItem Icon="Contact" Content="TODO Races" -->
+                <!--                        Tag="{x:Type editor:RaceEditorListViewModel}" /> -->
                 
                 <ui:NavigationViewItemHeader Content="{x:Static res:Localization.MenuGroupLabelTools}"/>
                 <ui:NavigationViewItem Content="{x:Static res:Localization.MenuLabelPoisonCrafter}" Tag="{x:Type tools:PoisonCrafterListViewModel}">
@@ -167,7 +167,7 @@
             <ContentControl x:Name="ContentFrame" Content="{Binding ActiveViewModel}"/>
         </ui:NavigationView>
         
-        <ListBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="Transparent"
+        <ItemsControl Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="Transparent"
                  ItemsSource="{Binding Source={StaticResource UserMessageCollectionViewSource}}"/>
     </Grid>
 </fw:AcrylicWindow>

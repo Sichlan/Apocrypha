@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.CommonObject.Services.DiceRollerServices;
+using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.UserInformationService;
@@ -47,6 +48,7 @@ public class DiceRollerViewModel : NavigableViewModel
     }
 
     public ICommand RollEquationCommand { get; }
+    public ICommand OpenHelpCommand { get; }
 
     public DiceRollerViewModel(NavigateToPageCommand navigateToPageCommand, IDiceRollerService diceRollerService,
         IUserInformationMessageService userInformationMessageService)
@@ -56,6 +58,17 @@ public class DiceRollerViewModel : NavigableViewModel
         _userInformationMessageService = userInformationMessageService;
 
         RollEquationCommand = new RelayCommand(ExecuteRollEquationCommand, CanExecuteRollEquationCommand);
+        OpenHelpCommand = new RelayCommand(ExecuteOpenHelpCommand, CanExecuteOpenHelpCommand);
+    }
+
+    private bool CanExecuteOpenHelpCommand()
+    {
+        return true;
+    }
+
+    private void ExecuteOpenHelpCommand()
+    {
+        UrlHelper.OpenUrl("https://github.com/Sichlan/Apocrypha/wiki/Dice-Rolls");
     }
 
     private bool CanExecuteRollEquationCommand()
@@ -89,7 +102,8 @@ public class DiceRollerViewModel : NavigableViewModel
             }
             catch (UnsolvableEquationException e)
             {
-                _userInformationMessageService.AddDisplayMessage("TEMP UNSOLVABLE EQUATION", InformationType.Error);
+                _userInformationMessageService.AddDisplayMessage(Localization.ExceptionMessageUnsolvableEquation, InformationType.Error,
+                    messageDetails: string.Format(Localization.ExceptionMessageUnsolvableEquationDetails, e.Equation));
             }
         });
     }

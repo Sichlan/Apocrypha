@@ -27,10 +27,9 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
             <Button Margin="5" Content="{x:Static res:Localization.ButtonLabelSave}" MinWidth="100"
                     Command="{Binding SavePoisonCommand}" 
-                    CommandParameter="{Binding}"/>
+                    CommandParameter="{Binding NotifyOnValidationError=False}"/>
             <Button Margin="5" Content="{x:Static res:Localization.ButtonLabelCancel}" MinWidth="100"
-                    Command="{Binding CancelPoisonCommand}" 
-                    CommandParameter="{Binding}"/>
+                    Command="{Binding CancelPoisonCommand}"/>
         </StackPanel>
         
         <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"/>
@@ -76,7 +75,7 @@
 
                 <GroupBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Header="{x:Static res:Localization.HeaderLabelPoisonPhases}" Margin="5">
                     <StackPanel Orientation="Vertical">
-                        <ItemsControl ItemsSource="{Binding PoisonPhases}"
+                        <ItemsControl ItemsSource="{Binding PoisonPhases, ValidatesOnNotifyDataErrors=False}"
                                       Grid.IsSharedSizeScope="True"/>
 
                         <Button Margin="5" Content="{x:Static res:Localization.ButtonLabelAddPoisonPhase}"

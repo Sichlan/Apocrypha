@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Apocrypha.CommonObject.Models.Common;
 using Apocrypha.CommonObject.Services;
+using Apocrypha.ModernUi.Resources.Localization;
+using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels.Common;
 
@@ -13,15 +15,19 @@ public class SaveDataCommand<TViewModel, TModel> : ISaveDataCommand
 {
     private readonly IDataService<TModel> _dataService;
     private readonly IViewModelConverter<TViewModel, TModel> _viewModelConverter;
+    private readonly IUserInformationMessageService _userInformationMessageService;
     private readonly Func<bool> _canExecute;
+    private bool _cancelExecution;
 
     private readonly IList<Action> _stagedActionsPreExecution;
     private readonly IList<Action> _stagedActionsPostExecution;
 
-    public SaveDataCommand(IDataService<TModel> dataService, IViewModelConverter<TViewModel, TModel> viewModelConverter, Func<bool> canExecute = null)
+    public SaveDataCommand(IDataService<TModel> dataService, IViewModelConverter<TViewModel, TModel> viewModelConverter,
+        IUserInformationMessageService userInformationMessageService, Func<bool> canExecute = null)
     {
         _dataService = dataService;
         _viewModelConverter = viewModelConverter;
+        _userInformationMessageService = userInformationMessageService;
         _canExecute = canExecute;
 
         _stagedActionsPreExecution = new List<Action>();
@@ -39,9 +45,14 @@ public class SaveDataCommand<TViewModel, TModel> : ISaveDataCommand
         if (parameter is not TViewModel viewModel)
             throw new ArgumentException();
 
+        _cancelExecution = false;
+
         foreach (var action in _stagedActionsPreExecution)
         {
             action();
+
+            if (_cancelExecution)
+                return;
         }
 
         var databaseObject = await _viewModelConverter.ToModel(viewModel);
@@ -55,6 +66,8 @@ public class SaveDataCommand<TViewModel, TModel> : ISaveDataCommand
         {
             action();
         }
+
+        _userInformationMessageService.AddDisplayMessage(Localization.UserMessageSaveSuccessful, InformationType.Success, 5000);
     }
 
     public event EventHandler CanExecuteChanged;
@@ -72,5 +85,12 @@ public class SaveDataCommand<TViewModel, TModel> : ISaveDataCommand
     public void StagePostExecutionAction(Action action)
     {
         _stagedActionsPostExecution.Add(action);
+    }
+
+    public void CancelExecution(bool cancelledByUser, string reason = "")
+    {
+        _cancelExecution = true;
+        _userInformationMessageService.AddDisplayMessage(Localization.UserMessageExecutionCancelled,
+            cancelledByUser ? InformationType.Warning : InformationType.Error, 5000, reason);
     }
 }

@@ -30,7 +30,7 @@
                     </ResourceDictionary.MergedDictionaries>
                     <SolidColorBrush x:Key="AppBackgroundBrush" Color="#FF232323" />
                     <SolidColorBrush x:Key="AppContentBackgroundBrush" Color="#FF282828" />
-                    <SolidColorBrush x:Key="CustomThemeBrush" Color="Yellow" />
+                    <SolidColorBrush x:Key="CustomThemeBrush" Color="Red" />
                 </ResourceDictionary>
             </ui:ThemeResources.ThemeDictionaries>
         </ui:ThemeResources>
@@ -38,7 +38,9 @@
         <ui:XamlControlsResources />
         
         <ResourceDictionary Source="Converters.xaml"/>
-        <ResourceDictionary Source="TextStyles.xaml"/>
+        <ResourceDictionary Source="CustomControls/TextStyles.xaml"/>
+        <ResourceDictionary Source="CustomControls/SeparatorStyles.xaml"/>
+        <ResourceDictionary Source="CustomControls/UserMessageStyles.xaml"/>
         <ResourceDictionary Source="AvalonTextEditStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/BusyIndicatorStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>

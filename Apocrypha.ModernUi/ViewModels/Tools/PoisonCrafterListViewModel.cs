@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,6 +10,7 @@ using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Resources.Localization;
 using Apocrypha.ModernUi.Services.Randomizer;
 using Apocrypha.ModernUi.Services.State.Users;
+using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using CommunityToolkit.Mvvm.Input;
 
@@ -19,6 +21,7 @@ public class PoisonCrafterListViewModel : NavigableViewModel
     private readonly IDataService<Poison> _poisonDataService;
     private readonly IUserStore _userStore;
     private readonly IPoisonRandomizerService _poisonRandomizerService;
+    private readonly IUserInformationMessageService _userInformationMessageService;
 
     private readonly CreatePoisonCrafterViewModel _poisonCrafterViewModelBuilder;
     private ObservableCollection<PoisonCrafterViewModel> _poisonCrafterViewModels;
@@ -49,23 +52,25 @@ public class PoisonCrafterListViewModel : NavigableViewModel
 
             _isLoading = value;
             OnPropertyChanged();
+            DispatcherHelper.RunOnMainThread(() => UpdateListCommand.NotifyCanExecuteChanged());
         }
     }
 
-    public ICommand UpdateListCommand { get; }
+    public IRelayCommand UpdateListCommand { get; }
     public IRelayCommand DeletePoisonCommand { get; }
     public ICommand GenerateRandomPoisonCommand { get; }
 
     public PoisonCrafterListViewModel(IDataService<Poison> poisonDataService,
         CreatePoisonCrafterViewModel poisonCrafterViewModelBuilder,
         NavigateToPageCommand navigateToPageCommand, IUserStore userStore,
-        IPoisonRandomizerService poisonRandomizerService)
+        IPoisonRandomizerService poisonRandomizerService, IUserInformationMessageService userInformationMessageService)
         : base(navigateToPageCommand)
     {
         _poisonDataService = poisonDataService;
         _poisonCrafterViewModelBuilder = poisonCrafterViewModelBuilder;
         _userStore = userStore;
         _poisonRandomizerService = poisonRandomizerService;
+        _userInformationMessageService = userInformationMessageService;
 
         UpdateListCommand = new RelayCommand(ExecuteUpdateListCommand, CanExecuteUpdateListCommand);
         DeletePoisonCommand = new RelayCommand<PoisonCrafterViewModel>(ExecuteDeletePoisonCommand, CanExecuteDeletePoisonCommand);
@@ -101,18 +106,28 @@ public class PoisonCrafterListViewModel : NavigableViewModel
     {
         Task.Run(async () =>
         {
-            IsLoading = true;
+            try
+            {
+                IsLoading = true;
 
-            await _poisonDataService.Delete(obj.Id);
-            InitPoisons();
-
-            IsLoading = false;
+                await _poisonDataService.Delete(obj.Id);
+                InitPoisons();
+            }
+            catch (Exception e)
+            {
+                //TODO: real exception message
+                _userInformationMessageService.AddDisplayMessage(e.Message, InformationType.Error, null, e.ToString());
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         });
     }
 
     private bool CanExecuteUpdateListCommand()
     {
-        return true;
+        return !IsLoading;
     }
 
     private void ExecuteUpdateListCommand()
@@ -120,16 +135,26 @@ public class PoisonCrafterListViewModel : NavigableViewModel
         InitPoisons();
     }
 
-    private void InitPoisons()
+    private async void InitPoisons()
     {
-        Task.Run(async () =>
+        await Task.Run(async () =>
         {
-            IsLoading = true;
+            try
+            {
+                IsLoading = true;
 
-            var results = await _poisonDataService.GetAll();
-            PoisonCrafterViewModels = new ObservableCollection<PoisonCrafterViewModel>(results.Select(x => _poisonCrafterViewModelBuilder(x)));
-
-            IsLoading = false;
+                var results = await _poisonDataService.GetAll();
+                PoisonCrafterViewModels = new ObservableCollection<PoisonCrafterViewModel>(results.Select(x => _poisonCrafterViewModelBuilder(x)));
+            }
+            catch (Exception e)
+            {
+                //TODO: real exception message
+                _userInformationMessageService.AddDisplayMessage(e.Message, InformationType.Error, null, e.ToString());
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         });
     }
 

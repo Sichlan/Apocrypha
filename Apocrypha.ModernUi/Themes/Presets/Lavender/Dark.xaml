@@ -37,6 +37,7 @@
             <Color x:Key="SystemRevealListLowColor">#FF3F2E4B</Color>
             <Color x:Key="SystemRevealListMediumColor">#FF64576B</Color>
             <Color x:Key="RegionColor">#FF262738</Color>
+            <Color x:Key="SystemErrorTextColor">Red</Color>
             <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
