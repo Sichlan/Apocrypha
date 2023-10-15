@@ -35,8 +35,11 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          dir
-          dotnet restore
+          dotnet restore ./Apocrypha.CommonObject/Apocrypha.CommonObject.csproj
+          dotnet restore ./Apocrypha.CommonObject.Tests/Apocrypha.CommonObject.Tests.csproj
+          dotnet restore ./Apocrypha.EntityFramework/Apocrypha.EntityFramework.csproj
+          dotnet restore ./Apocrypha.ModernUi/Apocrypha.ModernUi.csproj
+          dotnet restore ./Apocrypha.WPF/Apocrypha.WPF.csproj
 
       - name: Build Solution
         run: dotnet build --configuration Release --no-restore

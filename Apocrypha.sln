@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apocrypha.CommonObject.Tests", "Apocrypha.CommonObject.Tests\Apocrypha.CommonObject.Tests.csproj", "{05E93E9C-BF21-4A89-853F-C9E6FD2EC68B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apocrypha.CommonObject", "Apocrypha.CommonObj\Apocrypha.CommonObject.csproj", "{A994E7C1-EBD2-47B5-98A4-C2B96201E500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apocrypha.CommonObject", "Apocrypha.CommonObject\Apocrypha.CommonObject.csproj", "{A994E7C1-EBD2-47B5-98A4-C2B96201E500}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apocrypha.ModernUi", "Apocrypha.ModernUi\Apocrypha.ModernUi.csproj", "{D6566897-30D6-45FC-9426-F80218CC34C7}"
 EndProject
