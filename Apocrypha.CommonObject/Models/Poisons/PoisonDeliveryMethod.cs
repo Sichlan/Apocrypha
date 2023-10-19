@@ -18,27 +18,15 @@ public class PoisonDeliveryMethod : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return PoisonDeliveryMethodTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            PoisonDeliveryMethodTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => PoisonDeliveryMethodTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => PoisonDeliveryMethodTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
 
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return PoisonDeliveryMethodTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            PoisonDeliveryMethodTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => PoisonDeliveryMethodTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => PoisonDeliveryMethodTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

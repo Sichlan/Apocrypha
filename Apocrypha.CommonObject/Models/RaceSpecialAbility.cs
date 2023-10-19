@@ -17,14 +17,8 @@ public class RaceSpecialAbility : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-        }
-        set
-        {
-            RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+        set => RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string FallbackDescription { get; set; }
@@ -32,14 +26,8 @@ public class RaceSpecialAbility : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-        }
-        set
-        {
-            RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        set => RaceSpecialAbilityTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 
     #endregion

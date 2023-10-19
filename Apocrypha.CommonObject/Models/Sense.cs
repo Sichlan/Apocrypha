@@ -17,14 +17,8 @@ public class Sense : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return SenseTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-        }
-        set
-        {
-            SenseTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => SenseTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+        set => SenseTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string FallbackDescription { get; set; }
@@ -32,14 +26,8 @@ public class Sense : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return SenseTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-        }
-        set
-        {
-            SenseTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => SenseTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        set => SenseTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 
     #endregion

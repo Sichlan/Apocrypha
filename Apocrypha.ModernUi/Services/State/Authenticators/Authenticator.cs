@@ -21,10 +21,7 @@ public class Authenticator : IAuthenticator
 
     public User CurrentUser
     {
-        get
-        {
-            return _userStore.CurrentUser;
-        }
+        get => _userStore.CurrentUser;
         private set
         {
             _userStore.CurrentUser = value;
@@ -32,13 +29,8 @@ public class Authenticator : IAuthenticator
         }
     }
 
-    public bool IsLoggedIn
-    {
-        get
-        {
-            return CurrentUser != null;
-        }
-    }
+    public bool IsLoggedIn =>
+        CurrentUser != null;
 
     public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword)
     {

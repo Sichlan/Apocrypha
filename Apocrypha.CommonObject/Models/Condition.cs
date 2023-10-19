@@ -16,14 +16,8 @@ public class Condition : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return ConditionTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            ConditionTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => ConditionTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => ConditionTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string DescriptionFallback { get; set; }
@@ -31,14 +25,8 @@ public class Condition : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return ConditionTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            ConditionTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => ConditionTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => ConditionTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 
     /// <summary>

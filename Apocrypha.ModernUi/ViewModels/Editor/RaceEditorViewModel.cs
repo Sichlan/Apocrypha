@@ -47,18 +47,12 @@ public class RaceEditorViewModel : NavigableViewModel
         {
             return CreatureTypes?.FirstOrDefault(x => x.Id == Race.CreatureType?.Id);
         }
-        set
-        {
-            Race.CreatureType = value;
-        }
+        set => Race.CreatureType = value;
     }
 
     public ObservableCollection<CreatureType> CreatureTypes
     {
-        get
-        {
-            return _creatureTypes;
-        }
+        get => _creatureTypes;
         private set
         {
             _creatureTypes = value;
@@ -73,18 +67,12 @@ public class RaceEditorViewModel : NavigableViewModel
         {
             return CreatureSubTypes?.FirstOrDefault(x => x.Id == Race.CreatureSubType?.Id);
         }
-        set
-        {
-            Race.CreatureSubType = value;
-        }
+        set => Race.CreatureSubType = value;
     }
 
     public ObservableCollection<CreatureSubType> CreatureSubTypes
     {
-        get
-        {
-            return _creatureSubTypes;
-        }
+        get => _creatureSubTypes;
         private set
         {
             _creatureSubTypes = value;
@@ -99,18 +87,12 @@ public class RaceEditorViewModel : NavigableViewModel
         {
             return CreatureSizeCategories?.FirstOrDefault(x => x.Id == Race.CreatureSizeCategory?.Id);
         }
-        set
-        {
-            Race.CreatureSizeCategory = value;
-        }
+        set => Race.CreatureSizeCategory = value;
     }
 
     public ObservableCollection<CreatureSizeCategory> CreatureSizeCategories
     {
-        get
-        {
-            return _creatureSizeCategories;
-        }
+        get => _creatureSizeCategories;
         private set
         {
             _creatureSizeCategories = value;
@@ -125,18 +107,12 @@ public class RaceEditorViewModel : NavigableViewModel
         {
             return RuleBooks?.FirstOrDefault(x => x.Id == Race.RuleBook?.Id);
         }
-        set
-        {
-            Race.RuleBook = value;
-        }
+        set => Race.RuleBook = value;
     }
 
     public ObservableCollection<RuleBook> RuleBooks
     {
-        get
-        {
-            return _ruleBooks;
-        }
+        get => _ruleBooks;
         private set
         {
             _ruleBooks = value;

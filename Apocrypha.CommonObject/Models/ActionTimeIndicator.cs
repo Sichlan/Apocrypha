@@ -24,14 +24,8 @@ public class ActionTimeIndicator : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string DescriptionFallback { get; set; }
@@ -39,13 +33,7 @@ public class ActionTimeIndicator : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => ActionTimeIndicatorTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

@@ -17,14 +17,8 @@ public class Alphabet : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return AlphabetTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-        }
-        set
-        {
-            AlphabetTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => AlphabetTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+        set => AlphabetTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string FallbackDescription { get; set; }
@@ -32,14 +26,8 @@ public class Alphabet : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return AlphabetTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-        }
-        set
-        {
-            AlphabetTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => AlphabetTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        set => AlphabetTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 
     #endregion

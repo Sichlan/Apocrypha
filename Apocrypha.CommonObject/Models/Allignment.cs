@@ -15,14 +15,8 @@ public class Allignment : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return AllignmentTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            AllignmentTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => AllignmentTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => AllignmentTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string DescriptionFallback { get; set; }
@@ -30,13 +24,7 @@ public class Allignment : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return AllignmentTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            AllignmentTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => AllignmentTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => AllignmentTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

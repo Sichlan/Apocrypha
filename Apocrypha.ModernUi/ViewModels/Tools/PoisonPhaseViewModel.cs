@@ -27,10 +27,7 @@ public class PoisonPhaseViewModel : BaseViewModel
 
     public int Id
     {
-        get
-        {
-            return _id;
-        }
+        get => _id;
         set
         {
             if (value == _id)
@@ -43,10 +40,7 @@ public class PoisonPhaseViewModel : BaseViewModel
 
     public int PhaseNumber
     {
-        get
-        {
-            return _phaseNumber;
-        }
+        get => _phaseNumber;
         set
         {
             if (value == _phaseNumber)
@@ -62,10 +56,7 @@ public class PoisonPhaseViewModel : BaseViewModel
     [RequireElements]
     public ObservableCollection<PoisonPhaseElementViewModel> PhaseElements
     {
-        get
-        {
-            return _phaseElements;
-        }
+        get => _phaseElements;
         set
         {
             if (Equals(value, _phaseElements))
@@ -96,10 +87,7 @@ public class PoisonPhaseViewModel : BaseViewModel
 
     public int? PoisonDurationId
     {
-        get
-        {
-            return _poisonDurationId;
-        }
+        get => _poisonDurationId;
         set
         {
             if (Equals(value, _poisonDurationId))
@@ -195,13 +183,8 @@ public class PoisonPhaseViewModel : BaseViewModel
         }
     }
 
-    public ICollection<PoisonDuration> PoisonDurations
-    {
-        get
-        {
-            return _poisonDurations;
-        }
-    }
+    public ICollection<PoisonDuration> PoisonDurations =>
+        _poisonDurations;
 
     private bool CanExecuteAddPoisonPhaseElement()
     {

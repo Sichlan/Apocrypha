@@ -15,13 +15,7 @@ public class Spell : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return SpellTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            SpellTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => SpellTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => SpellTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 }

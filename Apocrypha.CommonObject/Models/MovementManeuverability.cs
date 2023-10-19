@@ -17,14 +17,8 @@ public class MovementManeuverability : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-        }
-        set
-        {
-            MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+        set => MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string FallbackDescription { get; set; }
@@ -32,14 +26,8 @@ public class MovementManeuverability : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-        }
-        set
-        {
-            MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        set => MovementManeuverabilityTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 
     #endregion

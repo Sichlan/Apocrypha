@@ -15,14 +15,8 @@ public class SpellRangeType : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return SpellRangeTypeTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            SpellRangeTypeTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => SpellRangeTypeTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => SpellRangeTypeTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string DescriptionFallback { get; set; }
@@ -30,13 +24,7 @@ public class SpellRangeType : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return SpellRangeTypeTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            SpellRangeTypeTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => SpellRangeTypeTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => SpellRangeTypeTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

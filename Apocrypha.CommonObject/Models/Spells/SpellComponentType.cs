@@ -27,14 +27,8 @@ public class SpellComponentType : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string DescriptionFallback { get; set; }
@@ -42,14 +36,8 @@ public class SpellComponentType : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 
     public string AbbreviationFallback { get; set; }
@@ -57,13 +45,7 @@ public class SpellComponentType : DatabaseObject
     [NotMapped]
     public string Abbreviation
     {
-        get
-        {
-            return SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Abbreviation ?? AbbreviationFallback;
-        }
-        set
-        {
-            SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Abbreviation = value;
-        }
+        get => SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Abbreviation ?? AbbreviationFallback;
+        set => SpellComponentTypeTranslations[CultureInfo.CurrentCulture].Abbreviation = value;
     }
 }

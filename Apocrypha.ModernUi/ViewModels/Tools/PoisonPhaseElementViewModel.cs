@@ -43,14 +43,13 @@ public class PoisonPhaseElementViewModel : BaseViewModel
     private int? _poisonDamageTargetId;
     private int? _poisonSpecialEffectId;
 
+    /// <inheritdoc cref="PoisonPhaseElement.Id"/>
     public int Id { get; init; }
 
+    /// <inheritdoc cref="PoisonPhaseElement.DamageDiceSize"/>
     public int? DamageDiceSize
     {
-        get
-        {
-            return _damageDiceSize;
-        }
+        get => _damageDiceSize;
         set
         {
             if (value == _damageDiceSize)
@@ -63,12 +62,10 @@ public class PoisonPhaseElementViewModel : BaseViewModel
         }
     }
 
+    /// <inheritdoc cref="PoisonPhaseElement.DamageDiceCount"/>
     public int? DamageDiceCount
     {
-        get
-        {
-            return _damageDiceCount;
-        }
+        get => _damageDiceCount;
         set
         {
             if (value == _damageDiceCount)
@@ -81,12 +78,10 @@ public class PoisonPhaseElementViewModel : BaseViewModel
         }
     }
 
+    /// <inheritdoc cref="PoisonPhaseElement.ConditionId"/>
     public int? ConditionId
     {
-        get
-        {
-            return _conditionId;
-        }
+        get => _conditionId;
         set
         {
             if (Equals(value, _conditionId))
@@ -97,12 +92,10 @@ public class PoisonPhaseElementViewModel : BaseViewModel
         }
     }
 
+    /// <inheritdoc cref="PoisonPhaseElement.PoisonDurationId"/>
     public int? PoisonDurationId
     {
-        get
-        {
-            return _poisonDurationId;
-        }
+        get => _poisonDurationId;
         set
         {
             if (Equals(value, _poisonDurationId))
@@ -113,12 +106,10 @@ public class PoisonPhaseElementViewModel : BaseViewModel
         }
     }
 
+    /// <inheritdoc cref="PoisonPhaseElement.PoisonDamageTargetId"/>
     public int? PoisonDamageTargetId
     {
-        get
-        {
-            return _poisonDamageTargetId;
-        }
+        get => _poisonDamageTargetId;
         set
         {
             if (Equals(value, _poisonDamageTargetId))
@@ -129,12 +120,10 @@ public class PoisonPhaseElementViewModel : BaseViewModel
         }
     }
 
+    /// <inheritdoc cref="PoisonPhaseElement.PoisonSpecialEffectId"/>
     public int? PoisonSpecialEffectId
     {
-        get
-        {
-            return _poisonSpecialEffectId;
-        }
+        get => _poisonSpecialEffectId;
         set
         {
             if (Equals(value, _poisonSpecialEffectId))
@@ -271,22 +260,12 @@ public class PoisonPhaseElementViewModel : BaseViewModel
         }
     }
 
-    public int ConditionCraftDcModifier
-    {
-        get
-        {
-            return (SelectedCondition?.PoisonCraftModifier).GetValueOrDefault(0) +
-                   (SelectedCondition?.WithoutDuration == true ? 0 : (SelectedPoisonDuration?.CraftModifier).GetValueOrDefault(0));
-        }
-    }
+    public int ConditionCraftDcModifier =>
+        (SelectedCondition?.PoisonCraftModifier).GetValueOrDefault(0) +
+        (SelectedCondition?.WithoutDuration == true ? 0 : (SelectedPoisonDuration?.CraftModifier).GetValueOrDefault(0));
 
-    public int CombinedCraftModifier
-    {
-        get
-        {
-            return DamageCraftDcModifier + ConditionCraftDcModifier + (SelectedPoisonSpecialEffect?.CraftModifier).GetValueOrDefault(0);
-        }
-    }
+    public int CombinedCraftModifier =>
+        DamageCraftDcModifier + ConditionCraftDcModifier + (SelectedPoisonSpecialEffect?.CraftModifier).GetValueOrDefault(0);
 
     public ICommand ResetDamageCommand { get; }
     public ICommand ResetConditionCommand { get; }

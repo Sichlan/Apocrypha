@@ -22,13 +22,7 @@ public class SpellVariant : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return SpellVariantTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            SpellVariantTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => SpellVariantTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => SpellVariantTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

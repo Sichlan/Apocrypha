@@ -14,14 +14,8 @@ public abstract class Translation<T> : DatabaseObject where T : Translation<T>, 
 
     public string CultureName
     {
-        get
-        {
-            return _cultureName;
-        }
-        set
-        {
-            _cultureName = value;
-        }
+        get => _cultureName;
+        set => _cultureName = value;
     }
 
     public string Name { get; set; }
@@ -30,10 +24,7 @@ public abstract class Translation<T> : DatabaseObject where T : Translation<T>, 
     [NotMapped]
     public CultureInfo CultureInfo
     {
-        get
-        {
-            return new CultureInfo(CultureName);
-        }
+        get => new(CultureName);
         set
         {
             if (value != null)

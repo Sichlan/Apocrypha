@@ -28,26 +28,14 @@ public class Poison : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return PoisonTranslations?[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            PoisonTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => PoisonTranslations?[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => PoisonTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return PoisonTranslations?[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            PoisonTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => PoisonTranslations?[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => PoisonTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

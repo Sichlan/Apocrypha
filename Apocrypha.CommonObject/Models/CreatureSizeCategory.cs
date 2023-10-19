@@ -27,14 +27,8 @@ public class CreatureSizeCategory : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return CreatureSizeCategoryTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-        }
-        set
-        {
-            CreatureSizeCategoryTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => CreatureSizeCategoryTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+        set => CreatureSizeCategoryTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     #endregion

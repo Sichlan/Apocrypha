@@ -9,10 +9,7 @@ public class UserStore : IUserStore
 
     public User CurrentUser
     {
-        get
-        {
-            return _currentUser;
-        }
+        get => _currentUser;
         set
         {
             _currentUser = value;

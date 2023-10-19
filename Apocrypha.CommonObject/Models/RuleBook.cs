@@ -18,14 +18,8 @@ public class RuleBook : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return RuleBookTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-        }
-        set
-        {
-            RuleBookTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => RuleBookTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+        set => RuleBookTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string FallbackDescription { get; set; }
@@ -33,14 +27,8 @@ public class RuleBook : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return RuleBookTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-        }
-        set
-        {
-            RuleBookTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => RuleBookTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        set => RuleBookTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 
     public ICollection<SpellVariant> SpellVariants { get; set; }

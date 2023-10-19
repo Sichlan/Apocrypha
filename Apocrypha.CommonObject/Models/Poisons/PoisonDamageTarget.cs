@@ -18,26 +18,14 @@ public class PoisonDamageTarget : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => PoisonDamageTargetTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

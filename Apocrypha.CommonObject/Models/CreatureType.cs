@@ -17,14 +17,8 @@ public class CreatureType : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return CreatureTypeTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-        }
-        set
-        {
-            CreatureTypeTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => CreatureTypeTranslations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+        set => CreatureTypeTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string FallbackDescription { get; set; }
@@ -32,14 +26,8 @@ public class CreatureType : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return CreatureTypeTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-        }
-        set
-        {
-            CreatureTypeTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => CreatureTypeTranslations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        set => CreatureTypeTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 
     #endregion

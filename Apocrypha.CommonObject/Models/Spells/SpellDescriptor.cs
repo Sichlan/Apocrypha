@@ -15,14 +15,8 @@ public class SpellDescriptor : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return SpellDescriptorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            SpellDescriptorTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => SpellDescriptorTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => SpellDescriptorTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string DescriptionFallback { get; set; }
@@ -30,13 +24,7 @@ public class SpellDescriptor : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return SpellDescriptorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            SpellDescriptorTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => SpellDescriptorTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => SpellDescriptorTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

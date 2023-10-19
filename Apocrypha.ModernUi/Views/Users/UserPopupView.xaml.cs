@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.ViewModels.Users;
 
 namespace Apocrypha.ModernUi.Views.Users;
@@ -9,6 +10,7 @@ public partial class UserPopupView
 {
     public event EventHandler LoginSuccessful;
 
+    /// <inheritdoc />
     public UserPopupView()
     {
         InitializeComponent();
@@ -19,7 +21,7 @@ public partial class UserPopupView
         if (DataContext is UserPopupViewModel popupViewModel)
         {
             popupViewModel.LoginSuccessful += () => LoginSuccessful?.Invoke(this, EventArgs.Empty);
-            popupViewModel.RegistrationSuccessful += () => LoginTabControl.SelectedIndex = 0;
+            popupViewModel.RegistrationSuccessful += () => DispatcherHelper.RunOnMainThread(() => LoginTabControl.SelectedIndex = 0);
         }
     }
 

@@ -37,14 +37,8 @@ public class Race : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return Translations[CultureInfo.CurrentCulture].Name ?? FallbackName;
-        }
-        set
-        {
-            Translations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => Translations[CultureInfo.CurrentCulture].Name ?? FallbackName;
+        set => Translations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string FallbackDescription { get; set; }
@@ -52,14 +46,8 @@ public class Race : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return Translations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
-        }
-        set
-        {
-            Translations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => Translations[CultureInfo.CurrentCulture].Description ?? FallbackDescription;
+        set => Translations[CultureInfo.CurrentCulture].Description = value;
     }
 
     #endregion

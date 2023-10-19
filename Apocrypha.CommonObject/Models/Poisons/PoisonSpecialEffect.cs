@@ -17,26 +17,14 @@ public class PoisonSpecialEffect : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return PoisonSpecialEffectTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            PoisonSpecialEffectTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => PoisonSpecialEffectTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => PoisonSpecialEffectTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return PoisonSpecialEffectTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            PoisonSpecialEffectTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => PoisonSpecialEffectTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => PoisonSpecialEffectTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

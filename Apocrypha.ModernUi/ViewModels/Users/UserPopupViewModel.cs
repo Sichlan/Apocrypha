@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Apocrypha.CommonObject.Exceptions;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
@@ -28,28 +29,15 @@ public class UserPopupViewModel : BaseViewModel
     public event Action RegistrationSuccessful;
     public event Action LoginSuccessful;
 
-    public User CurrentUser
-    {
-        get
-        {
-            return _userStore.CurrentUser;
-        }
-    }
+    public User CurrentUser =>
+        _userStore.CurrentUser;
 
-    public bool HasActiveUser
-    {
-        get
-        {
-            return CurrentUser != null;
-        }
-    }
+    public bool HasActiveUser =>
+        CurrentUser != null;
 
     public string LoginUserName
     {
-        get
-        {
-            return _loginUserName;
-        }
+        get => _loginUserName;
         set
         {
             if (value == _loginUserName)
@@ -63,10 +51,7 @@ public class UserPopupViewModel : BaseViewModel
 
     public string RegisterEmail
     {
-        get
-        {
-            return _registerEmail;
-        }
+        get => _registerEmail;
         set
         {
             if (value == _registerEmail)
@@ -80,10 +65,7 @@ public class UserPopupViewModel : BaseViewModel
 
     public string RegisterUserName
     {
-        get
-        {
-            return _registerUserName;
-        }
+        get => _registerUserName;
         set
         {
             if (value == _registerUserName)
@@ -97,10 +79,7 @@ public class UserPopupViewModel : BaseViewModel
 
     public string LoginPassword
     {
-        get
-        {
-            return _loginPassword;
-        }
+        get => _loginPassword;
         set
         {
             if (value == _loginPassword)
@@ -114,10 +93,7 @@ public class UserPopupViewModel : BaseViewModel
 
     public string RegisterPassword
     {
-        get
-        {
-            return _registerPassword;
-        }
+        get => _registerPassword;
         set
         {
             if (value == _registerPassword)
@@ -131,10 +107,7 @@ public class UserPopupViewModel : BaseViewModel
 
     public string RegisterConfirmPassword
     {
-        get
-        {
-            return _registerConfirmPassword;
-        }
+        get => _registerConfirmPassword;
         set
         {
             if (value == _registerConfirmPassword)
@@ -148,10 +121,7 @@ public class UserPopupViewModel : BaseViewModel
 
     public bool IsBusy
     {
-        get
-        {
-            return _isBusy;
-        }
+        get => _isBusy;
         set
         {
             if (value == _isBusy)
@@ -226,32 +196,31 @@ public class UserPopupViewModel : BaseViewModel
                 switch (result)
                 {
                     case RegistrationResult.Success:
+                        _userInformationMessageService.AddDisplayMessage("TODO REGISTRATION SUCCESSFUL", InformationType.Success, new TimeSpan(0, 0, 5));
                         RegistrationSuccessful?.Invoke();
 
                         break;
                     case RegistrationResult.PasswordsDoNotMatch:
-                        _userInformationMessageService.AddDisplayMessage("TODO PASSWORDS DO NOT MATCH", InformationType.Error);
+                        _userInformationMessageService.AddDisplayMessage("TODO PASSWORDS DO NOT MATCH", InformationType.Error, new TimeSpan(0, 0, 15));
 
                         break;
                     case RegistrationResult.EmailAlreadyExists:
-                        _userInformationMessageService.AddDisplayMessage("TODO EMAIL ALREADY IN USE", InformationType.Error);
+                        _userInformationMessageService.AddDisplayMessage("TODO EMAIL ALREADY IN USE", InformationType.Error, new TimeSpan(0, 0, 15));
 
                         break;
                     case RegistrationResult.UsernameAlreadyExists:
-                        _userInformationMessageService.AddDisplayMessage("TODO USERNAME ALREADY EXISTS", InformationType.Error);
+                        _userInformationMessageService.AddDisplayMessage("TODO USERNAME ALREADY EXISTS", InformationType.Error, new TimeSpan(0, 0, 15));
 
                         break;
                     case RegistrationResult.Failure:
-                        _userInformationMessageService.AddDisplayMessage("TODO REGISTRATION FAILED", InformationType.Error);
+                        _userInformationMessageService.AddDisplayMessage("TODO REGISTRATION FAILED", InformationType.Error, new TimeSpan(0, 0, 15));
 
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _userInformationMessageService.AddDisplayMessage("TODO REGISTRATION FAILED", InformationType.Error);
-
-                throw;
+                _userInformationMessageService.AddDisplayMessage("TODO REGISTRATION FAILED", InformationType.Error, new TimeSpan(0, 0, 15));
             }
 
             IsBusy = false;

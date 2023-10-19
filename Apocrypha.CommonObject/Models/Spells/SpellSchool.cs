@@ -15,14 +15,8 @@ public class SpellSchool : DatabaseObject
     [NotMapped]
     public string Name
     {
-        get
-        {
-            return SpellSchoolTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
-        }
-        set
-        {
-            SpellSchoolTranslations[CultureInfo.CurrentCulture].Name = value;
-        }
+        get => SpellSchoolTranslations[CultureInfo.CurrentCulture].Name ?? NameFallback;
+        set => SpellSchoolTranslations[CultureInfo.CurrentCulture].Name = value;
     }
 
     public string DescriptionFallback { get; set; }
@@ -30,13 +24,7 @@ public class SpellSchool : DatabaseObject
     [NotMapped]
     public string Description
     {
-        get
-        {
-            return SpellSchoolTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
-        }
-        set
-        {
-            SpellSchoolTranslations[CultureInfo.CurrentCulture].Description = value;
-        }
+        get => SpellSchoolTranslations[CultureInfo.CurrentCulture].Description ?? DescriptionFallback;
+        set => SpellSchoolTranslations[CultureInfo.CurrentCulture].Description = value;
     }
 }

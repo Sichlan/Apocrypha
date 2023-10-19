@@ -24,9 +24,6 @@ public class RaceFeatOption : DatabaseObject, IFeatOption
                 .Select(x => int.Parse(x))
                 .ToList();
         }
-        set
-        {
-            IdList = string.Join(';', value);
-        }
+        set => IdList = string.Join(';', value);
     }
 }

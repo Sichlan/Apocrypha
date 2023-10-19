@@ -70,7 +70,7 @@ public class ViewModelUserInformationMessageService : IUserInformationMessageSer
     /// <inheritdoc/>
     public void AddDisplayMessage(string message, InformationType type, TimeSpan deleteAfter, string messageDetails = "")
     {
-        AddDisplayMessage(message, type, deleteAfter.Milliseconds, messageDetails);
+        AddDisplayMessage(message, type, (int)deleteAfter.TotalMilliseconds, messageDetails);
     }
 
     /// <inheritdoc/>

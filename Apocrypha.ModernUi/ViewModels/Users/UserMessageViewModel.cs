@@ -152,13 +152,8 @@ public class UserMessageViewModel : BaseViewModel
         }
     }
 
-    public bool IsPaused
-    {
-        get
-        {
-            return _pauseTimer;
-        }
-    }
+    public bool IsPaused =>
+        _pauseTimer;
 
     public ICommand RemoveMessageCommand { get; }
     public ICommand PauseTimerCommand { get; }
