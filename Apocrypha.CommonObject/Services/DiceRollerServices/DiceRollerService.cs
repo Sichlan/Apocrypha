@@ -115,33 +115,27 @@ public class DiceRollerService : IDiceRollerService
             // Dice - operator d
             currentExpression = Regex.Replace(currentExpression, diceRegex, m => SumDice(m));
 
-        const string nonDoubleOperatorRegex = @"(\-?[0-9]{1,})\OPERATOR(\-?[0-9]{1,})";
+        const string doubleOperatorRegex = @"(\-?[0-9]{1,}(?>\.[0-9]{1,})?)OPERATOR(\-?[0-9]{1,}(?>\.[0-9]{1,})?)";
 
-        while (Regex.IsMatch(currentExpression, nonDoubleOperatorRegex.Replace(@"\OPERATOR", @"[%^]")))
+        while (Regex.IsMatch(currentExpression, doubleOperatorRegex.Replace(@"OPERATOR", @"[-+*/^%]")))
         {
             // Exponent - operator ^
-            currentExpression = Regex.Replace(currentExpression, nonDoubleOperatorRegex.Replace("OPERATOR", "^"),
-                m => EquateNonDoubleOperator(m, RollOperator.Exponent));
+            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "\\^"),
+                m => EquateOperator(m, RollOperator.Exponent));
             // Modulo - operator %
-            currentExpression = Regex.Replace(currentExpression, nonDoubleOperatorRegex.Replace("OPERATOR", "%"),
-                m => EquateNonDoubleOperator(m, RollOperator.Modulo));
-        }
-
-        const string doubleOperatorRegex = @"(\-?[0-9]{1,}(\.[0-9]{1,})?)\OPERATOR(\-?[0-9]{1,}(\.[0-9]{1,})?)";
-
-        while (Regex.IsMatch(currentExpression, doubleOperatorRegex.Replace(@"\OPERATOR", @"[-+*/]")))
-        {
+            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "\\%"),
+                m => EquateOperator(m, RollOperator.Modulo));
             // Division - operator /
-            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "/"),
+            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "\\/"),
                 m => EquateOperator(m, RollOperator.Division));
             // Multiplication - operator *
-            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "*"),
+            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "\\*"),
                 m => EquateOperator(m, RollOperator.Multiplication));
             // Subtraction - operator -
-            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "-"),
+            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "\\-"),
                 m => EquateOperator(m, RollOperator.Subtraction));
             // Addition - operator +
-            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "+"),
+            currentExpression = Regex.Replace(currentExpression, doubleOperatorRegex.Replace("OPERATOR", "\\+"),
                 m => EquateOperator(m, RollOperator.Addition));
         }
 
@@ -325,32 +319,11 @@ public class DiceRollerService : IDiceRollerService
     /// <param name="match">The matching expression</param>
     /// <param name="rollOperator">The operator to calculate</param>
     /// <returns>The result as a string</returns>
-    private static string EquateNonDoubleOperator(Match match, RollOperator rollOperator)
-    {
-        var a = int.Parse(match.Groups[1].ToString());
-        var b = int.Parse(match.Groups[2].ToString());
-
-        var output = rollOperator switch
-        {
-            RollOperator.Exponent => Math.Pow(a, b),
-            RollOperator.Modulo => a % b,
-            _ => throw new ArgumentOutOfRangeException(nameof(rollOperator), rollOperator, null)
-        };
-
-        return output.ToString(CultureInfo.InvariantCulture);
-    }
-
-    /// <summary>
-    ///     Calculates a result of a and b with a given operator
-    /// </summary>
-    /// <param name="match">The matching expression</param>
-    /// <param name="rollOperator">The operator to calculate</param>
-    /// <returns>The result as a string</returns>
     /// <exception cref="DivideByZeroException">Throwing if trying to divide by 0</exception>
     private static string EquateOperator(Match match, RollOperator rollOperator)
     {
         var a = double.Parse(match.Groups[1].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
-        var b = double.Parse(match.Groups[3].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
+        var b = double.Parse(match.Groups[2].ToString(), NumberStyles.Any, CultureInfo.InvariantCulture);
 
 
         if (b == 0 && rollOperator is RollOperator.Division or RollOperator.Modulo)
@@ -362,6 +335,8 @@ public class DiceRollerService : IDiceRollerService
             RollOperator.Multiplication => a * b,
             RollOperator.Subtraction => a - b,
             RollOperator.Addition => a + b,
+            RollOperator.Exponent => Math.Pow(a, b),
+            RollOperator.Modulo => a % b,
             _ => throw new ArgumentOutOfRangeException(nameof(rollOperator), rollOperator, null)
         };
 
