@@ -141,7 +141,7 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
-        <Page Update="Themes\CustomControls\TextStyles.xaml">
+        <Page Update="Themes\CustomControls\TextBoxStyles.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>

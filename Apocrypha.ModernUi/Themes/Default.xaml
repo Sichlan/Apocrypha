@@ -38,7 +38,7 @@
         <ui:XamlControlsResources />
         
         <ResourceDictionary Source="Converters.xaml"/>
-        <ResourceDictionary Source="CustomControls/TextStyles.xaml"/>
+        <ResourceDictionary Source="CustomControls/TextBoxStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/SeparatorStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/UserMessageStyles.xaml"/>
         <ResourceDictionary Source="AvalonTextEditStyles.xaml"/>
