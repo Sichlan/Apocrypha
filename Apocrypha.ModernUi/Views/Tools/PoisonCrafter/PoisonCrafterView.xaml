@@ -1,14 +1,14 @@
-﻿<UserControl x:Class="Apocrypha.ModernUi.Views.Tools.PoisonCrafterView"
+﻿<UserControl x:Class="Apocrypha.ModernUi.Views.Tools.PoisonCrafter.PoisonCrafterView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:res="clr-namespace:Apocrypha.ModernUi.Resources.Localization"
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools"
+             xmlns:poisonCrafter="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter"
              mc:Ignorable="d"
              ui:ThemeManager.IsThemeAware="True"
-             d:DataContext="{d:DesignInstance Type=tools:PoisonCrafterViewModel}"
+             d:DataContext="{d:DesignInstance Type=poisonCrafter:PoisonCrafterViewModel}"
              Loaded="PoisonCrafterView_OnLoaded">
     <Grid>
         <Grid.RowDefinitions>

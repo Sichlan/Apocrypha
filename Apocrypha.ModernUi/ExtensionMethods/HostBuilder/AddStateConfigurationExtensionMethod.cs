@@ -1,7 +1,10 @@
 ﻿using System;
 using System.IO;
 using Apocrypha.CommonObject.Services.AuthenticationServices;
+using Apocrypha.CommonObject.Services.Configuration;
 using Apocrypha.CommonObject.Services.DiceRollerServices;
+using Apocrypha.CommonObject.Services.FileServices;
+using Apocrypha.CommonObject.Services.SimulationServices;
 using Apocrypha.ModernUi.Services.Configuration;
 using Apocrypha.ModernUi.Services.Randomizer;
 using Apocrypha.ModernUi.Services.State.Authenticators;
@@ -19,7 +22,7 @@ public static class AddStateConfigurationExtensionMethod
 {
     public static IHostBuilder AddStateConfiguration(this IHostBuilder hostBuilder)
     {
-        string configPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Apocrypha\\config.json";
+        string configPath = $"{Directory.GetCurrentDirectory()}\\config.json";
 
         Directory.CreateDirectory(Path.GetDirectoryName(configPath) ?? throw new NullReferenceException($"Cannot get path from {configPath}"));
 
@@ -35,10 +38,11 @@ public static class AddStateConfigurationExtensionMethod
             services.AddSingleton<IUserStore, UserStore>();
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
-            // services.AddSingleton<IUserInformationMessageService, DebugUserInformationMessageService>();
             services.AddSingleton<IUserInformationMessageService, ViewModelUserInformationMessageService>();
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IAuthenticator, Authenticator>();
+            services.AddSingleton<IZipFileService, ZipFileService>();
+            services.AddSingleton<ISimulationContainerService, SimulationContainerService>();
 
             services.AddSingleton<Random>();
             services.AddSingleton<IDiceRollerService, DiceRollerService>();

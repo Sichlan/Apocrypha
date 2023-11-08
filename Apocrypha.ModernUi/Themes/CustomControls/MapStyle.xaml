@@ -1,0 +1,64 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Apocrypha.ModernUi.Helpers.Converters"
+                    xmlns:map="clr-namespace:Apocrypha.ModernUi.Helpers.Map">
+    
+    <converters:CoordinatesToGeometryConverter x:Key="CoordinatesToGeometryConverter"/>
+    
+    <SolidColorBrush x:Key="MapLandFillBrush" Color="PaleGreen"/>
+    <SolidColorBrush x:Key="MapWaterFillBrush" Color="LightSkyBlue"/>
+    <SolidColorBrush x:Key="MapSeaRoutesBrush" Color="DodgerBlue"/>
+    <SolidColorBrush x:Key="MapRoutesBrush" Color="DarkGray"/>
+    <SolidColorBrush x:Key="MapTrailsBrush" Color="LightGray"/>
+    <SolidColorBrush x:Key="MapMarkerBrush" Color="LightCoral"/>
+    
+    <DataTemplate DataType="{x:Type map:MapLayerElementVectorFeature}" x:Key="LineTemplate">
+        <!-- ReSharper is a little bit stupid, incorrectly claiming, that canvas.left/top has no effect in this context, so:-->
+        <!-- ReSharper disable twice Xaml.RedundantAttachedProperty -->
+        <Polyline Points="{Binding VectorStructured.Geometry.Coordinates, Converter={StaticResource CoordinatesToGeometryConverter}}"
+                  Stroke="{Binding Stroke}"
+                  StrokeThickness="{Binding StrokeThickness}"
+                  Fill="{Binding Fill}"
+                  Canvas.Left="{Binding VectorStructured.Geometry.Boundary.Centroid.X}"
+                  Canvas.Top="{Binding VectorStructured.Geometry.Boundary.Centroid.Y}"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type map:MapLayerElementVectorFeature}" x:Key="PointTemplate">
+        <!-- ReSharper is a little bit stupid, incorrectly claiming, that canvas.left/top has no effect in this context, so:-->
+        <!-- ReSharper disable twice Xaml.RedundantAttachedProperty -->
+        <Path Stroke="{Binding Stroke}"
+              StrokeThickness="{Binding StrokeThickness}"
+              Fill="{Binding Fill}"
+              Canvas.Left="{Binding VectorStructured.Geometry.Boundary.Centroid.X}"
+              Canvas.Top="{Binding VectorStructured.Geometry.Boundary.Centroid.Y}"
+              StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              StrokeLineJoin="Round">
+            <Path.Data>
+                <EllipseGeometry Center="{Binding VectorStructured.Geometry.Coordinate, Converter={StaticResource CoordinatesToGeometryConverter}}" RadiusX=".1" RadiusY=".1"/>
+            </Path.Data>
+        </Path>
+    </DataTemplate>
+    
+    <map:MapElementTemplateSelector LineTemplate="{StaticResource LineTemplate}" PointTemplate="{StaticResource PointTemplate}" x:Key="MapElementTemplateSelector"/>
+    
+    <Style TargetType="{x:Type ItemsControl}" x:Key="MapLayerItemsControlStyle">
+        <Setter Property="ItemTemplateSelector" Value="{StaticResource MapElementTemplateSelector}"/>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Canvas ClipToBounds="True"
+                            Width="{Binding Width}" 
+                            Height="{Binding Height}">
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
+                        </Canvas.LayoutTransform>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

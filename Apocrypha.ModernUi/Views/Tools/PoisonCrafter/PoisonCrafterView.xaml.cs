@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Apocrypha.ModernUi.ViewModels.Tools;
+using Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter;
 
-namespace Apocrypha.ModernUi.Views.Tools;
+namespace Apocrypha.ModernUi.Views.Tools.PoisonCrafter;
 
 public partial class PoisonCrafterView
 {

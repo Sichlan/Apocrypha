@@ -12,6 +12,7 @@
         xmlns:users="clr-namespace:Apocrypha.ModernUi.Views.Users"
         xmlns:tools="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:poisonCrafter="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:TitleBar.ExtendViewIntoTitleBar="True"
         ui:TitleBar.IsBackButtonVisible="False"
@@ -152,7 +153,7 @@
                 <!--                        Tag="{x:Type editor:RaceEditorListViewModel}" /> -->
                 
                 <ui:NavigationViewItemHeader Content="{x:Static res:Localization.MenuGroupLabelTools}"/>
-                <ui:NavigationViewItem Content="{x:Static res:Localization.MenuLabelPoisonCrafter}" Tag="{x:Type tools:PoisonCrafterListViewModel}">
+                <ui:NavigationViewItem Content="{x:Static res:Localization.MenuLabelPoisonCrafter}" Tag="{x:Type poisonCrafter:PoisonCrafterListViewModel}">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" Glyph="&#xf0c3;" />
                     </ui:NavigationViewItem.Icon>

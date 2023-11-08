@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
-using Apocrypha.ModernUi.ViewModels.Tools;
+using Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter;
 
 namespace Apocrypha.ModernUi.Services.ViewModelConverter;
 

@@ -1,8 +1,8 @@
 ﻿using System.Windows.Input;
+using Apocrypha.CommonObject.Services.Configuration;
 using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Resources.Localization;
-using Apocrypha.ModernUi.Services.Configuration;
 using Apocrypha.ModernUi.Themes.Presets;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using CommunityToolkit.Mvvm.Input;

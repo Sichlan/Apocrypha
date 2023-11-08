@@ -1,0 +1,59 @@
+<UserControl x:Class="Apocrypha.ModernUi.Views.Tools.MapSimulation.NewMapConfigurationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mapSimulation="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools.MapSimulation"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance mapSimulation:NewMapConfigurationViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Grid.Row="0" Grid.Column="0" Header="TODO GIS FILES" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5"
+                           Text="TODO CELLS LAYER" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5"
+                           Text="TODO RIVERS LAYER" />
+                <TextBlock Grid.Row="4" Grid.Column="0" Margin="5"
+                           Text="TODO ROUTES LAYER" />
+                <TextBlock Grid.Row="6" Grid.Column="0" Margin="5"
+                           Text="TODO MARKERS LAYER" />
+
+                <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Text="{Binding GisCellsLayerFilePath}" />
+                <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Text="{Binding GisRiversLayerFilePath}" />
+                <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Text="{Binding GisRoutesLayerFilePath}" />
+                <TextBox Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Text="{Binding GisMarkersLayerFilePath}" />
+
+                <Button Grid.Row="0" Grid.Column="1" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Cells}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+                <Button Grid.Row="2" Grid.Column="1" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Rivers}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+                <Button Grid.Row="4" Grid.Column="1" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Routes}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+                <Button Grid.Row="6" Grid.Column="1" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Markers}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

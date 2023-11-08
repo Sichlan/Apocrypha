@@ -1,6 +1,4 @@
-﻿using Apocrypha.ModernUi.ViewModels.Users;
-
-namespace Apocrypha.ModernUi.Services.Configuration;
+﻿namespace Apocrypha.CommonObject.Services.Configuration;
 
 /// <summary>
 /// Manages local user configuration, mostly user settings from <see cref="SettingsViewModel"/>.

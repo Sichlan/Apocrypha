@@ -14,7 +14,7 @@ using Apocrypha.ModernUi.Services.UserInformationService;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Apocrypha.ModernUi.ViewModels.Tools;
+namespace Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter;
 
 public class PoisonCrafterListViewModel : NavigableViewModel
 {

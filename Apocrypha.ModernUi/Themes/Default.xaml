@@ -9,7 +9,11 @@
                     xmlns:editorViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Editor"
                     xmlns:editor="clr-namespace:Apocrypha.ModernUi.Views.Editor"
                     xmlns:toolsViewModels="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools"
-                    xmlns:tools="clr-namespace:Apocrypha.ModernUi.Views.Tools">
+                    xmlns:tools="clr-namespace:Apocrypha.ModernUi.Views.Tools"
+                    xmlns:poisonCrafter="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter"
+                    xmlns:poisonCrafter1="clr-namespace:Apocrypha.ModernUi.Views.Tools.PoisonCrafter"
+                    xmlns:mapSimulation="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools.MapSimulation"
+                    xmlns:mapSimulation1="clr-namespace:Apocrypha.ModernUi.Views.Tools.MapSimulation">
     <ResourceDictionary.MergedDictionaries>
         <ui:ThemeResources CanBeAccessedAcrossThreads="True">
             <ui:ThemeResources.ThemeDictionaries>
@@ -38,11 +42,12 @@
         <ui:XamlControlsResources />
         
         <ResourceDictionary Source="Converters.xaml"/>
+        <ResourceDictionary Source="AvalonTextEditStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/TextBoxStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/SeparatorStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/UserMessageStyles.xaml"/>
-        <ResourceDictionary Source="AvalonTextEditStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/BusyIndicatorStyle.xaml"/>
+        <ResourceDictionary Source="CustomControls/MapStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
     <DataTemplate DataType="{x:Type navigationViewModels:HomeViewModel}">
@@ -74,20 +79,32 @@
     <DataTemplate DataType="{x:Type editorViewModels:RaceEditorViewModel}">
         <editor:RaceEditorView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type mapSimulation:MapSimulationMainViewModel}">
+        <mapSimulation1:MapSimulationMainView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type mapSimulation:MapMainViewModel}">
+        <mapSimulation1:MapMainView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type mapSimulation:MapLayerViewModel}">
+        <mapSimulation1:MapLayerView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type mapSimulation:NewMapConfigurationViewModel}">
+        <mapSimulation1:NewMapConfigurationView/>
+    </DataTemplate>
     <!--#endregion-->
     
     <!--#region Tools-->
-    <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterListViewModel}">
-        <tools:PoisonCrafterListView/>
+    <DataTemplate DataType="{x:Type poisonCrafter:PoisonCrafterListViewModel}">
+        <poisonCrafter1:PoisonCrafterListView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type toolsViewModels:PoisonCrafterViewModel}">
-        <tools:PoisonCrafterView/>
+    <DataTemplate DataType="{x:Type poisonCrafter:PoisonCrafterViewModel}">
+        <poisonCrafter1:PoisonCrafterView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type toolsViewModels:PoisonPhaseViewModel}">
-        <tools:PoisonPhaseView/>
+    <DataTemplate DataType="{x:Type poisonCrafter:PoisonPhaseViewModel}">
+        <poisonCrafter1:PoisonPhaseView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type toolsViewModels:PoisonPhaseElementViewModel}">
-        <tools:PoisonPhaseElementView/>
+    <DataTemplate DataType="{x:Type poisonCrafter:PoisonPhaseElementViewModel}">
+        <poisonCrafter1:PoisonPhaseElementView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type toolsViewModels:DiceRollerViewModel}">
         <tools:DiceRollerView/>

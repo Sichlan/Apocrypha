@@ -22,7 +22,7 @@ using Apocrypha.ModernUi.Services.ViewModelConverter;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Apocrypha.ModernUi.ViewModels.Tools;
+namespace Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter;
 
 public delegate PoisonCrafterViewModel CreatePoisonCrafterViewModel(Poison poison);
 

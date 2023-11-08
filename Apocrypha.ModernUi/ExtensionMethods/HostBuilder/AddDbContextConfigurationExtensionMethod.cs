@@ -6,7 +6,7 @@ using Apocrypha.EntityFramework;
 using Apocrypha.EntityFramework.Services;
 using Apocrypha.EntityFramework.Services.Poisons;
 using Apocrypha.ModernUi.Services.ViewModelConverter;
-using Apocrypha.ModernUi.ViewModels.Tools;
+using Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

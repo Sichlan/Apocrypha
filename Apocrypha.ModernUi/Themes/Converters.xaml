@@ -4,4 +4,6 @@
     <converters:BooleanInverterConverter x:Key="BooleanInverterConverter"/>
     <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
     <converters:IsParameterEqualConverter x:Key="IsParameterEqualConverter"/>
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <converters:CoordinatesToGeometryConverter x:Key="CoordinatesToGeometryConverter"/>
 </ResourceDictionary>

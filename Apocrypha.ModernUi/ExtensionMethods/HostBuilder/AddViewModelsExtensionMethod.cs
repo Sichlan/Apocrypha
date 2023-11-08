@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Apocrypha.CommonObject.Models;
 using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
+using Apocrypha.CommonObject.Services.SimulationServices;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.State.Users;
@@ -15,6 +16,8 @@ using Apocrypha.ModernUi.ViewModels.Common;
 using Apocrypha.ModernUi.ViewModels.Editor;
 using Apocrypha.ModernUi.ViewModels.Navigation;
 using Apocrypha.ModernUi.ViewModels.Tools;
+using Apocrypha.ModernUi.ViewModels.Tools.MapSimulation;
+using Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter;
 using Apocrypha.ModernUi.ViewModels.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +26,11 @@ namespace Apocrypha.ModernUi.ExtensionMethods.HostBuilder;
 
 public static class AddViewModelsExtensionMethod
 {
+    /// <summary>
+    /// Extension Method that adds all navigable view models to the host builder.
+    /// </summary>
+    /// <param name="hostBuilder">The <see cref="IHostBuilder"/> to add the models to.</param>
+    /// <returns>The <see cref="IHostBuilder"/> with the registered view models.</returns>
     public static IHostBuilder AddViewModels(this IHostBuilder hostBuilder)
     {
         hostBuilder.ConfigureServices(services =>
@@ -45,6 +53,7 @@ public static class AddViewModelsExtensionMethod
             // Tools
             services.AddScoped<DiceRollerViewModel>();
             services.AddScoped<PoisonCrafterListViewModel>();
+            services.AddScoped<MapSimulationMainViewModel>();
             services.AddTransient(s => CreatePoisonCrafterViewModel(s, null));
 
             services.AddScoped(s => new MainViewModel(s.GetRequiredService<NavigateBackwardsCommand>(),
@@ -57,6 +66,7 @@ public static class AddViewModelsExtensionMethod
 
             // Creator Delegates
             services.AddSingleton<CreateViewModel<PoisonCrafterViewModel>>(s => () => CreatePoisonCrafterViewModel(s));
+            services.AddSingleton<CreateViewModel<MapMainViewModel>>(s => () => CreateMapMainViewModel(s));
 
             services.AddSingleton<CreateRaceEditorViewModel>(s => race => CreateRaceEditorViewModel(s, race));
             services.AddSingleton<CreatePoisonCrafterViewModel>(s => poison => CreatePoisonCrafterViewModel(s, poison));
@@ -68,6 +78,12 @@ public static class AddViewModelsExtensionMethod
         });
 
         return hostBuilder;
+    }
+
+    private static MapMainViewModel CreateMapMainViewModel(IServiceProvider serviceProvider)
+    {
+        return new MapMainViewModel(serviceProvider.GetRequiredService<ISimulationContainerService>(),
+            serviceProvider.GetRequiredService<IUserInformationMessageService>());
     }
 
     private static PoisonCrafterViewModel CreatePoisonCrafterViewModel(IServiceProvider serviceProvider)

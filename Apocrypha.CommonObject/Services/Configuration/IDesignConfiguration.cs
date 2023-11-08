@@ -1,6 +1,6 @@
 ﻿using ModernWpf;
 
-namespace Apocrypha.ModernUi.Services.Configuration;
+namespace Apocrypha.CommonObject.Services.Configuration;
 
 public interface IDesignConfiguration
 {

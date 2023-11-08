@@ -12,7 +12,7 @@ using Apocrypha.ModernUi.Helpers.Validation;
 using Apocrypha.ModernUi.ViewModels.Common;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Apocrypha.ModernUi.ViewModels.Tools;
+namespace Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter;
 
 public class PoisonPhaseViewModel : BaseViewModel
 {

@@ -1,4 +1,10 @@
-﻿using Apocrypha.ModernUi.Helpers;
+﻿using System;
+using System.Globalization;
+using System.Threading;
+using System.Windows;
+using System.Windows.Markup;
+using Apocrypha.CommonObject.Services.Configuration;
+using Apocrypha.ModernUi.Helpers;
 using Apocrypha.ModernUi.Themes.Presets;
 using ModernWpf;
 
@@ -18,7 +24,22 @@ public class ConfigurationService : IConfigurationService
     /// <inheritdoc />
     public void InitializeConfiguration()
     {
+        if (string.IsNullOrEmpty(ApocryphaConfiguration.AppDataRootDirectory))
+            ApocryphaConfiguration.AppDataRootDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Apocrypha\\";
+
+        if (string.IsNullOrEmpty(ApocryphaConfiguration.Language))
+            ApocryphaConfiguration.Language = "en";
+        SetApplicationLanguage(ApocryphaConfiguration.Language);
+
         InitializeDesign(ApocryphaConfiguration.DesignConfiguration);
+    }
+
+    private static void SetApplicationLanguage(string language)
+    {
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
+        FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),
+            new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(new CultureInfo(language).IetfLanguageTag)));
     }
 
     private static void InitializeDesign(IDesignConfiguration designConfiguration)

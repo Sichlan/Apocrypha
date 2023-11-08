@@ -73,12 +73,6 @@
         <!--            <Generator>MSBuild:Compile</Generator>-->
         <!--            <ContainsDesignTimeResources>true</ContainsDesignTimeResources>-->
         <!--        </Page>-->
-        <Page Update="Views\Tools\PoisonPhaseView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="Views\Tools\PoisonPhaseElementView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
         <Page Update="Views\Users\UserPopupView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
@@ -90,16 +84,6 @@
         </Page>
         <Page Update="Views\Editor\RaceEditorView.xaml">
             <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="Views\Tools\PoisonCrafterListView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="Views\Tools\PoisonCrafterView.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
         </Page>
         <Page Update="Themes\Presets\Default\Dark.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -142,6 +126,26 @@
             <SubType>Designer</SubType>
         </Page>
         <Page Update="Themes\CustomControls\TextBoxStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Tools\PoisonCrafter\PoisonCrafterListView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Tools\PoisonCrafter\PoisonCrafterView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Tools\PoisonCrafter\PoisonPhaseElementView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Tools\PoisonCrafter\PoisonPhaseView.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>

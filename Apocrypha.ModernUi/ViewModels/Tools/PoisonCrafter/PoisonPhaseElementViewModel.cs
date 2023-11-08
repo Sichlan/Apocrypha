@@ -7,7 +7,7 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.ModernUi.ViewModels.Common;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Apocrypha.ModernUi.ViewModels.Tools;
+namespace Apocrypha.ModernUi.ViewModels.Tools.PoisonCrafter;
 
 /// <summary>
 /// A view model that represents a <see cref="PoisonPhaseElement"/>.

@@ -1,4 +1,4 @@
-﻿namespace Apocrypha.ModernUi.Views.Tools;
+﻿namespace Apocrypha.ModernUi.Views.Tools.PoisonCrafter;
 
 public partial class PoisonPhaseElementView
 {

@@ -4,14 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:navigation="clr-namespace:Apocrypha.ModernUi.ViewModels.Navigation"
+             xmlns:mapSimulation="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools.MapSimulation"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance navigation:HomeViewModel, IsDesignTimeCreatable=True}">
-    <Grid>
+    <WrapPanel Orientation="Horizontal">
         <Button  Content="Test Page" Margin="5"
                  Command="{Binding NavigateToPageCommand}" 
                  CommandParameter="{x:Type navigation:TestViewModel}"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch"/>
-    </Grid>
+        
+        <Button  Content="Simulation Page" Margin="5"
+                 Command="{Binding NavigateToPageCommand}" 
+                 CommandParameter="{x:Type mapSimulation:MapSimulationMainViewModel}"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"/>
+    </WrapPanel>
 </UserControl>
