@@ -29,7 +29,7 @@ public class ZipFileService : IZipFileService
     }
 
     public async Task CreateSimulationConfigurationArchive(string fileName, string configJson, string cellsLayer, string riversLayer, string routesLayer,
-        string markersLayer)
+        string markersLayer, string settlementsLayer)
     {
         var outputDirectory = Path.GetDirectoryName(fileName);
 
@@ -48,11 +48,13 @@ public class ZipFileService : IZipFileService
             var riversPath = basePath + "\\rivers";
             var routesPath = basePath + "\\routes";
             var markersPath = basePath + "\\markers";
+            var settlementsPath = basePath + "\\settlements";
 
             Directory.CreateDirectory(cellsPath);
             Directory.CreateDirectory(riversPath);
             Directory.CreateDirectory(routesPath);
             Directory.CreateDirectory(markersPath);
+            Directory.CreateDirectory(settlementsPath);
 
             var configPath = basePath + "\\config.json";
             await File.WriteAllTextAsync(configPath, configJson);
@@ -61,6 +63,7 @@ public class ZipFileService : IZipFileService
             File.Copy(riversLayer, riversPath + "\\rivers.geojson");
             File.Copy(routesLayer, routesPath + "\\routes.geojson");
             File.Copy(markersLayer, markersPath + "\\markers.geojson");
+            File.Copy(settlementsLayer, settlementsPath + "\\settlements.geojson");
 
             Directory.CreateDirectory(outputDirectory);
             File.Delete(fileName);

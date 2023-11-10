@@ -6,6 +6,7 @@ using Apocrypha.CommonObject.Services.DiceRollerServices;
 using Apocrypha.CommonObject.Services.FileServices;
 using Apocrypha.CommonObject.Services.SimulationServices;
 using Apocrypha.ModernUi.Services.Configuration;
+using Apocrypha.ModernUi.Services.Map;
 using Apocrypha.ModernUi.Services.Randomizer;
 using Apocrypha.ModernUi.Services.State.Authenticators;
 using Apocrypha.ModernUi.Services.State.Navigation;
@@ -43,6 +44,7 @@ public static class AddStateConfigurationExtensionMethod
             services.AddSingleton<IAuthenticator, Authenticator>();
             services.AddSingleton<IZipFileService, ZipFileService>();
             services.AddSingleton<ISimulationContainerService, SimulationContainerService>();
+            services.AddSingleton<IExportCsvToGeoJsonsService, ExportCsvToGeoJsonsService>();
 
             services.AddSingleton<Random>();
             services.AddSingleton<IDiceRollerService, DiceRollerService>();

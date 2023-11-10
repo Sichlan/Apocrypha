@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="MapRoutesBrush" Color="DarkGray"/>
     <SolidColorBrush x:Key="MapTrailsBrush" Color="LightGray"/>
     <SolidColorBrush x:Key="MapMarkerBrush" Color="LightCoral"/>
+    <SolidColorBrush x:Key="MapSettlementBrush" Color="LightGoldenrodYellow"/>
     
     <DataTemplate DataType="{x:Type map:MapLayerElementVectorFeature}" x:Key="LineTemplate">
         <!-- ReSharper is a little bit stupid, incorrectly claiming, that canvas.left/top has no effect in this context, so:-->
@@ -19,8 +20,8 @@
                   Stroke="{Binding Stroke}"
                   StrokeThickness="{Binding StrokeThickness}"
                   Fill="{Binding Fill}"
-                  Canvas.Left="{Binding VectorStructured.Geometry.Boundary.Centroid.X}"
-                  Canvas.Top="{Binding VectorStructured.Geometry.Boundary.Centroid.Y}"
+                  Canvas.Left="{Binding CanvasLeft}"
+                  Canvas.Top="{Binding CanvasTop}"
                   StrokeStartLineCap="Round"
                   StrokeEndLineCap="Round"
                   StrokeLineJoin="Round"/>
@@ -32,8 +33,8 @@
         <Path Stroke="{Binding Stroke}"
               StrokeThickness="{Binding StrokeThickness}"
               Fill="{Binding Fill}"
-              Canvas.Left="{Binding VectorStructured.Geometry.Boundary.Centroid.X}"
-              Canvas.Top="{Binding VectorStructured.Geometry.Boundary.Centroid.Y}"
+              Canvas.Left="{Binding CanvasLeft}"
+              Canvas.Top="{Binding CanvasTop}"
               StrokeStartLineCap="Round"
               StrokeEndLineCap="Round"
               StrokeLineJoin="Round">
@@ -56,6 +57,15 @@
                         <Canvas.LayoutTransform>
                             <ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
                         </Canvas.LayoutTransform>
+                        <Canvas.Resources>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding VectorStructured.Data[type]}" Value="roads">
+                                        <Setter Property="Canvas.ZIndex" Value="999999999"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Canvas.Resources>
                     </Canvas>
                 </ItemsPanelTemplate>
             </Setter.Value>

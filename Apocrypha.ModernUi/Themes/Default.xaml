@@ -48,6 +48,7 @@
         <ResourceDictionary Source="CustomControls/UserMessageStyles.xaml"/>
         <ResourceDictionary Source="CustomControls/BusyIndicatorStyle.xaml"/>
         <ResourceDictionary Source="CustomControls/MapStyle.xaml"/>
+        <ResourceDictionary Source="CustomControls/DialogControlStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
     <DataTemplate DataType="{x:Type navigationViewModels:HomeViewModel}">

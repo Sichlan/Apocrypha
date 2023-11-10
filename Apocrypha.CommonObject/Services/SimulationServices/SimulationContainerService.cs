@@ -97,7 +97,7 @@ public class SimulationContainerService : ISimulationContainerService
 
             var outputDirectory = GetOutputDirectory();
 
-            LayerMapping cellsLayer, riversLayer, routesLayer, markersLayer;
+            LayerMapping cellsLayer, riversLayer, routesLayer, markersLayer, settlementLayer;
 
             if ((cellsLayer = config.LayerMappings.FirstOrDefault(x => x.Name == nameof(GisCellsLayer))) == null)
                 throw new ArgumentException("No cells layer found!");
@@ -107,16 +107,20 @@ public class SimulationContainerService : ISimulationContainerService
                 throw new ArgumentException("No routes layer found!");
             if ((markersLayer = config.LayerMappings.FirstOrDefault(x => x.Name == nameof(GisMarkersLayer))) == null)
                 throw new ArgumentException("No markers layer found!");
+            if ((settlementLayer = config.LayerMappings.FirstOrDefault(x => x.Name == nameof(GisSettlementLayer))) == null)
+                throw new ArgumentException("No markers layer found!");
 
             cellsLayer.File = $@"{outputDirectory}\cells\cells.geojson";
             riversLayer.File = $@"{outputDirectory}\rivers\rivers.geojson";
             routesLayer.File = $@"{outputDirectory}\routes\routes.geojson";
             markersLayer.File = $@"{outputDirectory}\markers\markers.geojson";
+            settlementLayer.File = $@"{outputDirectory}\settlements\settlements.geojson";
 
             Directory.CreateDirectory(Path.GetDirectoryName(cellsLayer.File)!);
             Directory.CreateDirectory(Path.GetDirectoryName(riversLayer.File)!);
             Directory.CreateDirectory(Path.GetDirectoryName(routesLayer.File)!);
             Directory.CreateDirectory(Path.GetDirectoryName(markersLayer.File)!);
+            Directory.CreateDirectory(Path.GetDirectoryName(settlementLayer.File)!);
 
             SimulationConfiguration = config;
         });
@@ -128,7 +132,7 @@ public class SimulationContainerService : ISimulationContainerService
         if (SimulationConfiguration == null)
             throw new NullReferenceException(nameof(SimulationConfiguration) + " may not be null!");
 
-        LayerMapping cellsLayer, riversLayer, routesLayer, markersLayer;
+        LayerMapping cellsLayer, riversLayer, routesLayer, markersLayer, settlementLayer;
 
         if ((cellsLayer = SimulationConfiguration.LayerMappings.FirstOrDefault(x => x.Name == nameof(GisCellsLayer))) == null)
             throw new ArgumentException("No cells layer found!");
@@ -138,6 +142,8 @@ public class SimulationContainerService : ISimulationContainerService
             throw new ArgumentException("No routes layer found!");
         if ((markersLayer = SimulationConfiguration.LayerMappings.FirstOrDefault(x => x.Name == nameof(GisMarkersLayer))) == null)
             throw new ArgumentException("No markers layer found!");
+        if ((settlementLayer = SimulationConfiguration.LayerMappings.FirstOrDefault(x => x.Name == nameof(GisSettlementLayer))) == null)
+            throw new ArgumentException("No settlements layer found!");
 
         var directoryPath = Path.GetDirectoryName(path);
 
@@ -147,7 +153,8 @@ public class SimulationContainerService : ISimulationContainerService
         string cellsPath = cellsLayer.File,
             riversPath = riversLayer.File,
             routesPath = routesLayer.File,
-            markersPath = markersLayer.File;
+            markersPath = markersLayer.File,
+            settlementPath = settlementLayer.File;
 
         // var config = SimulationConfiguration.Serialize();
         var config = JsonConvert.SerializeObject(SimulationConfiguration, _jsonSerializerSettings);
@@ -159,7 +166,8 @@ public class SimulationContainerService : ISimulationContainerService
             cellsPath,
             riversPath,
             routesPath,
-            markersPath);
+            markersPath,
+            settlementPath);
     }
 
     /// <inheritdoc />
@@ -195,6 +203,7 @@ public class SimulationContainerService : ISimulationContainerService
         description.AddLayer<GisRiverLayer>();
         description.AddLayer<GisRoutesLayer>();
         description.AddLayer<GisMarkersLayer>();
+        description.AddLayer<GisSettlementLayer>();
         // description.AddLayer<AgentLayer>();
 
         // description.AddAgent<ManualAgent, AgentLayer>();

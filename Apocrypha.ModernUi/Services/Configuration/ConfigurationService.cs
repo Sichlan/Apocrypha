@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
@@ -32,6 +33,22 @@ public class ConfigurationService : IConfigurationService
         SetApplicationLanguage(ApocryphaConfiguration.Language);
 
         InitializeDesign(ApocryphaConfiguration.DesignConfiguration);
+    }
+
+    /// <inheritdoc />
+    public string GetTempDirectoryPath()
+    {
+        var path = $"{ApocryphaConfiguration.AppDataRootDirectory}temp\\";
+
+        Directory.CreateDirectory(path);
+
+        return path;
+    }
+
+    /// <inheritdoc />
+    public void DeleteTempDirectoryPath()
+    {
+        Directory.Delete(GetTempDirectoryPath(), true);
     }
 
     private static void SetApplicationLanguage(string language)

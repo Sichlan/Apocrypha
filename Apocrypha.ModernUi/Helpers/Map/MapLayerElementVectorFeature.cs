@@ -11,6 +11,44 @@ public class MapLayerElementVectorFeature : VectorFeature
 {
     private readonly Type _layerType;
 
+    public double CanvasLeft
+    {
+        get
+        {
+            switch (_layerType.Name)
+            {
+                case nameof(GisCellsLayer):
+                case nameof(GisRiverLayer):
+                case nameof(GisRoutesLayer):
+                    return VectorStructured.Geometry.Boundary.Centroid.X;
+                case nameof(GisMarkersLayer):
+                case nameof(GisSettlementLayer):
+                    return VectorStructured.Geometry.Centroid.X;
+            }
+
+            return default;
+        }
+    }
+
+    public double CanvasTop
+    {
+        get
+        {
+            switch (_layerType.Name)
+            {
+                case nameof(GisCellsLayer):
+                case nameof(GisRiverLayer):
+                case nameof(GisRoutesLayer):
+                    return VectorStructured.Geometry.Boundary.Centroid.Y;
+                case nameof(GisMarkersLayer):
+                case nameof(GisSettlementLayer):
+                    return VectorStructured.Geometry.Centroid.Y;
+            }
+
+            return default;
+        }
+    }
+
     /// <inheritdoc />
     public MapLayerElementVectorFeature(Type layerType)
     {
@@ -61,6 +99,9 @@ public class MapLayerElementVectorFeature : VectorFeature
 
                 case nameof(GisMarkersLayer):
                     return MapResourceFetcher.MapMarkerBrush;
+
+                case nameof(GisSettlementLayer):
+                    return MapResourceFetcher.MapSettlementBrush;
             }
 
             return Brushes.Transparent;
@@ -87,6 +128,9 @@ public class MapLayerElementVectorFeature : VectorFeature
 
                 case nameof(GisMarkersLayer):
                     return MapResourceFetcher.MapMarkerBrush;
+
+                case nameof(GisSettlementLayer):
+                    return MapResourceFetcher.MapSettlementBrush;
             }
 
             return Brushes.Transparent;

@@ -28,11 +28,15 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Margin="5"
@@ -43,16 +47,21 @@
                            Text="TODO ROUTES LAYER" />
                 <TextBlock Grid.Row="6" Grid.Column="0" Margin="5"
                            Text="TODO MARKERS LAYER" />
+                <TextBlock Grid.Row="8" Grid.Column="0" Margin="5"
+                           Text="TODO SETTLEMENTS LAYER" />
 
-                <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Text="{Binding GisCellsLayerFilePath}" />
-                <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Text="{Binding GisRiversLayerFilePath}" />
-                <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Text="{Binding GisRoutesLayerFilePath}" />
-                <TextBox Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Text="{Binding GisMarkersLayerFilePath}" />
+                <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" IsReadOnly="True" Text="{Binding GisCellsLayerFilePath}" />
+                <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" IsReadOnly="True" Text="{Binding GisRiversLayerFilePath}" />
+                <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" IsReadOnly="True" Text="{Binding GisRoutesLayerFilePath}" />
+                <TextBox Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" IsReadOnly="True" Text="{Binding GisMarkersLayerFilePath}" />
+                <TextBox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" IsReadOnly="True" Text="{Binding GisSettlementsLayerFilePath}" />
 
-                <Button Grid.Row="0" Grid.Column="1" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Cells}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
-                <Button Grid.Row="2" Grid.Column="1" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Rivers}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
-                <Button Grid.Row="4" Grid.Column="1" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Routes}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
-                <Button Grid.Row="6" Grid.Column="1" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Markers}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+                <Button Grid.Row="0" Grid.Column="2" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Cells}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+                <Button Grid.Row="2" Grid.Column="2" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Rivers}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+                <Button Grid.Row="4" Grid.Column="2" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Routes}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+                <Button Grid.Row="6" Grid.Column="2" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Markers}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
+                <Button Grid.Row="8" Grid.Column="1" Margin="5" Command="{Binding ConvertCsvFileCommand}" HorizontalAlignment="Left">TODO FROM CSV</Button>
+                <Button Grid.Row="8" Grid.Column="2" Margin="5" Command="{Binding SelectFilePathCommand}" CommandParameter="{x:Static mapSimulation:GisLayerTypeEnum.Settlements}" HorizontalAlignment="Left"><ui:SymbolIcon Symbol="Folder"/></Button>
             </Grid>
         </GroupBox>
     </Grid>

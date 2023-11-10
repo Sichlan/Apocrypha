@@ -6,21 +6,39 @@
              xmlns:mapSimulation="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools.MapSimulation"
              xmlns:customControls="clr-namespace:Apocrypha.ModernUi.CustomControls"
              xmlns:controls="http://schemas.modernwpf.com/2019"
+             xmlns:local="clr-namespace:Apocrypha.ModernUi.Views.Tools.MapSimulation"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             d:DataContext="{d:DesignInstance mapSimulation:MapMainViewModel}">
+             d:DataContext="{d:DesignInstance mapSimulation:MapMainViewModel}"
+             PreviewMouseRightButtonDown="OnPreviewMouseRightButtonDown"
+             PreviewMouseRightButtonUp="OnPreviewMouseRightButtonUp"
+             PreviewMouseMove="OnPreviewMouseMove">
     <customControls:BusyIndicator IsBusy="{Binding IsLoading}">
-        <Grid Background="{StaticResource MapWaterFillBrush}">
-            <Viewbox Stretch="Uniform" MinWidth="100" MinHeight="100" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid Background="{StaticResource MapWaterFillBrush}" ClipToBounds="True">
+            <Viewbox Stretch="Uniform" MinWidth="100" MinHeight="100" VerticalAlignment="Stretch"
+                     HorizontalAlignment="Stretch" x:Name="MapViewBox">
+                <Viewbox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=ZoomSlider}"
+                                        ScaleY="{Binding Value, ElementName=ZoomSlider}" />
+                        <TranslateTransform X="{Binding TransformX, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MapMainView}}"
+                                            Y="{Binding TransformY, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MapMainView}}"/>
+                    </TransformGroup>
+                </Viewbox.RenderTransform>
                 <ItemsControl ItemsSource="{Binding MapLayerViewModels}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Grid />
+                            <Grid ClipToBounds="True"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </Viewbox>
         
+            <Slider x:Name="ZoomSlider" Orientation="Horizontal" Grid.Row="0" Minimum="0.0" Maximum="8.0" 
+                    LargeChange="0.25" SmallChange="0.01" Margin="10" Width="100"
+                    Value="1.0"
+                    HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            
             <Button Content="TODO LAYERS" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
                 <controls:FlyoutService.Flyout>
                     <controls:Flyout>

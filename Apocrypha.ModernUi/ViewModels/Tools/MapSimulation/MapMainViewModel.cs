@@ -63,9 +63,6 @@ public class MapMainViewModel : BaseViewModel
         _userInformationMessageService = userInformationMessageService;
 
         MapLayerViewModels = new ObservableCollection<MapLayerViewModel>();
-        MapLayerViewModels.CollectionChanged += (sender, args) =>
-        {
-        };
 
         _simulationContainerService.OnSimulationInitiated += SimulationContainerServiceOnOnSimulationInitiated;
         _simulationContainerService.OnSimulationStep += SimulationContainerServiceOnOnSimulationStep;
@@ -119,6 +116,11 @@ public class MapMainViewModel : BaseViewModel
 
                             case GisMarkersLayer gisMarkersLayer:
                                 newLayers.Add(new MapLayerViewModel(gisMarkersLayer, xMin, xMax, yMin, yMax));
+
+                                break;
+
+                            case GisSettlementLayer gisSettlementLayer:
+                                newLayers.Add(new MapLayerViewModel(gisSettlementLayer, xMin, xMax, yMin, yMax));
 
                                 break;
                         }

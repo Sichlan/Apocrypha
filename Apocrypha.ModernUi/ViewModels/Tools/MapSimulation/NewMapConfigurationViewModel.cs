@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Apocrypha.CommonObject.Models.Simulation.Layers;
 using Apocrypha.CommonObject.Services.SimulationServices;
+using Apocrypha.ModernUi.Services.Map;
 using Apocrypha.ModernUi.ViewModels.Common;
 using CommunityToolkit.Mvvm.Input;
 using Mars.Interfaces.Model;
@@ -38,7 +39,13 @@ public enum GisLayerTypeEnum
     /// <summary>
     /// The Markers layer
     /// </summary>
-    Markers = 3
+    Markers = 3,
+
+
+    /// <summary>
+    /// The Settlements layer
+    /// </summary>
+    Settlements = 4
 }
 
 public class NewMapConfigurationViewModel : BaseViewModel
@@ -47,8 +54,14 @@ public class NewMapConfigurationViewModel : BaseViewModel
     private string _gisRiversLayerFilePath;
     private string _gisRoutesLayerFilePath;
     private string _gisMarkersLayerFilePath;
-    private readonly ISimulationContainerService _simulationContainerService;
+    private string _gisSettlementsLayerFilePath;
 
+    private readonly ISimulationContainerService _simulationContainerService;
+    private readonly IExportCsvToGeoJsonsService _exportCsvToGeoJsonsService;
+
+    /// <summary>
+    /// The path to the cells geojson file.
+    /// </summary>
     public string GisCellsLayerFilePath
     {
         get => _gisCellsLayerFilePath;
@@ -62,6 +75,9 @@ public class NewMapConfigurationViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// The path to the rivers geojson file.
+    /// </summary>
     public string GisRiversLayerFilePath
     {
         get => _gisRiversLayerFilePath;
@@ -75,6 +91,9 @@ public class NewMapConfigurationViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// The path to the routes geojson file.
+    /// </summary>
     public string GisRoutesLayerFilePath
     {
         get => _gisRoutesLayerFilePath;
@@ -88,6 +107,9 @@ public class NewMapConfigurationViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// The path to the markers geojson file.
+    /// </summary>
     public string GisMarkersLayerFilePath
     {
         get => _gisMarkersLayerFilePath;
@@ -101,12 +123,50 @@ public class NewMapConfigurationViewModel : BaseViewModel
         }
     }
 
-    public RelayCommand<GisLayerTypeEnum> SelectFilePathCommand { get; }
+    /// <summary>
+    /// The path to the settlements geojson file.
+    /// </summary>
+    public string GisSettlementsLayerFilePath
+    {
+        get => _gisSettlementsLayerFilePath;
+        set
+        {
+            if (value == _gisSettlementsLayerFilePath)
+                return;
 
-    public NewMapConfigurationViewModel(ISimulationContainerService simulationContainerService)
+            _gisSettlementsLayerFilePath = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public RelayCommand<GisLayerTypeEnum> SelectFilePathCommand { get; }
+    public RelayCommand ConvertCsvFileCommand { get; }
+
+    /// <inheritdoc />
+    public NewMapConfigurationViewModel(ISimulationContainerService simulationContainerService, IExportCsvToGeoJsonsService exportCsvToGeoJsonsService)
     {
         _simulationContainerService = simulationContainerService;
+        _exportCsvToGeoJsonsService = exportCsvToGeoJsonsService;
         SelectFilePathCommand = new RelayCommand<GisLayerTypeEnum>(ExecuteSelectFilePathCommand);
+        ConvertCsvFileCommand = new RelayCommand(ExecuteConvertCsvFileCommand);
+    }
+
+    private async void ExecuteConvertCsvFileCommand()
+    {
+        var openFileDialog = new OpenFileDialog
+        {
+            RestoreDirectory = true,
+            // Title = Localization.OpenDialogTitle,
+            CheckFileExists = true,
+            Filter = "CSV|*.csv"
+        };
+
+        if (openFileDialog.ShowDialog() != true)
+            return;
+
+        var path = openFileDialog.FileName;
+
+        GisSettlementsLayerFilePath = await _exportCsvToGeoJsonsService.ConvertFile(path);
     }
 
     private void ExecuteSelectFilePathCommand(GisLayerTypeEnum gisLayerTypeEnum)
@@ -188,6 +248,11 @@ public class NewMapConfigurationViewModel : BaseViewModel
                     Name = nameof(GisMarkersLayer),
                     File = outputDirectory + "\\markers\\markers.geojson"
                 },
+                new()
+                {
+                    Name = nameof(GisSettlementLayer),
+                    File = outputDirectory + "\\settlements\\settlements.geojson"
+                },
             },
             AgentMappings = new List<AgentMapping>(),
             Execution = new Execution
@@ -209,12 +274,14 @@ public class NewMapConfigurationViewModel : BaseViewModel
         string cellsFilePath = outputDirectory + "\\cells\\cells.geojson",
             riversFilePath = outputDirectory + "\\rivers\\rivers.geojson",
             routesFilePath = outputDirectory + "\\routes\\routes.geojson",
-            markersFilePath = outputDirectory + "\\markers\\markers.geojson";
+            markersFilePath = outputDirectory + "\\markers\\markers.geojson",
+            settlementsFilePath = outputDirectory + "\\settlements\\settlements.geojson";
 
         Directory.CreateDirectory(Path.GetDirectoryName(cellsFilePath)!);
         Directory.CreateDirectory(Path.GetDirectoryName(riversFilePath)!);
         Directory.CreateDirectory(Path.GetDirectoryName(routesFilePath)!);
         Directory.CreateDirectory(Path.GetDirectoryName(markersFilePath)!);
+        Directory.CreateDirectory(Path.GetDirectoryName(settlementsFilePath)!);
 
         if (string.IsNullOrWhiteSpace(GisCellsLayerFilePath)
             || string.IsNullOrWhiteSpace(GisRiversLayerFilePath)
@@ -224,7 +291,8 @@ public class NewMapConfigurationViewModel : BaseViewModel
                                             $"\n cells: {GisCellsLayerFilePath}" +
                                             $"\n rivers: {GisRiversLayerFilePath}" +
                                             $"\n routes: {GisRoutesLayerFilePath}" +
-                                            $"\n markers: {GisMarkersLayerFilePath}");
+                                            $"\n markers: {GisMarkersLayerFilePath}" +
+                                            $"\n markers: {GisSettlementsLayerFilePath}");
 
         if (!File.Exists(GisCellsLayerFilePath)
             || !File.Exists(GisRiversLayerFilePath)
@@ -234,11 +302,13 @@ public class NewMapConfigurationViewModel : BaseViewModel
                                             $"\n cells: {GisCellsLayerFilePath}" +
                                             $"\n rivers: {GisRiversLayerFilePath}" +
                                             $"\n routes: {GisRoutesLayerFilePath}" +
-                                            $"\n markers: {GisMarkersLayerFilePath}");
+                                            $"\n markers: {GisMarkersLayerFilePath}" +
+                                            $"\n markers: {GisSettlementsLayerFilePath}");
 
         File.Copy(GisCellsLayerFilePath, cellsFilePath);
         File.Copy(GisRiversLayerFilePath, riversFilePath);
         File.Copy(GisRoutesLayerFilePath, routesFilePath);
         File.Copy(GisMarkersLayerFilePath, markersFilePath);
+        File.Copy(GisSettlementsLayerFilePath, settlementsFilePath);
     }
 }

@@ -26,7 +26,8 @@
         Title="{x:Static res:Localization.ApplicationTitle}"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         d:DesignHeight="450" d:DesignWidth="800"
-        Loaded="OnLoaded">
+        Loaded="OnLoaded"
+        SizeChanged="MainWindow_OnSizeChanged">
     <Window.Resources>
         <DataTemplate x:Key="NavigationViewHeaderTemplate">
             <TextBlock Text="{Binding Converter={StaticResource StringToUpperConverter}}" Margin="12,32,0,0" FontWeight="DemiBold"/>

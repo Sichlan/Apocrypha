@@ -10,7 +10,7 @@ public interface IZipFileService
     public void CreateZipFile(string fileName, IEnumerable<string> files);
 
     public Task CreateSimulationConfigurationArchive(string fileName, string configJson, string cellsLayer, string riversLayer, string routesLayer,
-        string markersLayer);
+        string markersLayer, string settlementsLayer);
 
     public Task ReadSimulationConfigurationArchive(string fileName, string outputPath);
 }

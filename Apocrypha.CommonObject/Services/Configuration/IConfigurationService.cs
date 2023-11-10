@@ -15,4 +15,15 @@ public interface IConfigurationService
     /// Method called to apply all settings to the application. Automatically called at startup in <see cref="App.OnStartup"/>.
     /// </summary>
     void InitializeConfiguration();
+
+    /// <summary>
+    /// Creates and returns the path to the app's temp directory based on <see cref="ApocryphaConfiguration"/>'s <see cref="IApocryphaConfiguration.AppDataRootDirectory"/>.
+    /// </summary>
+    /// <returns>The temp directory followed by '\' (example: "C:\Users\test\AppData\Roaming\Apocrypha\temp\")</returns>
+    string GetTempDirectoryPath();
+
+    /// <summary>
+    /// Deletes the temporary directory if it exists.
+    /// </summary>
+    void DeleteTempDirectoryPath();
 }

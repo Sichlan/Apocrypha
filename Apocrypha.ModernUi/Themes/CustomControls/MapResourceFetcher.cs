@@ -13,6 +13,7 @@ public static class MapResourceFetcher
     public static SolidColorBrush MapRoutesBrush => FetchResource<SolidColorBrush>();
     public static SolidColorBrush MapTrailsBrush => FetchResource<SolidColorBrush>();
     public static SolidColorBrush MapMarkerBrush => FetchResource<SolidColorBrush>();
+    public static SolidColorBrush MapSettlementBrush => FetchResource<SolidColorBrush>();
 
     private static T FetchResource<T>([CallerMemberName] string resourceName = "") where T : class
     {

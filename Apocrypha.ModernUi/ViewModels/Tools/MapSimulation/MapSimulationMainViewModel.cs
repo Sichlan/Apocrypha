@@ -17,7 +17,8 @@ public class MapSimulationMainViewModel : NavigableViewModel
 {
     private readonly ISimulationContainerService _simulationContainerService;
     private readonly IConfigurationService _configurationService;
-    private readonly CreateViewModel<MapMainViewModel> _createViewModel;
+    private readonly CreateViewModel<MapMainViewModel> _createMapMainViewModel;
+    private readonly CreateViewModel<NewMapConfigurationViewModel> _createNewMapConfigurationViewModel;
     private MapMainViewModel _mapMainViewModel;
 
     public event Action OpenNewConfigDialog;
@@ -36,11 +37,13 @@ public class MapSimulationMainViewModel : NavigableViewModel
     }
 
     public MapSimulationMainViewModel(NavigateToPageCommand navigateToPageCommand, ISimulationContainerService simulationContainerService,
-        IConfigurationService configurationService, CreateViewModel<MapMainViewModel> createViewModel) : base(navigateToPageCommand)
+        IConfigurationService configurationService, CreateViewModel<MapMainViewModel> createMapMainViewModel,
+        CreateViewModel<NewMapConfigurationViewModel> createNewMapConfigurationViewModel) : base(navigateToPageCommand)
     {
         _simulationContainerService = simulationContainerService;
         _configurationService = configurationService;
-        _createViewModel = createViewModel;
+        _createMapMainViewModel = createMapMainViewModel;
+        _createNewMapConfigurationViewModel = createNewMapConfigurationViewModel;
 
         NewSimulationConfigurationCommand = new RelayCommand(ExecuteNewSimulationConfigurationCommand, CanExecuteNewSimulationConfigurationCommand);
         SaveSimulationConfigurationCommand = new RelayCommand(ExecuteSaveSimulationConfigurationCommand, CanExecuteSaveSimulationConfigurationCommand);
@@ -53,7 +56,7 @@ public class MapSimulationMainViewModel : NavigableViewModel
     {
         base.OnNavigateTo();
 
-        MapMainViewModel = _createViewModel();
+        MapMainViewModel = _createMapMainViewModel();
 
         if (!Directory.Exists(_configurationService.ApocryphaConfiguration.AppDataRootDirectory))
             Directory.CreateDirectory(_configurationService.ApocryphaConfiguration.AppDataRootDirectory);
@@ -115,7 +118,7 @@ public class MapSimulationMainViewModel : NavigableViewModel
 
     private async void ExecuteNewSimulationConfigurationCommand()
     {
-        var content = new NewMapConfigurationViewModel(_simulationContainerService);
+        var content = _createNewMapConfigurationViewModel();
 
         var dialog = new ContentDialog()
         {
@@ -128,6 +131,7 @@ public class MapSimulationMainViewModel : NavigableViewModel
             IsShadowEnabled = false,
             FullSizeDesired = true
         };
+
         var result = await dialog.ShowAsync();
 
         switch (result)

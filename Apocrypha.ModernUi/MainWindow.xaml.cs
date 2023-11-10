@@ -125,5 +125,18 @@ namespace Apocrypha.ModernUi
                 Keyboard.Focus(FlyoutContent.LoginTextBox);
             }
         }
+
+        private void MainWindow_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.WidthChanged && Application.Current.TryFindResource("ContentDialogMaxWidth") != null)
+            {
+                Application.Current.Resources["ContentDialogMaxWidth"] = e.NewSize.Width;
+            }
+
+            if (e.WidthChanged && Application.Current.TryFindResource("ContentDialogMaxHeight") != null)
+            {
+                Application.Current.Resources["ContentDialogMaxHeight"] = e.NewSize.Height;
+            }
+        }
     }
 }

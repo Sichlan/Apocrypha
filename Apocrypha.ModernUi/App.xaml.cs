@@ -53,6 +53,9 @@ namespace Apocrypha.ModernUi
         /// <inheritdoc />
         protected override async void OnExit(ExitEventArgs e)
         {
+            var configurationService = _host.Services.GetRequiredService<IConfigurationService>();
+            configurationService.DeleteTempDirectoryPath();
+
             await _host.StopAsync();
             _host.Dispose();
 

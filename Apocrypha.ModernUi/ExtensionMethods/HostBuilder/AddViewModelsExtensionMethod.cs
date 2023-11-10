@@ -7,6 +7,7 @@ using Apocrypha.CommonObject.Models.Poisons;
 using Apocrypha.CommonObject.Services;
 using Apocrypha.CommonObject.Services.SimulationServices;
 using Apocrypha.ModernUi.Helpers.Commands.Navigation;
+using Apocrypha.ModernUi.Services.Map;
 using Apocrypha.ModernUi.Services.State.Navigation;
 using Apocrypha.ModernUi.Services.State.Users;
 using Apocrypha.ModernUi.Services.UserInformationService;
@@ -67,6 +68,7 @@ public static class AddViewModelsExtensionMethod
             // Creator Delegates
             services.AddSingleton<CreateViewModel<PoisonCrafterViewModel>>(s => () => CreatePoisonCrafterViewModel(s));
             services.AddSingleton<CreateViewModel<MapMainViewModel>>(s => () => CreateMapMainViewModel(s));
+            services.AddScoped<CreateViewModel<NewMapConfigurationViewModel>>(s => () => CreateNewMapConfigurationViewModel(s));
 
             services.AddSingleton<CreateRaceEditorViewModel>(s => race => CreateRaceEditorViewModel(s, race));
             services.AddSingleton<CreatePoisonCrafterViewModel>(s => poison => CreatePoisonCrafterViewModel(s, poison));
@@ -78,6 +80,12 @@ public static class AddViewModelsExtensionMethod
         });
 
         return hostBuilder;
+    }
+
+    private static NewMapConfigurationViewModel CreateNewMapConfigurationViewModel(IServiceProvider serviceProvider)
+    {
+        return new NewMapConfigurationViewModel(serviceProvider.GetRequiredService<ISimulationContainerService>(),
+            serviceProvider.GetRequiredService<IExportCsvToGeoJsonsService>());
     }
 
     private static MapMainViewModel CreateMapMainViewModel(IServiceProvider serviceProvider)
