@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -9,8 +10,6 @@ namespace Apocrypha.ModernUi.Views.Tools.MapSimulation;
 public partial class MapMainView : INotifyPropertyChanged
 {
     private Point _scrollMousePoint;
-    private double _horizontalOffset;
-    private double _verticalOffset;
     private double _transformX;
     private double _transformY;
 
@@ -50,9 +49,10 @@ public partial class MapMainView : INotifyPropertyChanged
         _scrollMousePoint = e.GetPosition(this);
         _scrollMousePoint.X -= TransformX;
         _scrollMousePoint.Y -= TransformY;
+
         CaptureMouse();
 
-        Debug.WriteLine($"Mouse down ({_scrollMousePoint.X}/{_scrollMousePoint.Y};{_horizontalOffset};{_verticalOffset})");
+        Debug.WriteLine($"Mouse down ({_scrollMousePoint.X}/{_scrollMousePoint.Y};{TransformX};{TransformY})");
     }
 
     private void OnPreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -71,7 +71,27 @@ public partial class MapMainView : INotifyPropertyChanged
         TransformX = mousePoint.X - _scrollMousePoint.X;
         TransformY = mousePoint.Y - _scrollMousePoint.Y;
 
+        // TODO: Fix this to restrain panning within the area of the canvas 
+        // if (TransformX < 0)
+        // {
+        //     TransformX = 0;
+        //     _scrollMousePoint.X = mousePoint.X;
+        // }
+        // else if (TransformX + MapViewBox.ActualWidth * ZoomSlider.Value > ActualWidth)
+        // {
+        //     TransformX = ActualWidth - MapViewBox.ActualWidth;
+        //     _scrollMousePoint.X = mousePoint.X;
+        // }
+
+
         Debug.WriteLine($"Mouse moved ({mousePoint.X}/{mousePoint.Y};{TransformX};{TransformY})");
+    }
+
+    private void OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        ZoomSlider.Value = e.Delta > 0
+            ? Math.Min(ZoomSlider.Value + ZoomSlider.LargeChange, ZoomSlider.Maximum)
+            : Math.Max(ZoomSlider.Value - ZoomSlider.LargeChange, ZoomSlider.Minimum);
     }
 
     /// <inheritdoc />

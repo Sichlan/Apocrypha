@@ -12,7 +12,8 @@
              d:DataContext="{d:DesignInstance mapSimulation:MapMainViewModel}"
              PreviewMouseRightButtonDown="OnPreviewMouseRightButtonDown"
              PreviewMouseRightButtonUp="OnPreviewMouseRightButtonUp"
-             PreviewMouseMove="OnPreviewMouseMove">
+             PreviewMouseMove="OnPreviewMouseMove"
+             PreviewMouseWheel="OnPreviewMouseWheel">
     <customControls:BusyIndicator IsBusy="{Binding IsLoading}">
         <Grid Background="{StaticResource MapWaterFillBrush}" ClipToBounds="True">
             <Viewbox Stretch="Uniform" MinWidth="100" MinHeight="100" VerticalAlignment="Stretch"
