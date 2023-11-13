@@ -1,11 +1,30 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Apocrypha.ModernUi.Helpers.Converters"
-                    xmlns:map="clr-namespace:Apocrypha.ModernUi.Helpers.Map">
+                    xmlns:map="clr-namespace:Apocrypha.ModernUi.Helpers.Map"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:mapSimulation="clr-namespace:Apocrypha.ModernUi.ViewModels.Tools.MapSimulation"
+                    x:Class="Apocrypha.ModernUi.Themes.CustomControls.MapStyle"
+                    mc:Ignorable="d">
     
     <converters:CoordinatesToGeometryConverter x:Key="CoordinatesToGeometryConverter"/>
     
-    <SolidColorBrush x:Key="MapLandFillBrush" Color="PaleGreen"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush1" Color="#69bda9"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush2" Color="#8fd2a4"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush3" Color="#b6e2a1"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush4" Color="#d7ef9f"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush5" Color="#eef8a8"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush6" Color="#fbf8b0"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush7" Color="#feeb9f"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush8" Color="#fed483"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush9" Color="#fdb76a"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush10" Color="#f99456"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush11" Color="#f0704a"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush12" Color="#e0504a"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush13" Color="#c8314a"/>
+    <SolidColorBrush x:Key="MapLandHeightMapBrush14" Color="#a90d45"/>
+    
     <SolidColorBrush x:Key="MapWaterFillBrush" Color="LightSkyBlue"/>
     <SolidColorBrush x:Key="MapSeaRoutesBrush" Color="DodgerBlue"/>
     <SolidColorBrush x:Key="MapRoutesBrush" Color="DarkGray"/>
@@ -13,28 +32,43 @@
     <SolidColorBrush x:Key="MapMarkerBrush" Color="LightCoral"/>
     <SolidColorBrush x:Key="MapSettlementBrush" Color="LightGoldenrodYellow"/>
     
+    <SolidColorBrush x:Key="MapHighlightColour" Color="DeepPink"/>
+    
+    <Style TargetType="{x:Type Shape}" x:Key="MapShapeStyle" d:DataContext="{d:DesignInstance map:MapLayerElementVectorFeature}">
+        <Setter Property="Fill" Value="{Binding Fill}"/>
+        <Setter Property="Stroke" Value="{Binding Stroke}"/>
+        <Setter Property="StrokeThickness" Value="{Binding StrokeThickness}"/>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseDirectlyOver" Value="True">
+                <Setter Property="Stroke" Value="{StaticResource MapHighlightColour}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <DataTemplate DataType="{x:Type map:MapLayerElementVectorFeature}" x:Key="PolygonTemplate">
+        <Polygon Points="{Binding VectorStructured.Geometry.Coordinates, Converter={StaticResource CoordinatesToGeometryConverter}}"
+                 Style="{StaticResource MapShapeStyle}"
+                 StrokeStartLineCap="Round"
+                 StrokeEndLineCap="Round"
+                 StrokeLineJoin="Round"
+                 MouseDown="Element_OnMouseDown" />
+    </DataTemplate>
+    
     <DataTemplate DataType="{x:Type map:MapLayerElementVectorFeature}" x:Key="LineTemplate">
         <!-- ReSharper is a little bit stupid, incorrectly claiming, that canvas.left/top has no effect in this context, so:-->
         <!-- ReSharper disable twice Xaml.RedundantAttachedProperty -->
         <Polyline Points="{Binding VectorStructured.Geometry.Coordinates, Converter={StaticResource CoordinatesToGeometryConverter}}"
-                  Stroke="{Binding Stroke}"
-                  StrokeThickness="{Binding StrokeThickness}"
-                  Fill="{Binding Fill}"
-                  Canvas.Left="{Binding CanvasLeft}"
-                  Canvas.Top="{Binding CanvasTop}"
-                  StrokeStartLineCap="Round"
-                  StrokeEndLineCap="Round"
+                  Style="{StaticResource MapShapeStyle}"
+                  StrokeStartLineCap="Triangle"
+                  StrokeEndLineCap="Square"
                   StrokeLineJoin="Round"/>
     </DataTemplate>
     
     <DataTemplate DataType="{x:Type map:MapLayerElementVectorFeature}" x:Key="PointTemplate">
         <!-- ReSharper is a little bit stupid, incorrectly claiming, that canvas.left/top has no effect in this context, so:-->
         <!-- ReSharper disable twice Xaml.RedundantAttachedProperty -->
-        <Path Stroke="{Binding Stroke}"
-              StrokeThickness="{Binding StrokeThickness}"
-              Fill="{Binding Fill}"
-              Canvas.Left="{Binding CanvasLeft}"
-              Canvas.Top="{Binding CanvasTop}"
+        <Path Style="{StaticResource MapShapeStyle}"
               StrokeStartLineCap="Round"
               StrokeEndLineCap="Round"
               StrokeLineJoin="Round">
@@ -44,7 +78,10 @@
         </Path>
     </DataTemplate>
     
-    <map:MapElementTemplateSelector LineTemplate="{StaticResource LineTemplate}" PointTemplate="{StaticResource PointTemplate}" x:Key="MapElementTemplateSelector"/>
+    <map:MapElementTemplateSelector x:Key="MapElementTemplateSelector"
+                                    PolygonTemplate="{StaticResource PolygonTemplate}"
+                                    LineTemplate="{StaticResource LineTemplate}"
+                                    PointTemplate="{StaticResource PointTemplate}"/>
     
     <Style TargetType="{x:Type ItemsControl}" x:Key="MapLayerItemsControlStyle">
         <Setter Property="ItemTemplateSelector" Value="{StaticResource MapElementTemplateSelector}"/>
@@ -53,14 +90,15 @@
                 <ItemsPanelTemplate>
                     <Canvas ClipToBounds="True"
                             Width="{Binding Width}" 
-                            Height="{Binding Height}">
+                            Height="{Binding Height}" 
+                            d:DataContext="{d:DesignInstance mapSimulation:MapLayerViewModel}">
                         <Canvas.LayoutTransform>
                             <ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
                         </Canvas.LayoutTransform>
                         <Canvas.Resources>
-                            <Style TargetType="{x:Type ContentPresenter}">
+                            <Style TargetType="{x:Type ContentPresenter}" d:DataContext="{d:DesignInstance map:MapLayerElementVectorFeature}">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding VectorStructured.Data[type]}" Value="roads">
+                                    <DataTrigger Binding="{Binding Type}" Value="roads">
                                         <Setter Property="Canvas.ZIndex" Value="999999999"/>
                                     </DataTrigger>
                                 </Style.Triggers>

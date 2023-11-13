@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -51,15 +50,11 @@ public partial class MapMainView : INotifyPropertyChanged
         _scrollMousePoint.Y -= TransformY;
 
         CaptureMouse();
-
-        Debug.WriteLine($"Mouse down ({_scrollMousePoint.X}/{_scrollMousePoint.Y};{TransformX};{TransformY})");
     }
 
     private void OnPreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
     {
         ReleaseMouseCapture();
-
-        Debug.WriteLine("Mouse up");
     }
 
     private void OnPreviewMouseMove(object sender, MouseEventArgs e)
@@ -77,14 +72,11 @@ public partial class MapMainView : INotifyPropertyChanged
         //     TransformX = 0;
         //     _scrollMousePoint.X = mousePoint.X;
         // }
-        // else if (TransformX + MapViewBox.ActualWidth * ZoomSlider.Value > ActualWidth)
+        // else if (TransformX + ActualWidth > MapViewBox.ActualWidth * ZoomSlider.Value)
         // {
-        //     TransformX = ActualWidth - MapViewBox.ActualWidth;
+        //     TransformX = MapViewBox.ActualWidth * ZoomSlider.Value - ActualWidth;
         //     _scrollMousePoint.X = mousePoint.X;
         // }
-
-
-        Debug.WriteLine($"Mouse moved ({mousePoint.X}/{mousePoint.Y};{TransformX};{TransformY})");
     }
 
     private void OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
